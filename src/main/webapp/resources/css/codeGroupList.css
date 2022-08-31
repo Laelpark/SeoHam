@@ -1,0 +1,48 @@
+.info {
+    cursor:pointer;
+}
+.userimg {
+    margin-right: 20px;
+}
+.d{
+    height: 80px;
+}
+.header {
+    height: 80px;
+}
+.content {
+    margin-top: 20px;
+}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+	*{
+		list-style: none;
+		text-decoration: none;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-family: 'Open Sans', sans-serif;
+	}
+
+	.wrapper .sidebar{
+		top: 0;
+		left: 0;
+		width: 225px;
+		height: 100vh;
+		padding: 20px 0;
+		transition: all 0.5s ease;
+	}
+	.wrapper .sidebar ul li a{
+	text-decoration-line: none;
+    display: block;
+    padding: 13px 30px;
+    color: gray;
+    font-size: 16px;
+    position: relative;
+	}
+
+	.wrapper .sidebar ul li a .icon{
+		color: #dee4ec;
+		width: 30px;
+		display: inline-block;
+	}
