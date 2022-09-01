@@ -3,9 +3,9 @@ package com.lael.infra.modules.codegroup;
 public class CodeGroup {
 
 	// infr_code_group
-	private String ifcgSeq;
+	private String ccgSeq;
 	private String ifcgAnother;
-	private String ifcgname;
+	private String name;
 	private String ifcgnamEng;
 	private Integer ifcguserNy;
 	private Integer ifcgorder;
@@ -18,11 +18,11 @@ public class CodeGroup {
 	
 //---------------------
 	
-	public String getIfcgSeq() {
-		return ifcgSeq;
+	public String getCcgSeq() {
+		return ccgSeq;
 	}
-	public void setIfcgSeq(String ifcgSeq) {
-		this.ifcgSeq = ifcgSeq;
+	public void setCcgSeq(String ccgSeq) {
+		this.ccgSeq = ccgSeq;
 	}
 	public String getIfcgAnother() {
 		return ifcgAnother;
@@ -30,11 +30,11 @@ public class CodeGroup {
 	public void setIfcgAnother(String ifcgAnother) {
 		this.ifcgAnother = ifcgAnother;
 	}
-	public String getIfcgname() {
-		return ifcgname;
+	public String getName() {
+		return name;
 	}
-	public void setIfcgname(String ifcgname) {
-		this.ifcgname = ifcgname;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getIfcgnamEng() {
 		return ifcgnamEng;
