@@ -180,7 +180,7 @@
 													<td>49</td>
 													<td>${list.name}</td>
 													<td>${list.name_eng}</td>
-													<td>0</td>
+													<td>${list.b.codeGroup_ccgSeq}</td>
 													<td>-</td>
 													<td>-</td>
 												</tr>		

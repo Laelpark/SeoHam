@@ -11,7 +11,9 @@
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.*
-		FROM codeGroup a
+			,(select count(b.codeGroup_ccgSeq) from codeGroup a where 1=1 and a.ccgSeq=b.codeGroup_ccgSeq) as count
+		FROM 
+			codeGroup a
 		<!-- WHERE 1=1
 			AND ifcgDelNy = 0 -->
 	</select>
