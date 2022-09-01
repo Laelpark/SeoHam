@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lael.infra.modules.code.CodeMapper">
+
+    <resultMap id="resultMapObj" type="com.lael.infra.modules.code.Code"></resultMap>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		SELECT
+			b.*
+			,a.ccgSeq
+		    ,a.name
+		FROM 
+			code b
+		JOIN codeGroup a on a.ccgSeq = b.codeGroup_ccgSeq
+		<!-- WHERE 1=1
+			AND ifcgDelNy = 0 -->
+	</select>
+
+</mapper>	

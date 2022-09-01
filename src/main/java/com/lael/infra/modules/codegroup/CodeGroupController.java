@@ -23,4 +23,5 @@ public class CodeGroupController {
 		
 		return "infra/codegroup/xdmin/codeGroupList";
 	}
+	
 }

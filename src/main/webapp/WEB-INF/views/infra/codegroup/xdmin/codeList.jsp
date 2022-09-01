@@ -99,12 +99,12 @@
 						</div>
 						<div class="col">
 							<div class="content">
-								<h2 class="row needs-validation ms-3 mt-3">코드그룹 관리</h2>
+								<h2 class="row needs-validation ms-3 mt-3">코드 관리</h2>
 								<div class="row needs-validation ms-3 me-3 mt-3 mb-5 p-3 shadow-lg bg-body rounded" novalidate>
 									<div class="row mb-2">
 										<div class="col-md-3">
 											<select class="form-select" id="validationCustom01" required>
-												<option selected disabled value="">N</option>
+												<option selected disabled value="">선택</option>
 												<option>YES</option>
 												<option>NO</option>
 											</select>
@@ -163,134 +163,36 @@
 												</th>
 												<th>#</th>
 												<th class="td1" scope="col">코드그룹 코드</th>
-												<th class="td2" scope="col">코드그룹 이름(한글)</th>
-												<th class="td3" scope="col">코드그룹 이름(영문)</th>
-												<th class="td4" scope="col">코드갯수</th>
+												<th class="td1" scope="col">코드그룹 이름(한글)</th>
+												<th class="td1" scope="col">코드</th>
+												<th class="td1" scope="col">대체코드</th>
+												<th class="td2" scope="col">코드 이름(한글)</th>
+												<th class="td3" scope="col">코드 이름(영문)</th>
+												<th class="td4" scope="col">사용</th>
+												<th class="td4" scope="col">순서</th>
 												<th class="td4" scope="col">등록일</th>
 												<th class="td4" scope="col">수정일</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr onclick="newPage()" class="info">
-												<th scope="row" class="td1" src="./memberMod.html">
-													<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
-												</th>
-												<td>1</td>
-												<td>49</td>
-												<td>박**</td>
-												<td>park**</td>
-												<td>0</td>
-												<td>-</td>
-												<td>-</td>
-											</tr>
-											<tr class="info">
-												<th scope="row" class="td2">
-													<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
-												</th>
-												<td>2</td>
-												<td>48</td>
-												<td>박**</td>
-												<td>park**</td>
-												<td>0</td>
-												<td>-</td>
-												<td>-</td>
-											</tr>
-											<tr  class="info">
-												<th scope="row" class="td3">
-													<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
-												</th>
-												<td>3</td>
-												<td>47</td>
-												<td>김**</td>
-												<td>kim**</td>
-												<td>0</td>
-												<td>-</td>
-												<td>-</td>
-											</tr>
-											<tr  class="info">
-												<th scope="row" class="td4">
-													<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
-												</th>
-												<td>4</td>
-												<td>39</td>
-												<td>최**</td>
-												<td>choi**</td>
-												<td>0</td>
-												<td>-</td>
-												<td>-</td>
-											</tr>
-											<tr  class="info">
-												<th scope="row" class="td4">
-													<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
-												</th>
-												<td>5</td>
-												<td>38</td>
-												<td>김**</td>
-												<td>kim**</td>
-												<td>0</td>
-												<td>-</td>
-												<td>-</td>
-											</tr>
-											<tr  class="info">
-												<th scope="row" class="td4">
-													<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
-												</th>
-												<td>6</td>
-												<td>36</td>
-												<td>유**</td>
-												<td>yu**</td>
-												<td>0</td>
-												<td>-</td>
-												<td>-</td>
-											</tr>
-											<tr  class="info">
-												<th scope="row" class="td4">
-													<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
-												</th>
-												<td>7</td>
-												<td>35</td>
-												<td>이**</td>
-												<td>lee**</td>
-												<td>0</td>
-												<td>-</td>
-												<td>-</td>
-											</tr>
-											<tr  class="info">
-												<th scope="row" class="td4">
-													<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
-												</th>
-												<td>8</td>
-												<td>34</td>
-												<td>강**</td>
-												<td>kang**</td>
-												<td>0</td>
-												<td>-</td>
-												<td>-</td>
-											</tr>
-											<tr  class="info">
-												<th scope="row" class="td4">
-													<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
-												</th>
-												<td>9</td>
-												<td>33</td>
-												<td>김**</td>
-												<td>kim**</td>
-												<td>0</td>
-												<td>-</td>
-												<td>-</td>
-											</tr>
-											<tr  class="info">
-												<th scope="row" class="td4">
-													<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
-												</th>
-												<td>10</td>
-												<td>32</td>
-												<td>박**</td>
-												<td>park**</td>
-												<td>0</td>
-												<td>-</td>
-												<td>-</td>
-											</tr>
+											<c:forEach items="${list}" var="list" varStatus="status">
+												<tr onclick="newPage()" class="info">
+													<th scope="row" class="td1">
+														<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
+													</th>
+													<td>${list.cdSeq}</td>
+													<td>${list.ccgSeq}</td>
+													<td>${list.name}</td>
+													<td>-</td>
+													<td>-</td>
+													<td><a href="#">${list.codeName}</a></td>
+													<td>-</td>
+													<td>-</td>
+													<td>${list.codeOrder}</td>
+													<td>-</td>
+													<td>-</td>
+												</tr>		
+											</c:forEach>
 										</tbody>
 									</table>
 									<div class="row">
