@@ -16,6 +16,8 @@
 		FROM 
 			code b
 		JOIN codeGroup a on a.ccgSeq = b.codeGroup_ccgSeq
+		WHERE 1=1
+		AND  b.example > "1"
 		<!-- WHERE 1=1
 			AND ifcgDelNy = 0 -->
 	</select>

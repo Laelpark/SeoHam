@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
 <!doctype html>
 <html lang="ko">
@@ -61,7 +64,8 @@
 			</div>
 		</header>
 		<main>
-			<div style="height: 55px"></div>
+			<form method="get" action="/codeGroup/codeGroupList">
+				<div style="height: 55px"></div>
 			<div class="wrapper">
 				<div class="container">
 					<div class="row">
@@ -103,36 +107,37 @@
 								<div class="row needs-validation ms-3 me-3 mt-3 mb-5 p-3 shadow-lg bg-body rounded" novalidate>
 									<div class="row mb-2">
 										<div class="col-md-3">
-											<select class="form-select" id="validationCustom01" required>
+											<select class="form-select" id="validationCustom01">
 												<option selected disabled value="">선택</option>
 												<option>YES</option>
 												<option>NO</option>
 											</select>
 										</div>
 										<div class="col-md-3">
-											<select class="form-select" id="validationCustom02" required>
+											<select class="form-select" id="validationCustom02">
 												<option selected disabled value="">수정일</option>
 												<option>...</option>
 												<option>...</option>
 											</select>
 										</div>
 										<div class="col-md-3">
-											<input type="text" class="form-control" id="validationCustom03" placeholder="시작일" required>
+											<input type="text" class="form-control" id="validationCustom03" placeholder="시작일">
 										</div>
 										<div class="col-md-3">
-											<input type="text" class="form-control" id="validationCustom04" placeholder="종료일" required>
+											<input type="text" class="form-control" id="validationCustom04" placeholder="종료일">
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-3">
-											<select class="form-select" id="validationCustom01" required>
-											<option selected disabled value="">검색구분</option>
-											<option>...</option>
-											<option>...</option>
+											<select class="form-select" id="shOption" name="shOption">
+												<option value=""<c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+												<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
+												<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
+												<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름(영문)</option>
 											</select>
 										</div>
 										<div class="col-md-3">
-											<input type="text" class="form-control" id="validationCustom04" placeholder="검색어를 입력하세요." required>
+											<input type="text" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>" class="form-control"  placeholder="검색어를 입력하세요.">
 										</div>
 										<div class="col-md-2">
 											<button class="btn btn-warning" type="submit" id="searching"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -171,20 +176,29 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${list}" var="list" varStatus="status">
-												<tr onclick="newPage()" class="info">
-													<th scope="row" class="td1" src="./memberMod.html">
-														<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
-													</th>
-													<td>${list.ccgSeq}</td>
-													<td>49</td>
-													<td>${list.name}</td>
-													<td>${list.name_eng}</td>
-													<td>${list.count}</td>
-													<td>-</td>
-													<td>-</td>
-												</tr>		
-											</c:forEach>
+											<c:choose>
+												<c:when test="${fn:length(list) eq 0}">
+													<tr>
+														<td class="text-center" colspan="8">There is no data!</td>
+													</tr>
+												</c:when>
+												<c:otherwise>
+													<c:forEach items="${list}" var="list" varStatus="status">
+														<tr onclick="newPage()" class="info">
+															<th scope="row" class="td1" src="./memberMod.html">
+																<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
+															</th>
+															<td>${list.ccgSeq}</td>
+															<td>49</td>
+															<td>${list.name}</td>
+															<td>${list.name_eng}</td>
+															<td>${list.count}</td>
+															<td>${list.codegroup_ex}</td>
+															<td>-</td>
+														</tr>		
+													</c:forEach>
+												</c:otherwise>
+											</c:choose>
 										</tbody>
 									</table>
 									<div class="row">
@@ -273,6 +287,7 @@
 					</div>
 				</div>
 			</div>
+			</form>
 		</main>
 	
 		<!-- end --> 

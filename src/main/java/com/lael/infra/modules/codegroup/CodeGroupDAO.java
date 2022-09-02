@@ -17,5 +17,7 @@ public class CodeGroupDAO {
 	
 	private static String namespace = "com.lael.infra.modules.codegroup.CodeGroupMapper";
 	
-	public List<CodeGroup> selectList(){ return sqlSession.selectList(namespace + ".selectList", ""); }
+	public List<CodeGroup> selectList(CodeGroupVo vo){ 
+		return sqlSession.selectList(namespace + ".selectList", vo); 
+		}
 }

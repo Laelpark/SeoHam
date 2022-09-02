@@ -6,7 +6,15 @@ public class Code {
 	private String name;
 	private Integer cdSeq;
 	private String codeName;
+	private Integer example;
 	
+	
+	public Integer getExample() {
+		return example;
+	}
+	public void setExample(Integer example) {
+		this.example = example;
+	}
 	public Integer getCcgSeq() {
 		return ccgSeq;
 	}

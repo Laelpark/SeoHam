@@ -6,9 +6,15 @@ public class CodeGroup {
 	private String name;
 	private String name_eng;
 	private Integer count;
+	private Integer codegroup_ex;
 	
 	
-	
+	public Integer getCodegroup_ex() {
+		return codegroup_ex;
+	}
+	public void setCodegroup_ex(Integer codegroup_ex) {
+		this.codegroup_ex = codegroup_ex;
+	}
 	public Integer getCount() {
 		return count;
 	}

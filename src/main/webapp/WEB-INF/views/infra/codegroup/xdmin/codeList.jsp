@@ -1,6 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+
 
 <!doctype html>
 <html lang="ko">
@@ -8,7 +12,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>CodeGroup.html</title>
+		<title>Code.html</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 		<link rel="stylesheet" href="/resources/css/codeGroupList.css">
 	</head>
@@ -175,24 +179,29 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${list}" var="list" varStatus="status">
-												<tr onclick="newPage()" class="info">
-													<th scope="row" class="td1">
-														<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
-													</th>
-													<td>${list.cdSeq}</td>
-													<td>${list.ccgSeq}</td>
-													<td>${list.name}</td>
-													<td>-</td>
-													<td>-</td>
-													<td><a href="#">${list.codeName}</a></td>
-													<td>-</td>
-													<td>-</td>
-													<td>${list.codeOrder}</td>
-													<td>-</td>
-													<td>-</td>
-												</tr>		
-											</c:forEach>
+											<c:choose>
+												<c:when test="${fn:length(list) eq 0}">
+													<tr>
+														<td class="text-center" colspan="12">There is no data!</td>
+													</tr>
+												</c:when>
+												<c:otherwise>
+													<c:forEach items="${list}" var="list" varStatus="status">
+														<tr onclick="newPage()" class="info">
+															<th scope="row" class="td1" src="./memberMod.html">
+																<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
+															</th>
+															<td>${list.ccgSeq}</td>
+															<td>49</td>
+															<td>${list.name}</td>
+															<td>${list.name_eng}</td>
+															<td>${list.count}</td>
+															<td>${list.example}</td>
+															<td>-</td>
+														</tr>		
+													</c:forEach>
+												</c:otherwise>
+											</c:choose>
 										</tbody>
 									</table>
 									<div class="row">
