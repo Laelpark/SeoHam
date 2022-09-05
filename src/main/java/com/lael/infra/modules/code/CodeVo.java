@@ -1,18 +1,13 @@
-package com.lael.infra.modules.codegroup;
+package com.lael.infra.modules.code;
 
-public class CodeGroupVo {
+public class CodeVo {
 
+
+	private Integer cdDelNy;
 	private Integer shOption;
 	private String shValue;
-	private String delNy;
 	
-
-	public String getDelNy() {
-		return delNy;
-	}
-	public void setDelNy(String delNy) {
-		this.delNy = delNy;
-	}
+	
 	public Integer getShOption() {
 		return shOption;
 	}
@@ -25,5 +20,15 @@ public class CodeGroupVo {
 	public void setShValue(String shValue) {
 		this.shValue = shValue;
 	}
+	public Integer getCdDelNy() {
+		return cdDelNy;
+	}
+	public void setCdDelNy(Integer cdDelNy) {
+		this.cdDelNy = cdDelNy;
+	}
+
+
+	
+	
 	
 }

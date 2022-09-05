@@ -6,15 +6,9 @@ public class Code {
 	private String name;
 	private Integer cdSeq;
 	private String codeName;
-	private Integer example;
+	private Integer codeOrder;
 	
 	
-	public Integer getExample() {
-		return example;
-	}
-	public void setExample(Integer example) {
-		this.example = example;
-	}
 	public Integer getCcgSeq() {
 		return ccgSeq;
 	}
@@ -27,9 +21,6 @@ public class Code {
 	public void setName(String name) {
 		this.name = name;
 	}
-	private Integer codeOrder;
-	private Integer codeGroup_ccgSeq;
-	
 	public Integer getCdSeq() {
 		return cdSeq;
 	}
@@ -48,11 +39,7 @@ public class Code {
 	public void setCodeOrder(Integer codeOrder) {
 		this.codeOrder = codeOrder;
 	}
-	public Integer getCodeGroup_ccgSeq() {
-		return codeGroup_ccgSeq;
-	}
-	public void setCodeGroup_ccgSeq(Integer codeGroup_ccgSeq) {
-		this.codeGroup_ccgSeq = codeGroup_ccgSeq;
-	}
+
+
 
 }

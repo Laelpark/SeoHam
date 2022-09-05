@@ -15,6 +15,9 @@
 		<title>Code.html</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 		<link rel="stylesheet" href="/resources/css/codeGroupList.css">
+	 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	</head>
 	
 	<body>
@@ -65,238 +68,246 @@
 			</div>
 		</header>
 		<main>
-			<div style="height: 55px"></div>
-			<div class="wrapper">
-				<div class="container">
-					<div class="row">
-						<div class="col-3">
-							<div class="sidebar">
-								<!--menu item-->
-								<ul>
-									<li>
-										<a href="#" class="active">
-											<span class="icon"><i class="fas fa-home"></i></span>
-											<span class="item">Home</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<span class="icon"><i class="fas fa-desktop"></i></span>
-											<span class="item">Dashboard</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<span class="icon"><i class="fas fa-user-friends"></i></span>
-											<span class="item">Orders</span>
-										</a>
-									</li>
-									<li><hr class="dropdown-divider" style="color: lightgray;"></li>
-									<li>
-										<a href="#">
-											<span class="icon"><i class="fas fa-tachometer-alt"></i></span>
-											<span class="item">Account</span>
-										</a>
-									</li>
-								</ul>
+			<form method="get" action="/code/codeList">
+				<div style="height: 55px"></div>
+				<div class="wrapper">
+					<div class="container">
+						<div class="row">
+							<div class="col-3">
+								<div class="sidebar">
+									<!--menu item-->
+									<ul>
+										<li>
+											<a href="#" class="active">
+												<span class="icon"><i class="fas fa-home"></i></span>
+												<span class="item">Home</span>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="fas fa-desktop"></i></span>
+												<span class="item">Dashboard</span>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="fas fa-user-friends"></i></span>
+												<span class="item">Orders</span>
+											</a>
+										</li>
+										<li><hr class="dropdown-divider" style="color: lightgray;"></li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="fas fa-tachometer-alt"></i></span>
+												<span class="item">Account</span>
+											</a>
+										</li>
+									</ul>
+								</div>
 							</div>
-						</div>
-						<div class="col">
-							<div class="content">
-								<h2 class="row needs-validation ms-3 mt-3">코드 관리</h2>
-								<div class="row needs-validation ms-3 me-3 mt-3 mb-5 p-3 shadow-lg bg-body rounded" novalidate>
-									<div class="row mb-2">
-										<div class="col-md-3">
-											<select class="form-select" id="validationCustom01" required>
-												<option selected disabled value="">선택</option>
-												<option>YES</option>
-												<option>NO</option>
-											</select>
+							<div class="col">
+								<div class="content">
+									<h2 class="row needs-validation ms-3 mt-3">코드 관리</h2>
+									<div class="row needs-validation ms-3 me-3 mt-3 mb-5 p-3 shadow-lg bg-body rounded" novalidate>
+										<div class="row mb-2">
+											<div class="col-md-3">
+													<select class="form-select" id="cdDelNy" name="cdDelNy">
+														<option value=""<c:if test="${empty vo.cdDelNy}">selected</c:if>>삭제여부</option>
+														<option value="0" <c:if test="${vo.cdDelNy eq 0}">selected</c:if>>NO</option>
+														<option value="1" <c:if test="${vo.cdDelNy eq 1}">selected</c:if>>YES</option>
+													</select>
+												</div>
+											<div class="col-md-3">
+												<select class="form-select" id="validationCustom02">
+													<option selected disabled value="">수정일</option>
+													<option>...</option>
+													<option>...</option>
+												</select>
+											</div>
+											<div class="col-md-3">
+												<input type="text" class="form-control" id="datepickerS" placeholder="시작일">
+											</div>
+											<div class="col-md-3">
+												<input type="text" class="form-control" id="datepickerE" placeholder="종료일">
+											</div>
 										</div>
-										<div class="col-md-3">
-											<select class="form-select" id="validationCustom02" required>
-												<option selected disabled value="">수정일</option>
-												<option>...</option>
-												<option>...</option>
-											</select>
-										</div>
-										<div class="col-md-3">
-											<input type="text" class="form-control" id="validationCustom03" placeholder="시작일" required>
-										</div>
-										<div class="col-md-3">
-											<input type="text" class="form-control" id="validationCustom04" placeholder="종료일" required>
+										<div class="row">
+											<div class="col-md-3">
+													<select class="form-select" id="shOption" name="shOption">
+														<option value=""<c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+														<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 이름(한글)</option>
+														<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드</option>
+														<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드 이름(한글)</option>
+														<option value="4" <c:if test="${vo.shOption eq 4}">selected</c:if>>순서</option>
+													</select>
+												</div>
+											<div class="col-md-3">
+												<input type="search" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>" class="form-control" placeholder="검색어를 입력하세요.">
+											</div>
+											<div class="col-md-2">
+												<button class="btn btn-warning" type="submit" id="searching"><i class="fa-solid fa-magnifying-glass"></i></button>
+												<div class="toast-container position-fixed bottom-0 end-0 p-3">
+													<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+														<div class="toast-header">
+															<img src="..." class="rounded me-2" alt="...">
+															<strong class="me-auto">Bootstrap</strong>
+															<small>11 mins ago</small>
+															<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+														</div>
+														<div class="toast-body">
+															Hello, world! This is a toast message.
+														</div>
+													</div>
+												</div>
+												<button class="btn btn-danger" type="submit"><i class="fa-solid fa-rotate-right"></i></button>
+											</div>
 										</div>
 									</div>
-									<div class="row">
-										<div class="col-md-3">
-											<select class="form-select" id="validationCustom01" required>
-											<option selected disabled value="">검색구분</option>
-											<option>...</option>
-											<option>...</option>
-											</select>
+									<span class="ms-3 mt-5">Total: 8</span>
+									<div class="ms-3 me-3 mt-3 mb-4 shadow-lg bg-body rounded">
+										<table class="table table-striped table-hover text-center">
+											<thead>
+												<tr style="background-color: #6666cc;">
+													<th scope="col">
+														<input type="checkbox" name="chk_all" id="chk_all" onclick="location.href='../member/welcomeLogin.html'" href="" onclick="checkAll(this)">
+													</th>
+													<th>#</th>
+													<th class="td1" scope="col">코드그룹 코드</th>
+													<th class="td1" scope="col">코드그룹 이름(한글)</th>
+													<th class="td1" scope="col">코드</th>
+													<th class="td1" scope="col">대체코드</th>
+													<th class="td2" scope="col">코드 이름(한글)</th>
+													<th class="td3" scope="col">코드 이름(영문)</th>
+													<th class="td4" scope="col">사용</th>
+													<th class="td4" scope="col">순서</th>
+													<th class="td4" scope="col">등록일</th>
+													<th class="td4" scope="col">수정일</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:choose>
+													<c:when test="${fn:length(list) eq 0}">
+														<tr>
+															<td class="text-center" colspan="12">There is no data!</td>
+														</tr>
+													</c:when>
+													<c:otherwise>
+														<c:forEach items="${list}" var="list" varStatus="status">
+															<tr onclick="newPage()" class="info">
+																<th scope="row" class="td1" src="./memberMod.html">
+																	<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
+																</th>
+																<td>${list.cdSeq}</td>
+																<td>${list.ccgSeq}</td>
+																<td>${list.name}</td>
+																<td>-</td>
+																<td>-</td>
+																<td>${list.codeName}</td>
+																<td>-</td>
+																<td>-</td>
+																<td>${list.codeOrder}</td>
+																<td>-</td>
+																<td>-</td>
+															</tr>		
+														</c:forEach>
+													</c:otherwise>
+												</c:choose>
+											</tbody>
+										</table>
+										<div class="row">
+											<div class="col-md-4 offset-md-5">
+												<nav aria-label="Page navigation example">
+													<ul class="pagination pagination-sm">
+														<li class="page-item">
+															<a class="page-link" href="#" aria-label="Previous">
+															<span aria-hidden="true">&laquo;</span>
+															</a>
+														</li>
+														<li class="page-item"><a class="page-link" href="#">1</a></li>
+														<li class="page-item"><a class="page-link" href="#">2</a></li>
+														<li class="page-item"><a class="page-link" href="#">3</a></li>
+														<li class="page-item">
+															<a class="page-link" href="#" aria-label="Next">
+															<span aria-hidden="true">&raquo;</span>
+															</a>
+														</li>
+													</ul>
+												</nav>
+											</div>
 										</div>
-										<div class="col-md-3">
-											<input type="text" class="form-control" id="validationCustom04" placeholder="검색어를 입력하세요." required>
-										</div>
-										<div class="col-md-2">
-											<button class="btn btn-warning" type="submit" id="searching"><i class="fa-solid fa-magnifying-glass"></i></button>
-											<div class="toast-container position-fixed bottom-0 end-0 p-3">
-												<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-													<div class="toast-header">
-														<img src="..." class="rounded me-2" alt="...">
-														<strong class="me-auto">Bootstrap</strong>
-														<small>11 mins ago</small>
-														<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-													</div>
-													<div class="toast-body">
-														Hello, world! This is a toast message.
+									</div>
+									<div class="container-fluid pe-4 ps-3">
+										<div class="row">
+											<div class="col-md-2"> 
+												<button class="btn btn-danger del" type="button" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="fa-solid fa-trash-can"></i></button>
+												<!-- <button class="btn btn-danger" type="button"><i class="fa-solid fa-xmark"></i></button> -->
+												<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+													<div class="modal-dialog modal-dialog-centered">
+														<div class="modal-content">
+															<div class="modal-header">
+																<h5 class="modal-title" id="exampleModalCenterTitle">삭제하시겠습니까?</h5>
+																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+															</div>
+															<div class="modal-body"  align="center">
+																<img src="../resources/image/DLlogo.png" class="rounded me-2" alt="..." style="width: 8%; height: 8%;">
+																삭제된 정보는 복구할 수가 없습니다.
+															</div>
+															<div class="modal-footer">
+																<a>
+																	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+																</a>
+																<a href="./memberList.html">
+																	<button type="button" class="btn btn-danger">삭제</button>
+																</a>
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
-											<button class="btn btn-danger" type="submit"><i class="fa-solid fa-rotate-right"></i></button>
+											<div class="col-md-2 offset-md-8" align="right">
+												<!-- <button class="btn btn-success" type="button"><i class="fa-solid fa-file-excel"></i></button> -->
+												<a href="./memberReg.html">
+													<button class="btn btn-primary" type="button"><i class="fa-solid fa-plus"></i></button>
+												</a>
+											</div>
 										</div>
 									</div>
-								</div>
-								<span class="ms-3 mt-5">Total: 10</span>
-								<div class="ms-3 me-3 mt-3 mb-4 shadow-lg bg-body rounded">
-									<table class="table table-striped table-hover text-center">
-										<thead>
-											<tr style="background-color: #6666cc;">
-												<th scope="col">
-													<input type="checkbox" name="chk_all" id="chk_all" onclick="location.href='../member/welcomeLogin.html'" href="" onclick="checkAll(this)">
-												</th>
-												<th>#</th>
-												<th class="td1" scope="col">코드그룹 코드</th>
-												<th class="td1" scope="col">코드그룹 이름(한글)</th>
-												<th class="td1" scope="col">코드</th>
-												<th class="td1" scope="col">대체코드</th>
-												<th class="td2" scope="col">코드 이름(한글)</th>
-												<th class="td3" scope="col">코드 이름(영문)</th>
-												<th class="td4" scope="col">사용</th>
-												<th class="td4" scope="col">순서</th>
-												<th class="td4" scope="col">등록일</th>
-												<th class="td4" scope="col">수정일</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:choose>
-												<c:when test="${fn:length(list) eq 0}">
-													<tr>
-														<td class="text-center" colspan="12">There is no data!</td>
-													</tr>
-												</c:when>
-												<c:otherwise>
-													<c:forEach items="${list}" var="list" varStatus="status">
-														<tr onclick="newPage()" class="info">
-															<th scope="row" class="td1" src="./memberMod.html">
-																<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
-															</th>
-															<td>${list.ccgSeq}</td>
-															<td>49</td>
-															<td>${list.name}</td>
-															<td>${list.name_eng}</td>
-															<td>${list.count}</td>
-															<td>${list.example}</td>
-															<td>-</td>
-														</tr>		
-													</c:forEach>
-												</c:otherwise>
-											</c:choose>
-										</tbody>
-									</table>
-									<div class="row">
-										<div class="col-md-4 offset-md-5">
-											<nav aria-label="Page navigation example">
-												<ul class="pagination pagination-sm">
-													<li class="page-item">
-														<a class="page-link" href="#" aria-label="Previous">
-														<span aria-hidden="true">&laquo;</span>
-														</a>
+									<nav class="navbar navbar-expand-lg bg-white mt-5 mb-3 position-absolute bottom-30 start-50 translate-middle-x">
+										<div class="container-fluid">
+											<div class="collapse navbar-collapse" id="navbarSupportedContent">
+												<ul class="navbar-nav">
+													<li class="nav-item">
+													<a class="nav-link">이용약관</a>
 													</li>
-													<li class="page-item"><a class="page-link" href="#">1</a></li>
-													<li class="page-item"><a class="page-link" href="#">2</a></li>
-													<li class="page-item"><a class="page-link" href="#">3</a></li>
-													<li class="page-item">
-														<a class="page-link" href="#" aria-label="Next">
-														<span aria-hidden="true">&raquo;</span>
-														</a>
+													<li class="nav-item">
+													<a class="nav-link">개인정보처리방침</a>
+													</li>
+													<li class="nav-item">
+													<a class="nav-link">이메일무단수집거부</a>
+													</li>
+													<li class="nav-item">
+													<a class="nav-link">안내사항</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link disabled">© DL, All rights reserved.</a>
 													</li>
 												</ul>
-											</nav>
-										</div>
-									</div>
-								</div>
-								<div class="container-fluid pe-4 ps-3">
-									<div class="row">
-										<div class="col-md-2"> 
-											<button class="btn btn-danger del" type="button" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="fa-solid fa-trash-can"></i></button>
-											<!-- <button class="btn btn-danger" type="button"><i class="fa-solid fa-xmark"></i></button> -->
-											<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-												<div class="modal-dialog modal-dialog-centered">
-													<div class="modal-content">
-														<div class="modal-header">
-															<h5 class="modal-title" id="exampleModalCenterTitle">삭제하시겠습니까?</h5>
-															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-														</div>
-														<div class="modal-body"  align="center">
-															<img src="../resources/image/DLlogo.png" class="rounded me-2" alt="..." style="width: 8%; height: 8%;">
-															삭제된 정보는 복구할 수가 없습니다.
-														</div>
-														<div class="modal-footer">
-															<a>
-																<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-															</a>
-															<a href="./memberList.html">
-																<button type="button" class="btn btn-danger">삭제</button>
-															</a>
-														</div>
-													</div>
-												</div>
 											</div>
 										</div>
-										<div class="col-md-2 offset-md-8" align="right">
-											<!-- <button class="btn btn-success" type="button"><i class="fa-solid fa-file-excel"></i></button> -->
-											<a href="./memberReg.html">
-												<button class="btn btn-primary" type="button"><i class="fa-solid fa-plus"></i></button>
-											</a>
-										</div>
-									</div>
+									</nav>
 								</div>
-								<nav class="navbar navbar-expand-lg bg-white mt-5 mb-3 position-absolute bottom-30 start-50 translate-middle-x">
-									<div class="container-fluid">
-										<div class="collapse navbar-collapse" id="navbarSupportedContent">
-											<ul class="navbar-nav">
-												<li class="nav-item">
-												<a class="nav-link">이용약관</a>
-												</li>
-												<li class="nav-item">
-												<a class="nav-link">개인정보처리방침</a>
-												</li>
-												<li class="nav-item">
-												<a class="nav-link">이메일무단수집거부</a>
-												</li>
-												<li class="nav-item">
-												<a class="nav-link">안내사항</a>
-												</li>
-												<li class="nav-item">
-													<a class="nav-link disabled">© DL, All rights reserved.</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</nav>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</form>
 		</main>
 	
 		<!-- end --> 
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 		<script>
-			const fileInput = document.getElementById("fileUpload");
+			/* const fileInput = document.getElementById("fileUpload");
 			fileInput.onchange = () => {
 				const selectedFile = [...fileInput.files];
 				console.log(selectedFile);
@@ -347,7 +358,36 @@
 			}
 			function newPage() {
 				window.location.href = './memberMod.html'
-			}
+			} */
+			// 데이트픽커
+			  $(function(){
+				  $('#datepickerS').datepicker({
+					  dateFormat: 'yy-mm-dd',
+					  prevText: '이전 달',
+					  nextText: '다음 달',
+					  monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+					  monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+					  dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+					  dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+					  dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+					  showMonthAfterYear: true,
+					  yearSuffix: '년'
+				  });
+				  $('#datepickerE').datepicker({
+					  dateFormat: 'yy-mm-dd',
+					  prevText: '이전 달',
+					  nextText: '다음 달',
+					  monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+					  monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+					  dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+					  dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+					  dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+					  showMonthAfterYear: true,
+					  yearSuffix: '년'
+				  });
+				  $('#datepickerS').datepicker('setDate', 'today');
+				  $('#datepickerE').datepicker('setDate', '+1D');
+      	});
 		</script>
 	</body>
 </html>

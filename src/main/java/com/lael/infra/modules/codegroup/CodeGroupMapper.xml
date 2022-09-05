@@ -15,10 +15,16 @@
 		FROM 
 			codeGroup a
 	 	WHERE 1=1
-			AND codegroup_ex > "1"
-			AND name LIKE CONCAT('%',#{shValue},'%')
-		<!-- WHERE 1=1
-			AND ifcgDelNy = 0 -->
-	</select>
+			<!-- AND codegroup_ex = 0 -->
+			<!-- AND name LIKE CONCAT('%',#{shValue},'%') -->
 
+			<if test="delNy != null and !delNy.equals('')">AND delNy = #{delNy}</if>
+			<choose>
+				<when test="shOption == 1">AND ccgSeq = #{shValue}</when>
+				<when test="shOption == 2">AND name LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND name_eng LIKE CONCAT('%',#{shValue},'%')</when>
+				<otherwise></otherwise>
+			</choose>
+	</select>
 </mapper>	
+		

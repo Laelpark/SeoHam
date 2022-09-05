@@ -17,9 +17,15 @@
 			code b
 		JOIN codeGroup a on a.ccgSeq = b.codeGroup_ccgSeq
 		WHERE 1=1
-		AND  b.example > "1"
-		<!-- WHERE 1=1
-			AND ifcgDelNy = 0 -->
+		<!-- AND  b.example = 0 -->
+			<if test="cdDelNy != null and !cdDelNy.equals('')">AND cdDelNy = #{cdDelNy}</if>
+			<choose>
+				<when test="shOption == 1">AND name = #{shValue}</when>
+				<when test="shOption == 2">AND cdSeq = #{shValue}</when>
+				<when test="shOption == 3">AND codeName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 4">AND codeOrder LIKE CONCAT('%',#{shValue},'%')</when>
+				<otherwise></otherwise>
+			</choose>
 	</select>
 
 </mapper>	

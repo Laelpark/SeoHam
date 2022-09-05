@@ -11,13 +11,21 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class CodeGroupDAO {
 
-	@Inject
-	@Resource(name = "sqlSession")
-	private SqlSession sqlSession;
+	@Inject // Autowired와 비슷한 개념
+	
+	
+	@Resource(name = "sqlSession") //여러개의 db와 물렸을 때 어떤 커넥션인지 이름을 정해줌
+	private SqlSession sqlSession; // SqlSession 객체에 의존
 	
 	private static String namespace = "com.lael.infra.modules.codegroup.CodeGroupMapper";
 	
+	// public List<CodeGroup> selectList(CodeGroupVo vo){ return sqlSession.selectList(namespace + ".selectList", vo);}  
+	
 	public List<CodeGroup> selectList(CodeGroupVo vo){ 
-		return sqlSession.selectList(namespace + ".selectList", vo); 
+			// 향상된 사다리 <코드그룹 dto>
+		// List<CodeGroup> list = sqlSession.selectList(namespace + ".selectList", vo)
+																		// 쿼리 아이디
+			List<CodeGroup> list = sqlSession.selectList("com.lael.infra.modules.codegroup.CodeGroupMapper.selectList", vo);
+			return list; 								
 		}
 }
