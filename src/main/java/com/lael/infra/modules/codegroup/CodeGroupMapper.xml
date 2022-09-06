@@ -32,13 +32,11 @@
 		INSERT INTO codeGroup (
 			name
 			,name_eng
-			,count
 			,delNy
 		)
 		VALUES (
 			#{name}
 			,#{name_eng}
-			,#{count}
 			,0
 		)
 		<selectKey resultType="String" keyProperty="ccgSeq" order="AFTER">
