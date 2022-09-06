@@ -42,7 +42,9 @@ public class CodeGroupController {
 	  
 	  int result = service.insert(dto); System.out.println("Controller result: " + result);
 	  
-	  return "redirect:/codeGroup/codeGroupList"; }
+	  return "redirect:/codeGroup/codeGroupList"; 
+	  
+	  }
 	 
 	
 }
