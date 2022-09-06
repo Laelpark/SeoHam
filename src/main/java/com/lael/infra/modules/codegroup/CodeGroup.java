@@ -40,10 +40,6 @@ public class CodeGroup {
 	public void setDelNy(Integer delNy) {
 		this.delNy = delNy;
 	}
-	
-	
-	
 
-	
 
 }
