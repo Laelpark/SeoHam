@@ -25,6 +25,29 @@
 				<when test="shOption == 3">AND name_eng LIKE CONCAT('%',#{shValue},'%')</when>
 				<otherwise></otherwise>
 			</choose>
+			ORDER BY ccgSeq DESC
 	</select>
+	
+	<insert id="insert">
+		INSERT INTO codeGroup (
+			name
+			,name_eng
+			,count
+			,delNy
+		)
+		VALUES (
+			#{name}
+			,#{name_eng}
+			,#{count}
+			,0
+		)
+		<selectKey resultType="String" keyProperty="ccgSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<update id=""></update>
+	<delete id=""></delete>
+	
 </mapper>	
 		

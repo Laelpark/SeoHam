@@ -256,7 +256,8 @@
 											</div>
 											<div class="col-md-2 offset-md-8" align="right">
 												<!-- <button class="btn btn-success" type="button"><i class="fa-solid fa-file-excel"></i></button> -->
-												<a href="./memberReg.html">
+												<a href="codeGroupForm">
+												<!-- <a href="/codeGroup/codeGroupForm"> 이거도 사용 가능 -->
 													<button class="btn btn-primary" type="button"><i class="fa-solid fa-plus"></i></button>
 												</a>
 											</div>
