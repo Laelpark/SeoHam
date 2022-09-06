@@ -36,15 +36,11 @@ public class CodeGroupController {
 		return "infra/codegroup/xdmin/codeGroupForm";
 	}
 	
-	
-	  @RequestMapping(value = "codeGroupInst") 
-	  public String codeGroupInst(CodeGroup dto) throws Exception {
-	  
-	  int result = service.insert(dto); System.out.println("Controller result: " + result);
-	  
-	  return "redirect:/codeGroup/codeGroupList"; 
-	  
-	  }
-	 
-	
+	@RequestMapping(value = "codeGroupInst")
+	public String codeGroupInst(CodeGroup dto) throws Exception {
+		int result = service.insert(dto);
+		System.out.println("result : " + result);
+		
+		return "redirect:/codeGroup/codeGroupList";
+	}
 }

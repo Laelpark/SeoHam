@@ -23,15 +23,14 @@ public class CodeGroupDAO {
 	
 	public List<CodeGroup> selectList(CodeGroupVo vo){ 
 			// 향상된 사다리 <코드그룹 dto>
-		// List<CodeGroup> list = sqlSession.selectList(namespace + ".selectList", vo)
-																		// 쿼리 아이디
-			List<CodeGroup> list = sqlSession.selectList("com.lael.infra.modules.codegroup.CodeGroupMapper.selectList", vo);
-			return list; 								
-		}
+	// List<CodeGroup> list = sqlSession.selectList(namespace + ".selectList", vo)
+																	// 쿼리 아이디
+		List<CodeGroup> list = sqlSession.selectList("com.lael.infra.modules.codegroup.CodeGroupMapper.selectList", vo);
+		return list; 								
+	}
 	
 	public int insert(CodeGroup dto) {
-		int result = sqlSession.insert(namespace + ".insert", dto);
-		System.out.println("dao result: " + result);
-		return result;
+		return sqlSession.insert(namespace + ".insert" + dto);
 	}
+
 }

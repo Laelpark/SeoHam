@@ -31,13 +31,9 @@
 	<insert id="insert">
 		INSERT INTO codeGroup (
 			name
-			,name_eng
-			,delNy
 		)
 		VALUES (
 			#{name}
-			,#{name_eng}
-			,0
 		)
 		<selectKey resultType="String" keyProperty="ccgSeq" order="AFTER">
 			SELECT last_insert_id()
