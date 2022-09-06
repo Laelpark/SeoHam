@@ -16,14 +16,10 @@ public class CodeServiceImpl implements CodeService{
 		List<Code> list = dao.selectList(vo); 
 		return list;
 	}
-	
-//	@Override
-//	public List<Code> selectList(CodeVo vo) throws Exception {
-//		return dao.selectList(vo);
-//	}
-	
-	
-	
 
+	@Override
+	public int insert(Code dto) throws Exception {
+		return dao.insert(dto);
+	}
 	
 }

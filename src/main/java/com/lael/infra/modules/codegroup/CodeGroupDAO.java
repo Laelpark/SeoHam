@@ -29,8 +29,13 @@ public class CodeGroupDAO {
 		return list; 								
 	}
 	
+	public List<CodeGroup> selectList(){ 
+		List<CodeGroup> list = sqlSession.selectList("com.lael.infra.modules.codegroup.CodeGroupMapper.selectList", "");
+		return list; 								
+	}
+	
 	public int insert(CodeGroup dto) {
-		return sqlSession.insert(namespace + ".insert" + dto);
+		return sqlSession.insert(namespace + ".insert", dto);
 	}
 
 }

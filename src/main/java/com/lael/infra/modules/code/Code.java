@@ -2,11 +2,11 @@ package com.lael.infra.modules.code;
 
 public class Code {
 	
-	private Integer ccgSeq;
+	private String cdSeq;
 	private String name;
-	private Integer cdSeq;
 	private String codeName;
 	private Integer codeOrder;
+	private Integer ccgSeq;
 	
 	
 	public Integer getCcgSeq() {
@@ -21,10 +21,10 @@ public class Code {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getCdSeq() {
+	public String getCdSeq() {
 		return cdSeq;
 	}
-	public void setCdSeq(Integer cdSeq) {
+	public void setCdSeq(String cdSeq) {
 		this.cdSeq = cdSeq;
 	}
 	public String getCodeName() {
@@ -39,7 +39,8 @@ public class Code {
 	public void setCodeOrder(Integer codeOrder) {
 		this.codeOrder = codeOrder;
 	}
-
-
+	
+	
+	
 
 }

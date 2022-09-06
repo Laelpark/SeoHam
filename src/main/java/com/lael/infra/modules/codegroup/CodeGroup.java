@@ -2,7 +2,7 @@ package com.lael.infra.modules.codegroup;
 
 public class CodeGroup {
 
-	private Integer ccgSeq;
+	private String ccgSeq;
 	private String name;
 	private String name_eng;
 	private Integer count;
@@ -10,25 +10,17 @@ public class CodeGroup {
 	private Integer delNy;
 	
 	
-	
-
-	public Integer getDelNy() {
-		return delNy;
+	public String getCcgSeq() {
+		return ccgSeq;
 	}
-	public void setDelNy(Integer delNy) {
-		this.delNy = delNy;
+	public void setCcgSeq(String ccgSeq) {
+		this.ccgSeq = ccgSeq;
 	}
-	//	public Integer getCodegroup_ex() {
-//		return codegroup_ex;
-//	}
-//	public void setCodegroup_ex(Integer codegroup_ex) {
-//		this.codegroup_ex = codegroup_ex;
-//	}
-	public Integer getCount() {
-		return count;
+	public String getName() {
+		return name;
 	}
-	public void setCount(Integer count) {
-		this.count = count;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getName_eng() {
 		return name_eng;
@@ -36,18 +28,22 @@ public class CodeGroup {
 	public void setName_eng(String name_eng) {
 		this.name_eng = name_eng;
 	}
-	public Integer getCcgSeq() {
-		return ccgSeq;
+	public Integer getCount() {
+		return count;
 	}
-	public void setCcgSeq(Integer ccgSeq) {
-		this.ccgSeq = ccgSeq;
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+	public Integer getDelNy() {
+		return delNy;
+	}
+	public void setDelNy(Integer delNy) {
+		this.delNy = delNy;
 	}
 	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	
+	
+
+	
 
 }

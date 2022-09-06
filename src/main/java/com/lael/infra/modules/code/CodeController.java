@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lael.infra.modules.codegroup.CodeGroup;
-import com.lael.infra.modules.codegroup.CodeGroupVo;
+import com.lael.infra.modules.codegroup.CodeGroupServiceImpl;
 
 @Controller
 @RequestMapping(value = "/code/")
@@ -16,6 +16,10 @@ public class CodeController {
 
 	@Autowired
 	CodeServiceImpl service;
+	
+	@Autowired
+	CodeGroupServiceImpl service2;
+	
 	
 
 	@RequestMapping(value = "codeList")
@@ -28,7 +32,23 @@ public class CodeController {
 		List<Code> list = service.selectList(vo);
 		model.addAttribute("list", list);
 
-		return "infra/codegroup/xdmin/codeList";
+		return "infra/code/xdmin/codeList";
 	}
+	
+	@RequestMapping(value = "codeForm")
+	public String codeForm(Model model) throws Exception {
+		List<CodeGroup> list = service2.selectList();
+		model.addAttribute("list", list);
+		return "infra/code/xdmin/codeForm";
+	}
+	
+	@RequestMapping(value = "codeInst")
+	public String codeInst(Code dto) throws Exception {
+		int result = service.insert(dto);
+		System.out.println("service.result : " + result);
+		
+		return "redirect:/code/codeList";
+	}
+	
 	
 }

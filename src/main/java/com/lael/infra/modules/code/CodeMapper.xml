@@ -15,7 +15,7 @@
 		    ,a.name
 		FROM 
 			code b
-		JOIN codeGroup a on a.ccgSeq = b.codeGroup_ccgSeq
+		JOIN codeGroup a on a.ccgSeq = b.ccgSeq
 		WHERE 1=1
 		<!-- AND  b.example = 0 -->
 			<if test="cdDelNy != null and !cdDelNy.equals('')">AND cdDelNy = #{cdDelNy}</if>
@@ -26,6 +26,25 @@
 				<when test="shOption == 4">AND codeOrder LIKE CONCAT('%',#{shValue},'%')</when>
 				<otherwise></otherwise>
 			</choose>
+			ORDER BY cdSeq DESC
 	</select>
+	
+	<insert id="insert">
+		INSERT INTO code (
+			codeName
+			,ccgSeq
+		)
+		VALUES (
+			#{codeName}
+			,#{ccgSeq}
+		)
+		
+		<selectKey resultType="String" keyProperty="cdSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+<!-- 	<update id=""></update>
+	<delete id=""></delete> -->
 
 </mapper>	

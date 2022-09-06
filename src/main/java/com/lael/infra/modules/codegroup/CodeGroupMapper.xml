@@ -11,7 +11,7 @@
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.*
-			,(select count(b.codeGroup_ccgSeq) from code b where 1=1 and a.ccgSeq=b.codeGroup_ccgSeq) as count
+			,(select count(b.ccgSeq) from code b where 1=1 and a.ccgSeq = b.ccgSeq) as count
 		FROM 
 			codeGroup a
 	 	WHERE 1=1
@@ -35,13 +35,14 @@
 		VALUES (
 			#{name}
 		)
+		
 		<selectKey resultType="String" keyProperty="ccgSeq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
 	
-	<update id=""></update>
-	<delete id=""></delete>
+<!-- 	<update id=""></update>
+	<delete id=""></delete> -->
 	
 </mapper>	
 		

@@ -67,7 +67,7 @@
 			</div>
 		</header>
 		<main>
-			<form method="get" action="/codeGroup/codeGroupList">
+			<form method="get" action="/codeGroup/codeGroupForm">
 				<div style="height: 55px"></div>
 				<div class="wrapper">
 					<div class="container">
@@ -111,9 +111,9 @@
 										<div class="row mb-2">
 											<div class="col-md-3">
 												<select class="form-select" id="delNy" name="delNy">
-													<option value=""<c:if test="${empty vo.delNy}">selected</c:if>>삭제여부</option>
-													<option value="0" <c:if test="${vo.delNy eq 0}">selected</c:if>>NO</option>
-													<option value="1" <c:if test="${vo.delNy eq 1}">selected</c:if>>YES</option>
+													<option value=""<c:if test="${empty vo.delNy}">selected</c:if>>선택</option>
+													<%-- <option value="0" <c:if test="${list.name}">selected</c:if>></option> --%>
+													<option>${list.name}</option>
 												</select>
 											</div>
 											<div class="col-md-3">
@@ -255,11 +255,8 @@
 												</div>
 											</div>
 											<div class="col-md-2 offset-md-8" align="right">
-												<!-- <button class="btn btn-success" type="button"><i class="fa-solid fa-file-excel"></i></button> -->
-												<a href="codeGroupForm">
 												<!-- <a href="/codeGroup/codeGroupForm"> 이거도 사용 가능 -->
-													<button class="btn btn-primary" type="button"><i class="fa-solid fa-plus"></i></button>
-												</a>
+												<button class="btn btn-primary" type="submit"><i class="fa-solid fa-plus"></i></button>
 											</div>
 										</div>
 									</div>

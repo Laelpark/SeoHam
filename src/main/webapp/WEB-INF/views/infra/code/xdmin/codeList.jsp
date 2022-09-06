@@ -12,7 +12,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Code.html</title>
+		<title>CodeList.html</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 		<link rel="stylesheet" href="/resources/css/codeGroupList.css">
 	 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -68,7 +68,7 @@
 			</div>
 		</header>
 		<main>
-			<form method="get" action="/code/codeList">
+			<form method="get" action="/code/codeForm">
 				<div style="height: 55px"></div>
 				<div class="wrapper">
 					<div class="container">
@@ -265,10 +265,7 @@
 												</div>
 											</div>
 											<div class="col-md-2 offset-md-8" align="right">
-												<!-- <button class="btn btn-success" type="button"><i class="fa-solid fa-file-excel"></i></button> -->
-												<a href="./memberReg.html">
-													<button class="btn btn-primary" type="button"><i class="fa-solid fa-plus"></i></button>
-												</a>
+												<button class="btn btn-primary" type="submit"><i class="fa-solid fa-plus"></i></button>
 											</div>
 										</div>
 									</div>

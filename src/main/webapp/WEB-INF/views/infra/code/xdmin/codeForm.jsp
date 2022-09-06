@@ -11,7 +11,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CodeGroupForm.jsp</title>
+	<title>CodeForm.html</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="../css/CodeGroupList.css">
 	</head>
@@ -63,7 +63,7 @@
 			</div>
 		</header>
 		<main>
-			<form method="get" action="/codeGroup/codeGroupInst">
+			<form method="get" action="/code/codeInst">
 				<div style="height: 70px"></div>
 				<div class="wrapper">
 					<div class="container">
@@ -101,39 +101,49 @@
 								</div>
 							</div>
 							<div class="col">
-								<h2 class="needs-validation mt-2">코드그룹 관리</h2>
+								<h2 class="needs-validation mt-2">코드 관리</h2>
 								<div class="content">
-									<div class="row">
+									<div class="row mt-3">
+										<div class="col-6">
+											<label for="codeGroup_I3" class="form-label">코드그룹</label>
+											<select class="form-select" id="ccgSeq" name="ccgSeq">
+												<c:forEach items="${list}" var="list" varStatus="status">
+													<option value="${list.ccgSeq}">${list.name}</option>			
+												</c:forEach>
+										  	</select>
+										</div>
+									</div>
+									<div class="row mt-3">
 										<div class="col">
 											<label for="codeGroup_code" class="form-label">코드그룹 코드</label>
 											<input type="text" class="form-control" id="codeGroup_code" placeholder="영문(대소문자),숫자">	
 										</div>
 										<div class="col">
-											<label for="codeGroup_another" class="form-label">코드그룹 코드(Another)</label>
+											<label for="codeGroup_another" class="form-label">코드그룹 코드(한글)</label>
 											<input type="text" class="form-control" id="codeGroup_another" placeholder="영문(대소문자),숫자">	
 										</div>
 									</div>
 									<div class="row mt-3">
 										<div class="col">
-											<label for="name" class="form-label">코드그룹 이름(한글)</label>
-											<input type="text" class="form-control" id="name" name="name" placeholder="한글,숫자">
+											<label for="codeName" class="form-label">코드</label>
+											<input type="text" class="form-control" name="codeName" id="codeName" placeholder="한글,숫자">
 										</div>
 										<div class="col">
-											<label for="codeGroup_eng" class="form-label">코드그룹 이름(영문)</label>
+											<label for="codeGroup_eng" class="form-label">대체코드</label>
 											<input type="text" class="form-control" id="codeGroup_eng" placeholder="영문(대소문자),숫자">
 										</div>
 									</div>
 									<div class="row mt-3">
 										<div class="col">
-											<label for="codeGroup_use" class="form-label">사용여부</label>
-											<select class="form-select" id="codeGroup_use">
+											<label for="codeName" class="form-label">코드이름(한글)</label>
+											<select class="form-select" id="codeGroup_kr">
 												<option selected disabled value="">선택</option>
 												<option>Y</option>
 												<option>N</option>
 											  </select>
 										</div>
 										<div class="col">
-											<label for="codeGroup_or" class="form-label">순서</label>
+											<label for="codeGroup_or" class="form-label">코드이름(영문)</label>
 											<input type="text" class="form-control" id="codeGroup_or" placeholder="숫자">
 										</div>
 									</div>
@@ -230,12 +240,12 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 		<script>
-			// const fileInput = document.getElementById("fileUpload");
-			// fileInput.onchange = () => {
-			// 	const selectedFile = [...fileInput.files];
-			// 	console.log(selectedFile);
-			// };
-			// fileInput.addEventListener("change", handleFiles);
+			const fileInput = document.getElementById("fileUpload");
+			fileInput.onchange = () => {
+				const selectedFile = [...fileInput.files];
+				console.log(selectedFile);
+			};
+			fileInput.addEventListener("change", handleFiles);
 
 			const toastTrigger = document.getElementById('savebtn')
 			const toastLiveExample = document.getElementById('liveToast')
@@ -246,18 +256,6 @@
 					toast.show()
 				})
 			}
-		// 데이터 전송
-		function here() {
-			var code = document.getElementById("codeGroup_code").value;
-			var codeGroup_another = document.getElementById("codeGroup_another").value;
-			var chiness = document.getElementById("codeGroup_kr").value;
-			var english = document.getElementById("codeGroup_eng").value;
-			sessionStorage.setItem("codeGroup_code", code);
-			sessionStorage.setItem("codeGroup_another", another);
-            sessionStorage.setItem("codeGroup_kr", kr);
-			sessionStorage.setItem("codeGroup_eng", eng);
-			
-		}
 		</script>
 	</body>
 </html>

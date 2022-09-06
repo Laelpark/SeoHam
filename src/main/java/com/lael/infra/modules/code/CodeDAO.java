@@ -24,4 +24,8 @@ public class CodeDAO {
 		List<Code> list = sqlSession.selectList("com.lael.infra.modules.code.CodeMapper.selectList", vo);
 		return list;
 	}
+	
+	public int insert (Code dto) {
+		return sqlSession.insert(namespace + ".insert", dto);
+	}
 }
