@@ -37,8 +37,8 @@ public class CodeController {
 	
 	@RequestMapping(value = "codeForm")
 	public String codeForm(Model model) throws Exception {
-		List<CodeGroup> list = service2.selectList();
-		model.addAttribute("list", list);
+		List<CodeGroup> list1 = service2.selectList();
+		model.addAttribute("list1", list1);
 		return "infra/code/xdmin/codeForm";
 	}
 	

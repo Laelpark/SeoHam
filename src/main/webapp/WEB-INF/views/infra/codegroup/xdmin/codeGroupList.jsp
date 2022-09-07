@@ -112,8 +112,10 @@
 											<div class="col-md-3">
 												<select class="form-select" id="delNy" name="delNy">
 													<option value=""<c:if test="${empty vo.delNy}">selected</c:if>>선택</option>
+													<option value="0" <c:if test="${vo.delNy eq 0}">selected</c:if>>N</option>
+													<option value="1" <c:if test="${vo.delNy eq 1}">selected</c:if>>Y</option>
 													<%-- <option value="0" <c:if test="${list.name}">selected</c:if>></option> --%>
-													<option>${list.name}</option>
+													<%-- <option value="${list.ccgSeq}">${list.name}</option> --%>
 												</select>
 											</div>
 											<div class="col-md-3">

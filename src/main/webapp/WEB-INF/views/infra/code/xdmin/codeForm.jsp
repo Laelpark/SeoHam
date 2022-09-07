@@ -13,7 +13,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>CodeForm.html</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="../css/CodeGroupList.css">
+	<link rel="stylesheet" href="/resources/css/codeGroupList.css">
 	</head>
 	<body>
 		<!-- start -->
@@ -107,8 +107,8 @@
 										<div class="col-6">
 											<label for="codeGroup_I3" class="form-label">코드그룹</label>
 											<select class="form-select" id="ccgSeq" name="ccgSeq">
-												<c:forEach items="${list}" var="list" varStatus="status">
-													<option value="${list.ccgSeq}">${list.name}</option>			
+												<c:forEach items="${list1}" var="list1" varStatus="status">
+													<option value="${list1.ccgSeq}">${list1.name}</option>			
 												</c:forEach>
 										  	</select>
 										</div>
@@ -224,7 +224,7 @@
 													</div>
 												</div>
 											</div>
-											<button class="btn btn-success" onclick=here()><i class="fa-regular fa-bookmark"></i></button>
+											<button type="button" id="btnSave" class="btn btn-success" onclick="test();"><i class="fa-regular fa-bookmark"></i></button>
 											<!-- <button class="btn btn-success" type="button" href="../admin/CodeGroupModForm.html" onclick=here()><i class="fa-regular fa-bookmark"></i></button> -->
 										</div>
 									</div>
@@ -239,7 +239,7 @@
 		<!-- end --> 
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
-		<script>
+		<script type="text/javascript">
 			const fileInput = document.getElementById("fileUpload");
 			fileInput.onchange = () => {
 				const selectedFile = [...fileInput.files];
@@ -255,6 +255,10 @@
 
 					toast.show()
 				})
+			}
+			
+			function test() {
+				alert("test");
 			}
 		</script>
 	</body>
