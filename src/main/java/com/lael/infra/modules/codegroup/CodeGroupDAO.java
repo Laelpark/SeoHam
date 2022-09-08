@@ -37,5 +37,10 @@ public class CodeGroupDAO {
 	public int insert(CodeGroup dto) {
 		return sqlSession.insert(namespace + ".insert", dto);
 	}
+	
+	public CodeGroup selectOne(CodeGroupVo vo) {
+		CodeGroup result = sqlSession.selectOne(namespace + ".selectOne", vo);
+		return result;
+	}
 
 }

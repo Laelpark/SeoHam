@@ -187,7 +187,7 @@
 															<td class="text-center" colspan="8">There is no data!</td>
 														</tr>
 													</c:when>
-													<c:otherwise>
+													<c:otherwise>		
 														<c:forEach items="${list}" var="list" varStatus="status">
 															<tr onclick="newPage()" class="info">
 																<th scope="row" class="td1" src="./memberMod.html">
@@ -195,12 +195,12 @@
 																</th>
 																<td>${list.ccgSeq}</td>
 																<td>49</td>
-																<td>${list.name}</td>
+																<td><a href="/codeGroup/codeGroupView?ccgSeq=<c:out value="${list.ccgSeq}"/>">${list.name}</a></td>
 																<td>${list.name_eng}</td>
 																<td>${list.count}</td>
 																<td>-</td>
 																<td>-</td>
-															</tr>		
+															</tr>
 														</c:forEach>
 													</c:otherwise>
 												</c:choose>

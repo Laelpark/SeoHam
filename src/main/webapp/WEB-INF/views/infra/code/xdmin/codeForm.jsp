@@ -119,14 +119,14 @@
 											<input type="text" class="form-control" id="codeGroup_code" placeholder="영문(대소문자),숫자">	
 										</div>
 										<div class="col">
-											<label for="codeGroup_another" class="form-label">코드그룹 코드(한글)</label>
-											<input type="text" class="form-control" id="codeGroup_another" placeholder="영문(대소문자),숫자">	
+											<label for="name" class="form-label">코드그룹 코드(한글)</label>
+											<input type="text" class="form-control" id="name" name="name" placeholder="영문(대소문자),숫자" value="<c:out value="${list2.name}"/>">	
 										</div>
 									</div>
 									<div class="row mt-3">
 										<div class="col">
 											<label for="codeName" class="form-label">코드</label>
-											<input type="text" class="form-control" name="codeName" id="codeName" placeholder="한글,숫자">
+											<input type="text" class="form-control" name="codeName" id="codeName" placeholder="한글,숫자" value="<c:out value="${code.codeName}"/>">
 										</div>
 										<div class="col">
 											<label for="codeGroup_eng" class="form-label">대체코드</label>

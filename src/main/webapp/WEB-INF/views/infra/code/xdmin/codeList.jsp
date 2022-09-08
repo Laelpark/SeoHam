@@ -198,10 +198,10 @@
 																</th>
 																<td>${list.cdSeq}</td>
 																<td>${list.ccgSeq}</td>
-																<td>${list.name}</td>
+																<td><a href="/codeGroup/codeGroupView?ccgSeq=<c:out value="${list.ccgSeq}"/>">${list.name}</a></td>
 																<td>-</td>
 																<td>-</td>
-																<td>${list.codeName}</td>
+																<td><a href="/code/codeView?cdSeq=<c:out value="${list.cdSeq}"/>">${list.codeName}</a></td>
 																<td>-</td>
 																<td>-</td>
 																<td>${list.codeOrder}</td>

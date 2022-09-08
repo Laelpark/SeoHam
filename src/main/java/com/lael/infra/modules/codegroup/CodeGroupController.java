@@ -42,4 +42,11 @@ public class CodeGroupController {
 		
 		return "redirect:/codeGroup/codeGroupList";
 	}
+	
+	@RequestMapping(value= "codeGroupView")
+	public String codeGroupView(Model model, CodeGroupVo vo) throws Exception {
+		CodeGroup result = service.selecteOne(vo);
+		model.addAttribute("codeGroup", result);
+		return "infra/codegroup/xdmin/codeGroupForm";
+	}
 }

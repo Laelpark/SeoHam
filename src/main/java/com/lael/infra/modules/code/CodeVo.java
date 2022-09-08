@@ -2,12 +2,19 @@ package com.lael.infra.modules.code;
 
 public class CodeVo {
 
-
+	private String cdSeq;
+	
 	private Integer cdDelNy;
 	private Integer shOption;
 	private String shValue;
 	
 	
+	public String getCdSeq() {
+		return cdSeq;
+	}
+	public void setCdSeq(String cdSeq) {
+		this.cdSeq = cdSeq;
+	}
 	public Integer getShOption() {
 		return shOption;
 	}

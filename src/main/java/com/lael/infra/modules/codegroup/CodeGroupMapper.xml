@@ -41,6 +41,13 @@
 		</selectKey>
 	</insert>
 	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.*
+		FROM codeGroup a
+	 	WHERE 1=1
+	 		AND ccgSeq = #{ccgSeq}
+	</select>
 <!-- 	<update id=""></update>
 	<delete id=""></delete> -->
 	

@@ -28,4 +28,11 @@ public class CodeGroupServiceImpl implements CodeGroupService{
 		return dao.insert(dto);
 	}
 
+	@Override
+	public CodeGroup selecteOne(CodeGroupVo vo) throws Exception {
+		CodeGroup result = dao.selectOne(vo);
+		return result;
+	}
+
+	
 }

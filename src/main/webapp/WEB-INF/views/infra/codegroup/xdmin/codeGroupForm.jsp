@@ -116,7 +116,7 @@
 									<div class="row mt-3">
 										<div class="col">
 											<label for="name" class="form-label">코드그룹 이름(한글)</label>
-											<input type="text" class="form-control" id="name" name="name" placeholder="한글,숫자">
+											<input type="text" class="form-control" id="name" name="name" placeholder="한글,숫자" value="<c:out value="${codeGroup.name}"/>">
 										</div>
 										<div class="col">
 											<label for="name_eng" class="form-label">코드그룹 이름(영문)</label>
