@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>main.html</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" href="/resources/css/share/shareMain.css">
 </head>
 <body>
 	<!-- start -->
@@ -20,7 +20,7 @@
 		<nav class="navbar" style="background-color:rgb(142, 68, 173); height: 100%;">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="../member/main.html">
-					<img src="../img/fullLogo_w.png" alt="" width="160px" height="60px" class="d-inline-block align-text-top">
+					<img src="../../resources/images/share/fullLogo_w.png" alt="" width="160px" height="60px" class="d-inline-block align-text-top">
 				</a>
 				<div class="info pt-5">
 					<a>
@@ -97,7 +97,7 @@
 			<div id="bg-img" class="carousel slide container-fluid gx-0" data-bs-ride="carousel">
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="../img/1g.jpg" class="d-block w-100" alt="..." style="height: 880px;">
+						<img src="../../resources/images/share/1g.jpg" class="d-block w-100" alt="..." style="height: 880px;">
 						<ul class="imtext position-absolute fw-bold" style="z-index: 1; color:white; font-size: 80px; width: 800px; top: 150px; left: 20px;">
 							<li class="pb-3">
 								<a style="font-size: 80px">1인배달,</a>
@@ -111,7 +111,7 @@
 						</ul>
 					</div>
 					<div class="carousel-item">
-						<img src="../img/2g.jpg" class="d-block w-100 inner-shadow" alt="..." style="height: 880px;">
+						<img src="../../resources/images/share/2g.jpg" class="d-block w-100 inner-shadow" alt="..." style="height: 880px;">
 						<div class="row">
 							<ul class="imtext position-absolute fw-bold" style="z-index: 1; color:white; font-size: 80px; width: 800px; top: 90px; left: 20px;">
 								<li class="col-5 offset-2">
@@ -164,7 +164,7 @@
 					</div>
 				<div>
 			</div>
-		</div>
+		</div>s
 		<div class="footerinfo">
 			<a>회사소개</a>
 			<span>|</span>
