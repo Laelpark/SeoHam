@@ -164,7 +164,7 @@
 					</div>
 				<div>
 			</div>
-		</div>s
+		</div>
 		<div class="footerinfo">
 			<a>회사소개</a>
 			<span>|</span>
