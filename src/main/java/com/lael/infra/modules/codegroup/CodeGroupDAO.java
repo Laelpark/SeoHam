@@ -12,8 +12,6 @@ import org.springframework.stereotype.Repository;
 public class CodeGroupDAO {
 
 	@Inject // Autowired와 비슷한 개념
-	
-	
 	@Resource(name = "sqlSession") //여러개의 db와 물렸을 때 어떤 커넥션인지 이름을 정해줌
 	private SqlSession sqlSession; // SqlSession 객체에 의존
 	
@@ -42,5 +40,9 @@ public class CodeGroupDAO {
 		CodeGroup result = sqlSession.selectOne(namespace + ".selectOne", vo);
 		return result;
 	}
+	
+	public int update(CodeGroup dto) {return sqlSession.update(namespace + ".update", dto);}
+	public int uelete(CodeGroup dto) {return sqlSession.update(namespace + ".uelete", dto);}
+	public int delete(CodeGroupVo vo) {return sqlSession.delete(namespace + ".delete", vo);}
 
 }

@@ -6,7 +6,7 @@ public class CodeGroupVo {
 	
 	private Integer shOption;
 	private String shValue;
-	private String delNy;
+	private String DelNy;
 	
 	
 
@@ -17,10 +17,10 @@ public class CodeGroupVo {
 		this.ccgSeq = ccgSeq;
 	}
 	public String getDelNy() {
-		return delNy;
+		return DelNy;
 	}
-	public void setDelNy(String delNy) {
-		this.delNy = delNy;
+	public void setDelNy(String DelNy) {
+		this.DelNy = DelNy;
 	}
 	public Integer getShOption() {
 		return shOption;

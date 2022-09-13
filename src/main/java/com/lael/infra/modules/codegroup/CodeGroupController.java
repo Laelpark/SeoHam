@@ -45,8 +45,30 @@ public class CodeGroupController {
 	
 	@RequestMapping(value= "codeGroupView")
 	public String codeGroupView(Model model, CodeGroupVo vo) throws Exception {
-		CodeGroup result = service.selecteOne(vo);
-		model.addAttribute("codeGroup", result);
+		CodeGroup item = service.selecteOne(vo);
+		model.addAttribute("item", item);
 		return "infra/codegroup/xdmin/codeGroupForm";
 	}
+	
+//	@SuppressWarnings(value = { "all" })
+	@RequestMapping(value= "codeGroupUpdt")
+	public String codeGroupUpdt(CodeGroup dto) throws Exception {
+		service.update(dto);
+		return "redirect:/codeGroup/codeGroupList";
+		
+	}
+	
+	@RequestMapping(value= "codeGroupUele")
+	public String codeGroupUele(CodeGroup dto) throws Exception {
+		service.uelete(dto);
+		return "redirect:/codeGroup/codeGroupList";
+	}
+	
+
+	@RequestMapping(value= "codeGroupDele")
+	public String codeGroupDele(CodeGroupVo vo) throws Exception {
+		service.delete(vo);
+		return "redirect:/codeGroup/codeGroupList";
+	}
 }
+

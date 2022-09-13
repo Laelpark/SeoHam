@@ -63,7 +63,7 @@
 			</div>
 		</header>
 		<main>
-			<form name="myform" id="myform" method="post" action="/codeGroup/codeGroupInst">
+			<form name="myform" id="myform" method="post">
 				<div style="height: 70px"></div>
 				<div class="wrapper">
 					<div class="container">
@@ -105,22 +105,22 @@
 								<div class="content">
 									<div class="row">
 										<div class="col">
-											<label for="codeGroup_code" class="form-label">코드그룹 코드</label>
-											<input type="text" class="form-control" id="codeGroup_code" name="codeGroup_code" placeholder="영문(대소문자),숫자">	
+											<label for="ccgSeq" class="form-label">코드그룹 코드</label>
+											<input type="text" class="form-control" id="ccgSeq" name="ccgSeq" placeholder="영문(대소문자),숫자" value="<c:out value="${item.ccgSeq}"/>">
 										</div>
 										<div class="col">
 											<label for="codeGroup_another" class="form-label">코드그룹 코드(Another)</label>
-											<input type="text" class="form-control" id="codeGroup_another" name="codeGroup_another" placeholder="영문(대소문자),숫자">	
+											<input type="text" class="form-control" id="codeGroup_another" name="codeGroup_another" placeholder="영문(대소문자),숫자" value="">
 										</div>
 									</div>
 									<div class="row mt-3">
 										<div class="col">
 											<label for="name" class="form-label">코드그룹 이름(한글)</label>
-											<input type="text" class="form-control" id="name" name="name" placeholder="한글,숫자" value="<c:out value="${codeGroup.name}"/>">
+											<input type="text" class="form-control" id="name" name="name" placeholder="한글,숫자" value="<c:out value="${item.name}"/>">
 										</div>
 										<div class="col">
 											<label for="name_eng" class="form-label">코드그룹 이름(영문)</label>
-											<input type="text" class="form-control" id="name_eng" name="name_eng" placeholder="영문(대소문자),숫자">
+											<input type="text" class="form-control" id="name_eng" name="name_eng" placeholder="영문(대소문자),숫자" value="<c:out value="${item.name_eng}"/>">
 										</div>
 									</div>
 									<div class="row mt-3">
@@ -128,8 +128,8 @@
 											<label for="codeGroup_use" class="form-label">사용여부</label>
 											<select class="form-select" id="codeGroup_use" name="codeGroup_use">
 												<option selected disabled value="">선택</option>
-												<option value="0">N</option>
-												<option value="1">Y</option>
+												<option value="0" > N</option>
+												<option value="1" > Y</option>
 											  </select>
 										</div>
 										<div class="col">
@@ -143,11 +143,11 @@
 											<textarea class="form-control" id="codeGroup_con" placeholder="Required example textarea"></textarea>
 										</div>
 										<div class="col">
-											<label for="codeGroup_del" class="form-label">삭제여부</label>
-											<select class="form-select" id="codeGroup_del" name="codeGroup_del">
-												<option selected disabled value="">선택</option>
-												<option value="0">N</option>
-												<option value="1">Y</option>
+											<label for="DelNy" class="form-label">삭제여부</label>
+											<select class="form-select" id="DelNy" name="DelNy">
+												<option selected value="">선택</option>
+												<option value="0"> N</option>
+												<option value="1"> Y</option>
 											  </select>
 										</div>
 									</div>
@@ -177,28 +177,28 @@
 											<input type="text" class="form-control" id="codeGroup_I2" name="codeGroup_I2" placeholder="숫자">	
 										</div>
 									</div>
-									<div class="row mt-3">
+									 <div class="row mt-3">
 										<div class="col-6">
 											<label for="codeGroup_I3" class="form-label">예비3(Int type)</label>
 											<input type="text" class="form-control" id="codeGroup_I3" name="codeGroup_I3" placeholder="숫자">	
 										</div>
 									</div>
-									<div class="row mt-3">
+								<%-- <div class="row mt-3">
 										<div class="col-6">
 											<label for="codeGroup_tel" class="form-label">통신사</label>
 											<select class="form-select" id="codeGroup_tel" name="codeGroup_tel">
 												<option selected disabled value="">선택</option>
-												<option value="1">SKT</option>
-												<option value="2">KT</option>
-												<option value="3">LGT</option>
+												<option value="1" <c:if test="${item.codeGroup_tel eq 1}">selected</c:if>> SKT</option>
+												<option value="2" <c:if test="${item.codeGroup_tel eq 2}">selected</c:if>> KT</option>
+												<option value="3" <c:if test="${item.codeGroup_tel eq 3}">selected</c:if>> LGT</option>
 										  	</select>
 										</div>
 										<div class="row mt-3">
 											<div class="col-6">
 												<label for="codeGroup_Gender">성별</label>
-												<input type="radio" id="codeGroup_Gender1" name="codeGroup_Gender" value="1">남성	
-												<input type="radio" id="codeGroup_Gender2" name="codeGroup_Gender" value="2">여성	
-												<input type="radio" id="codeGroup_Gender3" name="codeGroup_Gender" value="3">기타	
+												<input type="radio" id="codeGroup_Gender1" name="codeGroup_Gender" value="1"  <c:if test="${item.codeGroup_Gender eq 1}">selected</c:if>> 남성	
+												<input type="radio" id="codeGroup_Gender2" name="codeGroup_Gender" value="2"  <c:if test="${item.codeGroup_Gender eq 2}">selected</c:if>> 여성	
+												<input type="radio" id="codeGroup_Gender3" name="codeGroup_Gender" value="3"  <c:if test="${item.codeGroup_Gender eq 3}">selected</c:if>> 기타	
 											</div>
 										</div>
 										<div class="row mt-3">
@@ -208,15 +208,16 @@
 												<input type="checkbox" id="codeGroup_marry2" name="codeGroup_marry" value="2">미혼	
 											</div>
 										</div>
+									</div> --%>
 									<div class="row mt-3">
 										<div class="col-md-2"> 
-											<button class="btn" type="button" style="background-color: rgb(159, 160, 161);" onclick="location.href='../admin/CodeGroupList.html'">
+											<a class="btn" role="button" style="background-color: rgb(159, 160, 161);" href="/codeGroup/codeGroupList/">
 												<i class="fas fa-thin fa-list-ul"></i>
-											</button>
+											</a>
 										</div>
 										<div class="col-md-6 offset-md-4" align="right">
-											<button class="btn btn-danger del" type="button" ><i class="fa-solid fa-xmark"></i></button>
-											<button class="btn btn-danger" type="button"onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="fa-solid fa-trash-can"></i></button>
+											<button class="btn btn-danger del" type="button" id="ueleteBtn" name="ueleteBtn" ><i class="fa-solid fa-xmark"></i></button>
+											<button class="btn btn-danger" type="button" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="fa-solid fa-trash-can"></i></button>
 											<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 												<div class="modal-dialog modal-dialog-centered">
 													<div class="modal-content">
@@ -232,14 +233,14 @@
 															<a>
 																<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
 															</a>
-															<a onclick="location.href='../admin/CodeGroupList.html'">
-																<button type="button" class="btn btn-danger">삭제</button>
+															<a>
+																<button type="button" class="btn btn-danger" id="deleteBtn" name="deleteBtn">삭제</button>
 															</a>
 														</div>
 													</div>
 												</div>
 											</div>
-											<button type="button" id="btnSave" class="btn btn-success" onClick="test();"><i class="fa-regular fa-bookmark"></i></button>
+											<button type="button" id="btnSave" name="btnSave" class="btn btn-success" onClick="test();"><i class="fa-regular fa-bookmark"></i></button>
 											<!-- <button class="btn btn-success" type="button" href="../admin/CodeGroupModForm.html" onclick=here()><i class="fa-regular fa-bookmark"></i></button> -->
 										</div>
 									</div>
@@ -283,15 +284,15 @@
             sessionStorage.setItem("codeGroup_kr", kr);
 			sessionStorage.setItem("codeGroup_eng", eng);
 		}
-		 function test() {
-			
-			 /*alert("test");
+		
+		/* function test() {
+			alert("test");
 			
 			alert(document.getElementById("name").value);
 			alert(document.getElementById("name_eng").value);
 			alert(document.getElementById("codeGroup_code").value);
 			alert(document.getElementById("codeGroup_another").value);
-			alert(document.getElementById("codeGroup_use").value);
+		 	alert(document.getElementById("codeGroup_use").value);
 			alert(document.getElementById("codeGroup_or").value);
 			alert(document.getElementById("codeGroup_con").value);
 			alert(document.getElementById("codeGroup_del").value);
@@ -303,7 +304,7 @@
 			alert(document.getElementById("codeGroup_I3").value);
 			alert(document.getElementById("codeGroup_tel").options[document.getElementById("codeGroup_tel").selectedIndex].value);  //select문 띄우는 구 방식
 			alert(document.querySelector("input[name= 'codeGroup_Gender']:checked").value); */
-			
+		
 			/* if(document.getElementById("name").value == '' || document.getElementById("name").value == null) {
 				alert("코드그룹 이름(한글)을 입력해주세요.");
 				document.getElementById("name").value = "";
@@ -324,7 +325,7 @@
 				document.getElementById("codeGroup_code").focus();
 				return false;
 			} 
-			
+		 	
 			if(document.getElementById("codeGroup_another").value == '' || document.getElementById("codeGroup_another").value == null) {
 				alert("코드그룹 코드(Another)를 입력해주세요.");
 				document.getElementById("codeGroup_another").value = "";
@@ -411,13 +412,13 @@
 			
 			// radio 선택여부 확인용 ver.jquery
 
-			// if($('input:radio[name=codeGroup_Gender]').is(':checked') == false) {
-		    //	alert("성별을 선택하세요");
-			//	} 
+		/* 	 if($('input:radio[name=codeGroup_Gender]').is(':checked') == false) {
+		    	alert("성별을 선택하세요");
+				} */ 
  
 			// radio 선택여부 확인용 ver.Javascript
 			
- 			if (document.querySelector('input[type=radio][name=codeGroup_Gender]:checked') == null) {
+ 	/* 		if (document.querySelector('input[type=radio][name=codeGroup_Gender]:checked') == null) {
  				alert("성별을 선택해주세요");
  			} else {
  				alert(document.querySelector('input[name=codeGroup_Gender]:checked').value);
@@ -433,8 +434,40 @@
 					result += checks[i].value + " ";
 				} 
 				alert(result);
-			}
-		}
+			} */
+		 	
+			var goUrlList = "/codeGroup/codeGroupList"; 			/* #-> */
+			var goUrlInst = "/codeGroup/codeGroupInst"; 			/* #-> */
+			var goUrlUpdt = "/codeGroup/codeGroupUpdt";				/* #-> */
+			var goUrlUele = "/codeGroup/codeGroupUele";				/* #-> */
+			var goUrlDele = "/codeGroup/codeGroupDele";				/* #-> */
+			
+			var seq = $("input[name=ccgSeq]");				/* #-> */
+			
+			var form = $("form[name=myform]");
+			
+			$("#btnSave").on("click", function(){
+				if (seq.val() == "0" || seq.val() == ""){
+			   		// insert
+			   		/* if (validationInst() == false) return false; */
+			   		form.attr("action", goUrlInst).submit();
+			   	} else {
+			   		// update
+			   		/* keyName.val(atob(keyName.val())); */
+			   		/* if (validationUpdt() == false) return false; */
+			   		form.attr("action", goUrlUpdt).submit();
+			   	}
+			});  
+			
+			$("#deleteBtn").on("click", function(){
+			   		form.attr("action", goUrlDele).submit();
+		   	});
+			
+			$("#ueleteBtn").on("click", function(){
+		   		form.attr("action", goUrlUele).submit();
+	   		});
+
+			
 		 		 
 		 </script>
 	</body>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lael.infra.modules.shareLogin.loginMapper">
+
+    <resultMap id="resultMapObj" type="com.lael.infra.modules.shareLogin.login"></resultMap>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		SELECT
+			a.*
+		FROM 
+			share_mamber a
+	 	WHERE 1=1
+			<!-- AND codegroup_ex = 0 -->
+			<!-- AND name LIKE CONCAT('%',#{shValue},'%') -->
+
+			<!-- <if test="delNy != null and !delNy.equals('')">AND delNy = #{delNy}</if> -->
+			<choose>
+				<when test="shOption == 1">AND ccgSeq = #{shValue}</when>
+				<when test="shOption == 2">AND name LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND name_eng LIKE CONCAT('%',#{shValue},'%')</when>
+				<otherwise></otherwise>
+			</choose>
+			ORDER BY ccgSeq DESC
+	</select>
+<!-- 	<update id=""></update>
+	<delete id=""></delete> -->
+	
+</mapper>	
+		
