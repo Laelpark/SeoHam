@@ -3,24 +3,24 @@ package com.lael.infra.modules.codegroup;
 public class CodeGroupVo {
 
 	private String ccgSeq;
-	
 	private Integer shOption;
 	private String shValue;
-	private String DelNy;
+	private Integer shDelNy;
+	private Integer shUpdt;
 	
 	
 
+	public Integer getShUpdt() {
+		return shUpdt;
+	}
+	public void setShUpdt(Integer shUpdt) {
+		this.shUpdt = shUpdt;
+	}
 	public String getCcgSeq() {
 		return ccgSeq;
 	}
 	public void setCcgSeq(String ccgSeq) {
 		this.ccgSeq = ccgSeq;
-	}
-	public String getDelNy() {
-		return DelNy;
-	}
-	public void setDelNy(String DelNy) {
-		this.DelNy = DelNy;
 	}
 	public Integer getShOption() {
 		return shOption;
@@ -34,5 +34,10 @@ public class CodeGroupVo {
 	public void setShValue(String shValue) {
 		this.shValue = shValue;
 	}
-	
+	public Integer getShDelNy() {
+		return shDelNy;
+	}
+	public void setShDelNy(Integer shDelNy) {
+		this.shDelNy = shDelNy;
+	}	
 }

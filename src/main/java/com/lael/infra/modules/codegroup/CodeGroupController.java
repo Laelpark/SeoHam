@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -16,12 +17,10 @@ public class CodeGroupController {
 	
 
 	@RequestMapping(value = "codeGroupList")
-	public String codeGroupList(Model model, CodeGroupVo vo) throws Exception {
-								// JSP로 넘길 땐 model 객체로 넘겨야 됨
-		
+	public String codeGroupList(Model model, @ModelAttribute("vo") CodeGroupVo vo) throws Exception {
+
 		System.out.println("vo.getshValue(): " + vo.getShValue());
 		System.out.println("vo.getshOption(): " + vo.getShOption());
-		System.out.println("vo.getDelNy(): " + vo.getDelNy());
 
 		List<CodeGroup> list = service.selectList(vo);
 		model.addAttribute("list", list);

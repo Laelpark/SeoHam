@@ -67,7 +67,7 @@
 			</div>
 		</header>
 		<main>
-			<form method="get" action="/codeGroup/codeGroupForm">
+			<form method="post" action="/codeGroup/codeGroupList">
 				<div style="height: 55px"></div>
 				<div class="wrapper">
 					<div class="container">
@@ -110,39 +110,38 @@
 									<div class="row needs-validation ms-3 me-3 mt-3 mb-5 p-3 shadow-lg bg-body rounded" novalidate>
 										<div class="row mb-2">
 											<div class="col-md-3">
-												<select class="form-select" id="delNy" name="delNy">
-													<option value=""<c:if test="${empty vo.delNy}">selected</c:if>>선택</option>
-													<option value="0" <c:if test="${vo.delNy eq 0}">selected</c:if>>N</option>
-													<option value="1" <c:if test="${vo.delNy eq 1}">selected</c:if>>Y</option>
-													<%-- <option value="0" <c:if test="${list.name}">selected</c:if>></option> --%>
-													<%-- <option value="${list.ccgSeq}">${list.name}</option> --%>
+												<select class="form-select" id="shDelNy" name="shDelNy">
+			                                       	<option value="" <c:if test="${empty vo.shDelNy }">selected</c:if>>선택</option>
+			                                        <option value="0" <c:if test="${vo.shDelNy eq 0 }">selected</c:if>>N</option>
+			                                        <option value="1" <c:if test="${vo.shDelNy eq 1 }">selected</c:if>>Y</option>
+			                                    </select>
+											</div>
+											<div class="col-md-3">
+												<select class="form-select" id="shUpdt" name="shUpdt">
+													<option value="" <c:if test="${empty vo.shUpdt }">selected</c:if>>선택</option>
+													<option value="0" <c:if test="${vo.shUpdt eq 0 }">selected</c:if>>등록일</option>
+													<option value="1" <c:if test="${vo.shUpdt eq 1 }">selected</c:if>>수정일</option>
 												</select>
 											</div>
 											<div class="col-md-3">
-												<select class="form-select" id="validationCustom02">
-													<option selected disabled value="">수정일</option>
-													<option>...</option>
-													<option>...</option>
-												</select>
+												<input type="text" class="form-control" id="datepickerS" name="datepickerS" placeholder="시작일" value="<c:out value="${vo.datepickerS}"/>">
 											</div>
 											<div class="col-md-3">
-												<input type="text" class="form-control" id="datepickerS" placeholder="시작일">
-											</div>
-											<div class="col-md-3">
-												<input type="text" class="form-control" id="datepickerE" placeholder="종료일">
+												<input type="text" class="form-control" id="datepickerE" name="datepickerE" placeholder="종료일" value="<c:out value="${vo.datepickerE}"/>">
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-3">
 												<select class="form-select" id="shOption" name="shOption">
-													<option value=""<c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
-													<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
-													<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름(한글)</option>
-													<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름(영문)</option>
-												</select>
+			                                        <option value="" <c:if test="${empty vo.shOption }">selected</c:if>>검색구분</option>
+			                                        <option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>코드그룹 코드</option>
+			                                        <option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>코드그룹 이름(한글)</option>
+			                                        <option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>코드그룹 이름(영문)</option>
+			                                    </select>
 											</div>
 											<div class="col-md-3">
-												<input type="search" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>" class="form-control"  placeholder="검색어를 입력하세요.">
+												<input type="text" class="form-control" name="shValue" id="shValue" value="<c:out value="${vo.shValue }"/>" autocomplete="off">
+												<div class="invalid-feedback" id="shValueFeeback"></div>
 											</div>
 											<div class="col-md-2">
 												<button class="btn btn-warning" type="submit" id="searching"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -159,7 +158,7 @@
 														</div>
 													</div>
 												</div>
-												<button class="btn btn-danger" type="submit"><i class="fa-solid fa-rotate-right"></i></button>
+												<button class="btn btn-danger" type="submit" id="btnReset" name="btnReset"><i class="fa-solid fa-rotate-right"></i></button>
 											</div>
 										</div>
 									</div>
@@ -194,7 +193,7 @@
 																	<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
 																</th>
 																<td>${list.ccgSeq}</td>
-																<td>49</td>
+																<td>-</td>
 																<td><a href="/codeGroup/codeGroupView?ccgSeq=<c:out value="${list.ccgSeq}"/>">${list.name}</a></td>
 																<td>${list.name_eng}</td>
 																<td>${list.count}</td>
@@ -379,6 +378,16 @@
 				  $('#datepickerS').datepicker('setDate', 'today');
 				  $('#datepickerE').datepicker('setDate', '+1D');
         	});
+			
+			var goUrlList = "/codeGroup/codeGroupList"; 			/* #-> */
+			var goUrlInst = "/codeGroup/codeGroupInst"; 			/* #-> */
+			var goUrlUpdt = "/codeGroup/codeGroupUpdt";				/* #-> */
+			var goUrlUele = "/codeGroup/codeGroupUele";				/* #-> */
+			var goUrlDele = "/codeGroup/codeGroupDele";				/* #-> */
+			
+			 $("#btnReset").on("click", function(){
+				 $(location).attr("href", goUrlList);
+			 });
 		</script>
 	</body>
 </html>

@@ -16,9 +16,24 @@ public class CodeGroup {
 	private Integer codeGroup_I2;
 	private Integer codeGroup_I3;
 	private Integer count;
-	private Integer DelNy;
+	private Integer ifcgDelNy;
+	private Integer createdAt;
+	private Integer modifiedAt;
 	
+
 	
+	public Integer getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Integer createdAt) {
+		this.createdAt = createdAt;
+	}
+	public Integer getModifiedAt() {
+		return modifiedAt;
+	}
+	public void setModifiedAt(Integer modifiedAt) {
+		this.modifiedAt = modifiedAt;
+	}
 	public String getCcgSeq() {
 		return ccgSeq;
 	}
@@ -103,14 +118,11 @@ public class CodeGroup {
 	public void setCount(Integer count) {
 		this.count = count;
 	}
-	public Integer getDelNy() {
-		return DelNy;
+	public Integer getIfcgDelNy() {
+		return ifcgDelNy;
 	}
-	public void setDelNy(Integer delNy) {
-		DelNy = delNy;
+	public void setIfcgDelNy(Integer ifcgDelNy) {
+		this.ifcgDelNy = ifcgDelNy;
 	}
 	
-	
-
-
 }

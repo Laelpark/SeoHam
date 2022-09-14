@@ -15,16 +15,14 @@
 		FROM 
 			codeGroup a
 	 	WHERE 1=1
-	 		AND DelNy = 0
-			<!-- AND codegroup_ex = 0 -->
 			<!-- AND name LIKE CONCAT('%',#{shValue},'%') -->
 
-			<if test="delNy != null and !delNy.equals('')">AND delNy = #{delNy}</if>
+			<if test="shDelNy != null and !shDelNy.equals('')">AND DelNy = #{shDelNy}</if>
 			<choose>
 				<when test="shOption == 1">AND ccgSeq = #{shValue}</when>
 				<when test="shOption == 2">AND name LIKE CONCAT('%',#{shValue},'%')</when>
 				<when test="shOption == 3">AND name_eng LIKE CONCAT('%',#{shValue},'%')</when>
-				<otherwise></otherwise>
+				<!-- <otherwise></otherwise> -->
 			</choose>
 			ORDER BY ccgSeq DESC 
 	</select>
@@ -32,9 +30,13 @@
 	<insert id="insert">
 		INSERT INTO codeGroup (
 			name
+			,name_eng
+			,DelNy
 		)
 		VALUES (
 			#{name}
+			,#{name_eng}
+			,#{ifcgDelNy}
 		)
 		
 		<selectKey resultType="String" keyProperty="ccgSeq" order="AFTER">
@@ -52,9 +54,10 @@
  	<update id="update">
 	 	UPDATE codeGroup
 	 	SET
-	 		codeGroup_another = #{codeGroup_another}
-	 		,name = #{name}
-	 		,name_eng = #{name_eng} 
+ 			name = #{name}
+	 		,name_eng = #{name_eng}
+	 		,DelNy = #{ifcgDelNy}
+	 		,codeGroup_another = #{codeGroup_another}
 	 		,codeGroup_use = #{codeGroup_use} 
 	 		,codeGroup_or = #{codeGroup_or} 
 	 		,codeGroup_con = #{codeGroup_con} 

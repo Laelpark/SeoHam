@@ -143,9 +143,8 @@
 											<textarea class="form-control" id="codeGroup_con" placeholder="Required example textarea"></textarea>
 										</div>
 										<div class="col">
-											<label for="DelNy" class="form-label">삭제여부</label>
-											<select class="form-select" id="DelNy" name="DelNy">
-												<option selected value="">선택</option>
+											<label for="ifcgDelNy" class="form-label">삭제여부</label>
+											<select class="form-select" id="ifcgDelNy" name="ifcgDelNy">
 												<option value="0"> N</option>
 												<option value="1"> Y</option>
 											  </select>
@@ -216,7 +215,25 @@
 											</a>
 										</div>
 										<div class="col-md-6 offset-md-4" align="right">
-											<button class="btn btn-danger del" type="button" id="ueleteBtn" name="ueleteBtn" ><i class="fa-solid fa-xmark"></i></button>
+											<button class="btn btn-danger del" type="button" name="ueleteBtn" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter1"><i class="fa-solid fa-xmark"></i></button>
+											<div class="modal fade" id="exampleModalCenter1" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+												<div class="modal-dialog modal-dialog-centered">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="exampleModalCenterTitle">삭제하시겠습니까?</h5>
+															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+														</div>
+														<div class="modal-body"  align="center">
+															<i class="fas fa-light fa-triangle-exclamation me-2" style="color: red;"></i>
+															 그룹 리스트에서 해당 정보가 사라집니다.
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+															<button type="button" class="btn btn-danger"  id="ueleteBtn" name=""ueleteBtn"">삭제</button>
+														</div>
+													</div>
+												</div>
+											</div>
 											<button class="btn btn-danger" type="button" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="fa-solid fa-trash-can"></i></button>
 											<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 												<div class="modal-dialog modal-dialog-centered">
@@ -230,12 +247,8 @@
 															삭제된 정보는 복구할 수가 없습니다.
 														</div>
 														<div class="modal-footer">
-															<a>
-																<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-															</a>
-															<a>
-																<button type="button" class="btn btn-danger" id="deleteBtn" name="deleteBtn">삭제</button>
-															</a>
+															<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+															<button type="button" class="btn btn-danger" id="deleteBtn" name="deleteBtn">삭제</button>
 														</div>
 													</div>
 												</div>
@@ -442,7 +455,7 @@
 			var goUrlUele = "/codeGroup/codeGroupUele";				/* #-> */
 			var goUrlDele = "/codeGroup/codeGroupDele";				/* #-> */
 			
-			var seq = $("input[name=ccgSeq]");				/* #-> */
+			var seq = $("input[name=ccgSeq]");						/* #-> */
 			
 			var form = $("form[name=myform]");
 			
