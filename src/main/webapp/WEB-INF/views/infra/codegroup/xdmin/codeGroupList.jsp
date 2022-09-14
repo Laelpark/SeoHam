@@ -67,7 +67,7 @@
 			</div>
 		</header>
 		<main>
-			<form method="post" action="/codeGroup/codeGroupList">
+			<form id="myForm" name="myForm" method="post" action="/codeGroup/codeGroupList">
 				<div style="height: 55px"></div>
 				<div class="wrapper">
 					<div class="container">
@@ -124,10 +124,10 @@
 												</select>
 											</div>
 											<div class="col-md-3">
-												<input type="text" class="form-control" id="datepickerS" name="datepickerS" placeholder="시작일" value="<c:out value="${vo.datepickerS}"/>">
+												<input type="text" class="form-control" id="datepickerS" placeholder="시작일">
 											</div>
 											<div class="col-md-3">
-												<input type="text" class="form-control" id="datepickerE" name="datepickerE" placeholder="종료일" value="<c:out value="${vo.datepickerE}"/>">
+												<input type="text" class="form-control" id="datepickerE" placeholder="종료일">
 											</div>
 										</div>
 										<div class="row">
@@ -227,69 +227,70 @@
 											</div>
 										</div>
 									</div>
-									<div class="container-fluid pe-4 ps-3">
-										<div class="row">
-											<div class="col-md-2"> 
-												<button class="btn btn-danger del" type="button" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="fa-solid fa-trash-can"></i></button>
-												<!-- <button class="btn btn-danger" type="button"><i class="fa-solid fa-xmark"></i></button> -->
-												<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-													<div class="modal-dialog modal-dialog-centered">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h5 class="modal-title" id="exampleModalCenterTitle">삭제하시겠습니까?</h5>
-																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-															</div>
-															<div class="modal-body"  align="center">
-																<img src="../resources/image/DLlogo.png" class="rounded me-2" alt="..." style="width: 8%; height: 8%;">
-																삭제된 정보는 복구할 수가 없습니다.
-															</div>
-															<div class="modal-footer">
-																<a>
-																	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-																</a>
-																<a href="./memberList.html">
-																	<button type="button" class="btn btn-danger">삭제</button>
-																</a>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2 offset-md-8" align="right">
-												<!-- <a href="/codeGroup/codeGroupForm"> 이거도 사용 가능 -->
-												<button class="btn btn-primary" type="submit"><i class="fa-solid fa-plus"></i></button>
-											</div>
-										</div>
-									</div>
-									<nav class="navbar navbar-expand-lg bg-white mt-5 mb-3 position-absolute bottom-30 start-50 translate-middle-x">
-										<div class="container-fluid">
-											<div class="collapse navbar-collapse" id="navbarSupportedContent">
-												<ul class="navbar-nav">
-													<li class="nav-item">
-													<a class="nav-link">이용약관</a>
-													</li>
-													<li class="nav-item">
-													<a class="nav-link">개인정보처리방침</a>
-													</li>
-													<li class="nav-item">
-													<a class="nav-link">이메일무단수집거부</a>
-													</li>
-													<li class="nav-item">
-													<a class="nav-link">안내사항</a>
-													</li>
-													<li class="nav-item">
-														<a class="nav-link disabled">© DL, All rights reserved.</a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</nav>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</form>
+			<div class="container-fluid pe-4 ps-3">
+				<div class="row">
+					<div class="col-md-2 offset-4"> 
+						<button class="btn btn-danger del" type="button" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="fa-solid fa-trash-can"></i></button>
+						<!-- <button class="btn btn-danger" type="button"><i class="fa-solid fa-xmark"></i></button> -->
+						<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalCenterTitle">삭제하시겠습니까?</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body"  align="center">
+										<i class="fas fa-light fa-triangle-exclamation me-2" style="color: red;"></i>
+										삭제된 정보는 복구할 수가 없습니다.
+									</div>
+									<div class="modal-footer">
+										<a>
+											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+										</a>
+										<a href="./memberList.html">
+											<button type="button" class="btn btn-danger">삭제</button>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2 offset-3" align="right">
+						<a href="/codeGroup/codeGroupForm">
+							<button class="btn btn-primary" type="submit"><i class="fa-solid fa-plus"></i></button>
+						</a>
+					</div>
+				</div>
+			</div>
+			<nav class="navbar navbar-expand-lg bg-white mt-5 mb-3 position-absolute bottom-30 start-50 translate-middle-x">
+				<div class="container-fluid">
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+							<a class="nav-link">이용약관</a>
+							</li>
+							<li class="nav-item">
+							<a class="nav-link">개인정보처리방침</a>
+							</li>
+							<li class="nav-item">
+							<a class="nav-link">이메일무단수집거부</a>
+							</li>
+							<li class="nav-item">
+							<a class="nav-link">안내사항</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link disabled">© DL, All rights reserved.</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>			
 		</main>
 	
 		<!-- end --> 

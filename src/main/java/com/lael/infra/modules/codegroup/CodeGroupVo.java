@@ -7,9 +7,21 @@ public class CodeGroupVo {
 	private String shValue;
 	private Integer shDelNy;
 	private Integer shUpdt;
+//	private Date datepickerS;
+//	private Date datepickerE;
 	
-	
-
+//	public Date getDatepickerS() {
+//		return datepickerS;
+//	}
+//	public void setDatepickerS(Date datepickerS) {
+//		this.datepickerS = datepickerS;
+//	}
+//	public Date getDatepickerE() {
+//		return datepickerE;
+//	}
+//	public void setDatepickerE(Date datepickerE) {
+//		this.datepickerE = datepickerE;
+//	}
 	public Integer getShUpdt() {
 		return shUpdt;
 	}
