@@ -1,7 +1,6 @@
 package com.lael.infra.modules.codegroup;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,13 +14,14 @@ public class CodeGroupController {
 	@Autowired
 	CodeGroupServiceImpl service;
 	
-
 	@RequestMapping(value = "codeGroupList")
 	public String codeGroupList(Model model, @ModelAttribute("vo") CodeGroupVo vo) throws Exception {
 
 		System.out.println("vo.getshValue(): " + vo.getShValue());
 		System.out.println("vo.getshOption(): " + vo.getShOption());
 
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
 		List<CodeGroup> list = service.selectList(vo);
 		model.addAttribute("list", list);
 						// jsp에서 사용할 객체 이름, 넘겨질 객체 이름
@@ -44,7 +44,7 @@ public class CodeGroupController {
 	
 	@RequestMapping(value= "codeGroupView")
 	public String codeGroupView(Model model, CodeGroupVo vo) throws Exception {
-		CodeGroup item = service.selecteOne(vo);
+		CodeGroup item = service.selectOne(vo);
 		model.addAttribute("item", item);
 		return "infra/codegroup/xdmin/codeGroupForm";
 	}
@@ -69,5 +69,7 @@ public class CodeGroupController {
 		service.delete(vo);
 		return "redirect:/codeGroup/codeGroupList";
 	}
+
+	
 }
 

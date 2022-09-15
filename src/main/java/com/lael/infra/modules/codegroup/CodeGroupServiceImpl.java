@@ -30,7 +30,7 @@ public class CodeGroupServiceImpl implements CodeGroupService{
 	}
 
 	@Override
-	public CodeGroup selecteOne(CodeGroupVo vo) throws Exception {
+	public CodeGroup selectOne(CodeGroupVo vo) throws Exception {
 		CodeGroup result = dao.selectOne(vo);
 		return result;
 	}
@@ -51,6 +51,13 @@ public class CodeGroupServiceImpl implements CodeGroupService{
 	public int delete(CodeGroupVo vo) throws Exception {
 		return dao.delete(vo);
 	}
+
+	@Override
+	public int selectOneCount(CodeGroupVo vo) throws Exception {
+		return dao.selectOneCount(vo);
+	}
+
+
 
 	
 }

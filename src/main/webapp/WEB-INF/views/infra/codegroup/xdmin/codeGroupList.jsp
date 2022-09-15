@@ -68,6 +68,8 @@
 		</header>
 		<main>
 			<form id="myForm" name="myForm" method="post" action="/codeGroup/codeGroupList">
+               	<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+               	<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
 				<div style="height: 55px"></div>
 				<div class="wrapper">
 					<div class="container">
@@ -192,8 +194,8 @@
 																<th scope="row" class="td1" src="./memberMod.html">
 																	<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
 																</th>
+																<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
 																<td>${list.ccgSeq}</td>
-																<td>-</td>
 																<td><a href="/codeGroup/codeGroupView?ccgSeq=<c:out value="${list.ccgSeq}"/>">${list.name}</a></td>
 																<td>${list.name_eng}</td>
 																<td>${list.count}</td>
@@ -205,27 +207,7 @@
 												</c:choose>
 											</tbody>
 										</table>
-										<div class="row">
-											<div class="col-md-4 offset-md-5">
-												<nav aria-label="Page navigation example">
-													<ul class="pagination pagination-sm">
-														<li class="page-item">
-															<a class="page-link" href="#" aria-label="Previous">
-															<span aria-hidden="true">&laquo;</span>
-															</a>
-														</li>
-														<li class="page-item"><a class="page-link" href="#">1</a></li>
-														<li class="page-item"><a class="page-link" href="#">2</a></li>
-														<li class="page-item"><a class="page-link" href="#">3</a></li>
-														<li class="page-item">
-															<a class="page-link" href="#" aria-label="Next">
-															<span aria-hidden="true">&raquo;</span>
-															</a>
-														</li>
-													</ul>
-												</nav>
-											</div>
-										</div>
+										<%@include file="../../common/xdmin/includeV1/pagination.jsp"%>
 									</div>
 								</div>
 							</div>
@@ -389,6 +371,13 @@
 			 $("#btnReset").on("click", function(){
 				 $(location).attr("href", goUrlList);
 			 });
+			
+		  var form = $("form[name=myForm]");
+
+			 goList = function(thisPage) {
+	 			$("input:hidden[name=thisPage]").val(thisPage);
+	 			form.attr("action", goUrlList).submit();
+	 		};
 		</script>
 	</body>
 </html>

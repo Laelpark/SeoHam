@@ -1,16 +1,18 @@
 package com.lael.infra.modules.codegroup;
 
-public class CodeGroupVo {
+import com.lael.infra.common.base.BaseVo;
+
+public class CodeGroupVo extends BaseVo{
 
 	private String ccgSeq;
 	private Integer shOption;
 	private String shValue;
 	private Integer shDelNy;
 	private Integer shUpdt;
-//	private Date datepickerS;
-//	private Date datepickerE;
+
 	
-//	public Date getDatepickerS() {
+
+	//	public Date getDatepickerS() {
 //		return datepickerS;
 //	}
 //	public void setDatepickerS(Date datepickerS) {
@@ -51,5 +53,6 @@ public class CodeGroupVo {
 	}
 	public void setShDelNy(Integer shDelNy) {
 		this.shDelNy = shDelNy;
-	}	
+	}
+
 }

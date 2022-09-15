@@ -8,23 +8,32 @@
 
     <resultMap id="resultMapObj" type="com.lael.infra.modules.codegroup.CodeGroup"></resultMap>
 	
+	<sql id ="selectCommon">
+		FROM codeGroup a
+		WHERE 1=1
+		<if test="shDelNy != null and !shDelNy.equals('')">AND DelNy = #{shDelNy}</if>
+		<choose>
+			<when test="shOption == 1">AND ccgSeq = #{shValue}</when>
+			<when test="shOption == 2">AND name LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 3">AND name_eng LIKE CONCAT('%',#{shValue},'%')</when>
+		</choose>
+	</sql>
+	
 	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"></include>
 		SELECT
 			a.*
-			,(select count(b.ccgSeq) from code b where 1=1 and a.ccgSeq = b.ccgSeq) as count
-		FROM 
-			codeGroup a
-	 	WHERE 1=1
-			<!-- AND name LIKE CONCAT('%',#{shValue},'%') -->
-
-			<if test="shDelNy != null and !shDelNy.equals('')">AND DelNy = #{shDelNy}</if>
-			<choose>
-				<when test="shOption == 1">AND ccgSeq = #{shValue}</when>
-				<when test="shOption == 2">AND name LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test="shOption == 3">AND name_eng LIKE CONCAT('%',#{shValue},'%')</when>
-				<!-- <otherwise></otherwise> -->
-			</choose>
-			ORDER BY ccgSeq DESC 
+			,(select count(b.ccgSeq) from code b where 1=1 and a.DelNy = 0 and a.ccgSeq = b.ccgSeq) as ccgSeqcount
+		<include refid="selectCommon" />
+		ORDER BY a.ccgSeq DESC
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" /> 
+			
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
 	</select>
 	
 	<insert id="insert">
