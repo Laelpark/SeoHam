@@ -1,6 +1,8 @@
 package com.lael.infra.modules.code;
 
-public class CodeVo {
+import com.lael.infra.common.base.BaseVo;
+
+public class CodeVo extends BaseVo{
 
 	private String cdSeq;
 	

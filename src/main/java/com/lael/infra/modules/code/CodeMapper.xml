@@ -8,41 +8,53 @@
 
     <resultMap id="resultMapObj" type="com.lael.infra.modules.code.Code"></resultMap>
 	
+	<sql id ="selectCommon">
+	 	FROM code b
+	    JOIN codeGroup a on a.ccgSeq = b.cdSeq
+		WHERE 1=1
+		<if test="cdDelNy != null and !cdDelNy.equals('')">AND cdDelNy = #{cdDelNy}</if>
+		<choose>
+			<when test="shOption == 1">AND cdSeq = #{shValue}</when>
+			<when test="shOption == 2">AND codeName LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 3">AND codeOrder LIKE CONCAT('%',#{shValue},'%')</when>
+		</choose>
+	</sql>
+	
 	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"></include>
 		SELECT
 			b.*
-			,a.ccgSeq
-		    ,a.name
-		FROM 
+			<!-- ,a.ccgSeq
+		    ,a.name -->
+	    <include refid="selectCommon" />
+		 ORDER BY b.cdSeq DESC
+	 	<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" /> 
+	</select>
+	<!--FROM 
 			code b
 		JOIN codeGroup a on a.ccgSeq = b.ccgSeq
-		WHERE 1=1
-		<!-- AND  b.example = 0 -->
-			<if test="cdDelNy != null and !cdDelNy.equals('')">AND cdDelNy = #{cdDelNy}</if>
-			<choose>
-				<when test="shOption == 1">AND name = #{shValue}</when>
-				<when test="shOption == 2">AND cdSeq = #{shValue}</when>
-				<when test="shOption == 3">AND codeName LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test="shOption == 4">AND codeOrder LIKE CONCAT('%',#{shValue},'%')</when>
-				<otherwise></otherwise>
-			</choose>
-			ORDER BY cdSeq DESC
+		WHERE 1=1 -->
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
 	</select>
 	
 	<insert id="insert">
 		INSERT INTO code (
 			codeName
-			,ccgSeq
+			,cdSeq
 		)
 		VALUES (
 			#{codeName}
-			,#{ccgSeq}
+			,#{cdSeq}
 		)
 		
 		<selectKey resultType="String" keyProperty="cdSeq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
-	</insert>
+	</insert>		
+			
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			b.*
@@ -50,8 +62,36 @@
 	 	WHERE 1=1
 	 		AND cdSeq = #{cdSeq}
 	</select>
-	
-<!-- 	<update id=""></update>
-	<delete id=""></delete> -->
-
+	<!-- <update id="update">
+	 	UPDATE codeGroup
+	 	SET
+ 			name = #{name}
+	 		,name_eng = #{name_eng}
+	 		,DelNy = #{ifcgDelNy}
+	 		,codeGroup_another = #{codeGroup_another}
+	 		,codeGroup_use = #{codeGroup_use} 
+	 		,codeGroup_or = #{codeGroup_or} 
+	 		,codeGroup_con = #{codeGroup_con} 
+	 		,codeGroup_V1 = #{codeGroup_V1} 
+	 		,codeGroup_V2 = #{codeGroup_V2} 
+	 		,codeGroup_V3 = #{codeGroup_V3} 
+	 		,codeGroup_I1 = #{codeGroup_I1} 
+	 		,codeGroup_I2 = #{codeGroup_I2} 
+	 		,codeGroup_I3 = #{codeGroup_I3} 
+		WHERE
+			ccgSeq = #{ccgSeq}
+ 	</update>
+ 	<update id="uelete">
+	 	UPDATE codeGroup
+	 	SET
+	 		DelNy = 1
+		WHERE 
+			ccgSeq = #{ccgSeq}
+ 	</update>
+ 	<delete id="delete">
+ 		DELETE FROM 
+ 			codeGroup 
+		WHERE 
+			ccgSeq = #{ccgSeq}
+ 	</delete> -->
 </mapper>	

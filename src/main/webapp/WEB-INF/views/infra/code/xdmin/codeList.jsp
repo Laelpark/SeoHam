@@ -67,7 +67,7 @@
 			</div>
 		</header>
 		<main>
-			<form method="get" action="/code/codeForm">
+			<form id="myForm" name="myForm" method="get" action="/code/codeForm">
 				<div style="height: 55px"></div>
 				<div class="wrapper">
 					<div class="container">
@@ -110,12 +110,12 @@
 									<div class="row needs-validation ms-3 me-3 mt-3 mb-5 p-3 shadow-lg bg-body rounded" novalidate>
 										<div class="row mb-2">
 											<div class="col-md-3">
-													<select class="form-select" id="cdDelNy" name="cdDelNy">
-														<option value=""<c:if test="${empty vo.cdDelNy}">selected</c:if>>삭제여부</option>
-														<option value="0" <c:if test="${vo.cdDelNy eq 0}">selected</c:if>>NO</option>
-														<option value="1" <c:if test="${vo.cdDelNy eq 1}">selected</c:if>>YES</option>
-													</select>
-												</div>
+												<select class="form-select" id="cdDelNy" name="cdDelNy">
+													<option value=""<c:if test="${empty vo.cdDelNy}">selected</c:if>>삭제여부</option>
+													<option value="0" <c:if test="${vo.cdDelNy eq 0}">selected</c:if>>NO</option>
+													<option value="1" <c:if test="${vo.cdDelNy eq 1}">selected</c:if>>YES</option>
+												</select>
+											</div>
 											<div class="col-md-3">
 												<select class="form-select" id="validationCustom02">
 													<option selected disabled value="">수정일</option>
@@ -158,7 +158,8 @@
 														</div>
 													</div>
 												</div>
-												<button class="btn btn-danger" type="submit"><i class="fa-solid fa-rotate-right"></i></button>
+												<button class="btn btn-danger" type="submit" id="btnReset" name="btnReset"><i class="fa-solid fa-rotate-right"></i></button>
+												
 											</div>
 										</div>
 									</div>
@@ -196,10 +197,10 @@
 																<th scope="row" class="td1" src="./memberMod.html">
 																	<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
 																</th>
-																<td>${list.cdSeq}</td>
+																<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
 																<td>${list.ccgSeq}</td>
 																<td><a href="/codeGroup/codeGroupView?ccgSeq=<c:out value="${list.ccgSeq}"/>">${list.name}</a></td>
-																<td>-</td>
+																<td>${list.cdSeq}</td>
 																<td>-</td>
 																<td><a href="/code/codeView?cdSeq=<c:out value="${list.cdSeq}"/>">${list.codeName}</a></td>
 																<td>-</td>
@@ -213,90 +214,72 @@
 												</c:choose>
 											</tbody>
 										</table>
-										<div class="row">
-											<div class="col-md-4 offset-md-5">
-												<nav aria-label="Page navigation example">
-													<ul class="pagination pagination-sm">
-														<li class="page-item">
-															<a class="page-link" href="#" aria-label="Previous">
-															<span aria-hidden="true">&laquo;</span>
-															</a>
-														</li>
-														<li class="page-item"><a class="page-link" href="#">1</a></li>
-														<li class="page-item"><a class="page-link" href="#">2</a></li>
-														<li class="page-item"><a class="page-link" href="#">3</a></li>
-														<li class="page-item">
-															<a class="page-link" href="#" aria-label="Next">
-															<span aria-hidden="true">&raquo;</span>
-															</a>
-														</li>
-													</ul>
-												</nav>
-											</div>
-										</div>
+										<%@include file="../../common/xdmin/includeV1/pagination.jsp"%>
 									</div>
-									<div class="container-fluid pe-4 ps-3">
-										<div class="row">
-											<div class="col-md-2"> 
-												<button class="btn btn-danger del" type="button" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="fa-solid fa-trash-can"></i></button>
-												<!-- <button class="btn btn-danger" type="button"><i class="fa-solid fa-xmark"></i></button> -->
-												<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-													<div class="modal-dialog modal-dialog-centered">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h5 class="modal-title" id="exampleModalCenterTitle">삭제하시겠습니까?</h5>
-																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-															</div>
-															<div class="modal-body"  align="center">
-																<img src="../resources/image/DLlogo.png" class="rounded me-2" alt="..." style="width: 8%; height: 8%;">
-																삭제된 정보는 복구할 수가 없습니다.
-															</div>
-															<div class="modal-footer">
-																<a>
-																	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-																</a>
-																<a href="./memberList.html">
-																	<button type="button" class="btn btn-danger">삭제</button>
-																</a>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-2 offset-md-8" align="right">
-												<button class="btn btn-primary" type="submit"><i class="fa-solid fa-plus"></i></button>
-											</div>
-										</div>
-									</div>
-									<nav class="navbar navbar-expand-lg bg-white mt-5 mb-3 position-absolute bottom-30 start-50 translate-middle-x">
-										<div class="container-fluid">
-											<div class="collapse navbar-collapse" id="navbarSupportedContent">
-												<ul class="navbar-nav">
-													<li class="nav-item">
-													<a class="nav-link">이용약관</a>
-													</li>
-													<li class="nav-item">
-													<a class="nav-link">개인정보처리방침</a>
-													</li>
-													<li class="nav-item">
-													<a class="nav-link">이메일무단수집거부</a>
-													</li>
-													<li class="nav-item">
-													<a class="nav-link">안내사항</a>
-													</li>
-													<li class="nav-item">
-														<a class="nav-link disabled">© DL, All rights reserved.</a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</nav>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</form>
+			<div class="container-fluid pe-4 ps-3">
+				<div class="row">
+					<div class="col-md-2 offset-4"> 
+						<button class="btn btn-danger del" type="button" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="fa-solid fa-trash-can"></i></button>
+						<!-- <button class="btn btn-danger" type="button"><i class="fa-solid fa-xmark"></i></button> -->
+						<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalCenterTitle">삭제하시겠습니까?</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body"  align="center">
+										<i class="fas fa-light fa-triangle-exclamation me-2" style="color: red;"></i>
+										삭제된 정보는 복구할 수가 없습니다.
+									</div>
+									<div class="modal-footer">
+										<a>
+											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+										</a>
+										<a href="./memberList.html">
+											<button type="button" class="btn btn-danger">삭제</button>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2 offset-3" align="right">
+						<a href="/code/codeForm">
+							<button class="btn btn-primary" type="submit"><i class="fa-solid fa-plus"></i></button>
+						</a>
+					</div>
+				</div>
+			</div>
+			<nav class="navbar navbar-expand-lg bg-white mt-5 mb-3 position-absolute bottom-30 start-50 translate-middle-x">
+				<div class="container-fluid">
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+							<a class="nav-link">이용약관</a>
+							</li>
+							<li class="nav-item">
+							<a class="nav-link">개인정보처리방침</a>
+							</li>
+							<li class="nav-item">
+							<a class="nav-link">이메일무단수집거부</a>
+							</li>
+							<li class="nav-item">
+							<a class="nav-link">안내사항</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link disabled">© DL, All rights reserved.</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>			
 		</main>
 	
 		<!-- end --> 
@@ -383,7 +366,25 @@
 				  });
 				  $('#datepickerS').datepicker('setDate', 'today');
 				  $('#datepickerE').datepicker('setDate', '+1D');
-      	});
+				});
+			
+			
+			var goUrlList = "/code/codeList"; 			/* #-> */
+			var goUrlInst = "/code/codeInst"; 			/* #-> */
+			var goUrlUpdt = "/code/codeUpdt";				/* #-> */
+			var goUrlUele = "/code/codeUele";				/* #-> */
+			var goUrlDele = "/code/codeDele";				/* #-> */
+			
+			 $("#btnReset").on("click", function(){
+				 $(location).attr("href", goUrlList);
+			 });
+			
+		  var form = $("form[name=myForm]");
+
+			 goList = function(thisPage) {
+	 			$("input:hidden[name=thisPage]").val(thisPage);
+	 			form.attr("action", goUrlList).submit();
+	 		};
 		</script>
 	</body>
 </html>

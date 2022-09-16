@@ -1,7 +1,6 @@
 package com.lael.infra.modules.code;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,12 +28,26 @@ public class CodeServiceImpl implements CodeService{
 		return result;
 	}
 
-	//
-	
+	@Override
+	public int selectOneCount(CodeVo vo) throws Exception {
+		return dao.selectOneCount(vo);
+	}
+
+
 //	@Override
-//	public CodeGroup selectOne(CodeGroupVo vo) throws Exception {
-//		CodeGroup result = dao.selectOne(vo);
-//		return result;
+//	public int update(CodeGroup dto) throws Exception {
+//		return dao.update(dto);
 //	}
+
+//	@Override
+//	public int uelete(CodeGroup dto) throws Exception {
+//		return dao.uelete(dto);
+//	}
+
+//	@Override
+//	public int delete(CodeGroupVo vo) throws Exception {
+//		return dao.delete(vo);
+//	}
+	
 		
 }

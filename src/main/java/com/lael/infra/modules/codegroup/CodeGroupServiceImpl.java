@@ -1,7 +1,6 @@
 package com.lael.infra.modules.codegroup;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,13 +36,11 @@ public class CodeGroupServiceImpl implements CodeGroupService{
 
 	@Override
 	public int update(CodeGroup dto) throws Exception {
-//		setRegMod(dto);
 		return dao.update(dto);
 	}
 
 	@Override
 	public int uelete(CodeGroup dto) throws Exception {
-//		setRegMod(dto);
 		return dao.uelete(dto);
 	}
 

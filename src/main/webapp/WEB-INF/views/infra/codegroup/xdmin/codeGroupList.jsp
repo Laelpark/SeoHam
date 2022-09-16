@@ -67,9 +67,10 @@
 			</div>
 		</header>
 		<main>
-			<form id="myForm" name="myForm" method="post" action="/codeGroup/codeGroupList">
-               	<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
-               	<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
+			<form id="myForm" name="myForm" method="post">
+				<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+				<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+				<input type="hidden" name="ccgSeq" value='<c:out value="${vo.ccgSeq }"></c:out>'>
 				<div style="height: 55px"></div>
 				<div class="wrapper">
 					<div class="container">
@@ -121,8 +122,8 @@
 											<div class="col-md-3">
 												<select class="form-select" id="shUpdt" name="shUpdt">
 													<option value="" <c:if test="${empty vo.shUpdt }">selected</c:if>>선택</option>
-													<option value="0" <c:if test="${vo.shUpdt eq 0 }">selected</c:if>>등록일</option>
-													<option value="1" <c:if test="${vo.shUpdt eq 1 }">selected</c:if>>수정일</option>
+													<option value="1" <c:if test="${vo.shUpdt eq 1 }">selected</c:if>>등록일</option>
+													<option value="2" <c:if test="${vo.shUpdt eq 2 }">selected</c:if>>수정일</option>
 												</select>
 											</div>
 											<div class="col-md-3">
@@ -160,7 +161,7 @@
 														</div>
 													</div>
 												</div>
-												<button class="btn btn-danger" type="submit" id="btnReset" name="btnReset"><i class="fa-solid fa-rotate-right"></i></button>
+												<button class="btn btn-danger" type="reset" id="btnReset" name="btnReset"><i class="fa-solid fa-rotate-right"></i></button>
 											</div>
 										</div>
 									</div>
@@ -196,7 +197,7 @@
 																</th>
 																<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
 																<td>${list.ccgSeq}</td>
-																<td><a href="/codeGroup/codeGroupView?ccgSeq=<c:out value="${list.ccgSeq}"/>">${list.name}</a></td>
+																<td><a href="javascript:goForm(<c:out value="${list.ccgSeq }"/>)" class="text-decoration-none"><c:out value="${list.name }"/></a></td>
 																<td>${list.name_eng}</td>
 																<td>${list.count}</td>
 																<td>-</td>
@@ -244,9 +245,7 @@
 						</div>
 					</div>
 					<div class="col-md-2 offset-3" align="right">
-						<a href="/codeGroup/codeGroupForm">
-							<button class="btn btn-primary" type="submit"><i class="fa-solid fa-plus"></i></button>
-						</a>
+						<button class="btn btn-primary" type="button" id="btnForm" name="btnForm"><i class="fa-solid fa-plus"></i></button>
 					</div>
 				</div>
 			</div>
@@ -358,8 +357,8 @@
 					  showMonthAfterYear: true,
 					  yearSuffix: '년'
 				  });
-				  $('#datepickerS').datepicker('setDate', 'today');
-				  $('#datepickerE').datepicker('setDate', '+1D');
+				 /*  $('#datepickerS').datepicker('setDate', 'today');
+				  $('#datepickerE').datepicker('setDate', '+1D'); */
         	});
 			
 			var goUrlList = "/codeGroup/codeGroupList"; 			/* #-> */
@@ -367,17 +366,37 @@
 			var goUrlUpdt = "/codeGroup/codeGroupUpdt";				/* #-> */
 			var goUrlUele = "/codeGroup/codeGroupUele";				/* #-> */
 			var goUrlDele = "/codeGroup/codeGroupDele";				/* #-> */
+			var goUrlForm = "/codeGroup/codeGroupForm";
+			
+			var form = $("form[name=myForm]");
+			
+			var seq = $("input:hidden[name=ccgSeq]");
+			
 			
 			 $("#btnReset").on("click", function(){
 				 $(location).attr("href", goUrlList);
 			 });
 			
-		  var form = $("form[name=myForm]");
+		  /* var form = $("form[name=myForm]"); */
 
 			 goList = function(thisPage) {
 	 			$("input:hidden[name=thisPage]").val(thisPage);
 	 			form.attr("action", goUrlList).submit();
 	 		};
+	 		
+	 		/* var seq = $("input:hidden[name=ccgSeq]"); */
+
+	 		$('#btnForm').on("click", function() {
+	 			goForm(0);                
+	 		});
+
+	 		goForm = function(keyValue) {
+	 	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+	 	    	seq.val(keyValue);
+	 			form.attr("action", goUrlForm).submit();
+	 		}
+	 		
+	 	
 		</script>
 	</body>
 </html>

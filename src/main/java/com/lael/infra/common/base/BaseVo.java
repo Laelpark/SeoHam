@@ -21,6 +21,10 @@ public class BaseVo {
 
 	private int startRnumForMysql = 0;							// 쿼리 시작 row
 	
+// search
+//	private Integer ShDelNy;
+//	private Integer ShUpdt;
+	
 	
 // --------
 	public void setParamsPaging(int totalRows) {

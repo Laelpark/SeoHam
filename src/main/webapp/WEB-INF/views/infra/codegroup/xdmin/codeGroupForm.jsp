@@ -63,10 +63,14 @@
 			</div>
 		</header>
 		<main>
-			<form name="myform" id="myform" method="post">
-				<div style="height: 70px"></div>
+		<!-- <form name="form" id="form" method="post" enctype="multipart/form-data"> -->
+		<form id="myform" name="myform" method="post" autocomplete="off" enctype="multipart/form-data">
+		<!-- *Vo.jsp s -->
+			<%@include file="codeGroupVo.jsp"%>		<!-- #-> -->
+		<!-- *Vo.jsp e -->
+			<div style="height: 70px"></div>
 				<div class="wrapper">
-					<div class="container">
+					<div class="container">	
 						<div class="row">
 							<div class="col-3">
 								<div class="sidebar">
@@ -130,7 +134,7 @@
 												<option selected disabled value="">선택</option>
 												<option value="0" > N</option>
 												<option value="1" > Y</option>
-											  </select>
+											</select>
 										</div>
 										<div class="col">
 											<label for="codeGroup_or" class="form-label">순서</label>
@@ -147,7 +151,7 @@
 											<select class="form-select" id="ifcgDelNy" name="ifcgDelNy">
 												<option value="0"> N</option>
 												<option value="1"> Y</option>
-											  </select>
+											</select>
 										</div>
 									</div>
 									<div class="row mt-3">
@@ -176,85 +180,10 @@
 											<input type="text" class="form-control" id="codeGroup_I2" name="codeGroup_I2" placeholder="숫자">	
 										</div>
 									</div>
-									 <div class="row mt-3">
+									<div class="row mt-3">
 										<div class="col-6">
 											<label for="codeGroup_I3" class="form-label">예비3(Int type)</label>
 											<input type="text" class="form-control" id="codeGroup_I3" name="codeGroup_I3" placeholder="숫자">	
-										</div>
-									</div>
-								<%-- <div class="row mt-3">
-										<div class="col-6">
-											<label for="codeGroup_tel" class="form-label">통신사</label>
-											<select class="form-select" id="codeGroup_tel" name="codeGroup_tel">
-												<option selected disabled value="">선택</option>
-												<option value="1" <c:if test="${item.codeGroup_tel eq 1}">selected</c:if>> SKT</option>
-												<option value="2" <c:if test="${item.codeGroup_tel eq 2}">selected</c:if>> KT</option>
-												<option value="3" <c:if test="${item.codeGroup_tel eq 3}">selected</c:if>> LGT</option>
-										  	</select>
-										</div>
-										<div class="row mt-3">
-											<div class="col-6">
-												<label for="codeGroup_Gender">성별</label>
-												<input type="radio" id="codeGroup_Gender1" name="codeGroup_Gender" value="1"  <c:if test="${item.codeGroup_Gender eq 1}">selected</c:if>> 남성	
-												<input type="radio" id="codeGroup_Gender2" name="codeGroup_Gender" value="2"  <c:if test="${item.codeGroup_Gender eq 2}">selected</c:if>> 여성	
-												<input type="radio" id="codeGroup_Gender3" name="codeGroup_Gender" value="3"  <c:if test="${item.codeGroup_Gender eq 3}">selected</c:if>> 기타	
-											</div>
-										</div>
-										<div class="row mt-3">
-											<div class="col-6">
-												<label for="codeGroup_marry">결혼여부</label>
-												<input type="checkbox" id="codeGroup_marry1" name="codeGroup_marry" value="1">기혼	
-												<input type="checkbox" id="codeGroup_marry2" name="codeGroup_marry" value="2">미혼	
-											</div>
-										</div>
-									</div> --%>
-									<div class="row mt-3">
-										<div class="col-md-2"> 
-											<a class="btn" role="button" style="background-color: rgb(159, 160, 161);" href="/codeGroup/codeGroupList/">
-												<i class="fas fa-thin fa-list-ul"></i>
-											</a>
-										</div>
-										<div class="col-md-6 offset-md-4" align="right">
-											<button class="btn btn-danger del" type="button" name="ueleteBtn" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter1"><i class="fa-solid fa-xmark"></i></button>
-											<div class="modal fade" id="exampleModalCenter1" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-												<div class="modal-dialog modal-dialog-centered">
-													<div class="modal-content">
-														<div class="modal-header">
-															<h5 class="modal-title" id="exampleModalCenterTitle">삭제하시겠습니까?</h5>
-															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-														</div>
-														<div class="modal-body"  align="center">
-															<i class="fas fa-light fa-triangle-exclamation me-2" style="color: red;"></i>
-															 그룹 리스트에서 해당 정보가 사라집니다.
-														</div>
-														<div class="modal-footer">
-															<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-															<button type="button" class="btn btn-danger"  id="ueleteBtn" name=""ueleteBtn"">삭제</button>
-														</div>
-													</div>
-												</div>
-											</div>
-											<button class="btn btn-danger" type="button" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="fa-solid fa-trash-can"></i></button>
-											<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-												<div class="modal-dialog modal-dialog-centered">
-													<div class="modal-content">
-														<div class="modal-header">
-															<h5 class="modal-title" id="exampleModalCenterTitle">삭제하시겠습니까?</h5>
-															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-														</div>
-														<div class="modal-body"  align="center">
-															<i class="fas fa-light fa-triangle-exclamation me-2" style="color: red;"></i>
-															삭제된 정보는 복구할 수가 없습니다.
-														</div>
-														<div class="modal-footer">
-															<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-															<button type="button" class="btn btn-danger" id="deleteBtn" name="deleteBtn">삭제</button>
-														</div>
-													</div>
-												</div>
-											</div>
-											<button type="button" id="btnSave" name="btnSave" class="btn btn-success" onClick="test();"><i class="fa-regular fa-bookmark"></i></button>
-											<!-- <button class="btn btn-success" type="button" href="../admin/CodeGroupModForm.html" onclick=here()><i class="fa-regular fa-bookmark"></i></button> -->
 										</div>
 									</div>
 								</div>
@@ -262,8 +191,61 @@
 						</div>
 					</div>
 				</div>
-			</form>
-		</main>
+			</div>
+		</form>
+		<div class="row mt-3">
+			<div class="col-md-2 offset-3"> 
+				<button class="btn" type="button" name="btnList" id="btnList" style="background-color:gray"><i class="fas fa-thin fa-list-ul"></i></button>	
+			</div>
+			<div class="col-md-6 offset-md-4" align="right">
+				<button class="btn btn-danger del" type="button" name="ueleteBtn" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter1"><i class="fa-solid fa-xmark"></i></button>
+				<div class="modal fade" id="exampleModalCenter1" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalCenterTitle">삭제하시겠습니까?</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body"  align="center">
+								<i class="fas fa-light fa-triangle-exclamation me-2" style="color: red;"></i>
+									그룹 리스트에서 해당 정보가 사라집니다.
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+								<button type="button" class="btn btn-danger"  id="ueleteBtn" name=""ueleteBtn"">삭제</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button class="btn btn-danger" type="button" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="fa-solid fa-trash-can"></i></button>
+				<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalCenterTitle">삭제하시겠습니까?</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body"  align="center">
+								<i class="fas fa-light fa-triangle-exclamation me-2" style="color: red;"></i>
+								삭제된 정보는 복구할 수가 없습니다.
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+								<button type="button" class="btn btn-danger" id="deleteBtn" name="deleteBtn">삭제</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button type="submit" id="btnSave" name="btnSave" class="btn btn-success"><i class="fa-regular fa-bookmark"></i></button>
+				<!-- <button class="btn btn-success" type="button" href="../admin/CodeGroupModForm.html" onclick=here()><i class="fa-regular fa-bookmark"></i></button> -->
+			</div>
+		</div>
+		<form name="formVo" id="formVo" method="post">
+			<!-- *Vo.jsp s -->
+			<%@include file="codeGroupVo.jsp"%>		<!-- #-> -->
+			<!-- *Vo.jsp e -->
+		</form>
+	</main>
 	
 		<!-- end --> 
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
@@ -455,22 +437,27 @@
 			var goUrlUele = "/codeGroup/codeGroupUele";				/* #-> */
 			var goUrlDele = "/codeGroup/codeGroupDele";				/* #-> */
 			
-			var seq = $("input[name=ccgSeq]");						/* #-> */
+			var seq = $("input:hidden[name=ccgSeq]");						/* #-> */
 			
 			var form = $("form[name=myform]");
+			var formVo = $("form[name=formVo]");
 			
 			$("#btnSave").on("click", function(){
 				if (seq.val() == "0" || seq.val() == ""){
 			   		// insert
-			   		/* if (validationInst() == false) return false; */
+			   		// if (validationInst() == false) return false;
 			   		form.attr("action", goUrlInst).submit();
 			   	} else {
 			   		// update
 			   		/* keyName.val(atob(keyName.val())); */
-			   		/* if (validationUpdt() == false) return false; */
+			   		// if (validationUpdt() == false) return false;
 			   		form.attr("action", goUrlUpdt).submit();
 			   	}
 			});  
+			
+			$("#btnList").on("click", function(){
+				formVo.attr("action", goUrlList).submit();
+			});
 			
 			$("#deleteBtn").on("click", function(){
 			   		form.attr("action", goUrlDele).submit();
