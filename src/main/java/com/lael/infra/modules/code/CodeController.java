@@ -24,7 +24,6 @@ public class CodeController {
 	
 	private void setSearchAndPaging(CodeVo vo) throws Exception {
 		vo.setCdDelNy(vo.getCdDelNy() == null ? 0: vo.getCdDelNy());
-		vo.setShUpdt(vo.getShUpdt() == null ? 1 : vo.getShUpdt());
 //		vo.setDatepickerS(vo.getDatepickerS() == null || vo.getDatepickerS() == "" ? null : UtilDateTime.add00TimeString(vo.getDatepickerS()));
 //		vo.setDatepickerE(vo.getDatepickerE() == null || vo.getDatepickerE() == "" ? null : UtilDateTime.add59TimeString(vo.getDatepickerE()));
 //		vo.setShOption(vo.getShOption() == null ? 1 : vo.getShOption());

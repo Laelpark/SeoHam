@@ -17,7 +17,6 @@ public class CodeGroupController {
 	
 	private void setSearchAndPaging(CodeGroupVo vo) throws Exception {
 		vo.setShDelNy(vo.getShDelNy() == null ? 0: vo.getShDelNy());
-		vo.setShUpdt(vo.getShUpdt() == null ? 1 : vo.getShUpdt());
 //		vo.setDatepickerS(vo.getDatepickerS() == null || vo.getDatepickerS() == "" ? null : UtilDateTime.add00TimeString(vo.getDatepickerS()));
 //		vo.setDatepickerE(vo.getDatepickerE() == null || vo.getDatepickerE() == "" ? null : UtilDateTime.add59TimeString(vo.getDatepickerE()));
 //		vo.setShOption(vo.getShOption() == null ? 1 : vo.getShOption());
@@ -56,9 +55,6 @@ public class CodeGroupController {
 		vo.setCcgSeq(dto.getCcgSeq());
 		redirectAttributes.addFlashAttribute("vo", vo); 
 		System.out.println("testing : " + vo.getCcgSeq());
-		System.out.println("testing : " + dto.getCcgSeq());
-		System.out.println("testing : " + dto.getName());
-		System.out.println("testing : " + dto.getName_eng());
 		return "redirect:/codeGroup/codeGroupForm";
 	}
 	

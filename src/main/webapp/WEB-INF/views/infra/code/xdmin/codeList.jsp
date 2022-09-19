@@ -67,7 +67,10 @@
 			</div>
 		</header>
 		<main>
-			<form id="myForm" name="myForm" method="get" action="/code/codeForm">
+			<form id="myForm" name="myForm" method="get">
+				<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+               	<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
+               	<input type="hidden" name="cdSeq" value="<c:out value="${vo.cdSeq }"/>">
 				<div style="height: 55px"></div>
 				<div class="wrapper">
 					<div class="container">
@@ -252,7 +255,7 @@
 					</div>
 					<div class="col-md-2 offset-3" align="right">
 						<a href="/code/codeForm">
-							<button class="btn btn-primary" type="submit"><i class="fa-solid fa-plus"></i></button>
+							<button class="btn btn-primary" type="submit" id="btnForm" name="btnForm"><i class="fa-solid fa-plus"></i></button>
 						</a>
 					</div>
 				</div>
@@ -364,27 +367,40 @@
 					  showMonthAfterYear: true,
 					  yearSuffix: '년'
 				  });
-				  $('#datepickerS').datepicker('setDate', 'today');
-				  $('#datepickerE').datepicker('setDate', '+1D');
+				  /* $('#datepickerS').datepicker('setDate', 'today');
+				  $('#datepickerE').datepicker('setDate', '+1D'); */
 				});
 			
 			
-			var goUrlList = "/code/codeList"; 			/* #-> */
-			var goUrlInst = "/code/codeInst"; 			/* #-> */
+			var goUrlList = "/code/codeList"; 				/* #-> */
+			var goUrlInst = "/code/codeInst"; 				/* #-> */
 			var goUrlUpdt = "/code/codeUpdt";				/* #-> */
 			var goUrlUele = "/code/codeUele";				/* #-> */
 			var goUrlDele = "/code/codeDele";				/* #-> */
+			var goUrlForm = "/code/codeForm";				/* #-> */
+			
+		 	var form = $("form[name=myForm]");
+			
+		 	var cdSeq = $("input:hidden[name=cdSeq]");
 			
 			 $("#btnReset").on("click", function(){
 				 $(location).attr("href", goUrlList);
 			 });
-			
-		  var form = $("form[name=myForm]");
 
 			 goList = function(thisPage) {
 	 			$("input:hidden[name=thisPage]").val(thisPage);
 	 			form.attr("action", goUrlList).submit();
 	 		};
+	 		
+	 		$('#btnForm').on("click", function() {
+	 			goForm(0);                
+	 		});
+
+	 		goForm = function(keyValue) {
+	 	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+	 	    	cdSeq.val(keyValue);
+	 			form.attr("action", goUrlForm).submit();
+	 		}
 		</script>
 	</body>
 </html>
