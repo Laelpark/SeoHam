@@ -63,7 +63,10 @@
 			</div>
 		</header>
 		<main>
-			<form method="get" action="/code/codeInst">
+			<form method="post" name="myForm" id="myForm">
+				<!-- *Vo.jsp s -->
+				<%@include file="codeVo.jsp"%>		<!-- #-> -->
+				<!-- *Vo.jsp e -->
 				<div style="height: 70px"></div>
 				<div class="wrapper">
 					<div class="container">
@@ -107,8 +110,8 @@
 										<div class="col-6">
 											<label for="codeGroup_I3" class="form-label">코드그룹</label>
 											<select class="form-select" id="ccgSeq" name="ccgSeq">
-												<c:forEach items="${list1}" var="list1" varStatus="status">
-													<option value="${list1.ccgSeq}">${list1.name}</option>			
+												<c:forEach items="${list}" var="list" varStatus="status">
+													<option value="${list.ccgSeq}">${list.name}</option>			
 												</c:forEach>
 										  	</select>
 										</div>
@@ -120,13 +123,13 @@
 										</div>
 										<div class="col">
 											<label for="name" class="form-label">코드그룹 코드(한글)</label>
-											<input type="text" class="form-control" id="name" name="name" placeholder="영문(대소문자),숫자" value="<c:out value="${list2.name}"/>">	
+											<input type="text" class="form-control" id="name" name="name" placeholder="영문(대소문자),숫자" >	
 										</div>
 									</div>
 									<div class="row mt-3">
 										<div class="col">
 											<label for="codeName" class="form-label">코드</label>
-											<input type="text" class="form-control" name="codeName" id="codeName" placeholder="한글,숫자" value="<c:out value="${code.codeName}"/>">
+											<input type="text" class="form-control" name="codeName" id="codeName" placeholder="한글,숫자" value="<c:out value="${item.codeName}"/>">
 										</div>
 										<div class="col">
 											<label for="codeGroup_eng" class="form-label">대체코드</label>
@@ -193,73 +196,96 @@
 											<input type="text" class="form-control" id="codeGroup_I3" placeholder="숫자">	
 										</div>
 									</div>
-									<div class="row mt-3">
-										<div class="col-md-2"> 
-											<button class="btn" type="button" style="background-color: rgb(159, 160, 161);" onclick="location.href='../admin/CodeGroupList.html'">
-												<i class="fas fa-thin fa-list-ul"></i>
-											</button>
-										</div>
-										<div class="col-md-6 offset-md-4" align="right">
-											<button class="btn btn-danger del" type="button" ><i class="fa-solid fa-xmark"></i></button>
-											<button class="btn btn-danger" type="button"onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="fa-solid fa-trash-can"></i></button>
-											<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-												<div class="modal-dialog modal-dialog-centered">
-													<div class="modal-content">
-														<div class="modal-header">
-															<h5 class="modal-title" id="exampleModalCenterTitle">삭제하시겠습니까?</h5>
-															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-														</div>
-														<div class="modal-body"  align="center">
-															<i class="fas fa-light fa-triangle-exclamation me-2" style="color: red;"></i>
-															삭제된 정보는 복구할 수가 없습니다.
-														</div>
-														<div class="modal-footer">
-															<a>
-																<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-															</a>
-															<a onclick="location.href='../admin/CodeGroupList.html'">
-																<button type="button" class="btn btn-danger">삭제</button>
-															</a>
-														</div>
-													</div>
-												</div>
-											</div>
-											<button type="button" id="btnSave" class="btn btn-success" onclick="test();"><i class="fa-regular fa-bookmark"></i></button>
-											<!-- <button class="btn btn-success" type="button" href="../admin/CodeGroupModForm.html" onclick=here()><i class="fa-regular fa-bookmark"></i></button> -->
-										</div>
-									</div>
+									<div class="row align-items-center">
+			                            <div class="col-1">
+			                                <button class="border-0 btn btn-sm bg-secondary shadow" id="btnList" name="btnList" type="button">
+			                                    <i class="fa-solid fa-bars" style="color: white;"></i>
+			                                </button> 
+			                            </div>
+			                            <div class="col-3 offset-8" align="right">
+			                                <button id="btnUel" value="Uel" class="border-0 btn btn-sm bg-danger shadow" type="button" data-bs-toggle="modal"
+			                                    data-bs-target="#deleteModal">
+			                                    <i class="fa-solid fa-xmark" style="color: white;"></i>
+			                                </button>
+			                                <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false"
+			                                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			                                    <div class="modal-dialog">
+			                                        <div class="modal-content">
+			                                            <div class="modal-header">
+			                                                <h5 class="modal-title fw-bold" id="staticBackdropLabel">게시물 삭제</h5>
+			                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+			                                                    aria-label="Close"></button>
+			                                            </div>
+			                                            <div class="modal-body fs-6">
+			                                           		선택하신 게시물을 정말로 삭제하시겠습니까?
+			                                            </div>
+			                                            <div class="modal-footer">
+			                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+			                                                <button id="delBtn" type="button" class="btn btn-primary">삭제</button>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                                <button id="btnDel" value="Del" class="border-0 btn btn-sm bg-danger shadow" type="button" data-bs-toggle="modal"
+			                                    data-bs-target="#deleteModal">
+			                                    <i class="fa-solid fa-trash-can" style="color: white;"></i>
+			                                </button>
+			                                <button id="btnSave" class="border-0 btn btn-sm bg-success shadow" type="button">
+			                                    <i class="fa-regular fa-bookmark" style="color: white;"></i>
+			                                </button>
+			                            </div>
+			                        </div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</form>
+			<form name="formVo" id="formVo" method="post">
+			<!-- *Vo.jsp s -->
+			<%@include file="codeVo.jsp"%>		<!-- #-> -->
+			<!-- *Vo.jsp e -->
+			</form>
 		</main>
 	
 		<!-- end --> 
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 		<script type="text/javascript">
-			const fileInput = document.getElementById("fileUpload");
-			fileInput.onchange = () => {
-				const selectedFile = [...fileInput.files];
-				console.log(selectedFile);
-			};
-			fileInput.addEventListener("change", handleFiles);
-
-			const toastTrigger = document.getElementById('savebtn')
-			const toastLiveExample = document.getElementById('liveToast')
-			if (toastTrigger) {
-				toastTrigger.addEventListener('click', () => {
-					const toast = new bootstrap.Toast(toastLiveExample)
-
-					toast.show()
-				})
-			}
+			var goUrlList = "/code/codeList";
+			var goUrlInst = "/code/codeInst";
+			var goUrlUpdt = "/code/codeUpdt";
+			var goUrlUele = "/code/codeUele";
+			var goUrlDele = "/code/codeDele";
 			
-			function test() {
-				alert("test");
-			}
+			var form = $("form[name=myForm]"); 
+			var formVo = $("form[name=formVo]");
+			
+			var cdSeq = $("input:hidden[name=cdSeq]");
+			
+			$("#btnSave").on("click", function() {
+				
+				/* alert(cdSeq.val()); */
+				if (cdSeq.val() == 0 || cdSeq.val() == "") {
+					form.attr("action", goUrlInst).submit();
+				}else {
+					form.attr("action", goUrlUpdt).submit();
+				}
+				
+			});
+			
+			$("#btnList").on("click", function(){
+				formVo.attr("action", goUrlList).submit();
+			});
+			
+			$("#deleteBtn").on("click", function(){
+			   		formVo.attr("action", goUrlDele).submit();
+		   	});
+			
+			$("#ueleteBtn").on("click", function(){
+		   		formVo.attr("action", goUrlUele).submit();
+	   		});
 		</script>
 	</body>
 </html>

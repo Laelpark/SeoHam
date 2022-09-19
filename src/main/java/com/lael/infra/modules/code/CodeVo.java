@@ -9,8 +9,15 @@ public class CodeVo extends BaseVo{
 	private Integer cdDelNy;
 	private Integer shOption;
 	private String shValue;
+	private Integer shUpdt;
 	
 	
+	public Integer getShUpdt() {
+		return shUpdt;
+	}
+	public void setShUpdt(Integer shUpdt) {
+		this.shUpdt = shUpdt;
+	}
 	public String getCdSeq() {
 		return cdSeq;
 	}

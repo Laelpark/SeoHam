@@ -30,6 +30,17 @@
 		<include refid="Base.selectListLowerForMysql" /> 
 	</select>
 	
+	<select id="selectList1" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"></include>
+		SELECT
+			a.*
+			,(select count(b.cdSeq) from code b where 1=1 and a.DelNy = 0 and a.ccgSeq = b.cdSeq) as ccgSeqcount
+		<include refid="selectCommon" />
+		ORDER BY a.ccgSeq DESC
+		<include refid="Base.orderByLimitForMysql" />
+		)a
+	</select>
+	
 	<select id="selectOneCount" resultType="Integer">
 		SELECT COUNT(*)
 		<include refid="selectCommon" />

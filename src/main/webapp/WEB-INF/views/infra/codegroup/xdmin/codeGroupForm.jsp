@@ -110,7 +110,7 @@
 									<div class="row">
 										<div class="col">
 											<label for="ccgSeq" class="form-label">코드그룹 코드</label>
-											<input type="text" class="form-control" id="ccgSeq" name="ccgSeq" placeholder="영문(대소문자),숫자" value="<c:out value="${item.ccgSeq}"/>">
+											<input type="text" class="form-control" id="ccgSeq" placeholder="영문(대소문자),숫자" value="<c:out value="${item.ccgSeq}"/>">
 										</div>
 										<div class="col">
 											<label for="codeGroup_another" class="form-label">코드그룹 코드(Another)</label>
@@ -212,7 +212,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-								<button type="button" class="btn btn-danger"  id="ueleteBtn" name=""ueleteBtn"">삭제</button>
+								<button type="button" class="btn btn-danger"  id="ueleteBtn" name="ueleteBtn">삭제</button>
 							</div>
 						</div>
 					</div>
@@ -236,7 +236,7 @@
 						</div>
 					</div>
 				</div>
-				<button type="submit" id="btnSave" name="btnSave" class="btn btn-success"><i class="fa-regular fa-bookmark"></i></button>
+				<button type="button" id="btnSave" name="btnSave" class="btn btn-success"><i class="fa-regular fa-bookmark"></i></button>
 				<!-- <button class="btn btn-success" type="button" href="../admin/CodeGroupModForm.html" onclick=here()><i class="fa-regular fa-bookmark"></i></button> -->
 			</div>
 		</div>
@@ -437,13 +437,13 @@
 			var goUrlUele = "/codeGroup/codeGroupUele";				/* #-> */
 			var goUrlDele = "/codeGroup/codeGroupDele";				/* #-> */
 			
-			var seq = $("input:hidden[name=ccgSeq]");						/* #-> */
+			var ccgSeq = $("input:hidden[name=ccgSeq]");						/* #-> */
 			
 			var form = $("form[name=myform]");
 			var formVo = $("form[name=formVo]");
 			
 			$("#btnSave").on("click", function(){
-				if (seq.val() == "0" || seq.val() == ""){
+				if (ccgSeq.val() == "0" || ccgSeq.val() == ""){
 			   		// insert
 			   		// if (validationInst() == false) return false;
 			   		form.attr("action", goUrlInst).submit();
@@ -453,18 +453,18 @@
 			   		// if (validationUpdt() == false) return false;
 			   		form.attr("action", goUrlUpdt).submit();
 			   	}
-			});  
+			});
 			
 			$("#btnList").on("click", function(){
 				formVo.attr("action", goUrlList).submit();
 			});
 			
 			$("#deleteBtn").on("click", function(){
-			   		form.attr("action", goUrlDele).submit();
+			   		formVo.attr("action", goUrlDele).submit();
 		   	});
 			
 			$("#ueleteBtn").on("click", function(){
-		   		form.attr("action", goUrlUele).submit();
+		   		formVo.attr("action", goUrlUele).submit();
 	   		});
 
 			

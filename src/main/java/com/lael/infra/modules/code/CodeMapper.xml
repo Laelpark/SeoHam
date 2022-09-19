@@ -43,11 +43,9 @@
 	<insert id="insert">
 		INSERT INTO code (
 			codeName
-			,cdSeq
 		)
 		VALUES (
 			#{codeName}
-			,#{cdSeq}
 		)
 		
 		<selectKey resultType="String" keyProperty="cdSeq" order="AFTER">
@@ -62,36 +60,24 @@
 	 	WHERE 1=1
 	 		AND cdSeq = #{cdSeq}
 	</select>
-	<!-- <update id="update">
-	 	UPDATE codeGroup
+	<update id="update">
+	 	UPDATE code
 	 	SET
- 			name = #{name}
-	 		,name_eng = #{name_eng}
-	 		,DelNy = #{ifcgDelNy}
-	 		,codeGroup_another = #{codeGroup_another}
-	 		,codeGroup_use = #{codeGroup_use} 
-	 		,codeGroup_or = #{codeGroup_or} 
-	 		,codeGroup_con = #{codeGroup_con} 
-	 		,codeGroup_V1 = #{codeGroup_V1} 
-	 		,codeGroup_V2 = #{codeGroup_V2} 
-	 		,codeGroup_V3 = #{codeGroup_V3} 
-	 		,codeGroup_I1 = #{codeGroup_I1} 
-	 		,codeGroup_I2 = #{codeGroup_I2} 
-	 		,codeGroup_I3 = #{codeGroup_I3} 
+ 			codeName = #{codeName}
 		WHERE
-			ccgSeq = #{ccgSeq}
+			cdSeq = #{cdSeq}
  	</update>
  	<update id="uelete">
-	 	UPDATE codeGroup
+	 	UPDATE code
 	 	SET
-	 		DelNy = 1
+	 		cdDelNy = 1
 		WHERE 
-			ccgSeq = #{ccgSeq}
+			cdSeq = #{cdSeq}
  	</update>
  	<delete id="delete">
  		DELETE FROM 
- 			codeGroup 
+ 			code 
 		WHERE 
-			ccgSeq = #{ccgSeq}
- 	</delete> -->
+			cdSeq = #{cdSeq}
+ 	</delete>
 </mapper>	

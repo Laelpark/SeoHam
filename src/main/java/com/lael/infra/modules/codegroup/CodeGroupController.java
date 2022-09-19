@@ -33,7 +33,6 @@ public class CodeGroupController {
 		
 		List<CodeGroup> list = service.selectList(vo);
 		model.addAttribute("list", list);
-						// jsp에서 사용할 객체 이름, 넘겨질 객체 이름
 		
 		return "infra/codegroup/xdmin/codeGroupList";
 	}
@@ -43,17 +42,23 @@ public class CodeGroupController {
 		
 		CodeGroup item = service.selectOne(vo);
 		model.addAttribute("item", item);
+
 		return "infra/codegroup/xdmin/codeGroupForm";
 	}
 	
+	
+//	@SuppressWarnings(value = { "all" })
 	@RequestMapping(value = "codeGroupInst")
-	public String codeGroupInst(@ModelAttribute("vo") CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception {
+	public String codeGroupInst(CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.insert(dto);
 	
 		vo.setCcgSeq(dto.getCcgSeq());
-		redirectAttributes.addFlashAttribute("vo", vo);
-		
+		redirectAttributes.addFlashAttribute("vo", vo); 
+		System.out.println("testing : " + vo.getCcgSeq());
+		System.out.println("testing : " + dto.getCcgSeq());
+		System.out.println("testing : " + dto.getName());
+		System.out.println("testing : " + dto.getName_eng());
 		return "redirect:/codeGroup/codeGroupForm";
 	}
 	
@@ -64,7 +69,7 @@ public class CodeGroupController {
 		return "infra/codegroup/xdmin/codeGroupForm";
 	}
 	
-//	@SuppressWarnings(value = { "all" })
+
 	@RequestMapping(value= "codeGroupUpdt")
 	public String codeGroupUpdt(CodeGroup dto) throws Exception {
 		service.update(dto);

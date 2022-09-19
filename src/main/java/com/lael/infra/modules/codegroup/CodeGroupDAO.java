@@ -30,6 +30,11 @@ public class CodeGroupDAO {
 		return list; 								
 	}
 	
+	public List<CodeGroup> selectList1(){ 
+		List<CodeGroup> list = sqlSession.selectList(namespace + ".selectList1", "");
+		return list; 								
+	}
+	
 	public int insert(CodeGroup dto) {
 		return sqlSession.insert(namespace + ".insert", dto);
 	}

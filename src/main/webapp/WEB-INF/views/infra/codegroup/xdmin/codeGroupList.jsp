@@ -370,7 +370,7 @@
 			
 			var form = $("form[name=myForm]");
 			
-			var seq = $("input:hidden[name=ccgSeq]");
+			var ccgSeq = $("input:hidden[name=ccgSeq]");
 			
 			
 			 $("#btnReset").on("click", function(){
@@ -392,7 +392,7 @@
 
 	 		goForm = function(keyValue) {
 	 	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
-	 	    	seq.val(keyValue);
+	 	    	ccgSeq.val(keyValue);
 	 			form.attr("action", goUrlForm).submit();
 	 		}
 	 		

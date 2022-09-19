@@ -34,20 +34,20 @@ public class CodeServiceImpl implements CodeService{
 	}
 
 
-//	@Override
-//	public int update(CodeGroup dto) throws Exception {
-//		return dao.update(dto);
-//	}
+	@Override
+	public int update(Code dto) throws Exception {
+		return dao.update(dto);
+	}
 
-//	@Override
-//	public int uelete(CodeGroup dto) throws Exception {
-//		return dao.uelete(dto);
-//	}
+	@Override
+	public int uelete(Code dto) throws Exception {
+		return dao.uelete(dto);
+	}
 
-//	@Override
-//	public int delete(CodeGroupVo vo) throws Exception {
-//		return dao.delete(vo);
-//	}
+	@Override
+	public int delete(CodeVo vo) throws Exception {
+		return dao.delete(vo);
+	}
 	
 		
 }
