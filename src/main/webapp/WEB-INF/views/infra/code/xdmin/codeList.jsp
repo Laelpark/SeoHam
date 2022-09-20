@@ -390,7 +390,7 @@
 			 goList = function(thisPage) {
 	 			$("input:hidden[name=thisPage]").val(thisPage);
 	 			form.attr("action", goUrlList).submit();
-	 		};
+	 		}
 	 		
 	 		$('#btnForm').on("click", function() {
 	 			goForm(0);                

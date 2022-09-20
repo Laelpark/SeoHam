@@ -15,20 +15,22 @@ public class CodeGroupController {
 	@Autowired
 	CodeGroupServiceImpl service;
 	
-	private void setSearchAndPaging(CodeGroupVo vo) throws Exception {
-		vo.setShDelNy(vo.getShDelNy() == null ? 0: vo.getShDelNy());
-//		vo.setDatepickerS(vo.getDatepickerS() == null || vo.getDatepickerS() == "" ? null : UtilDateTime.add00TimeString(vo.getDatepickerS()));
-//		vo.setDatepickerE(vo.getDatepickerE() == null || vo.getDatepickerE() == "" ? null : UtilDateTime.add59TimeString(vo.getDatepickerE()));
-//		vo.setShOption(vo.getShOption() == null ? 1 : vo.getShOption());
-		
-		vo.setParamsPaging(service.selectOneCount(vo));
-	}
-
+	/*
+	 * private void setSearchAndPaging(CodeGroupVo vo) throws Exception {
+	 * vo.setShDelNy(vo.getShDelNy() == null ? 0: vo.getShDelNy()); //
+	 * vo.setDatepickerS(vo.getDatepickerS() == null || vo.getDatepickerS() == "" ?
+	 * null : UtilDateTime.add00TimeString(vo.getDatepickerS())); //
+	 * vo.setDatepickerE(vo.getDatepickerE() == null || vo.getDatepickerE() == "" ?
+	 * null : UtilDateTime.add59TimeString(vo.getDatepickerE())); //
+	 * vo.setShOption(vo.getShOption() == null ? 1 : vo.getShOption());
+	 * 
+	 * vo.setParamsPaging(service.selectOneCount(vo)); }
+	 */
 	
 	@RequestMapping(value = "codeGroupList")
 	public String codeGroupList(Model model, @ModelAttribute("vo") CodeGroupVo vo) throws Exception {
 
-		setSearchAndPaging(vo);
+		/* setSearchAndPaging(vo); */
 		
 		List<CodeGroup> list = service.selectList(vo);
 		model.addAttribute("list", list);
@@ -50,7 +52,10 @@ public class CodeGroupController {
 	@RequestMapping(value = "codeGroupInst")
 	public String codeGroupInst(CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception {
 
+		System.out.println(dto.getCcgSeq());
 		service.insert(dto);
+		System.out.println(dto.getCcgSeq());
+		System.out.println(dto.getName());
 	
 		vo.setCcgSeq(dto.getCcgSeq());
 		redirectAttributes.addFlashAttribute("vo", vo); 
@@ -60,6 +65,7 @@ public class CodeGroupController {
 	
 	@RequestMapping(value= "codeGroupView")
 	public String codeGroupView(Model model, @ModelAttribute("vo") CodeGroupVo vo) throws Exception {
+		
 		CodeGroup item = service.selectOne(vo);
 		model.addAttribute("item", item);
 		return "infra/codegroup/xdmin/codeGroupForm";
@@ -67,22 +73,28 @@ public class CodeGroupController {
 	
 
 	@RequestMapping(value= "codeGroupUpdt")
-	public String codeGroupUpdt(CodeGroup dto) throws Exception {
+	public String codeGroupUpdt(@ModelAttribute("vo") CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception {
 		service.update(dto);
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
 		return "redirect:/codeGroup/codeGroupList";
 		
 	}
 	
 	@RequestMapping(value= "codeGroupUele")
-	public String codeGroupUele(CodeGroup dto) throws Exception {
+	public String codeGroupUele(@ModelAttribute("vo") CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception {
 		service.uelete(dto);
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
 		return "redirect:/codeGroup/codeGroupList";
 	}
 	
 
 	@RequestMapping(value= "codeGroupDele")
-	public String codeGroupDele(@ModelAttribute("vo") CodeGroupVo vo) throws Exception {
+	public String codeGroupDele(@ModelAttribute("vo") CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception {
 		service.delete(vo);
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
 		return "redirect:/codeGroup/codeGroupList";
 	}
 

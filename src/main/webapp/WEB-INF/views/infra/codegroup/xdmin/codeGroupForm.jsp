@@ -132,8 +132,8 @@
 											<label for="codeGroup_use" class="form-label">사용여부</label>
 											<select class="form-select" id="codeGroup_use" name="codeGroup_use">
 												<option selected disabled value="">선택</option>
-												<option value="0" > N</option>
-												<option value="1" > Y</option>
+												<option value="0" <c:if test = "${item.codeGroup_use eq 0}">selected</c:if>>N</option>
+												<option value="1" <c:if test = "${item.codeGroup_use eq 1}">selected</c:if>>Y</option>
 											</select>
 										</div>
 										<div class="col">

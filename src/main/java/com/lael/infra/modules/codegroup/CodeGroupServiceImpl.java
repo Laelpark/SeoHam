@@ -35,8 +35,7 @@ public class CodeGroupServiceImpl implements CodeGroupService{
 
 	@Override
 	public CodeGroup selectOne(CodeGroupVo vo) throws Exception {
-		CodeGroup result = dao.selectOne(vo);
-		return result;
+		return dao.selectOne(vo);
 	}
 
 	@Override

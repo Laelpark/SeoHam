@@ -22,8 +22,8 @@ public class BaseVo {
 	private int startRnumForMysql = 0;							// 쿼리 시작 row
 	
 // search
-//	private Integer ShDelNy;
-//	private Integer ShUpdt;
+	private Integer shDelNy;
+	private Integer shUpdt;
 	
 	
 // --------
@@ -144,6 +144,20 @@ public class BaseVo {
 	public void setStartRnumForMysql(int startRnumForMysql) {
 		this.startRnumForMysql = startRnumForMysql;
 	}
+	public Integer getShDelNy() {
+		return shDelNy;
+	}
+	public void setShDelNy(Integer shDelNy) {
+		this.shDelNy = shDelNy;
+	}
+	public Integer getShUpdt() {
+		return shUpdt;
+	}
+	public void setShUpdt(Integer shUpdt) {
+		this.shUpdt = shUpdt;
+	}
+	
+	
 
 }
 

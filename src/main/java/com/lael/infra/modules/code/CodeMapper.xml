@@ -10,7 +10,7 @@
 	
 	<sql id ="selectCommon">
 	 	FROM code b
-	    JOIN codeGroup a on a.ccgSeq = b.cdSeq
+ 	 	JOIN codeGroup a on a.ccgSeq = b.cdSeq
 		WHERE 1=1
 		<if test="cdDelNy != null and !cdDelNy.equals('')">AND cdDelNy = #{cdDelNy}</if>
 		<choose>
@@ -31,8 +31,7 @@
 	 	<include refid="Base.orderByLimitForMysql" />
 		<include refid="Base.selectListLowerForMysql" /> 
 	</select>
-	<!--FROM 
-			code b
+	<!--FROM code b
 		JOIN codeGroup a on a.ccgSeq = b.ccgSeq
 		WHERE 1=1 -->
 	<select id="selectOneCount" resultType="Integer">

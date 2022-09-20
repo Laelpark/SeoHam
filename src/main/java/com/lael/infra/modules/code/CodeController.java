@@ -65,8 +65,8 @@ public class CodeController {
 	
 	@RequestMapping(value = "codeView")
 	public String codeView(Model model, CodeVo vo) throws Exception {
-		Code result = service.selectOne(vo);
-		model.addAttribute("code", result);
+		Code item = service.selectOne(vo);
+		model.addAttribute("code", item);
 
 		List<CodeGroup> list1 = service1.selectList();
 		model.addAttribute("list1", list1);
