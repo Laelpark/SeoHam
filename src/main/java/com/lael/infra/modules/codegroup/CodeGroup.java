@@ -19,7 +19,6 @@ public class CodeGroup {
 	private Integer ifcgDelNy;
 	private Integer createdAt;
 	private Integer modifiedAt;
-
 	
 	public Integer getCreatedAt() {
 		return createdAt;

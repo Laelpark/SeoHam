@@ -29,7 +29,6 @@ public class CodeGroupServiceImpl implements CodeGroupService{
 	
 	@Override
 	public int insert(CodeGroup dto) throws Exception {
-//		setRegMod(dto);
 		return dao.insert(dto);
 	}
 
@@ -57,7 +56,6 @@ public class CodeGroupServiceImpl implements CodeGroupService{
 	public int selectOneCount(CodeGroupVo vo) throws Exception {
 		return dao.selectOneCount(vo);
 	}
-
 
 
 	

@@ -15,22 +15,22 @@ public class CodeGroupController {
 	@Autowired
 	CodeGroupServiceImpl service;
 	
-	/*
-	 * private void setSearchAndPaging(CodeGroupVo vo) throws Exception {
-	 * vo.setShDelNy(vo.getShDelNy() == null ? 0: vo.getShDelNy()); //
-	 * vo.setDatepickerS(vo.getDatepickerS() == null || vo.getDatepickerS() == "" ?
-	 * null : UtilDateTime.add00TimeString(vo.getDatepickerS())); //
-	 * vo.setDatepickerE(vo.getDatepickerE() == null || vo.getDatepickerE() == "" ?
-	 * null : UtilDateTime.add59TimeString(vo.getDatepickerE())); //
-	 * vo.setShOption(vo.getShOption() == null ? 1 : vo.getShOption());
-	 * 
-	 * vo.setParamsPaging(service.selectOneCount(vo)); }
-	 */
+	
+	  private void setSearchAndPaging(CodeGroupVo vo) throws Exception {
+		  vo.setShDelNy(vo.getShDelNy() == null ? 0: vo.getShDelNy()); //
+			
+//			 vo.setDatepickerS(vo.getDatepickerS() == null || vo.getDatepickerS() == "" ? null : UtilDateTime.add00TimeString(vo.getDatepickerS())); //
+//			 vo.setDatepickerE(vo.getDatepickerE() == null || vo.getDatepickerE() == "" ? null : UtilDateTime.add59TimeString(vo.getDatepickerE())); //
+//		  	 vo.setShOption(vo.getShOption() == null ? 1 : vo.getShOption());
+		  
+		  vo.setParamsPaging(service.selectOneCount(vo)); 
+	  }
+	 
 	
 	@RequestMapping(value = "codeGroupList")
 	public String codeGroupList(Model model, @ModelAttribute("vo") CodeGroupVo vo) throws Exception {
 
-		/* setSearchAndPaging(vo); */
+		 setSearchAndPaging(vo); 
 		
 		List<CodeGroup> list = service.selectList(vo);
 		model.addAttribute("list", list);
@@ -52,14 +52,11 @@ public class CodeGroupController {
 	@RequestMapping(value = "codeGroupInst")
 	public String codeGroupInst(CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception {
 
-		System.out.println(dto.getCcgSeq());
 		service.insert(dto);
-		System.out.println(dto.getCcgSeq());
-		System.out.println(dto.getName());
-	
+
 		vo.setCcgSeq(dto.getCcgSeq());
 		redirectAttributes.addFlashAttribute("vo", vo); 
-		System.out.println("testing : " + vo.getCcgSeq());
+
 		return "redirect:/codeGroup/codeGroupForm";
 	}
 	

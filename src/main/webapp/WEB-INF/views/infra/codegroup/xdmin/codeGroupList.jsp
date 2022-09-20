@@ -165,7 +165,7 @@
 											</div>
 										</div>
 									</div>
-									<span class="ms-3 mt-5">Total: 10</span>
+									<span class="ms-3 mt-5">Total: ${vo.totalRows}</span>
 									<div class="ms-3 me-3 mt-3 mb-4 shadow-lg bg-body rounded">
 										<table class="table table-striped table-hover text-center">
 											<thead>

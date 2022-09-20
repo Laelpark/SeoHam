@@ -1,5 +1,8 @@
 package com.lael.infra.modules.code;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Code {
 	
 	private String cdSeq;
@@ -8,6 +11,8 @@ public class Code {
 	private Integer codeOrder;
 	private Integer ccgSeq;
 	
+//	for cache
+	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
 	
 	public Integer getCcgSeq() {
 		return ccgSeq;

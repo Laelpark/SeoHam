@@ -49,9 +49,17 @@
 	<insert id="insert">
 		INSERT INTO codeGroup (
 			name
+			,name_eng
+			,codeGroup_another
+			,codeGroup_or
+			,DelNy
 		)
 		VALUES (
 			#{name}
+			,#{name_eng}
+			,#{codeGroup_another}
+			,#{codeGroup_or}
+			,#{ifcgDelNy}
 		)
 		
 		<selectKey resultType="String" keyProperty="ccgSeq" order="AFTER">
@@ -88,5 +96,6 @@
 		WHERE 
 			ccgSeq = #{ccgSeq}
  	</delete>
+ 	
 </mapper>	
 		
