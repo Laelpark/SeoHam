@@ -147,15 +147,39 @@
 									</div>
 								</div>
 								<div class="row mt-3">
-									<div class="col-6">
-										<label for="codeGroup_I3" class="form-label">예비3(Int type)</label> <input type="text" class="form-control" id="codeGroup_I3" name="codeGroup_I3" placeholder="숫자">
+									<div class="col">
+								  		<label for="codeGroup_I2" class="form-label">주소(한국전용)</label>
+									</div>
+								</div>
+								<div class="row mt-3">
+									<div class="col">
+										<div class="input-group">
+										  <input type="text" class="form-control" placeholder="우편번호" id="sample6_postcode" name="sample6_postcode" aria-label="Recipient's username with two button addons">
+										  <button class="btn btn-outline-secondary" type="button" onclick="sample6_execDaumPostcode()">우편번호 찾기</button>
+										  <button class="btn btn-outline-secondary" id="btnAdrClear" name="btnAdrClear" type="button">취소</button>
+										</div>
+									</div>
+								</div>
+								<div class="row mt-3">
+									<div class="col">
+								  		<input type="text" class="form-control" id="sample6_address" name="sample6_address" placeholder="주소">
+									</div>
+								</div>
+								<div class="row mt-3">
+									<div class="col">
+								  		<input type="text" class="form-control" id="sample6_detailAddress" name="sample6_detailAddress" placeholder="상세주소" required>
+								  		 <div class="invalid-feedback">
+									        상세주소를 입력해주세요.
+									      </div>
+									</div>
+									<div class="col">
+								  		<input type="text" class="form-control" id="sample6_extraAddress" name="sample6_extraAddress" placeholder="참고항목">
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 			</div>
 		</form>
 		<div class="row mt-3">
@@ -223,35 +247,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-		// const fileInput = document.getElementById("fileUpload");
-		// fileInput.onchange = () => {
-		// 	const selectedFile = [...fileInput.files];
-		// 	console.log(selectedFile);
-		// };
-		// fileInput.addEventListener("change", handleFiles);
-
-		//	const toastTrigger = document.getElementById('savebtn')
-		//	const toastLiveExample = document.getElementById('liveToast')
-		//	if (toastTrigger) {
-		//		toastTrigger.addEventListener('click', () => {
-		//			const toast = new bootstrap.Toast(toastLiveExample)
-		//
-		//			toast.show()
-		//		})
-		//	}
-		// 데이터 전송
-		function here() {
-			var code = document.getElementById("codeGroup_code").value;
-			var codeGroup_another = document
-					.getElementById("codeGroup_another").value;
-			var chiness = document.getElementById("codeGroup_kr").value;
-			var english = document.getElementById("codeGroup_eng").value;
-			sessionStorage.setItem("codeGroup_code", code);
-			sessionStorage.setItem("codeGroup_another", another);
-			sessionStorage.setItem("codeGroup_kr", kr);
-			sessionStorage.setItem("codeGroup_eng", eng);
-		}
 
 		/* function test() {
 			alert("test");
@@ -260,16 +257,6 @@
 			alert(document.getElementById("name_eng").value);
 			alert(document.getElementById("codeGroup_code").value);
 			alert(document.getElementById("codeGroup_another").value);
-		 	alert(document.getElementById("codeGroup_use").value);
-			alert(document.getElementById("codeGroup_or").value);
-			alert(document.getElementById("codeGroup_con").value);
-			alert(document.getElementById("codeGroup_del").value);
-			alert(document.getElementById("codeGroup_V1").value);
-			alert(document.getElementById("codeGroup_V2").value);
-			alert(document.getElementById("codeGroup_V3").value);
-			alert(document.getElementById("codeGroup_I1").value);
-			alert(document.getElementById("codeGroup_I2").value);
-			alert(document.getElementById("codeGroup_I3").value);
 			alert(document.getElementById("codeGroup_tel").options[document.getElementById("codeGroup_tel").selectedIndex].value);  //select문 띄우는 구 방식
 			alert(document.querySelector("input[name= 'codeGroup_Gender']:checked").value); */
 
@@ -277,97 +264,6 @@
 			alert("코드그룹 이름(한글)을 입력해주세요.");
 			document.getElementById("name").value = "";
 			document.getElementById("name").focus();
-			return false;
-		} 
-		
-		if(document.getElementById("name_eng").value == '' || document.getElementById("name_eng").value == null) {
-			alert("코드그룹 이름(영문)을 입력해주세요.");
-			document.getElementById("name_eng").value = "";
-			document.getElementById("name_eng").focus();
-			return false;
-		} 
-		
-		if(document.getElementById("codeGroup_code").value == '' || document.getElementById("codeGroup_code").value == null) {
-			alert("코드그룹 코드를 입력해주세요.");
-			document.getElementById("codeGroup_code").value = "";
-			document.getElementById("codeGroup_code").focus();
-			return false;
-		} 
-		
-		if(document.getElementById("codeGroup_another").value == '' || document.getElementById("codeGroup_another").value == null) {
-			alert("코드그룹 코드(Another)를 입력해주세요.");
-			document.getElementById("codeGroup_another").value = "";
-			document.getElementById("codeGroup_another").focus();
-			return false;
-		} 
-		
-		if(document.getElementById("codeGroup_use").value == '' || document.getElementById("codeGroup_use").value == null) {
-			alert("사용여부를 선택해주세요.");
-			document.getElementById("codeGroup_use").value = "";
-			document.getElementById("codeGroup_use").focus();
-			return false;
-		} 
-		
-		if(document.getElementById("codeGroup_or").value == '' || document.getElementById("codeGroup_or").value == null) {
-			alert("순서를 선택해주세요.");
-			document.getElementById("codeGroup_or").value = "";
-			document.getElementById("codeGroup_or").focus();
-			return false;
-		} 
-		
-		if(document.getElementById("codeGroup_con").value == '' || document.getElementById("codeGroup_con").value == null) {
-			alert("설명을 입력해주세요.");
-			document.getElementById("codeGroup_con").value = "";
-			document.getElementById("codeGroup_con").focus();
-			return false;
-		} 
-		
-		if(document.getElementById("codeGroup_del").value == '' || document.getElementById("codeGroup_del").value == null) {
-			alert("삭제여부를 선택해주세요.");
-			document.getElementById("codeGroup_del").value = "";
-			document.getElementById("codeGroup_del").focus();
-			return false;
-		} 
-		
-		if(document.getElementById("codeGroup_V1").value == '' || document.getElementById("codeGroup_V1").value == null) {
-			alert("예비1(Var)을 선택해주세요.");
-			document.getElementById("codeGroup_V1").value = "";
-			document.getElementById("codeGroup_V1").focus();
-			return false;
-		} 
-		
-		if(document.getElementById("codeGroup_V2").value == '' || document.getElementById("codeGroup_V2").value == null) {
-			alert("예비2(Var)을 선택해주세요.");
-			document.getElementById("codeGroup_V2").value = "";
-			document.getElementById("codeGroup_V2").focus();
-			return false;
-		} 
-		
-		if(document.getElementById("codeGroup_V3").value == '' || document.getElementById("codeGroup_V3").value == null) {
-			alert("예비3(Var)을 선택해주세요.");
-			document.getElementById("codeGroup_V3").value = "";
-			document.getElementById("codeGroup_V3").focus();
-			return false;
-		} 
-		
-		if(document.getElementById("codeGroup_I1").value == '' || document.getElementById("codeGroup_I1").value == null) {
-			alert("예비1(Int)을 선택해주세요.");
-			document.getElementById("codeGroup_I1").value = "";
-			document.getElementById("codeGroup_I1").focus();
-			return false;
-		} 
-		
-		if(document.getElementById("codeGroup_I2").value == '' || document.getElementById("codeGroup_I2").value == null) {
-			alert("예비2(Int)을 선택해주세요.");
-			document.getElementById("codeGroup_I2").value = "";
-			document.getElementById("codeGroup_I2").focus();
-			return false;
-		} 
-		
-		if(document.getElementById("codeGroup_I3").value == '' || document.getElementById("codeGroup_I3").value == null) {
-			alert("예비3(Int)을 선택해주세요.");
-			document.getElementById("codeGroup_I3").value = "";
-			document.getElementById("codeGroup_I3").focus();
 			return false;
 		} 
 		
@@ -437,6 +333,61 @@
 		$("#ueleteBtn").on("click", function() {
 			formVo.attr("action", goUrlUele).submit();
 		});
+		
+		 function sample6_execDaumPostcode() {
+		        new daum.Postcode({
+		            oncomplete: function(data) {
+		                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+		                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+		                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+		                var addr = ''; // 주소 변수
+		                var extraAddr = ''; // 참고항목 변수
+
+		                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+		                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+		                    addr = data.roadAddress;
+		                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+		                    addr = data.jibunAddress;
+		                }
+
+		                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+		                if(data.userSelectedType === 'R'){
+		                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+		                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+		                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+		                        extraAddr += data.bname;
+		                    }
+		                    // 건물명이 있고, 공동주택일 경우 추가한다.
+		                    if(data.buildingName !== '' && data.apartment === 'Y'){
+		                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+		                    }
+		                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+		                    if(extraAddr !== ''){
+		                        extraAddr = ' (' + extraAddr + ')';
+		                    }
+		                    // 조합된 참고항목을 해당 필드에 넣는다.
+		                    document.getElementById("sample6_extraAddress").value = extraAddr;
+		                
+		                } else {
+		                    document.getElementById("sample6_extraAddress").value = '';
+		                }
+
+		                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+		                document.getElementById('sample6_postcode').value = data.zonecode;
+		                document.getElementById("sample6_address").value = addr;
+		                // 커서를 상세주소 필드로 이동한다.
+		                document.getElementById("sample6_detailAddress").focus();
+		            }
+		        }).open();
+		    }
+		
+		 	$("#btnAdrClear").on("click", function (){
+				$("#sample6_postcode").val('');
+				$("#sample6_address").val('');
+				$("#sample6_detailAddress").val('');
+				$("#sample6_extraAddress").val('');
+			});
 	</script>
 </body>
 </html>

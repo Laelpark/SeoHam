@@ -10,235 +10,156 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>memberForm.html</title>
+	<title>newLoginForm.html</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<style type="text/css">
-		table, th, td{
-			border: 1px solid black;
-			border-collapse: collapse;
-		}
-		
-		th, td {
-			padding: px;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="../css/newLoginForm.css">
 </head>
 <body>
 	<!-- start -->
-	<form class="p-5">
-		<nav class="navbar fixed-top" style="background-color: #e3f2fd;">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#">
-					<img src="DLlogo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
-					   DL Company
-				</a>
+	<div class="navbar" style="background-color:rgb(142, 68, 173); height: 30px;"></div>
+	<div class="row">
+		<img class="col-6 ms-3 mt-3" src="../img/fullLogo_p.png" style="width: 150px; height: 45px;">
+		<h2 class="col-6 offset-4 mt-5" id="newmem">회원가입</h2>
+	</div>
+	<div id="input">
+		<label>아이디</label>
+		<table>
+			<td>
+				<input class="a mt-2">
+			</td>
+		</table>
+		<hr style="color: rgb(78, 78, 78); width: 800px;">
+		<label>비밀번호</label>
+		<table>
+			<td>
+				<input type="password" class="a mt-2">
+			</td>
+			<td>
+				<i class="fa-solid fa-lock" id="lock"></i>
+			</td>
+		</table>
+		<hr style="color: rgb(78, 78, 78); width: 800px;">
+		<label>비밀번호 재확인</label>
+		<table>
+			<td>
+				<input type="password" class="a mt-2">
+			</td>
+			<td>
+				<i class="fa-solid fa-lock-open col-3 offset-2" id="lock"></i>
+			</td>
+		</table>
+		<hr style="color: rgb(78, 78, 78); width: 800px;">
+		<label>이름</label>
+		<table>
+			<td>
+				<input class="a mt-2">
+			</td>
+		</table>
+		<hr style="color: rgb(78, 78, 78); width: 800px;">
+		<label>생년월일</label>
+		<table>
+			<td>
+				<input class="b col mt-2" placeholder="년(4자)">
+			</td>
+			<td>
+				<select class="select ms-3 mt-2 form-select" requiredss>
+					<option>월</option>
+					<option>1</option>
+					<option>2</option>
+				</select>
+			</td>
+			<td>
+				<input class="b mt-2 ms-4" placeholder="일">
+			</td>
+		</table>
+		<hr style="color: rgb(78, 78, 78); width: 800px;">
+		<label>성별</label>
+		<table>
+			<td>
+				<select class="select mt-2 form-select" requiredss>
+					<option>성별</option>
+					<option>남성</option>
+					<option>여성</option>
+					<option>선택안함</option>
+				</select>
+			</td>
+		</table>
+		<hr style="color: rgb(78, 78, 78); width: 800px;">
+		<label>이메일</label>
+		<table>
+			<td>
+				<input class="b col mt-2" placeholder="이메일주소">
+			</td>
+			<td>
+				<span class="ms-3 mt-2">@</span>
+			</td>
+			<td>
+				<select class="select ms-3 mt-2 form-select" requiredss>
+					<option>이메일</option>
+					<option>네이버(naver.com)</option>
+					<option>다음(daum.net)</option>
+					<option>지메일(gmail.com)</option>
+				</select>
+			</td>
+		</table>
+		<hr style="color: rgb(78, 78, 78); width: 800px;">
+		<label>전화번호</label>
+		<table>
+			<td>
+				<select class="select mt-2 form-select" requiredss>
+					<option>통신사</option>
+					<option>SKT</option>
+					<option>KT</option>
+					<option>LG</option>
+				</select>
+			</td>
+			<td>
+				<input class="mt-2 ms-3" style="width: 400px; height: 35px;" placeholder="특수문자(-)없이 숫자만 입력">
+			</td>
+			<td>
+				<button type="button" class="mt-2 ms-3 btn btn-outline-secondary">전송</button>
+			</td>
+		</table>
+		<hr style="color: rgb(78, 78, 78); width: 800px;">
+		<label>인증번호</label>
+		<table>
+			<td>
+				<input class="mt-2" placeholder="인증번호 입력">
+			</td>
+		</table>
+		<hr style="color: rgb(78, 78, 78); width: 800px;">
+	</div>
+	<div id="wrapper" class="mt-5 mb-3">
+		<button id="done" type="submit" class="btn btn-primary btn-lg" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+			가입하기
+		</button>
+		<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalCenterTitle">가입완료</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body"  align="center">
+						<i class="fa-regular fa-thumbs-up" style="color: rgb(24, 82, 24);"></i>
+						Share의 가입이 성공적으로 완료되었습니다.
+					</div>
+					<div class="modal-footer">
+						<a href="../member/main.html">
+							<button type="button" class="btn btn-secondary">확인</button>
+						</a>
+						<a href="../member/loginForm.html">
+							<button type="button" class="btn btn-success">로그인하기</button>
+						</a>
+					</div>
+				</div>
 			</div>
-		</nav>
-        <div class="mt-5">
-			<ul class="nav nav-tabs ms-3 me-3">
-			  <li class="nav-item">
-			    <a class="nav-link" aria-current="page">지원명단</a>
-			  </li> 
-			  <li class="nav-item">
-			    <a class="nav-link  active">코드관리</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link">코드그룹관리</a>
-			  </li>
-			</ul>
 		</div>
-		<h3 style="text-align: center" class="pt-3 pb-3 mb-5">회원관리</h3>
-		<div>
-			<div class="container mb-3 text-center">
-				<div class="row">
-					<div class="col">
-						지원분야
-					</div>
-					<div class="col">
-						경력구분
-					</div>
-					<div class="col">
-						희망연봉
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container mb-3 text-center">
-			<div class="row">
-				<div class="col">
-					<select name="applyFild" id="apply_fild">
-						<option>지원분야 선택
-						<option>기획/전략
-						<option>마케팅/홍보/조사
-						<option>회계/세무/재무
-						<option>인사/노무
-						<option>영업/판매/무역
-						<option>상품기획/MD
-						<option>개발/IT
-					</select>
-				</div>
-				<div class="col">
-					<select name="career" id="career">
-						<option>경력구분
-						<option>경력
-						<option>신입
-					</select>
-				</div>
-				<div class="col">
-					<input type="text" value="" id="pay" class="form-control text-center" placeholder="회사내규">
-				</div>
-			</div>
-		</div>
-		<div>
-			<h5 class="pt-3 pb-3 ps-3 ms-3 me-3 mt-3 shadow-lg bg-body rounded bg-light"><i class="fa-solid fa-circle-info"> 기본정보</i></h5>
-		</div>
-		<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('3')}"/>
-		<form id="myform" name="myform" method="post" autocomplete="off">
-			<!-- *Vo.jsp s -->
-			<%@include file="memberVo.jsp"%>
-			<!-- *Vo.jsp e -->
-			<div class="card pt-3 pb-3 ps-3 mb-5 ms-3 me-3 mt-3">
-				<div class="row g-0">
-					<div class="col-md-4">
-						<div class="filebox">
-							<img src="" id="preview" width="250px;" id="preview">	
-							<label for="ex_file"></label>
-							<input type="file" id="ex_file" name="chooseFile" accept="image/*" onchange="loadFile(this)">
-						</div>
-					</div>
-					<div class="col-md-8">
-						<div class="card-body">
-							<div class="row text-center">
-								<div class="col-md-2">
-									<p class="card-text">성명</p>
-								</div>
-								<div class="col-md-4">
-									<input type="text" value="" class="form-control" id="name">
-								</div>
-								<div class="col-md-2">
-									<p class="card-text" >한문</p>
-								</div>
-								<div class="col-md-4">
-									<input type="text" value="" class="form-control" id="name_cn">
-								</div>
-							</div>
-							<div class="row text-center pt-3 pb-3">
-								<div class="col-md-2">
-									<p class="card-text" >영문</p>
-								</div>
-								<div class="col-md-4">
-									<input type="text" value="" class="form-control" id="name_en">
-								</div>
-								<div class="col-md-2">
-									<p class="card-text">생년월일</p>
-								</div>
-								<div class="col-md-4">
-									<input type="date" value="" class="form-control" id="dob">
-									<!-- <input type="date" id="birthday" name="birthday" min="1950-01-01" max="2029-12-31"  style="display: block; margin: 0 auto;"> -->
-								</div>
-							</div>
-							<div class="row text-center pb-3">
-								<div class="col-md-2">
-									<p class="card-text">전화번호</p>
-								</div>
-								<div class="col-md-4">
-									<input type="text" value="" class="form-control" id="tell_num">
-								</div>
-								<div class="col-md-2">
-									<p class="card-text">성별</p>
-								</div>
-								<div class="col-md-4">
-									<select class="form-select" id="gender" name="gender">
-										<option selected disabled value="">성별선택</option>
-										<option value="1" <c:if test = "${list.gender eq 1}">selected</c:if>>남성</option>
-										<option value="2" <c:if test = "${list.gender eq 2}">selected</c:if>>여성</option>
-									</select>
-								</div>
-							</div>
-							<div class="row text-center pb-3">
-								<div class="col-md-2">
-									<p class="card-text">이메일</p>
-								</div>
-								<div class="col-md-3">
-									<input type="text" value="" class="form-control" id="email">
-								</div>
-								<div class="col-md-4">
-									<div class="input-group">
-										<span class="input-group-text" id="inputGroupPrepend2">@</span>
-										<input type="text" class="form-control" id="validationDefaultUsername"  aria-describedby="inputGroupPrepend2" required>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<select class="form-select" id="emailSelect" required>
-										<option selected disabled value="">이메일선택</option>
-										<option>naver.com</option>
-										<option>daum.net</option>
-										<option>gmail.com</option>
-										<option>kakao.com</option>
-									</select>
-								</div>
-							</div>
-							<div class="row text-center">
-								<div class="col-md-2">
-									<p class="card-text">주소</p>
-								</div>
-								<div class="col-md-10">
-									<input type="text" value="" class="form-control" id="addr">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="container-fluid pe-4 ps-3">
-				<div class="row">
-					<div class="col-md-2"> 
-	                    <a href="./memberList.html"><i class="fa-solid fa-angle-left"></i>이전</a>
-	                </div>
-					<div class="col-md-2 offset-md-8" align="right">
-	                    <a href="./memberMod.html" onclick=here()><i class="fa-solid fa-angle-right"></i>다음</a>
-	                </div>	
-				</div>
-			</div>
-	</form>
-		<!-- end --> 
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-		<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
-		<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-		<script type="text/javascript">
-			var goUrlList = "/code/codeList";
-			var goUrlInst = "/code/codeInst";
-			var goUrlUpdt = "/code/codeUpdt";
-			var goUrlUele = "/code/codeUele";
-			var goUrlDele = "/code/codeDele";
-			
-			var form = $("form[name=myForm]"); 
-			var formVo = $("form[name=formVo]");
-			
-			var cdSeq = $("input:hidden[name=cdSeq]");
-			
-			$("#btnSave").on("click", function() {
-				
-				/* alert(cdSeq.val()); */
-				if (cdSeq.val() == 0 || cdSeq.val() == "") {
-					form.attr("action", goUrlInst).submit();
-				}else {
-					form.attr("action", goUrlUpdt).submit();
-				}
-				
-			});
-			
-			$("#btnList").on("click", function(){
-				formVo.attr("action", goUrlList).submit();
-			});
-			
-			$("#deleteBtn").on("click", function(){
-			   		formVo.attr("action", goUrlDele).submit();
-		   	});
-			
-			$("#ueleteBtn").on("click", function(){
-		   		formVo.attr("action", goUrlUele).submit();
-	   		});
-		</script>
-	</body>
+	</div>
+
+
+	<!-- end --> 
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
+</body>
 </html>

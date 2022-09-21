@@ -177,7 +177,7 @@
 													<th class="td1" scope="col">코드그룹 코드</th>
 													<th class="td2" scope="col">코드그룹 이름(한글)</th>
 													<th class="td3" scope="col">코드그룹 이름(영문)</th>
-													<th class="td4" scope="col">코드갯수</th>
+													<th class="td4" scope="col">주소</th>
 													<th class="td4" scope="col">등록일</th>
 													<th class="td4" scope="col">수정일</th>
 												</tr>

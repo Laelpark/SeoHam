@@ -53,6 +53,10 @@
 			,codeGroup_another
 			,codeGroup_or
 			,DelNy
+			,sample6_postcode
+			,sample6_address
+			,sample6_detailAddress
+			,sample6_extraAddress
 		)
 		VALUES (
 			#{name}
@@ -60,6 +64,10 @@
 			,#{codeGroup_another}
 			,#{codeGroup_or}
 			,#{ifcgDelNy}
+			,#{sample6_postcode}
+			,#{sample6_address}
+			,#{sample6_detailAddress}
+			,#{sample6_extraAddress}
 		)
 		
 		<selectKey resultType="String" keyProperty="ccgSeq" order="AFTER">
@@ -78,6 +86,11 @@
 	 	UPDATE codeGroup
 	 	SET
  			name = #{name}
+ 			,sample6_postcode = #{sample6_postcode}
+ 			,sample6_address = #{sample6_address}
+ 			,sample6_detailAddress = #{sample6_detailAddress}
+ 			,sample6_extraAddress = #{sample6_extraAddress}
+ 			
 		WHERE
 			ccgSeq = #{ccgSeq}
  	</update>
