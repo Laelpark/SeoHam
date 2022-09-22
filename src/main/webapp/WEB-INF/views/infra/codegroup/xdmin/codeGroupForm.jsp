@@ -135,15 +135,23 @@
 								</div>
 								<div class="row mt-3">
 									<div class="col-6">
-										<label for="codeGroup_V3" class="form-label">예비3(Varchar type)</label> <input type="text" class="form-control" id="codeGroup_V3" name="codeGroup_V3" placeholder="영문(대소문자),숫자">
+										<label for="codeGroup_V3" class="form-label">예비3(Varchar type)</label><input type="text" class="form-control" id="codeGroup_V3" name="codeGroup_V3" placeholder="영문(대소문자),숫자">
 									</div>
 								</div>
 								<div class="row mt-3">
 									<div class="col">
-										<label for="codeGroup_I1" class="form-label">예비1 (Int type)</label> <input type="text" class="form-control" id="codeGroup_I1" name="codeGroup_I1" placeholder="숫자">
+										<label for="codeGroup_I1" class="form-label">예비1 (Int type)</label><input type="text" class="form-control" id="codeGroup_I1" name="codeGroup_I1" placeholder="숫자">
 									</div>
 									<div class="col">
-										<label for="codeGroup_I2" class="form-label">예비2 (Int type)</label> <input type="text" class="form-control" id="codeGroup_I2" name="codeGroup_I2" placeholder="숫자">
+										<label for="codeGroup_I2" class="form-label">예비2 (Int type)</label><input type="text" class="form-control" id="codeGroup_I2" name="codeGroup_I2" placeholder="숫자">
+									</div>
+								</div>
+								<div class="row mt-3">
+									<div class="col">
+										<label for="codeGroup_I1" class="form-label">아이디</label><input type="text" class="form-control" id="Id" name="Id" placeholder="아이디">
+									</div>
+									<div class="col">
+										<label for="codeGroup_I2" class="form-label">비번</label><input type="text" class="form-control" id="pw" name="pw" placeholder="비번">
 									</div>
 								</div>
 								<div class="row mt-3">
@@ -176,6 +184,26 @@
 								  		<input type="text" class="form-control" id="sample6_extraAddress" name="sample6_extraAddress" placeholder="참고항목">
 									</div>
 								</div>
+								<div class="row mt-3">
+									<div class="col">
+								  		<input type="text" class="form-control" id="latitude" name="latitude" placeholder="위도" required>
+									</div>
+									<div class="col">
+								  		<input type="text" class="form-control" id="longitude" name="longitude" placeholder="경도">
+									</div>
+								</div>
+								<!-- <div class="row mt-3">
+									<div class="col">
+								  		<p style="margin-top:-12px">
+								    		<em class="link">
+										        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
+										            혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
+										        </a>
+								    		</em>
+										</p>
+										<div id="map" style="width:100%;height:350px;"></div>
+									</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -248,6 +276,7 @@
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bd29bc43140391b0206f367d2b8c01eb&libraries=services"></script>
 	<script>
 
 		/* function test() {
@@ -343,6 +372,7 @@
 		                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
 		                var addr = ''; // 주소 변수
 		                var extraAddr = ''; // 참고항목 변수
+		            
 
 		                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 		                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
@@ -378,10 +408,26 @@
 		                document.getElementById("sample6_address").value = addr;
 		                // 커서를 상세주소 필드로 이동한다.
 		                document.getElementById("sample6_detailAddress").focus();
+		                
+						/* lat and lng from address s */
+						// 주소-좌표 변환 객체를 생성
+						var geocoder = new daum.maps.services.Geocoder();
+						
+						// 주소로 좌표를 검색
+						geocoder.addressSearch(addr, function(result, status) {
+						 
+							// 정상적으로 검색이 완료됐으면,
+							if (status == daum.maps.services.Status.OK) {
+								
+								document.getElementById("longitude").value=result[0].x;
+								document.getElementById("latitude").value=result[0].y;
+							}
+						});
+						/* lat and lng from address e */
 		            }
 		        }).open();
 		    }
-		
+		 
 		 	$("#btnAdrClear").on("click", function (){
 				$("#sample6_postcode").val('');
 				$("#sample6_address").val('');

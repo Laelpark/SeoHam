@@ -24,7 +24,7 @@
 				</a>
 				<div class="info pt-5">
 					<a>
-						<span style="color: rgb(197, 26, 26); text-shadow: 2px 2px 2px black;" class="fw-bold fs-4 pe-5" onclick="location.href='../share/shareHotList.html'">실시간 HOT!</span>
+						<span style="color: rgb(197, 26, 26); text-shadow: 2px 2px 2px black;" class="fw-bold fs-4 pe-5" type="button" id="btnHot" name="btnHot">실시간 HOT!</span>
 						<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4 pe-5" onclick="location.href='../share/sharepot.html'">Share Pot</span>
 						<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4" type="button" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Share Now
 							<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -184,5 +184,19 @@
 	<!-- end --> 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
+	<script>
+	var goUrlHot = "/share/shareHot"; 			/* #-> */
+	var goUrlPot = "/share/sharPot"; 			/* #-> */
+	var goUrlNow = "/share/shareNow";				/* #-> */
+	var goUrlLogin = "/share/shareLogin";				/* #-> */
+	var goUrlLike = "/share/shareLike";				/* #-> */
+	var goUrlAdmin = "/share/shareAdmin";
+	
+	
+	$('#btnHot').on("click", function() {
+		 $(location).attr("href", goUrlHot);
+		});
+	</script>
+	
 </body>
 </html>
