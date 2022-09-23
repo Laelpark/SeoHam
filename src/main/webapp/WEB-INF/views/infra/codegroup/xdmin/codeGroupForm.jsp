@@ -148,7 +148,15 @@
 								</div>
 								<div class="row mt-3">
 									<div class="col">
-										<label for="codeGroup_I1" class="form-label">아이디</label><input type="text" class="form-control" id="Id" name="Id" placeholder="아이디">
+										<label for="ccgId" class="form-label">아이디 <span class="text-danger">*</span></label>
+										<input type="hidden" id="ccgIdAllowedNy" name="ccgIdAllowedNy" value="0">
+										<input type="text" class="form-control" id="ccgId" name="ccgId" placeholder="아이디"
+											value="<c:out value="${item.ccgId}"/>"
+											maxlength="20"
+											placeholder="영대소문자, 숫자, 특수문자, 4~20자리"
+											<c:if test="${not empty item.ccgId}">readonly</c:if>
+										>
+										<div class="invalid-feedback" id="ccgIdFeedback"></div>
 									</div>
 									<div class="col">
 										<label for="codeGroup_I2" class="form-label">비번</label><input type="text" class="form-control" id="pw" name="pw" placeholder="비번">
@@ -433,6 +441,46 @@
 				$("#sample6_address").val('');
 				$("#sample6_detailAddress").val('');
 				$("#sample6_extraAddress").val('');
+			});
+		 	
+		 	//ID ajax
+		 	
+			$("#ccgId").on("focusout", function(){
+
+				var id = $("#ccgId").val();
+				
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					/* ,dataType:"json" */
+					,url: "/codeGroup/idCheck"
+					/* ,data : $("#formLogin").serialize() */
+					,data : { "ccgId" : id }
+					,success: function(response) {
+						if(response.rt == "success") {
+							document.getElementById("ccgId").classList.add('is-valid');
+		
+							document.getElementById("ccgIdFeedback").classList.remove('invalid-feedback');
+							document.getElementById("ccgIdFeedback").classList.add('valid-feedback');
+							document.getElementById("ccgIdFeedback").innerText = "사용 가능 합니다.";
+							
+							document.getElementById("ccgIdAllowedNy").value = 1;
+							
+						} else {
+							document.getElementById("ccgId").classList.add('is-invalid');
+							
+							document.getElementById("ccgIdFeedback").classList.remove('valid-feedback');
+							document.getElementById("ccgIdFeedback").classList.add('invalid-feedback');
+							document.getElementById("ccgIdFeedback").innerText = "사용 불가능 합니다";
+							
+							document.getElementById("ccgIdAllowedNy").value = 0;
+						}
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
 			});
 	</script>
 </body>

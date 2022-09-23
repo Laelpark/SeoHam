@@ -23,9 +23,14 @@ public class CodeGroup {
 	private String sample6_address; 
 	private String sample6_detailAddress; 
 	private String sample6_extraAddress; 
+	private String ccgId;
 	
-	
-	
+	public String getCcgId() {
+		return ccgId;
+	}
+	public void setCcgId(String ccgId) {
+		this.ccgId = ccgId;
+	}
 	public String getSample6_postcode() {
 		return sample6_postcode;
 	}

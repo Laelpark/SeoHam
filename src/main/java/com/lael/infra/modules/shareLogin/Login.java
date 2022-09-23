@@ -2,7 +2,7 @@ package com.lael.infra.modules.shareLogin;
 
 import java.util.Date;
 
-public class login {
+public class Login {
 		
 	private String id;
 	private Integer pw;

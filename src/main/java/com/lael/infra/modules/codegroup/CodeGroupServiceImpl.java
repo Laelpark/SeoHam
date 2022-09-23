@@ -9,7 +9,7 @@ public class CodeGroupServiceImpl implements CodeGroupService{
 
 	@Autowired
 	CodeGroupDAO dao;
-	
+
 	@Override
 	public List<CodeGroup> selectList(CodeGroupVo vo) throws Exception {
 		List<CodeGroup> list = dao.selectList(vo);
@@ -57,6 +57,8 @@ public class CodeGroupServiceImpl implements CodeGroupService{
 		return dao.selectOneCount(vo);
 	}
 
-
-	
+	@Override
+	public int idCheck(CodeGroup dto) throws Exception {
+		return dao.idCheck(dto);
+	}
 }

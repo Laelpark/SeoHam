@@ -53,10 +53,7 @@
 			,codeGroup_another
 			,codeGroup_or
 			,DelNy
-			,sample6_postcode
-			,sample6_address
-			,sample6_detailAddress
-			,sample6_extraAddress
+			,ccgId
 		)
 		VALUES (
 			#{name}
@@ -64,10 +61,7 @@
 			,#{codeGroup_another}
 			,#{codeGroup_or}
 			,#{ifcgDelNy}
-			,#{sample6_postcode}
-			,#{sample6_address}
-			,#{sample6_detailAddress}
-			,#{sample6_extraAddress}
+			,#{ccgId}
 		)
 		
 		<selectKey resultType="String" keyProperty="ccgSeq" order="AFTER">
@@ -82,14 +76,19 @@
 	 	WHERE 1=1
 	 		AND ccgSeq = #{ccgSeq}
 	</select>
+	
+	<!-- ID ajax s -->
+	<select id="idCheck" resultType="int"> 
+		select count(*) 
+		from codeGroup 
+		where ccgId = #{ccgId}
+	</select>
+	
  	<update id="update">
 	 	UPDATE codeGroup
 	 	SET
  			name = #{name}
- 			,sample6_postcode = #{sample6_postcode}
- 			,sample6_address = #{sample6_address}
- 			,sample6_detailAddress = #{sample6_detailAddress}
- 			,sample6_extraAddress = #{sample6_extraAddress}
+ 			,ccgId = #{ccgId}
  			
 		WHERE
 			ccgSeq = #{ccgSeq}
