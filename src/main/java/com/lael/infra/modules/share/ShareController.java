@@ -15,21 +15,24 @@ public class ShareController {
 	 */
 	 
 	
-	@RequestMapping(value = "/shareMain")
+	@RequestMapping(value = "/share")
 	public String main(Model model) throws Exception {
-		return "infra/share/user/shareMain";
+		return "infra/share/user/share";
 	}
 	
-	@RequestMapping(value = "/shareContent")
+	@RequestMapping(value = "/shareHot")
+	public String shareHot(Locale locale, Model model) throws Exception {
+		return "infra/share/user/shareHot";
+	}
+	
+	@RequestMapping(value = "/shareNow")
 	public String shareContent(Locale locale, Model model) throws Exception {
-		
-		return "infra/share/user/shareContent";
+		return "infra/share/user/shareNow";
 	}
 	
 
 	@RequestMapping(value = "/shareLogin")
 	public String shareLogin(Locale locale, Model model) throws Exception {
-		
 		return "infra/share/user/shareLogin";
 	}
 	

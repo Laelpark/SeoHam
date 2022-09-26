@@ -150,7 +150,7 @@
 									<div class="col">
 										<label for="ccgId" class="form-label">아이디 <span class="text-danger">*</span></label>
 										<input type="hidden" id="ccgIdAllowedNy" name="ccgIdAllowedNy" value="0">
-										<input type="text" class="form-control" id="ccgId" name="ccgId" placeholder="아이디"
+										<input type="text" class="form-control" id="ccgId" name="ccgId"
 											value="<c:out value="${item.ccgId}"/>"
 											maxlength="20"
 											placeholder="영대소문자, 숫자, 특수문자, 4~20자리"
@@ -198,6 +198,11 @@
 									</div>
 									<div class="col">
 								  		<input type="text" class="form-control" id="longitude" name="longitude" placeholder="경도">
+									</div>
+								</div>
+								<div class="row mt-3">
+									<div class="col-6">
+										<label for="img" class="form-label">이미지 업로드</label><input type="text" class="form-control" id="img" name="img">
 									</div>
 								</div>
 								<!-- <div class="row mt-3">
