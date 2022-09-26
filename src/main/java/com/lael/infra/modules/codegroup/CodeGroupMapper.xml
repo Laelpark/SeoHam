@@ -9,7 +9,7 @@
     <resultMap id="resultMapObj" type="com.lael.infra.modules.codegroup.CodeGroup"></resultMap>
 	
 	<sql id ="selectCommon">
-		FROM codeGroup a
+		FROM shareCodeGroup a
 		WHERE 1=1
 		<if test="shDelNy != null and !shDelNy.equals('')">AND DelNy = #{shDelNy}</if>
 		<choose>
@@ -23,7 +23,7 @@
 		<include refid="Base.selectListUpperForMysql"></include>
 		SELECT
 			a.*
-			,(select count(b.cdSeq) from code b where 1=1 and a.DelNy = 0 and a.ccgSeq = b.cdSeq) as ccgSeqcount
+			,(select count(b.cdSeq) from shareCode b where 1=1 and a.DelNy = 0 and a.ccgSeq = b.cdSeq) as ccgSeqcount
 		<include refid="selectCommon" />
 		ORDER BY a.ccgSeq DESC
 		<include refid="Base.orderByLimitForMysql" />
@@ -34,7 +34,7 @@
 		<include refid="Base.selectListUpperForMysql"></include>
 		SELECT
 			a.*
-			,(select count(b.cdSeq) from code b where 1=1 and a.DelNy = 0 and a.ccgSeq = b.cdSeq) as ccgSeqcount
+			,(select count(b.cdSeq) from shareCode b where 1=1 and a.DelNy = 0 and a.ccgSeq = b.cdSeq) as ccgSeqcount
 		<include refid="selectCommon" />
 		ORDER BY a.ccgSeq DESC
 		<include refid="Base.orderByLimitForMysql" />

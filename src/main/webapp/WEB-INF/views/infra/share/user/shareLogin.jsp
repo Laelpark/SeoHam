@@ -29,10 +29,10 @@
 	<div class="container-fluid">
 		<div class="row pt-5">
 			<a class="col-12 text-center mb-3">
-				<img alt="" src="../img/fullLogo_p.png" onclick="location.href='../member/main.html'" style="width: 280px; height: 100px; cursor: pointer;">
+				<img alt="" src="../../resources/images/share/fullLogo_p.png" onclick="location.href='share'" style="width: 280px; height: 100px; cursor: pointer;">
 			</a>
 			<div class="col-12 text-center mb-3">
-				<img alt="" src="../img/user.png"  style="width: 100px; height: 100px; border-radius: 100px;">
+				<img alt="" src="../../resources/images/share/user.png"  style="width: 100px; height: 100px; border-radius: 100px;">
 			</div>
 			<div class="col-4 offset-4 text-center">
 				<div class="input-group has-validation">
@@ -55,7 +55,7 @@
 				</label>
 			</div>
 			<div class="col-2 text-center">
-				<button type="button" id="loginBtn" class="btn" style=" width: 100px; height: 70px; float: right; background-color: blueviolet; color: white;" onclick="location.href='share'">로그인</button>
+				<button type="button" id="loginBtn" class="btn" style=" width: 100px; height: 70px; float: right; background-color: blueviolet; color: white;" onclick="location.href='shareLogDone'">로그인</button>
 			</div>
 			<div class="col-4 offset-4 text-center">
 				<div class="input-group has-validation">

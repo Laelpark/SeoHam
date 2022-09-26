@@ -10,7 +10,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>shareContent.html</title>
+	<title>shareNow</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<style  type="text/css">
 		.a {
@@ -70,120 +70,142 @@
 	<!-- start -->
 	<nav class="navbar mb-3" style="background-color:rgb(142, 68, 173); height: 30%;"></nav>
 	<nav class="bg-transparent">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="../member/main.html">
-				<img src="../shareImg/sharenow.png" alt="" width="230" height="60" class="d-inline-block align-text-top ms-3">
+		<div class="container">
+			<a class="navbar-brand">
+				<img src="../../resources/images/share/sharenow.png" alt="" width="230" height="60" class="d-inline-block align-text-top ms-3">
 			
 		</div>
 	</nav>
 	<nav class="navbar navbar-expand-lg bg-transparent">
 		<div class="topBtn collapse navbar-collapse" id="navbarSupportedContent">
-			<form class="d-flex" role="search">
+			<input type="hidden" class="d-flex" role="search">
 				<button type="button" class="btn btn-outline-danger me-4">취소</button>
-				<button type="button" class="btn btn-outline-success">저장</button>
-			</form>
+				<button type="button" class="btn btn-outline-success" id="btnSave" name="btnSave">저장</button>
+			</input>
 		</div>
 	</nav>
-	<nav class="navbar navbar-expand-lg">
-		<div class="a collapse navbar-collapse">
-			<ul class="navbar-nav mb-2 mt-2 ms-3">
-				<li class="nav-item dropdown">
-					<img alt="" src="../img/user.png" style=" margin-left: 8px; width: 60px; height: 40px; border-radius: 100px;">
-				</li>
-				<li>
-					<select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="Food_Select" name="Food_Select" required>
-						<option>카테고리</option>
-						<option>치킨</option>
-						<option>족발,보쌈</option>
-						<option>찜,탕,찌개</option>
-						<option>돈까스,회,일식</option>
-						<option>피자</option>
-						<option>고기,구이</option>
-						<option>양식</option>
-						<option>치킨</option>
-						<option>중식</option>
-						<option>아시안</option>
-						<option>백반,죽,국수</option>
-						<option>도시락</option>
-						<option>분식</option>
-						<option><hr class="dropdown-divider"></option>
-						<option>카페,디저트</option>
-						<option>그외 음식</option>
-					</select>
-				</li>
-				<li class="nav-item dropdown">
-					<form class="d-flex">
-						<input class="form-control me-2 text-center" id= "searchBox" type="text" style="width: 480px; height: 50px;" placeholder="검색어를 입력하세요." aria-label="Search">
-					</form>
-				</li>
-				<li>
-					<select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="emailSelect" required>
-						<option>인원</option>
-						<option>1인</option>
-					</select>
-				</li>
-			</ul>
-		</div>
-	</nav>
-	<nav class="navbar navbar-expand-lg">
-		<div class="a collapse navbar-collapse" style="height: 300px;">
-			<div class="b me-3">
-				<div class="filebox">
-					<img src="" id="preview" width="250px;" id="preview">	
-					<label for="ex_file"></label>
-					<input type="file" id="ex_file" name="chooseFile" accept="image/*" onchange="loadFile(this)">
-				</div>
+	<form id="myform" name="myform" method="post">
+		<nav class="navbar navbar-expand-lg">
+			<div class="a collapse navbar-collapse">
+				<ul class="navbar-nav mb-2 mt-2 ms-3">
+					<li class="nav-item dropdown">
+						<img alt="" src="../../resources/images/share/user.png" style=" margin-left: 8px; width: 60px; height: 40px; border-radius: 100px;">
+					</li>
+					<li>
+						<select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="Food_Select" name="Food_Select" required>
+							<option>카테고리</option>
+							<option>치킨</option>
+							<option>족발,보쌈</option>
+							<option>찜,탕,찌개</option>
+							<option>돈까스,회,일식</option>
+							<option>피자</option>
+							<option>고기,구이</option>
+							<option>양식</option>
+							<option>중식</option>
+							<option>아시안</option>
+							<option>백반,죽,국수</option>
+							<option>도시락</option>
+							<option>분식</option>
+							<option><hr class="dropdown-divider"></option>
+							<option>카페,디저트</option>
+							<option>그외 음식</option>
+						</select>
+					</li>
+					<li class="nav-item dropdown">
+						<input type="hidden" class="d-flex">
+							<input class="form-control me-2 text-center" id= "title" name="title" type="text" style="width: 480px; height: 50px;" placeholder="검색어를 입력하세요." aria-label="Search">
+						</input>
+					</li>
+					<li>
+						<select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="emailSelect" required>
+							<option>인원</option>
+							<option>1인</option>
+						</select>
+					</li>
+				</ul>
 			</div>
-            <div class="ms-3">
-                <div class="c">
-                    <textarea class="form-control" id="validationTextarea" placeholder="주문하실 음식점 이름과 메뉴, 가격 등을 자세히 기재해주세요." rows="10"></textarea>
-                </div>
-            </div>
-        </div>
-	</nav>
-    <nav class="navbar navbar-expand-lg">
-		<div class="a collapse navbar-collapse" style="height: 250px;">
-            <div class="ms-3 me-4">
-                <div class="row">
-					<nav class="d navbar col-12" style="background-color:rgba(233, 231, 58, 0.66);">
-						<div class="row">
-							<div class="col-4">
-								<p id="date">거래 장소</p>
-							</div>
-							<div class="col-8">
-								<input type="text" style="width: 850px; margin-left: auto;">
-							</div>
-						</div>
-					</nav>
-					<nav class="d navbar col-12 mt-4" style="background-color:rgba(233, 231, 58, 0.66);">
-						<div class="row">
-							<div class="col-4">
-								<p id="date">거래 시간</p>
-							</div>
-							<div class="col-8">
-								<input type="text" style="width: 850px; margin-left: auto;">
-							</div>
-						</div>
-					</nav>
-					<nav class="d navbar col-12 mt-4" style="background-color:rgba(233, 231, 58, 0.66);">
-						<div class="row">
-							<div class="col-4">
-								<p id="date">인당 가격</p>
-							</div>
-							<div class="col-8">
-								<input type="text" style="width: 850px; margin-left: auto;">
-							</div>
-						</div>
-					</nav>
+		</nav>
+		<nav class="navbar navbar-expand-lg">
+			<div class="a collapse navbar-collapse" style="height: 300px;">
+				<div class="b me-3">
+					<div class="filebox">
+						<img src="" id="preview" width="250px;" id="preview">	
+						<label for="ex_file"></label>
+						<input type="file" id="ex_file" name="chooseFile" accept="image/*" onchange="loadFile(this)">
+					</div>
 				</div>
-            </div>
-        </div>
-	</nav>
+	            <div class="ms-3">
+	                <div class="c">
+	                    <textarea class="form-control" id="info" name="info" placeholder="주문하실 음식점 이름과 메뉴, 가격 등을 자세히 기재해주세요." rows="10"></textarea>
+	                </div>
+	            </div>
+	        </div>
+		</nav>
+	    <nav class="navbar navbar-expand-lg">
+			<div class="a collapse navbar-collapse" style="height: 250px;">
+	            <div class="ms-3 me-4">
+	                <div class="row">
+						<nav class="d navbar col-12" style="background-color:rgba(233, 231, 58, 0.66);">
+							<div class="row">
+								<div class="col-4">
+									<p>거래 장소</p>
+								</div>
+								<div class="col-8">
+									<input type="text" style="width: 850px; margin-left: auto;" id="place" name="place">
+								</div>
+							</div>
+						</nav>
+						<nav class="d navbar col-12 mt-4" style="background-color:rgba(233, 231, 58, 0.66);">
+							<div class="row">
+								<div class="col-4">
+									<p>거래 시간</p>
+								</div>
+								<div class="col-8">
+									<input type="text" style="width: 850px; margin-left: auto;" id="time" name="time">
+								</div>
+							</div>
+						</nav>
+						<nav class="d navbar col-12 mt-4" style="background-color:rgba(233, 231, 58, 0.66);">
+							<div class="row">
+								<div class="col-4">
+									<p id="date">인당 가격</p>
+								</div>
+								<div class="col-8">
+									<input type="text" style="width: 850px; margin-left: auto;" id="price" name="price">
+								</div>
+							</div>
+						</nav>
+					</div>
+	            </div>
+	        </div>
+		</nav>
+	</form>
+	
 
 	<!-- end --> 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script>
+	
+	var goUrlInst = "/shareInst";
+	var goUrlUpdt = "/shareUpdt";
+	
+	var seq = $("input:hidden[name=seq]");
+	
+	var form = $("form[name=myform]");
+	
+	$("#btnSave").on("click", function() {
+		if (ccgSeq.val() == "0" || ccgSeq.val() == "") {
+			// insert
+			// if (validationInst() == false) return false;
+			form.attr("action", goUrlInst).submit();
+		} else {
+			// update
+			/* keyName.val(atob(keyName.val())); */
+			// if (validationUpdt() == false) return false;
+			form.attr("action", goUrlUpdt).submit();
+		}
+	});
 	
 	</script>
 </body>

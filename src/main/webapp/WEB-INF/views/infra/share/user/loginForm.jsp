@@ -18,7 +18,7 @@
 	<!-- start -->
 	<div class="navbar" style="background-color:rgb(142, 68, 173); height: 30px;"></div>
 	<div class="row">
-		<img class="col-6 ms-3 mt-3" src="../img/fullLogo_p.png" style="width: 150px; height: 45px;">
+		<img class="col-6 ms-3 mt-3" src="../../resources/images/share/fullLogo_p.png" style="width: 150px; height: 45px;">
 		<h2 class="col-6 offset-4 mt-5" id="newmem">회원가입</h2>
 	</div>
 	<div id="input">

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lael.infra.modules.share.ShareMapper">
+
+    <resultMap id="resultMapObj" type="com.lael.infra.modules.share.Share"></resultMap>
+
+	<sql id ="selectCommon">
+		FROM share c
+		WHERE 1=1
+	</sql>
+
+	<select id="selectList" resultMap="resultMapObj">
+	<include refid="Base.selectListUpperForMysql"></include>
+		SELECT
+			c.*
+		<include refid="selectCommon" />
+		ORDER BY c.seq ASC
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" /> 
+	</select>
+	
+	<select id="selectList1" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"></include>
+		SELECT
+			c.*
+		<include refid="selectCommon" />
+		ORDER BY c.seq ASC
+		<include refid="Base.orderByLimitForMysql" />
+		)a
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
+	</select>
+	
+	<insert id="insert">
+	INSERT INTO share (
+			,title
+			,info
+			,place
+			,time
+			,price
+		)
+		VALUES (
+			#{title}
+			,#{info}
+			,#{place}
+			,#{time}
+			,#{price}
+		)
+		
+		<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+
+	
+	<!-- ID ajax s -->
+	<select id="idCheck" resultType="int"> 
+		select count(*) 
+		from share 
+		where id = #{id}
+	</select>
+
+
+
+
+</mapper>

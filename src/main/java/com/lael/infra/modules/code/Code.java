@@ -9,15 +9,15 @@ public class Code {
 	private String name;
 	private String codeName;
 	private Integer codeOrder;
-	private Integer ccgSeq;
+	private String ccgSeq;
 	
 //	for cache
 	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
 	
-	public Integer getCcgSeq() {
+	public String getCcgSeq() {
 		return ccgSeq;
 	}
-	public void setCcgSeq(Integer ccgSeq) {
+	public void setCcgSeq(String ccgSeq) {
 		this.ccgSeq = ccgSeq;
 	}
 	public String getName() {

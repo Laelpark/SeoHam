@@ -10,9 +10,86 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>share</title>
+	<title>shareLogDone</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<link rel="stylesheet" href="/resources/css/share/shareMain.css">
+	<style  type="text/css">
+		card bg-light {
+		  height:100vh;
+		  width: 100vw;
+		}
+
+		.inner-shadow {
+			filter: brightness(85%);
+		}
+		
+		div#search_box {
+			position: absolute;
+			top: 50%;
+		}
+
+		ul{
+   			list-style:none;
+		}
+
+		.container-1{
+			width: 800px;
+			vertical-align: middle;
+			white-space: nowrap;
+			position: relative;
+
+		}
+
+		.container-1 input#search{
+			width: 800px;
+			height: 50px;
+			border: none;
+			font-size: 12pt;
+			float: left;
+			background-color: lightgrey;
+			padding-left: 45px;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			border-radius: 20px;
+			text-align: center;
+		}
+
+		.container-1 .btn{
+			position: absolute;
+			margin-top: 2px;
+			margin-left: 50px;
+			height: 50px;
+			z-index: 1;
+			border-radius: 20px;
+		}
+
+		.info {
+			cursor:pointer;
+		}
+
+		.c {
+			justify-content: center;
+		}
+
+		.carousel-indicators{
+			z-index: 1;
+			margin-bottom: 70px;
+		}
+
+		.footerinfo {
+			display: inline-block;
+			font-size: 12px;
+			color: rgb(126, 128, 130);
+			margin-top: 20px;
+			margin-bottom: 10px;
+			letter-spacing: 1px;
+			position: relative;
+			left: 40%;
+		}
+
+		#menu {
+			margin-right: 80px;
+		}
+	</style>
 </head>
 <body>
 	<!-- start -->
@@ -24,68 +101,26 @@
 				</a>
 				<div class="info pt-5">
 					<a>
-						<span style="color: rgb(197, 26, 26); text-shadow: 2px 2px 2px black;" class="fw-bold fs-4 pe-5" type="button" id="btnHot" name="btnHot">실시간 HOT!</span>
-						<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4 pe-5" type="button" id="btnPot" name="btnPot">Share Pot</span>
-						<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4" type="button" id="btnNow" name="btnNow" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Share Now
-							<div class="modal fade" id="exampleModalCenter" tabindex="0" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-								<div class="modal-dialog modal-dialog-centered">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalCenterTitle">로그인을 해주세요.</h5>
-											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-										</div>
-										<div class="modal-body"  align="center">
-											<i class="fas fa-light fa-circle-exclamation" style="color: red;"></i>
-											Share을 시작하시려면 로그인을 해주세요.
-										</div>
-										<div class="modal-footer">
-											<a href="share">
-												<button type="button" class="btn btn-primary" >확인</button>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</span>
+						<span style="color: rgb(197, 26, 26); text-shadow: 2px 2px 2px black;" class="fw-bold fs-4 pe-5" type="button" id="btnHot" name="btnHot" onclick="location.href='shareHot'">실시간 HOT!</span>
+						<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4 pe-5" type="button" id="btnPot" name="btnPot" onclick="location.href='sharePot'">Share Pot</span>
+						<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4" type="button" id="btnNow" name="btnNow" onclick="location.href='shareNow'">Share Now</span>
 					</a>
 				</div>
-				<div>
-					<ul class="navbar-nav flex-row ms-md-auto pe-3">
-						<li class="nav-item col-4 me-2">
+				<div id="menu">
+					<ul class="navbar-nav flex-row ms-md-auto me-4">
+						<li class="nav-item col-4"></li>
+						<li class="nav-item col-4">
 							<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;">
-								<i class="fa-solid fa-user fa-lg" type="button" id="btnLogin" name="btnLogin"></i>
+								<i class="fa-solid fa-user fa-lg"></i>
 							</a>
 						</li>
 						<li class="">
-							<a class="nav-link py-2 px-0 px-lg-2 me-2" style="cursor: pointer;">
-								<i style="color: rgb(193, 232, 100);" class="fa-solid fa-star fa-lg" type="button" onclick=deleteValue(2); data-bs-toggle="modal" data-bs-target="#exampleModalCenter"></i>
-								<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-									<div class="modal-dialog modal-dialog-centered">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalCenterTitle">로그인을 해주세요.</h5>
-												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-											</div>
-											<div class="modal-body"  align="center">
-												<i class="fas fa-light fa-circle-exclamation" style="color: red;"></i>
-												저장된 리스트가 없습니다.
-											</div>
-											<div class="modal-footer">
-												<a href="../member/main.html">
-													<button type="button" class="btn btn-primary">확인</button>
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</a>
-						</li>
-						<li class="nav-item col-4 me-2">
 							<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;">
-								<i class="fa-solid fa-sliders" id="btnAdmin" name="btnAdmin"></i>
+								<i class="fa-solid fa-star fa-lg"></i>
 							</a>
 						</li>
 					</ul>
+					<span style="color: white; text-shadow: 2px 2px black; float: right;" class="">Welcome to SHARE!</span>
 				</div>	
 			</div>
 	  	</nav>
@@ -97,7 +132,7 @@
 			<div id="bg-img" class="carousel slide container-fluid gx-0" data-bs-ride="carousel">
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="../../resources/images/share/1g.jpg" class="d-block w-100" alt="..." style="height: 880px;">
+						<img src="../../resources/images/share//1g.jpg" class="d-block w-100" alt="..." style="height: 880px;">
 						<ul class="imtext position-absolute fw-bold" style="z-index: 1; color:white; font-size: 80px; width: 800px; top: 150px; left: 20px;">
 							<li class="pb-3">
 								<a style="font-size: 80px">1인배달,</a>
@@ -139,22 +174,10 @@
 									<button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 										종류
 									</button>
-									<ul class="dropdown-menu mt-5" style="background-color: rgb(226, 225, 225)">
-										<li><a class="dropdown-item" href="#">족발,보쌈</a></li>
-										<li><a class="dropdown-item" href="#">찜,탕,찌개</a></li>
-										<li><a class="dropdown-item" href="#">돈까스,회,일식</a></li>
+									<ul class="dropdown-menu mt-5">
 										<li><a class="dropdown-item" href="#">피자</a></li>
-										<li><a class="dropdown-item" href="#">고기,구이</a></li>
-										<li><a class="dropdown-item" href="#">양식</a></li>
 										<li><a class="dropdown-item" href="#">치킨</a></li>
-										<li><a class="dropdown-item" href="#">중식</a></li>
-										<li><a class="dropdown-item" href="#">아시안</a></li>
-										<li><a class="dropdown-item" href="#">백반,죽,국수</a></li>
-										<li><a class="dropdown-item" href="#">도시락</a></li>
-										<li><a class="dropdown-item" href="#">분식</a></li>
-										<li><hr class="dropdown-divider"></li>
-										<li><a class="dropdown-item" href="#">카페,디저트</a></li>
-										<li><a class="dropdown-item" href="#">그외 음식</a></li>
+										<li><a class="dropdown-item" href="#">보쌈/족발</a></li>
 									</ul>
 								</div>
 								<input class="search form-control" type="search" id="search" placeholder="검색어를 입력해주세요." />
@@ -186,17 +209,9 @@
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
- 	var goUrlHot = "shareHot"; 			
-	var goUrlPot = "sharePot"; 			
-	var goUrlLogin = "shareLogin";				
-	var goUrlAdmin = "adminLogin";
-//	var goUrlNow = "shareNow";				
-//	var goUrlLike = "shareLike";				
 	
-	
-	$('#btnHot').on("click", function() {
-		 $(location).attr("href", goUrlHot);
-		});
+/* 	var goUrlLogin = "shareLogin";				
+	var goUrlLike = "shareLike";				
 
 	$('#btnPot').on("click", function() {
 		 $(location).attr("href", goUrlPot);
@@ -205,12 +220,7 @@
 	$('#btnLogin').on("click", function() {
 		 $(location).attr("href", goUrlLogin);
 		});
-	
-	$('#btnAdmin').on("click", function() {
-		 $(location).attr("href", goUrlAdmin);
-		});
-	
+	 */
 	</script>
-	
 </body>
 </html>
