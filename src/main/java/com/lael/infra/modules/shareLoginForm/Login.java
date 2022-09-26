@@ -1,4 +1,4 @@
-package com.lael.infra.modules.shareLogin;
+package com.lael.infra.modules.shareLoginForm;
 
 import java.util.Date;
 

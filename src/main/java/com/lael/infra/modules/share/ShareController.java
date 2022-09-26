@@ -4,10 +4,9 @@ import java.util.Locale;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class shareController {
+public class ShareController {
 	
 	
 	/*
@@ -18,19 +17,25 @@ public class shareController {
 	
 	@RequestMapping(value = "/shareMain")
 	public String main(Model model) throws Exception {
-		return "infra/share/xdmin/shareMain";
+		return "infra/share/user/shareMain";
 	}
 	
 	@RequestMapping(value = "/shareContent")
 	public String shareContent(Locale locale, Model model) throws Exception {
 		
-		return "infra/share/xdmin/shareContent";
+		return "infra/share/user/shareContent";
 	}
 	
 
 	@RequestMapping(value = "/shareLogin")
 	public String shareLogin(Locale locale, Model model) throws Exception {
 		
-		return "infra/share/xdmin/shareLogin";
+		return "infra/share/user/shareLogin";
+	}
+	
+	@RequestMapping(value = "/shareLoginForm")
+	public String shareLoginForm(Locale locale, Model model) throws Exception {
+		
+		return "infra/share/user/shareLoginForm";
 	}
 }

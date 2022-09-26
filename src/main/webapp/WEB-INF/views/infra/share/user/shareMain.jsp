@@ -10,7 +10,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>main.html</title>
+	<title>main</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link rel="stylesheet" href="/resources/css/share/shareMain.css">
 </head>
@@ -19,14 +19,14 @@
 	<form>
 		<nav class="navbar" style="background-color:rgb(142, 68, 173); height: 100%;">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="../member/main.html">
+				<a class="navbar-brand">
 					<img src="../../resources/images/share/fullLogo_w.png" alt="" width="160px" height="60px" class="d-inline-block align-text-top">
 				</a>
 				<div class="info pt-5">
 					<a>
 						<span style="color: rgb(197, 26, 26); text-shadow: 2px 2px 2px black;" class="fw-bold fs-4 pe-5" type="button" id="btnHot" name="btnHot">실시간 HOT!</span>
-						<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4 pe-5" onclick="location.href='../share/sharepot.html'">Share Pot</span>
-						<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4" type="button" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Share Now
+						<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4 pe-5" type="button" id="btnPot" name="btnPot">Share Pot</span>
+						<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4" type="button" id="btnNow" name="btnNow" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Share Now
 							<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 								<div class="modal-dialog modal-dialog-centered">
 									<div class="modal-content">
@@ -52,8 +52,8 @@
 				<div>
 					<ul class="navbar-nav flex-row ms-md-auto pe-3">
 						<li class="nav-item col-4 me-2">
-							<a class="nav-link py-2 px-0 px-lg-2" href="../member/loginForm.html" style="color: rgb(193, 232, 100); cursor: pointer;">
-								<i class="fa-solid fa-user fa-lg"></i>
+							<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;">
+								<i class="fa-solid fa-user fa-lg" type="button" id="btnLoginForm" name="btnLoginForm" onclick="location.href='share/shareLogin.jsp'"></i>
 							</a>
 						</li>
 						<li class="">
@@ -185,17 +185,28 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script>
-	var goUrlHot = "/share/shareHot"; 			/* #-> */
-	var goUrlPot = "/share/sharPot"; 			/* #-> */
-	var goUrlNow = "/share/shareNow";				/* #-> */
-	var goUrlLogin = "/share/shareLogin";				/* #-> */
-	var goUrlLike = "/share/shareLike";				/* #-> */
+ 	/* var goUrlHot = "/share/shareHot"; 			
+	var goUrlPot = "/share/sharPot"; 			
+	var goUrlNow = "/share/shareNow";				
+	var goUrlLogin = "/share/shareLogin";				
+	var goUrlLike = "/share/shareLike";				
 	var goUrlAdmin = "/share/shareAdmin";
 	
 	
 	$('#btnHot').on("click", function() {
 		 $(location).attr("href", goUrlHot);
 		});
+	
+	$('#btnPot').on("click", function() {
+		 $(location).attr("href", goUrlPot);
+		});
+	$('#btnNow').on("click", function() {
+		 $(location).attr("href", goUrlNow);
+		});
+	
+	$('#btnLoginForm').on("click", function() {
+		 $(location).attr("href", goUrlLogin);
+		}); */
 	</script>
 	
 </body>
