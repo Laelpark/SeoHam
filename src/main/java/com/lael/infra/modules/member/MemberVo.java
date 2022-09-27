@@ -1,10 +1,10 @@
-package com.lael.infra.modules.shareCodeGroup;
+package com.lael.infra.modules.member;
 
 import com.lael.infra.common.base.BaseVo;
 
-public class ShareCodeGroupVo extends BaseVo{
+public class MemberVo extends BaseVo{
 
-	private String ccgSeq;
+	private String seq;
 	private Integer shOption;
 	private String shValue;
 	private Integer shDelNy;
@@ -23,18 +23,20 @@ public class ShareCodeGroupVo extends BaseVo{
 //	public void setDatepickerE(Date datepickerE) {
 //		this.datepickerE = datepickerE;
 //	}
+	public String getSeq() {
+		return seq;
+	}
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
+	
 	public Integer getShUpdt() {
 		return shUpdt;
 	}
 	public void setShUpdt(Integer shUpdt) {
 		this.shUpdt = shUpdt;
 	}
-	public String getCcgSeq() {
-		return ccgSeq;
-	}
-	public void setCcgSeq(String ccgSeq) {
-		this.ccgSeq = ccgSeq;
-	}
+
 	public Integer getShOption() {
 		return shOption;
 	}

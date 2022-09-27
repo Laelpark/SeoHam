@@ -9,4 +9,5 @@ public final class Constants {
 // insert 또는 update 후 페이지 전환 타입: 1:from 2:list
 	public static final int INSERT_AFTER_TYPE = 1;
 	public static final int UPDATE_AFTER_TYPE = 1;
+	public static final int SESSION_MINUTE = 30;
 }

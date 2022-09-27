@@ -24,7 +24,16 @@ public class CodeGroup {
 	private String sample6_detailAddress; 
 	private String sample6_extraAddress; 
 	private String ccgId;
+	private String ccgPw;
 	
+	
+	
+	public String getCcgPw() {
+		return ccgPw;
+	}
+	public void setCcgPw(String ccgPw) {
+		this.ccgPw = ccgPw;
+	}
 	public String getCcgId() {
 		return ccgId;
 	}

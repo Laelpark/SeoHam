@@ -4,39 +4,55 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.lael.infra.modules.codegroup.CodeGroupMapper">
+<mapper namespace="com.lael.infra.modules.member.MemberMapper">
 
-    <resultMap id="resultMapObj" type="com.lael.infra.modules.codegroup.CodeGroup"></resultMap>
+    <resultMap id="resultMapObj" type="com.lael.infra.modules.member.Member"></resultMap>
 	
 	<sql id ="selectCommon">
-		FROM codeGroup a
+		FROM share_member a
 		WHERE 1=1
 		<if test="shDelNy != null and !shDelNy.equals('')">AND DelNy = #{shDelNy}</if>
 		<choose>
-			<when test="shOption == 1">AND ccgSeq = #{shValue}</when>
+			<when test="shOption == 1">AND seq = #{shValue}</when>
 			<when test="shOption == 2">AND name LIKE CONCAT('%',#{shValue},'%')</when>
 			<when test="shOption == 3">AND name_eng LIKE CONCAT('%',#{shValue},'%')</when>
 		</choose>
 	</sql>
 	
 	<select id="selectList" resultMap="resultMapObj">
-		<include refid="Base.selectListUpperForMysql"></include>
+		<include refid="Base.selectListUpperForMysql"/>
 		SELECT
-			a.*
-			,(select count(b.cdSeq) from shareCode b where 1=1 and a.DelNy = 0 and a.ccgSeq = b.cdSeq) as ccgSeqcount
+			a.id
+			,a.pw
+			,a.name
+			,a.dob
+			,a.dob2
+			,a.dob3
+			,a.gender
+			,a.email
+			,a.email_div
+			,a.phone
+			,a.phone_div
+			,a.nick_nm
+			,a.share_place
+			,a.grade
+			,a.review
+			,a.location
+			,a.share_report_seq
+			,a.share_review_seq
+			,a.DelNy
 		<include refid="selectCommon" />
-		ORDER BY a.ccgSeq DESC
+		ORDER BY a.seq DESC
 		<include refid="Base.orderByLimitForMysql" />
 		<include refid="Base.selectListLowerForMysql" /> 
 	</select>
 	
 	<select id="selectList1" resultMap="resultMapObj">
-		<include refid="Base.selectListUpperForMysql"></include>
+		<include refid="Base.selectListUpperForMysql"/>
 		SELECT
 			a.*
-			,(select count(b.cdSeq) from shareCode b where 1=1 and a.DelNy = 0 and a.ccgSeq = b.cdSeq) as ccgSeqcount
 		<include refid="selectCommon" />
-		ORDER BY a.ccgSeq DESC
+		ORDER BY a.seq DESC
 		<include refid="Base.orderByLimitForMysql" />
 		)a
 	</select>
@@ -47,24 +63,35 @@
 	</select>
 	
 	<insert id="insert">
-		INSERT INTO codeGroup (
-			name
-			,name_eng
-			,codeGroup_another
-			,codeGroup_or
+		INSERT INTO share_member (
+			id
+			,pw
+			,name
+			,dob
+			,dob2
+			,dob3
+			,gender
+			,email
+			,email_div
+			,phone
+			,phone_div
 			,DelNy
-			,ccgId
 		)
 		VALUES (
-			#{name}
-			,#{name_eng}
-			,#{codeGroup_another}
-			,#{codeGroup_or}
-			,#{ifcgDelNy}
-			,#{ccgId}
+			#{id}
+			,#{pw}
+			,#{name}
+			,#{dob}
+			,#{dob2}
+			,#{dob3}
+			,#{gender}
+			,#{email}
+			,#{email_div}
+			,#{phone}
+			,#{phone_div}
+			,0
 		)
-		
-		<selectKey resultType="String" keyProperty="ccgSeq" order="AFTER">
+		<selectKey resultType="String" keyProperty="seq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
@@ -72,65 +99,55 @@
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			a.*
-		FROM codeGroup a
+		FROM share_member a
 	 	WHERE 1=1
-	 		AND ccgSeq = #{ccgSeq}
+	 		AND seq = #{seq}
 	</select>
 	
 	<!-- ID ajax s -->
-	<select id="idCheck" resultType="int"> 
+	<select id="idCheck" resultType="int" parameterType="String"> 
 		select count(*) 
-		from codeGroup 
-		where ccgId = #{ccgId}
+		from share_member 
+		where id = #{id}
 	</select>
 	
  	<update id="update">
-	 	UPDATE codeGroup
+	 	UPDATE share_member
 	 	SET
  			name = #{name}
- 			,ccgId = #{ccgId}
+ 			,id = #{id}
  			
 		WHERE
-			ccgSeq = #{ccgSeq}
+			seq = #{seq}
  	</update>
  	
  	<update id="uelete">
-	 	UPDATE codeGroup
+	 	UPDATE share_member
 	 	SET
 	 		DelNy = 1
 		WHERE 
-			ccgSeq = #{ccgSeq}
+			seq = #{seq}
  	</update>
  	
  	<delete id="delete">
  		DELETE FROM 
- 			codeGroup 
+ 			share_member 
 		WHERE 
-			ccgSeq = #{ccgSeq}
+			seq = #{seq}
  	</delete>
  	
- 	<select id="selectOneId" resultMap="resultMapObj">
- 		SELECT 
- 			a.ccgSeq
- 			,a.ccgId
-		FROM
-			codeGroup a
-		WHERE 1=1
-			AND a.ccgId = #{ccgId} 
- 	</select>
- 	
+ 	<!-- 로그인 후 정보 보관용 -->
  	<select id="selectOneLogin" resultMap="resultMapObj">
  		SELECT 
- 			a.ccgSeq
- 			,a.ccgId
+ 			a.seq
+ 			,a.id
  			,a.name
- 			,a.Desc
- 			
+ 			,a.email
 		FROM
-			codeGroup a
+			share_member a
 		WHERE 1=1
-			AND a.ccgId = #{ccgId} 
-			<if test="ccgPw != null and !ccgPw.equals('')">AND a.ccgPw = #{ccgPw}</if>
+			AND id = #{id} 
+			AND pw = #{pw}
  	</select>
  	
 </mapper>	

@@ -21,140 +21,157 @@
 		<img class="col-6 ms-3 mt-3" src="../../resources/images/share/fullLogo_p.png" onclick="location.href='share'" style="width: 150px; height: 45px;" type="button">
 		<h2 class="col-6 offset-4 mt-5" id="newmem">회원가입</h2>
 	</div>
-	<div id="input">
-		<table>
-			<td>
-				<label for="id" class="form-label">아이디 <span class="text-danger">*</span></label>
-				<input type="hidden" id="idAllowedNy" name="idAllowedNy" value="0">
-				<input type="text" class="a mt-2 form-control" id="id" name="id"
-					value="<c:out value="${item.id}"/>"
-					maxlength="20"
-					placeholder="아이디 입력"
-					<c:if test="${not empty item.id}">readonly</c:if>
-				>
-				<div class="invalid-feedback" id="idFeedback"></div>
-			</td>
-		</table>
-		<hr style="color: rgb(78, 78, 78); width: 800px;">
-		<label>비밀번호 <span class="text-danger">*</span></label>
-		<table>
-			<td>
-				<input type="password" class="a mt-2" id="pw" name="pw" placeholder="영대소문자, 숫자, 특수문자, 4~20자리">
-			</td>
-			<td>
-				<i class="fa-solid fa-lock" id="lock"></i>
-			</td>
-		</table>
-		<hr style="color: rgb(78, 78, 78); width: 800px;">
-		<label>비밀번호 재확인 <span class="text-danger">*</span></label>
-		<table>
-			<td>
-				<input type="password" class="a mt-2" id="pwCheck" name="pwCheck" placeholder="비밀번호 재확인">
-			</td>
-			<td>
-				<i class="fa-solid fa-lock-open col-3 offset-2" id="lock"></i>
-			</td>
-		</table>
-		<hr style="color: rgb(78, 78, 78); width: 800px;">
-		<label>이름 <span class="text-danger">*</span></label>
-		<table>
-			<td>
-				<input class="a mt-2" id="name" name="name"  placeholder="이름 입력">
-			</td>
-		</table>
-		<hr style="color: rgb(78, 78, 78); width: 800px;">
-		<label>생년월일</label>
-		<table>
-			<td>
-				<input class="b col mt-2 form-control" placeholder="년(4자)" id="dob" name="dob">
-			</td>
-			<td>
-				<input class="b mt-2 ms-4 form-control" placeholder="월" id="dob2" name="dob2">
-			</td>
-			<td>
-				<input class="b mt-2 ms-4 form-control" placeholder="일" id="dob3" name="dob3">
-			</td>
-		</table>
-		<hr style="color: rgb(78, 78, 78); width: 800px;">
-		<label>성별</label>
-		<table>
-			<td>
-				<select class="select mt-2 form-select">
-					<option>성별</option>
-					<option>남성</option>
-					<option>여성</option>
-					<option>선택안함</option>
-				</select>
-			</td>
-		</table>
-		<hr style="color: rgb(78, 78, 78); width: 800px;">
-		<label>이메일</label>
-		<table>
-			<td>
-				<input class="b col mt-2 form-control" placeholder="이메일주소" id="email" name="email">
-			</td>
-			<td>
-				<span class="ms-3 mt-2">@</span>
-			</td>
-			<td>
-				<select class="select ms-3 mt-2 form-select" id="email_div" name="email_div">
-					<option selected disabled value="">이메일</option>
-					<option value="1" <c:if test = "${item.email_div eq 1}">selected</c:if>>네이버(naver.com)</option>
-					<option value="2" <c:if test = "${item.email_div eq 2}">selected</c:if>>다음(daum.net)</option>
-					<option>지메일(gmail.com)</option>
-				</select>
-			</td>
-		</table>
-		<hr style="color: rgb(78, 78, 78); width: 800px;">
-		<label>전화번호</label>
-		<table>
-			<td>
-				<select class="select mt-2 form-select" requiredss>
-					<option>통신사</option>
-					<option>SKT</option>
-					<option>KT</option>
-					<option>LG</option>
-				</select>
-			</td>
-			<td>
-				<input class="mt-2 ms-3 form-control" style="width: 400px; height: 35px;" placeholder="특수문자(-)없이 숫자만 입력" id="phone" name="phone">
-			</td>
-			<td>
-				<button type="button" class="mt-2 ms-3 btn btn-outline-secondary">전송</button>
-			</td>
-		</table>
-		<hr style="color: rgb(78, 78, 78); width: 800px;">
-		<label>인증번호</label>
-		<table>
-			<td>
-				<input class="mt-2 form-control" placeholder="인증번호 입력">
-			</td>
-		</table>
-		<hr style="color: rgb(78, 78, 78); width: 800px;">
-	</div>
-	<div id="wrapper" class="mt-5 mb-3">
-		<button id="done" type="submit" class="btn btn-primary btn-lg" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-			가입하기
-		</button>
-		<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalCenterTitle">가입완료</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body"  align="center">
-						<i class="fa-regular fa-thumbs-up" style="color: rgb(24, 82, 24);"></i>
-						Share의 가입이 성공적으로 완료되었습니다.
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" id="btnMain" name="btnMain" onclick="location.href='share'">확인</button>
-						<button type="button" class="btn btn-success" id="btnLogin" name="btnLogin" onclick="location.href='shareLogin'">로그인하기</button>
+	<form id="myform" name="myform" method="post" autocomplete="off">
+			<!-- *Vo.jsp s -->
+			<%-- <%@include file="memberVo.jsp"%> --%>
+			<!-- *Vo.jsp e -->
+		<div id="input">
+			<table>
+				<td>
+					<label for="id" class="form-label">아이디 <span class="text-danger">*</span></label>
+					<input type="hidden" id="idAllowedNy" name="idAllowedNy" value="0">
+					<input type="text" class="a mt-2 form-control" id="id" name="id"
+						value="<c:out value="${item.id}"/>"
+						maxlength="20"
+						placeholder="아이디 입력"
+						<c:if test="${not empty item.id}">readonly</c:if>
+					>
+					<div class="invalid-feedback" id="idFeedback"></div>
+				</td>
+			</table>
+			<hr style="color: rgb(78, 78, 78); width: 800px;">
+			<label>비밀번호 <span class="text-danger">*</span></label>
+			<table>
+				<td>
+					<input type="password" class="a mt-2" id="pw" name="pw" placeholder="영대소문자, 숫자, 특수문자, 4~20자리"
+						value="<c:out value="${item.pw}"/>"
+					>
+				</td>
+				<td>
+					<i class="fa-solid fa-lock" id="lock"></i>
+				</td>
+			</table>
+			<hr style="color: rgb(78, 78, 78); width: 800px;">
+			<label>비밀번호 재확인 <span class="text-danger">*</span></label>
+			<table>
+				<td>
+					<input type="password" class="a mt-2" id="pwCheck" name="pwCheck" placeholder="비밀번호 재확인">
+				</td>
+				<td>
+					<i class="fa-solid fa-lock-open col-3 offset-2" id="lock"></i>
+				</td>
+			</table>
+			<hr style="color: rgb(78, 78, 78); width: 800px;">
+			<label>이름 <span class="text-danger">*</span></label>
+			<table>
+				<td>
+					<input class="a mt-2" id="name" name="name"  placeholder="이름 입력"
+						value="<c:out value="${item.name}"/>"
+					>
+				</td>
+			</table>
+			<hr style="color: rgb(78, 78, 78); width: 800px;">
+			<label>생년월일</label>
+			<table>
+				<td>
+					<input class="b col mt-2 form-control" placeholder="년(4자)" id="dob" name="dob"
+						value="<c:out value="${item.dob}"/>"
+					>
+				</td>
+				<td>
+					<input class="b mt-2 ms-4 form-control" placeholder="월" id="dob2" name="dob2"
+						value="<c:out value="${item.dob2}"/>"
+					>
+				</td>
+				<td>
+					<input class="b mt-2 ms-4 form-control" placeholder="일" id="dob3" name="dob3"
+						value="<c:out value="${item.dob3}"/>"
+					>
+				</td>
+			</table>
+			<hr style="color: rgb(78, 78, 78); width: 800px;">
+			<label>성별</label>
+			<table>
+				<td>
+					<select name="gender" class="select mt-2 form-select">
+						<option selected value="">성별</option>
+						<option value="1" <c:if test = "${item.gender eq 1}">selected</c:if>>남성</option>
+						<option value="2" <c:if test = "${item.gender eq 2}">selected</c:if>>여성</option>
+						<option value="3" <c:if test = "${item.gender eq 3}">selected</c:if>>선택안함</option>
+					</select>
+				</td>
+			</table>
+			<hr style="color: rgb(78, 78, 78); width: 800px;">
+			<label>이메일</label>
+			<table>
+				<td>
+					<input class="b col mt-2 form-control" placeholder="이메일주소" id="email" name="email"
+						value="<c:out value="${item.email}"/>"
+					>
+				</td>
+				<td>
+					<span class="ms-3 mt-2">@</span>
+				</td>
+				<td>
+					<select class="select ms-3 mt-2 form-select" id="email_div" name="email_div">
+						<option selected disabled value="">이메일</option>
+						<option value="4" <c:if test = "${item.email_div eq 4}">selected</c:if>>네이버(naver.com)</option>
+						<option value="5" <c:if test = "${item.email_div eq 5}">selected</c:if>>다음(daum.net)</option>
+						<option value="6" <c:if test = "${item.email_div eq 6}">selected</c:if>>지메일(gmail.com)</option>
+					</select>
+				</td>
+			</table>
+			<hr style="color: rgb(78, 78, 78); width: 800px;">
+			<label>전화번호</label>
+			<table>
+				<td>
+					<select name="phone_div" class="select mt-2 form-select" requiredss>
+						<option value="" <c:if test = "${empty item.phone_div}">selected</c:if>>통신사</option>
+						<option value="9" <c:if test = "${item.phone_div eq 9}">selected</c:if>>SKT</option>
+						<option value="8" <c:if test = "${item.phone_div eq 8}">selected</c:if>>KT</option>
+						<option value="10" <c:if test = "${item.phone_div eq 10}">selected</c:if>>LG</option>
+					</select>
+				</td>
+				<td>
+					<input class="mt-2 ms-3 form-control" style="width: 400px; height: 35px;" placeholder="특수문자(-)없이 숫자만 입력" id="phone" name="phone"
+						value="<c:out value="${item.phone}"/>">
+				</td>
+				<td>
+					<button type="button" class="mt-2 ms-3 btn btn-outline-secondary">전송</button>
+				</td>
+			</table>
+			<hr style="color: rgb(78, 78, 78); width: 800px;">
+			<label>인증번호</label>
+			<table>
+				<td>
+					<input class="mt-2 form-control" placeholder="인증번호 입력">
+				</td>
+			</table>
+			<hr style="color: rgb(78, 78, 78); width: 800px;">
+		</div>
+		<div id="wrapper" class="mt-5 mb-3">
+			<button id="btnSave" name="btnSave" type="submit" class="btn btn-primary btn-lg" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+				가입하기
+			</button>
+			<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalCenterTitle">가입완료</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body"  align="center">
+							<i class="fa-regular fa-thumbs-up" style="color: rgb(24, 82, 24);"></i>
+							Share의 가입이 성공적으로 완료되었습니다.
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-success" id="btnLogin" name="btnLogin" onclick="location.href='shareLogin'">로그인하기</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</form>
 
 
 	<!-- end --> 
@@ -163,9 +180,27 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 	
+	var goUrlLogin = "/shareLogin";
+	var goUrlInst = "/MemberInst";
+	
+	var seq = $("input:hidden[name=seq]");
+
+	var form = $("form[name=myform]");
+	var formVo = $("form[name=formVo]");
+
+	$("#btnSave").on("click", function() {
+		form.attr("action", goUrlInst).submit();
+	});
+	
+	$("#btnLogin").on("click", function() {
+		if (seq.val() == "0" || seq.val() == "") {
+			form.attr("action", goUrlLogin).submit();
+		} else {}
+	});
+	
 	//ID ajax
  	
-	$("#id").on("focusout", function(){
+/*  	$("#id").on("focusout", function(){
 
 		var id = $("#id").val();
 		
@@ -173,9 +208,7 @@
 			async: true 
 			,cache: false
 			,type: "post"
-			/* ,dataType:"json" */
-			,url: "/share/idCheck"
-			/* ,data : $("#formLogin").serialize() */
+			,url: "/idCheck"
 			,data : { "id" : id }
 			,success: function(response) {
 				if(response.rt == "success") {
@@ -201,7 +234,9 @@
 				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 			}
 		});
-	});
+	}); 
+*/
+
 	
 	</script>
 	

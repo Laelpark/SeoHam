@@ -44,24 +44,4 @@ public class ShareController {
 	public String shareContent(Locale locale, Model model) throws Exception {
 		return "infra/share/user/shareNow";
 	}
-
-	@RequestMapping(value = "/shareLogin")
-	public String shareLogin(Locale locale, Model model) throws Exception {
-		return "infra/share/user/shareLogin";
-	}
-	
-	@RequestMapping(value = "/shareLoginForm")
-	public String shareLoginForm(Locale locale, Model model) throws Exception {
-		return "infra/share/user/shareLoginForm";
-	}
-	
-	@RequestMapping(value = "/shareLogDone")
-	public String shareLogDone(Locale locale, Model model) throws Exception {
-		return "infra/share/user/shareLogDone";
-	}
-	
-	@RequestMapping(value = "/adminLogin")
-	public String adminLogin(Locale locale, Model model) throws Exception {
-		return "infra/share/admin/adminLogin";
-	}
 }

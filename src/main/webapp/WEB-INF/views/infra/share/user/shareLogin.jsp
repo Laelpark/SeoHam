@@ -39,14 +39,14 @@
 					<span class="input-group-text" id="inputGroupPrepend">
 						<i class="fa-solid fa-user p-3 d-grid" style="font-size: 23px; height: 55px;"></i>
 					</span>
-					<input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+					<input type="text" class="form-control" id="id" name="id" aria-describedby="inputGroupPrepend">
 				</div>
 			</div>
 			<!-- <div class="input-group col-3 offset-4 text-center">
 				<span class="input-group-text" id="idimg">
 					<i class="fa-solid fa-user p-3 d-grid" style="font-size: 23px; height: 55px;"></i>
 				</span>
-				<input class="id" type="text" id="id"  placeholder="ID" aria-describedby="inputGroupPrepend" required>
+				<input class="id" type="text" id="id"  placeholder="ID" aria-describedby="inputGroupPrepend">
 			</div> -->
 			<div class="offset-4 form-check col-4 mt-2" id="rememberId">
 				<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -55,25 +55,19 @@
 				</label>
 			</div>
 			<div class="col-2 text-center">
-				<button type="button" id="loginBtn" class="btn" style=" width: 100px; height: 70px; float: right; background-color: blueviolet; color: white;" onclick="location.href='shareLogDone'">로그인</button>
+				<button type="button" id="btnLogin" name="btnLogin" class="btn" style=" width: 100px; height: 70px; float: right; background-color: blueviolet; color: white;">로그인</button>
 			</div>
 			<div class="col-4 offset-4 text-center">
 				<div class="input-group has-validation">
 					<span class="input-group-text" id="inputGroupPrepend">
 						<i class="fas fa-solid fa-lock p-3 d-grid" style="font-size: 20px;  height: 55px;"></i>
 					</span>
-					<input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+					<input type="password" id="pw" name="pw" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend">
 				</div>
 			</div>
-			<!-- <div class="input-group col-3 offset-4 text-center">
-				<span class="input-group-text" id="pwimg">
-					<i class="fas fa-solid fa-lock p-3 d-grid" style="font-size: 23px;  height: 55px;"></i>
-				</span>
-				<input class="pw" type="text" id="pw"  placeholder="PASSWORD" aria-describedby="inputGroupPrepend" required>
-			</div> -->
 			<div class="col-2 offset-4 form-check mb-3 mt-2">
-				<input class="form-check-input" type="checkbox" id="flexCheckDefault" checked>
-				<label class="form-check-label" for="flexCheckDefault">자동 로그인 </label>
+				<input class="form-check-input" type="checkbox" id="autoLogin" name="autoLogin">
+				<label class="form-check-label" for="autoLogin">자동 로그인 </label>
 			</div>
 			<div class="container text-center mt-3">
 				<div class="row">
@@ -101,6 +95,31 @@
 		$('#btnForm').on("click", function() {
 			 $(location).attr("href", goUrlLoginForm);
 			});
+		
+		// 로그인
+		$("#btnLogin").on("click", function(){
+			/* if(validation() == false) return false; */
+			
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "loginProc"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "id" : $("#id").val(), "pw" : $("#pw").val()}
+				,success: function(response) {
+					if(response.rt == "success") {
+							location.href = "/share";
+					} else {
+						alert("회원없음");
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		});
 		
 		
 	</script>
