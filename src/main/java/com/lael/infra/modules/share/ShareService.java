@@ -2,8 +2,6 @@ package com.lael.infra.modules.share;
 
 import java.util.List;
 
-
-
 public interface ShareService {
 
 	public List<Share> selectList(ShareVo vo) throws Exception;  // list 로 담아주기

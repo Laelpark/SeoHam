@@ -20,8 +20,6 @@ public class ShareController {
 		  vo.setParamsPaging(service.selectOneCount(vo)); 
 	  }
 	
-
-	
 	@RequestMapping(value = "/share")
 	public String main(Model model) throws Exception {
 		return "infra/share/user/share";

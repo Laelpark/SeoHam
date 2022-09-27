@@ -16,12 +16,12 @@ public class ShareDao {
 	private static String namespace = "com.lael.infra.modules.share.ShareMapper";
 
 	public List<Share> selectList(ShareVo vo){ 
-	List<Share> list = sqlSession.selectList("com.lael.infra.modules.share.ShareMapper.selectList", vo);
+	List<Share> list = sqlSession.selectList(namespace + ".selectList", vo);
 	return list; 								
 }
 
 	public List<Share> selectList(){ 
-	List<Share> list = sqlSession.selectList("com.lael.infra.modules.share.ShareMapper.selectList", "");
+	List<Share> list = sqlSession.selectList(namespace + ".selectList", "");
 	return list; 								
 }
 

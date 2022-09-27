@@ -1,27 +1,27 @@
-<!-- <?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.lael.infra.modules.code.CodeMapper">
+<mapper namespace="com.lael.infra.modules.shareCode.ShareCodeMapper">
 
-    <resultMap id="resultMapObj" type="com.lael.infra.modules.code.Code"></resultMap>
+    <resultMap id="resultMapObj" type="com.lael.infra.modules.shareCode.ShareCodeMapper"></resultMap>
 	
 	<sql id ="selectCommon">
-	 	FROM code b
- 	 	JOIN codeGroup a on a.ccgSeq = b.cdSeq
+	 	FROM shareCode b
+ 	 	JOIN shareCodeGroup a on a.ccgSeq = b.cdSeq
 		WHERE 1=1
 		<if test="cdDelNy != null and !cdDelNy.equals('')">AND cdDelNy = #{cdDelNy}</if>
 		<choose>
 			<when test="shOption == 1">AND cdSeq = #{shValue}</when>
-			<when test="shOption == 2">AND codeName LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 2">AND name LIKE CONCAT('%',#{shValue},'%')</when>
 			<when test="shOption == 3">AND codeOrder LIKE CONCAT('%',#{shValue},'%')</when>
 		</choose>
 	</sql>
 	
 	<select id="selectList" resultMap="resultMapObj">
-		<include refid="Base.selectListUpperForMysql"></include>
+		<include refid="Base.selectListUpperForMysql"/>
 		SELECT
 			b.*
 			,a.ccgSeq
@@ -31,7 +31,7 @@
 	 	<include refid="Base.orderByLimitForMysql" />
 		<include refid="Base.selectListLowerForMysql" /> 
 	</select>
-		
+	
 	<select id="selectOneCount" resultType="Integer">
 		SELECT COUNT(*)
 		<include refid="selectCommon" />
@@ -39,10 +39,10 @@
 	
 	<insert id="insert">
 		INSERT INTO code (
-			codeName
+			name
 		)
 		VALUES (
-			#{codeName}
+			#{name}
 		)
 		
 		<selectKey resultType="String" keyProperty="cdSeq" order="AFTER">
@@ -53,19 +53,19 @@
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			b.*
-		FROM code b
+		FROM shareCode b
 	 	WHERE 1=1
 	 		AND cdSeq = #{cdSeq}
 	</select>
 	<update id="update">
-	 	UPDATE code
+	 	UPDATE shareCode
 	 	SET
- 			codeName = #{codeName}
+ 			name = #{name}
 		WHERE
 			cdSeq = #{cdSeq}
  	</update>
  	<update id="uelete">
-	 	UPDATE code
+	 	UPDATE shareCode
 	 	SET
 	 		cdDelNy = 1
 		WHERE 
@@ -73,7 +73,7 @@
  	</update>
  	<delete id="delete">
  		DELETE FROM 
- 			code 
+ 			shareCode 
 		WHERE 
 			cdSeq = #{cdSeq}
  	</delete>
@@ -81,7 +81,7 @@
  	  <select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
 		SELECT 
 			cdSeq
-			,codeName
+			,name
 			,ccgSeq
 		FROM
 			code
@@ -89,4 +89,3 @@
 			AND cdDelNy = 0
     </select>
 </mapper>	
- -->
