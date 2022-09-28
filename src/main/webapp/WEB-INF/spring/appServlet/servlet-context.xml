@@ -23,6 +23,21 @@
 	
 	<context:component-scan base-package="com.lael.infra" />
 	
+		<!-- session interceptor s 2022.03.13 for logincheck -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<exclude-mapping path="/resources/**" />
+			<exclude-mapping path="/share" />
+			<exclude-mapping path="/shareHot" />
+			<exclude-mapping path="/sharePot" />
+			<exclude-mapping path="/shareNow" /> <!-- 나중에 지우기 -->
+			<exclude-mapping path="/shareLogin" />
+			<exclude-mapping path="/shareLoginForm" />
+			<beans:bean id="checkLoginSessionInterception" class="com.lael.infra.common.interceptor.CheckLoginSessionInterception"/>
+		</interceptor>
+	</interceptors>	
+	<!-- session interceptor e 2022.03.13 for logincheck -->
 	
 	
 </beans:beans>

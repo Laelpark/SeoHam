@@ -119,8 +119,8 @@
 				</div>
 			</div>
 		</div>
-		<c:set var="listCodeFood" value="${CodeServiceImpl.selectListCachedCode('4') }" />
-		<c:set var="listCodeNum" value="${CodeServiceImpl.selectListCachedCode('5') }" />
+		<c:set var="listCodeFood" value="${shareCodeGroupServiceImpl.selectListCachedCode('4') }" />
+		<c:set var="listCodeNum" value="${shareCodeGroupServiceImpl.selectListCachedCode('5') }" />
 		<c:choose>
 			<c:when test="${fn:length(list) eq 0}">
 				<tr>

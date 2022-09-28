@@ -13,6 +13,7 @@
 	<title>shareLoginForm</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link rel="stylesheet" href="../resources/css/share/shareLoginForm.css">
+	<script defer type="text/javascript" src="/resources/js/validation.js"></script>
 </head>
 <body>
 	<!-- start -->
@@ -31,43 +32,50 @@
 					<label for="id" class="form-label">아이디 <span class="text-danger">*</span></label>
 					<input type="hidden" id="idAllowedNy" name="idAllowedNy" value="0">
 					<input type="text" class="a mt-2 form-control" id="id" name="id"
-						value="<c:out value="${item.id}"/>"
-						maxlength="20"
-						placeholder="아이디 입력"
-						<c:if test="${not empty item.id}">readonly</c:if>
-					>
+						value="<c:out value="${item.id}"/>" maxlength="20" placeholder="아이디 입력" 
+						<c:if test="${not empty item.id}">readonly</c:if>>
+					  <div class="msg" id="id_msg" name="id_msg" style="display: none;"></div>
 					<div class="invalid-feedback" id="idFeedback"></div>
+					
 				</td>
 			</table>
 			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<label>비밀번호 <span class="text-danger">*</span></label>
+			<label for="pw">비밀번호 <span class="text-danger">*</span></label>
 			<table>
 				<td>
-					<input type="password" class="a mt-2" id="pw" name="pw" placeholder="영대소문자, 숫자, 특수문자, 4~20자리"
-						value="<c:out value="${item.pw}"/>"
-					>
+					<input type="password" class="a mt-2 form-control" id="pw" name="pw" placeholder="영대소문자, 숫자, 특수문자, 4~20자리" onkeypress="validation()" required>
+					 <div class="invalid-feedback" id="pwFeedback"></div>
 				</td>
 				<td>
 					<i class="fa-solid fa-lock" id="lock"></i>
 				</td>
 			</table>
 			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<label>비밀번호 재확인 <span class="text-danger">*</span></label>
 			<table>
 				<td>
-					<input type="password" class="a mt-2" id="pwCheck" name="pwCheck" placeholder="비밀번호 재확인">
+					<label  for="pwCheck" class="form-label">비밀번호 재확인<span class="text-danger">*</span></label>
+					<input type="hidden" id="pwAllowedNy" name="pwAllowedNy" value="0">
+					<input type="password" class="a mt-2 form-control" id="pwCheck" name="pwCheck"
+						value="<c:out value="${item.pwCheck}"/>"maxlength="20" placeholder="비밀번호를 다시 입력해주세요." 
+						<c:if test="${not empty item.pwCheck}">readonly</c:if>>
+					<div class="invalid-feedback" id="pwCheckFeedback"></div>
 				</td>
 				<td>
-					<i class="fa-solid fa-lock-open col-3 offset-2" id="lock"></i>
+					<i class="fa-solid fa-lock" id="lock"></i>
 				</td>
 			</table>
 			<hr style="color: rgb(78, 78, 78); width: 800px;">
 			<label>이름 <span class="text-danger">*</span></label>
 			<table>
 				<td>
-					<input class="a mt-2" id="name" name="name"  placeholder="이름 입력"
-						value="<c:out value="${item.name}"/>"
-					>
+					<input class="a mt-2 form-control" id="name" name="name"  placeholder="이름 입력" required>
+				</td>
+			</table>
+			<hr style="color: rgb(78, 78, 78); width: 800px;">
+			<label>닉네임</label>
+			<table>
+				<td>
+					<input class="a mt-2 form-control" id="nick_nm" name="nick_nm"  placeholder="닉네임 입력" required>
 				</td>
 			</table>
 			<hr style="color: rgb(78, 78, 78); width: 800px;">
@@ -150,7 +158,7 @@
 			<hr style="color: rgb(78, 78, 78); width: 800px;">
 		</div>
 		<div id="wrapper" class="mt-5 mb-3">
-			<button id="btnSave" name="btnSave" type="submit" class="btn btn-primary btn-lg" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+			<button id="btnSave" name="btnSave" type="button" class="btn btn-primary btn-lg" onclick="validation();" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
 				가입하기
 			</button>
 			<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -165,7 +173,7 @@
 							Share의 가입이 성공적으로 완료되었습니다.
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-success" id="btnLogin" name="btnLogin" onclick="location.href='shareLogin'">로그인하기</button>
+							<button type="button" class="btn btn-success" id="btnLogin" name="btnLogin">로그인하기</button>
 						</div>
 					</div>
 				</div>
@@ -177,6 +185,7 @@
 	<!-- end --> 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 	
@@ -188,56 +197,100 @@
 	var form = $("form[name=myform]");
 	var formVo = $("form[name=formVo]");
 
-	$("#btnSave").on("click", function() {
-		form.attr("action", goUrlInst).submit();
-	});
-	
 	$("#btnLogin").on("click", function() {
-		if (seq.val() == "0" || seq.val() == "") {
-			form.attr("action", goUrlLogin).submit();
-		} else {}
+		form.attr("action", goUrlLogin).submit();
 	});
 	
+/*   	$("#btnSave").on("click", function() {
+		if (seq.val() == "0" || seq.val() == "") {
+			form.attr("action", goUrlInst).submit();
+		} else {}
+	});  */
+	 
 	//ID ajax
  	
-/*  	$("#id").on("focusout", function(){
+ 	$("#id").on("focusout", function(){
 
 		var id = $("#id").val();
 		
-		$.ajax({
-			async: true 
-			,cache: false
-			,type: "post"
-			,url: "/idCheck"
-			,data : { "id" : id }
-			,success: function(response) {
-				if(response.rt == "success") {
-					document.getElementById("id").classList.add('is-valid');
-
-					document.getElementById("idFeedback").classList.remove('invalid-feedback');
-					document.getElementById("idFeedback").classList.add('valid-feedback');
-					document.getElementById("idFeedback").innerText = "사용 가능 합니다.";
-					
-					document.getElementById("idAllowedNy").value = 1;
-					
-				} else {
-					document.getElementById("id").classList.add('is-invalid');
-					
-					document.getElementById("idFeedback").classList.remove('valid-feedback');
-					document.getElementById("idFeedback").classList.add('invalid-feedback');
-					document.getElementById("idFeedback").innerText = "사용 불가능 합니다";
-					
-					document.getElementById("idAllowedNy").value = 0;
+		if (!id_check("#id", $("#id").val(), "#idFeedback", "아이디를 입력하세요")) {
+			return false;
+		} else {
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				,url: "/idCheck"
+				,data : { "id" : $("#id").val() }
+				,success: function(response) {
+					if(response.rt == "success") {
+						if (id.length > 0) {
+							document.getElementById("id").classList.remove('is-invalid');
+							document.getElementById("id").classList.add('is-valid');
+		
+							document.getElementById("idFeedback").classList.remove('invalid-feedback');
+							document.getElementById("idFeedback").classList.add('valid-feedback');
+							document.getElementById("idFeedback").innerText = "사용 가능한 ID입니다.";
+							
+							document.getElementById("idAllowedNy").value = 1;
+						} else {
+							document.getElementById("id").classList.add('is-invalid');
+							
+							document.getElementById("idFeedback").classList.remove('valid-feedback');
+							document.getElementById("idFeedback").classList.add('invalid-feedback');
+							document.getElementById("idFeedback").innerText = "아이디를 입력해주세요";
+							
+							document.getElementById("idAllowedNy").value = 0;
+						}
+					} else {
+						document.getElementById("id").classList.add('is-invalid');
+						
+						document.getElementById("idFeedback").classList.remove('valid-feedback');
+						document.getElementById("idFeedback").classList.add('invalid-feedback');
+						document.getElementById("idFeedback").innerText = "사용 불가능한 ID입니다";
+						
+						document.getElementById("idAllowedNy").value = 0;
+					}
 				}
-			}
-			,error : function(jqXHR, textStatus, errorThrown){
-				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-			}
-		});
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});			
+		}
 	}); 
-*/
-
 	
+	//비밀번호 확인	
+	
+  		$(function(){
+ 		
+ 			$('#pwCheck').blur(function(){	   
+ 				if($('#pw').val() != $('#pwCheck').val()){	    	
+ 					if($('#pwCheck').val()!=''){		    
+ 						alert("비밀번호가 일치하지 않습니다.");	    	    
+ 						$('#pwCheck').val('');	          
+ 						$('#pwCheck').focus();	      
+ 					 }	   
+				 }	
+ 			})  	   
+ 		});
+
+	 	validation = function() {
+			if (!pw_check("#pw", $("#pw").val(), "#pwFeedback", "비밀번호를 입력하세요")) {
+				return false;
+			} else if (!pw_recheck("#pwCheck", $("#pwCheck").val(), "#pwCheckFeedback", "비밀번호를 입력하세요")) {
+				
+			}
+		} 
+ 		
+ 	 	$("#btnSave").on("click", function() {
+			if (validation() == false) {
+				return false;
+			} else {
+				$("#exampleModalCenter").modal();
+			}
+			
+		})
+	 		
 	</script>
 	
 </body>

@@ -15,6 +15,8 @@ public interface MemberService {
 	
 	public int idCheck(Member dto) throws Exception;
 	
+//	public int pwCheck(Member dto) throws Exception;
+	
 	public Member selectOneLogin(Member dto) throws Exception;
 
 }

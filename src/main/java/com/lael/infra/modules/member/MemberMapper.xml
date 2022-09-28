@@ -67,6 +67,7 @@
 			id
 			,pw
 			,name
+			,nick_nm
 			,dob
 			,dob2
 			,dob3
@@ -81,6 +82,7 @@
 			#{id}
 			,#{pw}
 			,#{name}
+			,#{nick_nm}
 			,#{dob}
 			,#{dob2}
 			,#{dob3}

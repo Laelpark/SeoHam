@@ -23,7 +23,18 @@ public class Member {
 	private Integer share_review_seq;
 	private Integer DelNy;
 	
-	
+	public Integer getShare_report_seq() {
+		return share_report_seq;
+	}
+	public void setShare_report_seq(Integer share_report_seq) {
+		this.share_report_seq = share_report_seq;
+	}
+	public Integer getShare_review_seq() {
+		return share_review_seq;
+	}
+	public void setShare_review_seq(Integer share_review_seq) {
+		this.share_review_seq = share_review_seq;
+	}
 	public String getId() {
 		return id;
 	}
@@ -125,18 +136,6 @@ public class Member {
 	}
 	public void setLocation(String location) {
 		this.location = location;
-	}
-	public Integer getShare_report_seq() {
-		return share_report_seq;
-	}
-	public void setShare_report_seq(Integer share_report_seq) {
-		this.share_report_seq = share_report_seq;
-	}
-	public Integer getShare_review_seq() {
-		return share_review_seq;
-	}
-	public void setShare_review_seq(Integer share_review_seq) {
-		this.share_review_seq = share_review_seq;
 	}
 	public Integer getDelNy() {
 		return DelNy;

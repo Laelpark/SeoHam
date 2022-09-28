@@ -12,88 +12,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>shareLogDone</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<style  type="text/css">
-		card bg-light {
-		  height:100vh;
-		  width: 100vw;
-		}
-
-		.inner-shadow {
-			filter: brightness(85%);
-		}
-		
-		div#search_box {
-			position: absolute;
-			top: 50%;
-		}
-
-		ul{
-   			list-style:none;
-		}
-
-		.container-1{
-			width: 800px;
-			vertical-align: middle;
-			white-space: nowrap;
-			position: relative;
-
-		}
-
-		.container-1 input#search{
-			width: 800px;
-			height: 50px;
-			border: none;
-			font-size: 12pt;
-			float: left;
-			background-color: lightgrey;
-			padding-left: 45px;
-			-webkit-border-radius: 5px;
-			-moz-border-radius: 5px;
-			border-radius: 20px;
-			text-align: center;
-		}
-
-		.container-1 .btn{
-			position: absolute;
-			margin-top: 2px;
-			margin-left: 50px;
-			height: 50px;
-			z-index: 1;
-			border-radius: 20px;
-		}
-
-		.info {
-			cursor:pointer;
-		}
-
-		.c {
-			justify-content: center;
-		}
-
-		.carousel-indicators{
-			z-index: 1;
-			margin-bottom: 70px;
-		}
-
-		.footerinfo {
-			display: inline-block;
-			font-size: 12px;
-			color: rgb(126, 128, 130);
-			margin-top: 20px;
-			margin-bottom: 10px;
-			letter-spacing: 1px;
-			position: relative;
-			left: 40%;
-		}
-
-		#menu {
-			margin-right: 80px;
-		}
-	</style>
+	<link rel="stylesheet" href="/resources/css/share/shareMain.css">
 </head>
 <body>
 	<!-- start -->
-	<form>
+	<form id="myform" name="myform" method="post" autocomplete="off">
 		<nav class="navbar" style="background-color:rgb(142, 68, 173); height: 100%;">
 			<div class="container-fluid">
 				<a class="navbar-brand">
@@ -107,20 +30,69 @@
 					</a>
 				</div>
 				<div id="menu">
-					<ul class="navbar-nav flex-row ms-md-auto me-4">
-						<li class="nav-item col-4"></li>
-						<li class="nav-item col-4">
-							<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;">
-								<i class="fa-solid fa-user fa-lg"></i>
-							</a>
-						</li>
-						<li class="">
-							<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;">
-								<i class="fa-solid fa-star fa-lg"></i>
-							</a>
-						</li>
-					</ul>
-					<span style="color: white; text-shadow: 2px 2px black; float: right;" class="">Welcome to SHARE!</span>
+					<c:choose>
+						<c:when test="${empty sessSeq}">
+							<ul class="navbar-nav flex-row ms-md-auto pe-3">
+								<li class="nav-item col-4 me-2">
+									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnLogin" name="btnLogin">
+										<i class="fa-solid fa-user fa-lg"></i>
+									</a>
+								</li>
+								<li class="">
+									<a class="nav-link py-2 px-0 px-lg-2 me-2" style="cursor: pointer;" type="button" id="btnList" name="btnList">
+										<i style="color: rgb(193, 232, 100);" class="fa-solid fa-star fa-lg" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"></i>
+										<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-centered">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalCenterTitle">로그인을 해주세요.</h5>
+														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<div class="modal-body"  align="center">
+														<i class="fas fa-light fa-circle-exclamation" style="color: red;"></i>
+														저장된 리스트가 없습니다.
+													</div>
+													<div class="modal-footer">
+														<a>
+															<button type="button" class="btn btn-primary">확인</button>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="nav-item col-4 me-2">
+									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnAdmin" name="btnAdmin">
+										<i class="fa-solid fa-sliders"></i>
+									</a>
+								</li>
+							</ul>
+						</c:when>
+						<c:otherwise>
+							<ul class="navbar-nav flex-row ms-md-auto me-4">
+								<li class="nav-item col-4"></li>
+								<li class="nav-item col-4">
+									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnMypage" name="btnMypage">
+										<i class="fa-solid fa-user fa-lg"></i>
+									</a>
+								</li>
+								<li class="">
+									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;"  type="button" id="btnList" name="btnList">
+										<i class="fa-solid fa-star fa-lg"></i>
+									</a>
+								</li>
+								<li class="nav-item col-4 ms-3">
+									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnLogout" name="btnLogout">
+										<i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
+									</a>
+								</li>
+							</ul>
+							<span style="color: white; text-shadow: 2px 2px black; float: right;" class="">
+								<br><c:out value="${sessName }"/>님,
+								Welcome to SHARE!</span>
+						</c:otherwise>
+					</c:choose>
 				</div>	
 			</div>
 	  	</nav>
@@ -210,17 +182,61 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 	
-/* 	var goUrlLogin = "shareLogin";				
-	var goUrlLike = "shareLike";				
+	var goUrlHot = "/shareHot"; 			
+	var goUrlPot = "/sharePot"; 			
+	var goUrlNow = "/shareNow";				
+	var goUrlLogin = "/shareLogin";		
+	var goUrlAdmin = "/adminLogin";
+			
+	var seq = $("input:hidden[name=seq]");
+
+	var form = $("form[name=myform]");
+	var formVo = $("form[name=formVo]");
+	
+	$('#btnHot').on("click", function() {
+		 $(location).attr("href", goUrlHot);
+		});
 
 	$('#btnPot').on("click", function() {
 		 $(location).attr("href", goUrlPot);
+		});
+	$('#btnNow').on("click", function() {
+		 $(location).attr("href", goUrlNow);
 		});
 	
 	$('#btnLogin').on("click", function() {
 		 $(location).attr("href", goUrlLogin);
 		});
-	 */
+	
+	$('#btnAdmin').on("click", function() {
+		 $(location).attr("href", goUrlAdmin);
+		});
+
+
+	
+	
+	// 로그아웃
+	
+	$("#btnLogout").on("click", function(){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,url: "logoutProc"
+			,data: {}
+			,success: function(response) {
+				if(response.rt == "success") {
+					location.href = "/share";
+				} else {
+					// by pass
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
+	
 	</script>
 </body>
 </html>

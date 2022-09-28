@@ -88,6 +88,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
 	<script>
 	
 		var goUrlLoginForm = "shareLoginForm";				
@@ -97,6 +98,7 @@
 			});
 		
 		// 로그인
+		
 		$("#btnLogin").on("click", function(){
 			/* if(validation() == false) return false; */
 			
@@ -107,12 +109,12 @@
 				/* ,dataType:"json" */
 				,url: "loginProc"
 				/* ,data : $("#formLogin").serialize() */
-				,data : { "id" : $("#id").val(), "pw" : $("#pw").val()}
+				,data : { "id" : $("#id").val(), "pw" : $("#pw").val(), "autoLogin" : $("#autoLogin").is(":checked")}
 				,success: function(response) {
 					if(response.rt == "success") {
 							location.href = "/share";
-					} else {
-						alert("회원없음");
+						}else {
+							alert("회원없음");
 					}
 				}
 				,error : function(jqXHR, textStatus, errorThrown){
@@ -120,10 +122,7 @@
 				}
 			});
 		});
-		
-		
 	</script>
- 	
 	
 </body>
 </html>

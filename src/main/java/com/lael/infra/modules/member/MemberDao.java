@@ -51,6 +51,8 @@ public class MemberDao {
 	
 	public int idCheck(Member dto) {return sqlSession.selectOne(namespace + ".idCheck", dto);}
 	
+//	public int pwCheck(Member dto) {return sqlSession.selectOne(namespace + ".pwCheck", dto);}
+	
 	public Member selectOneLogin(Member dto) {
 		return sqlSession.selectOne(namespace + ".selectOneLogin", dto);
 	}

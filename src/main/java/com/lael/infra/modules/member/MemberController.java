@@ -1,7 +1,6 @@
 package com.lael.infra.modules.member;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +28,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/shareLogin")
-	public String shareLogin(Locale locale, Model model) throws Exception {
+	public String shareLogin() throws Exception {
 		return "infra/share/user/shareLogin";
 	}
 	
-	@RequestMapping(value = "/shareLoginForm")
-	public String shareLoginForm(Locale locale, Model model) throws Exception {
+	@RequestMapping(value = "/shareSignup")
+	public String shareLoginForm() throws Exception {
 		return "infra/share/user/shareLoginForm";
 	}
 	
@@ -66,22 +65,32 @@ public class MemberController {
 	@RequestMapping(value = "loginProc")
 	public Map<String, Object> loginProc(Member dto, HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-
+		
 		dto.setPw(UtilSecurity.encryptSha256(dto.getPw()));
-		Member rtMember = service.selectOneLogin(dto);
-
-		if (rtMember != null) {
+		Member result = service.selectOneLogin(dto);
+		
+		if (result != null) {
 			
 			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
-			httpSession.setAttribute("sessSeq", rtMember.getSeq());
-			httpSession.setAttribute("sessId", rtMember.getId());
-			httpSession.setAttribute("sessName", rtMember.getName());
-			httpSession.setAttribute("sessEmail", rtMember.getEmail());
-			
+			httpSession.setAttribute("sessSeq", result.getSeq());
+			httpSession.setAttribute("sessId", result.getId());
+			httpSession.setAttribute("sessName", result.getName());
+			httpSession.setAttribute("sessEmail", result.getEmail());
+	
 			returnMap.put("rt", "success");
 		} else {
 			returnMap.put("rt", "fail");
 		}
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "logoutProc")
+	public Map<String, Object> logoutProc(HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+//		UtilCookie.deleteCookie();
+		httpSession.invalidate();
+		returnMap.put("rt", "success");
 		return returnMap;
 	}
 }
