@@ -73,17 +73,17 @@
 							<ul class="navbar-nav flex-row ms-md-auto me-4">
 								<li class="nav-item col-4"></li>
 								<li class="nav-item col-4">
-									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnMypage" name="btnMypage">
+									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnMypage" name="btnMypage" onclick="#'">
 										<i class="fa-solid fa-user fa-lg"></i>
 									</a>
 								</li>
 								<li class="">
-									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;"  type="button" id="btnList" name="btnList">
+									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;"  type="button" id="btnList" name="btnList" onclick="location.href='shareLikeList'">
 										<i class="fa-solid fa-star fa-lg"></i>
 									</a>
 								</li>
 								<li class="nav-item col-4 ms-3">
-									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnLogout" name="btnLogout">
+									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnLogout" name="btnLogout" onclick="#'">
 										<i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
 									</a>
 								</li>
@@ -181,39 +181,6 @@
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
-	
-	var goUrlHot = "/shareHot"; 			
-	var goUrlPot = "/sharePot"; 			
-	var goUrlNow = "/shareNow";				
-	var goUrlLogin = "/shareLogin";		
-	var goUrlAdmin = "/adminLogin";
-			
-	var seq = $("input:hidden[name=seq]");
-
-	var form = $("form[name=myform]");
-	var formVo = $("form[name=formVo]");
-	
-	$('#btnHot').on("click", function() {
-		 $(location).attr("href", goUrlHot);
-		});
-
-	$('#btnPot').on("click", function() {
-		 $(location).attr("href", goUrlPot);
-		});
-	$('#btnNow').on("click", function() {
-		 $(location).attr("href", goUrlNow);
-		});
-	
-	$('#btnLogin').on("click", function() {
-		 $(location).attr("href", goUrlLogin);
-		});
-	
-	$('#btnAdmin').on("click", function() {
-		 $(location).attr("href", goUrlAdmin);
-		});
-
-
-	
 	
 	// 로그아웃
 	

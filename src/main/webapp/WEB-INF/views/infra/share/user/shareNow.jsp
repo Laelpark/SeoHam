@@ -71,9 +71,9 @@
 	<nav class="navbar mb-3" style="background-color:rgb(142, 68, 173); height: 30%;"></nav>
 	<nav class="bg-transparent">
 		<div class="container">
-			<a class="navbar-brand">
+			<a class="navbar-brand" href="share">
 				<img src="../../resources/images/share/sharenow.png" alt="" width="230" height="60" class="d-inline-block align-text-top ms-3">
-			
+			</a>
 		</div>
 	</nav>
 	<nav class="navbar navbar-expand-lg bg-transparent">
@@ -145,10 +145,10 @@
 			<div class="a collapse navbar-collapse" style="height: 250px;">
 	            <div class="ms-3 me-4">
 	                <div class="row">
-						<nav class="d navbar col-12" style="background-color:rgba(233, 231, 58, 0.66);">
+						<nav class="d navbar col-12 mt-4" style="background-color:rgba(233, 231, 58, 0.66);">
 							<div class="row">
 								<div class="col-4">
-									<p>거래 장소</p>
+									<p id="date">거래 장소</p>
 								</div>
 								<div class="col-8">
 									<input type="text" style="width: 850px; margin-left: auto;" id="place" name="place">
@@ -158,7 +158,7 @@
 						<nav class="d navbar col-12 mt-4" style="background-color:rgba(233, 231, 58, 0.66);">
 							<div class="row">
 								<div class="col-4">
-									<p>거래 시간</p>
+									<p id="date">거래 시간</p>
 								</div>
 								<div class="col-8">
 									<input type="text" style="width: 850px; margin-left: auto;" id="time" name="time">

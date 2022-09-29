@@ -43,15 +43,19 @@ public class MemberDao {
 	public int selectOneCount(MemberVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
+	
+	public int selectOneId(Member dto) {
+		return sqlSession.selectOne(namespace + ".selectOneId", dto);
+	}
 
 	public int insert(Member dto) {return sqlSession.insert(namespace + ".insert", dto); }
 	public int update(Member dto) {return sqlSession.update(namespace + ".update", dto); }
 	public int uelete(Member dto) {return sqlSession.update(namespace + ".uelete", dto); }
 	public int delete(MemberVo vo) {return sqlSession.delete(namespace + ".delete", vo); }
 	
-	public int idCheck(Member dto) {return sqlSession.selectOne(namespace + ".idCheck", dto);}
-	
-//	public int pwCheck(Member dto) {return sqlSession.selectOne(namespace + ".pwCheck", dto);}
+	public int idCheck(Member dto) {
+		return sqlSession.selectOne(namespace + ".idCheck" , dto);
+	}
 	
 	public Member selectOneLogin(Member dto) {
 		return sqlSession.selectOne(namespace + ".selectOneLogin", dto);

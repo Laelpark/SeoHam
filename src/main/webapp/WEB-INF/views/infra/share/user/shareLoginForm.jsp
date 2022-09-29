@@ -29,13 +29,13 @@
 		<div id="input">
 			<table>
 				<td>
-					<label for="id" class="form-label">아이디 <span class="text-danger">*</span></label>
+					<label for="id" class="form-label">아이디111 <span class="text-danger">*</span></label>
 					<input type="hidden" id="idAllowedNy" name="idAllowedNy" value="0">
 					<input type="text" class="a mt-2 form-control" id="id" name="id"
 						value="<c:out value="${item.id}"/>" maxlength="20" placeholder="아이디 입력" 
 						<c:if test="${not empty item.id}">readonly</c:if>>
-					  <div class="msg" id="id_msg" name="id_msg" style="display: none;"></div>
-					<div class="invalid-feedback" id="idFeedback"></div>
+					  <div type="hidden" class="msg" id="id_msg" name="id_msg" style="display: none;"></div>
+					<div type="hidden" class="invalid-feedback" id="idFeedback"></div>
 					
 				</td>
 			</table>
@@ -44,7 +44,8 @@
 			<table>
 				<td>
 					<input type="password" class="a mt-2 form-control" id="pw" name="pw" placeholder="영대소문자, 숫자, 특수문자, 4~20자리" onkeypress="validation()" required>
-					 <div class="invalid-feedback" id="pwFeedback"></div>
+					  <div type="hidden" class="msg" id="pw_msg" name="pw_msg" style="display: none;"></div>
+					 <div type="hidden" class="invalid-feedback" id="pwFeedback"></div>
 				</td>
 				<td>
 					<i class="fa-solid fa-lock" id="lock"></i>
@@ -201,63 +202,51 @@
 		form.attr("action", goUrlLogin).submit();
 	});
 	
-/*   	$("#btnSave").on("click", function() {
+/*    	$("#btnSave").on("click", function() {
 		if (seq.val() == "0" || seq.val() == "") {
 			form.attr("action", goUrlInst).submit();
 		} else {}
-	});  */
+	}); */
 	 
 	//ID ajax
  	
- 	$("#id").on("focusout", function(){
-
-		var id = $("#id").val();
-		
-		if (!id_check("#id", $("#id").val(), "#idFeedback", "아이디를 입력하세요")) {
-			return false;
-		} else {
-			$.ajax({
-				async: true 
+ 		$("#id").on("focusout", function() {
+			var id = $("#id").val();
+			
+			alert("asdfasdf");
+			
+            $.ajax({
+				async: true
 				,cache: false
 				,type: "post"
-				,url: "/idCheck"
-				,data : { "id" : $("#id").val() }
+				,url: "idCheck"
+				,data : {"id" : "1234"}
 				,success: function(response) {
-					if(response.rt == "success") {
-						if (id.length > 0) {
-							document.getElementById("id").classList.remove('is-invalid');
-							document.getElementById("id").classList.add('is-valid');
-		
-							document.getElementById("idFeedback").classList.remove('invalid-feedback');
-							document.getElementById("idFeedback").classList.add('valid-feedback');
-							document.getElementById("idFeedback").innerText = "사용 가능한 ID입니다.";
-							
-							document.getElementById("idAllowedNy").value = 1;
-						} else {
-							document.getElementById("id").classList.add('is-invalid');
-							
-							document.getElementById("idFeedback").classList.remove('valid-feedback');
-							document.getElementById("idFeedback").classList.add('invalid-feedback');
-							document.getElementById("idFeedback").innerText = "아이디를 입력해주세요";
-							
-							document.getElementById("idAllowedNy").value = 0;
-						}
+					alert(response.rt);
+					if (response.rt == "success") {
+						document.getElementById("id").classList.remove('is-invalid');
+						document.getElementById("id").classList.add('is-valid');
+						
+						document.getElementById("idFeedback").classList.remove('invalid-feedback');
+						document.getElementById("idFeedback").classList.add('valid-feedback');
+						
+						document.getElementById("idFeedback").innerText = "사용 가능 합니다";
+						document.getElementById("idAllowedNy").value = 1;
 					} else {
 						document.getElementById("id").classList.add('is-invalid');
 						
 						document.getElementById("idFeedback").classList.remove('valid-feedback');
 						document.getElementById("idFeedback").classList.add('invalid-feedback');
-						document.getElementById("idFeedback").innerText = "사용 불가능한 ID입니다";
+						document.getElementById("idFeedback").innerText = "사용 불가능 합니다";
 						
 						document.getElementById("idAllowedNy").value = 0;
 					}
 				}
-				,error : function(jqXHR, textStatus, errorThrown){
-					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				, error : function(jqXHR, textStatus, errorThrown) {
+					alert("ajaxUpdate "  + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 				}
-			});			
-		}
-	}); 
+		});
+	});
 	
 	//비밀번호 확인	
 	

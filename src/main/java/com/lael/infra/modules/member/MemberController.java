@@ -18,7 +18,7 @@ public class MemberController {
 	@Autowired
 	MemberServiceImpl service;
 	
-	@RequestMapping(value = "/memberForm")
+	@RequestMapping(value = "memberForm")
 	public String memberForm(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
 		
 		 Member item = service.selectOne(vo);
@@ -27,18 +27,18 @@ public class MemberController {
 		return "infra/member/xdmin/memberForm";
 	}
 	
-	@RequestMapping(value = "/shareLogin")
+	@RequestMapping(value = "shareLogin")
 	public String shareLogin() throws Exception {
 		return "infra/share/user/shareLogin";
 	}
 	
-	@RequestMapping(value = "/shareSignup")
+	@RequestMapping(value = "shareSignup")
 	public String shareLoginForm() throws Exception {
 		return "infra/share/user/shareLoginForm";
 	}
 	
-	@RequestMapping(value = "/MemberInst")
-	public String MemberInst(@ModelAttribute("vo") MemberVo vo, Member dto) throws Exception {
+	@RequestMapping(value = "MemberInst")
+	public String MemberInst(Member dto) throws Exception {
 
 		service.insert(dto);
 
@@ -46,7 +46,7 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/idCheck")
+	@RequestMapping(value = "idCheck")
 	public Map<String, Object> idCheck(Member dto) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
@@ -57,7 +57,6 @@ public class MemberController {
 		} else {
 			returnMap.put("rt", "success");
 		}
-		
 		return returnMap;
 	}
 	
@@ -66,6 +65,7 @@ public class MemberController {
 	public Map<String, Object> loginProc(Member dto, HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
+		System.out.println("testing");
 		dto.setPw(UtilSecurity.encryptSha256(dto.getPw()));
 		Member result = service.selectOneLogin(dto);
 		
@@ -94,4 +94,3 @@ public class MemberController {
 		return returnMap;
 	}
 }
-	

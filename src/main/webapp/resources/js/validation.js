@@ -23,7 +23,9 @@ fail = function(obj, feedback, msg) {
 	$(feedback).text(msg);
 };
 
-pw_check = function(obj, value, feedback, msg) {
+
+
+id_check = function(obj, value, feedback, msg) {
 	if (!checkNull(obj, value)) {
         fail(obj, feedback, msg);
         return false;
@@ -31,7 +33,7 @@ pw_check = function(obj, value, feedback, msg) {
         fail(obj, feedback, "2~20 자리까지 입력하시오");
         return false;
     } else { 
-		success(obj, feedback, "사용가능한 아이디입니다.");
+		success(obj, feedback, "사용가능한 비밀번호입니다.");
         return true;
     }
 }	

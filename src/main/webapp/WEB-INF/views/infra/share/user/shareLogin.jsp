@@ -72,7 +72,7 @@
 			<div class="container text-center mt-3">
 				<div class="row">
 					<div class="col-3"></div>
-						<div class="a col-3 me-3" type="button" id="btnForm" name="btnForm">
+						<div class="a col-3 me-3" type="button" id="btnSignup" name="btnSignup" onclick=" location='/shareSignup'">
 							회원가입
 						</div>
 						<div class="a col-3" href="../member/newLoginForm.html">
@@ -90,12 +90,6 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
 	<script>
-	
-		var goUrlLoginForm = "shareLoginForm";				
-		
-		$('#btnForm').on("click", function() {
-			 $(location).attr("href", goUrlLoginForm);
-			});
 		
 		// 로그인
 		
@@ -106,10 +100,8 @@
 				async: true 
 				,cache: false
 				,type: "post"
-				/* ,dataType:"json" */
 				,url: "loginProc"
-				/* ,data : $("#formLogin").serialize() */
-				,data : { "id" : $("#id").val(), "pw" : $("#pw").val(), "autoLogin" : $("#autoLogin").is(":checked")}
+				,data : { "id" : $("#id").val(), "pw" : $("#pw").val()}
 				,success: function(response) {
 					if(response.rt == "success") {
 							location.href = "/share";

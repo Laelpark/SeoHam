@@ -25,10 +25,6 @@ public class ShareController {
 	
 	@RequestMapping(value = "/share")
 	public String main(HttpSession httpSession) throws Exception {
-		System.out.println("seq : " + httpSession.getAttribute("sessSeq"));
-		System.out.println("id : " + httpSession.getAttribute("sessId"));
-		System.out.println("name : " + httpSession.getAttribute("sessName"));
-		System.out.println("email : " + httpSession.getAttribute("sessEmail"));
 		return "infra/share/user/shareLogDone";
 	}
 	
@@ -49,8 +45,14 @@ public class ShareController {
 	}
 	
 	@RequestMapping(value = "/shareNow")
-	public String shareContent(Locale locale, Model model) throws Exception {
+	public String shareContent() throws Exception {
 		return "infra/share/user/shareNow";
 	}
+	
+	@RequestMapping(value = "/shareLikeList")
+	public String shareLikeList() throws Exception {
+		return "infra/share/user/shareLikeList";
+	}
+	
 	
 }

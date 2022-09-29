@@ -58,7 +58,7 @@ public class MemberServiceImpl implements MemberService{
 	public int selectOneCount(MemberVo vo) throws Exception {
 		return dao.selectOneCount(vo);
 	}
-
+	
 	@Override
 	public int idCheck(Member dto) throws Exception {
 		return dao.idCheck(dto);
@@ -69,4 +69,10 @@ public class MemberServiceImpl implements MemberService{
 		return dao.selectOneLogin(dto);
 	}
 
+	@Override
+	public int selectOneId(Member dto) throws Exception {
+		return dao.selectOneId(dto);
+	}
+
+	
 }

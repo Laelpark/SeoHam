@@ -103,14 +103,12 @@
 			a.*
 		FROM share_member a
 	 	WHERE 1=1
-	 		AND seq = #{seq}
+	 		AND a.seq = #{seq}
 	</select>
 	
 	<!-- ID ajax s -->
-	<select id="idCheck" resultType="int" parameterType="String"> 
-		select count(*) 
-		from share_member 
-		where id = #{id}
+	<select id="idCheck" parameterType="String" resultType="int">
+		select count(*) from share_member where id = #{id}
 	</select>
 	
  	<update id="update">
@@ -138,7 +136,18 @@
 			seq = #{seq}
  	</delete>
  	
- 	<!-- 로그인 후 정보 보관용 -->
+ 	
+ 	<select id="selectOneId" resultMap="resultMapObj">
+ 		SELECT 
+ 			a.seq
+ 			,a.id
+		FROM
+			share_member a
+		WHERE 1=1
+			AND a.id = #{id} 
+ 	</select>
+ 	
+ 	<!-- 로그인 후 사용자 정보 보관용 -->
  	<select id="selectOneLogin" resultMap="resultMapObj">
  		SELECT 
  			a.seq
