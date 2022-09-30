@@ -170,7 +170,7 @@
 						<td><c:out value="${list.memAge}" /></td>
 						<td><c:out value="${list.memFiled}" /></td>
 						<td
-							<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
+							<c:forEach items="${list.CodeGender}" var="listGender" varStatus="statusGender">
 								<c:if test="${list.memGenderCd eq listGender.cdSeq}"><c:out value="${listGender.codeName }"/></c:if>
 							</c:forEach>
 						</td>
