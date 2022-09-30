@@ -19,7 +19,7 @@
 	<nav class="navbar mb-3" style="background-color:rgb(142, 68, 173); height: 30%;"></nav>
 	<nav class="bg-transparent">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="../member_Login_Done/LoginDoneMain.html">
+			<a class="navbar-brand" href="share">
 				<img src="../../resources/images/share/LikeList_Full.png" alt="" width="180" height="50" class="d-inline-block align-text-top ms-3">
 			</a>
 		</div>
@@ -190,25 +190,9 @@
 			</div>
 		</div>
 	</div>
-	<nav class="footer" aria-label="Page navigation example">
-		<ul class="pagination justify-content-center  active">
-			<li class="page-item">
-				<a class="page-link" href="#" aria-label="Previous">
-					<span aria-hidden="true">&laquo;</span>
-				</a>
-			</li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#">4</a></li>
-			<li class="page-item"><a class="page-link" href="#">5</a></li>
-			<li class="page-item">
-				<a class="page-link" href="#" aria-label="Next">
-					<span aria-hidden="true">&raquo;</span>
-				</a>
-			</li>
-		</ul>
-	</nav>
+	<footer>
+		<%@include file="../../common/xdmin/includeV1/pagination.jsp"%>
+	</footer>
 	
 	
 	

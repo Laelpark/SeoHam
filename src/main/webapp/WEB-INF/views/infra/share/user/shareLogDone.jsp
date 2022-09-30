@@ -10,9 +10,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>shareLogDone</title>
+	<title>share</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link rel="stylesheet" href="/resources/css/share/shareMain.css">
+	<link href="/resources/images/share/smLogo.png" rel="shortcut icon" type="image/x-icon">
 </head>
 <body>
 	<!-- start -->
@@ -24,9 +25,28 @@
 				</a>
 				<div class="info pt-5">
 					<a>
-						<span style="color: rgb(197, 26, 26); text-shadow: 2px 2px 2px black;" class="fw-bold fs-4 pe-5" type="button" id="btnHot" name="btnHot" onclick="location.href='shareHot'">실시간 HOT!</span>
-						<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4 pe-5" type="button" id="btnPot" name="btnPot" onclick="location.href='sharePot'">Share Pot</span>
-						<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4" type="button" id="btnNow" name="btnNow" onclick="location.href='shareNow'">Share Now</span>
+						<span style="color: rgb(197, 26, 26); text-shadow: 2px 2px 2px black;" class="fw-bold fs-4 pe-5" type="button" id="btnHot" name="btnHot">실시간 HOT!</span>
+						<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4 pe-5" type="button" id="btnPot" name="btnPot">Share Pot</span>
+						<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4" type="button" id="btnNow" name="btnNow" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Share Now</span>
+						<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalCenterTitle">로그인을 해주세요.</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body"  align="center">
+										<i class="fas fa-light fa-circle-exclamation" style="color: red;"></i>
+										로그인 먼저 진행해주세요.
+									</div>
+									<div class="modal-footer">
+										<a>
+											<button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
 					</a>
 				</div>
 				<div id="menu">
@@ -39,7 +59,7 @@
 									</a>
 								</li>
 								<li class="">
-									<a class="nav-link py-2 px-0 px-lg-2 me-2" style="cursor: pointer;" type="button" id="btnList" name="btnList">
+									<a class="nav-link py-2 px-0 px-lg-2 me-2" style="cursor: pointer;" type="button">
 										<i style="color: rgb(193, 232, 100);" class="fa-solid fa-star fa-lg" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"></i>
 										<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 											<div class="modal-dialog modal-dialog-centered">
@@ -54,7 +74,7 @@
 													</div>
 													<div class="modal-footer">
 														<a>
-															<button type="button" class="btn btn-primary">확인</button>
+															<button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
 														</a>
 													</div>
 												</div>
@@ -73,17 +93,17 @@
 							<ul class="navbar-nav flex-row ms-md-auto me-4">
 								<li class="nav-item col-4"></li>
 								<li class="nav-item col-4">
-									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnMypage" name="btnMypage" onclick="#'">
+									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnMypage" name="btnMypage">
 										<i class="fa-solid fa-user fa-lg"></i>
 									</a>
 								</li>
 								<li class="">
-									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;"  type="button" id="btnList" name="btnList" onclick="location.href='shareLikeList'">
+									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;"  type="button" id="btnList" name="btnList">
 										<i class="fa-solid fa-star fa-lg"></i>
 									</a>
 								</li>
 								<li class="nav-item col-4 ms-3">
-									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnLogout" name="btnLogout" onclick="#'">
+									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnLogout" name="btnLogout">
 										<i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
 									</a>
 								</li>
@@ -144,12 +164,24 @@
 							<div class="container-1">
 								<div class="dropdown">
 									<button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-										종류
+										카테고리
 									</button>
 									<ul class="dropdown-menu mt-5">
-										<li><a class="dropdown-item" href="#">피자</a></li>
 										<li><a class="dropdown-item" href="#">치킨</a></li>
-										<li><a class="dropdown-item" href="#">보쌈/족발</a></li>
+										<li><a class="dropdown-item" href="#">족발/보쌈</a></li>
+										<li><a class="dropdown-item" href="#">찜/탕/찌개</a></li>
+										<li><a class="dropdown-item" href="#">돈까스/회/일식</a></li>
+										<li><a class="dropdown-item" href="#">피자</a></li>
+										<li><a class="dropdown-item" href="#">고기/구이</a></li>
+										<li><a class="dropdown-item" href="#">양식</a></li>
+										<li><a class="dropdown-item" href="#">중식</a></li>
+										<li><a class="dropdown-item" href="#">아시안</a></li>
+										<li><a class="dropdown-item" href="#">백반/죽/국수</a></li>
+										<li><a class="dropdown-item" href="#">도시락</a></li>
+										<li><a class="dropdown-item" href="#">분식</a></li>
+										<li><a class="dropdown-item" href="#"><hr class="dropdown-divider"></a></li>
+										<li><a class="dropdown-item" href="#">카페/디저트</a></li>
+										<li><a class="dropdown-item" href="#">그외 음식</a></li>
 									</ul>
 								</div>
 								<input class="search form-control" type="search" id="search" placeholder="검색어를 입력해주세요." />
@@ -181,6 +213,41 @@
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
+	
+	var goUrlHot = "shareHot"; 			
+	var goUrlPot = "sharePot"; 			
+	var goUrlNow = "shareNow";				
+	var goUrlLogin = "shareLogin";		
+	var goUrlMyPage = "shareMyPage";		
+	var goUrlLikeList = "shareLikeList";				
+	var goUrlAdmin = "adminLogin";
+	
+	
+	$('#btnHot').on("click", function() {
+		 $(location).attr("href", goUrlHot);
+		});
+
+	$('#btnPot').on("click", function() {
+		 $(location).attr("href", goUrlPot);
+		});
+	$('#btnNow').on("click", function() {
+		 $(location).attr("href", goUrlNow);
+		});
+	
+	$('#btnLogin').on("click", function() {
+		 $(location).attr("href", goUrlLogin);
+		});
+	$('#btnMypage').on("click", function() {
+		 $(location).attr("href", goUrlMyPage);
+		});
+	$('#btnList').on("click", function() {
+		 $(location).attr("href", goUrlLikeList);
+		});
+	
+	$('#btnAdmin').on("click", function() {
+		 $(location).attr("href", goUrlAdmin);
+		});
+	
 	
 	// 로그아웃
 	

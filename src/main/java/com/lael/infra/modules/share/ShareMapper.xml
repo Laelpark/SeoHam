@@ -11,6 +11,11 @@
 	<sql id ="selectCommon">
 		FROM share c
 		WHERE 1=1
+		<!-- <choose>
+			<when test="shOption == 1">AND food_div = #{shValue}</when>
+			<when test="shOption == 2">AND people_num LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 3">AND time LIKE CONCAT('%',#{shValue},'%')</when>
+		</choose> -->
 	</sql>
 
 	<select id="selectList" resultMap="resultMapObj">

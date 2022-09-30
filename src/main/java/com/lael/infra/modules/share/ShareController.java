@@ -37,7 +37,7 @@ public class ShareController {
 	@RequestMapping(value = "/sharePot")
 	public String sharePot( @ModelAttribute("vo") ShareVo vo, Model model) throws Exception {
 		
-		 setSearchAndPaging(vo); 
+		 vo.setParamsPaging(service.selectOneCount(vo)); 
 		 
 		List<Share> list = service.selectList(vo);
 		model.addAttribute("list", list); 
@@ -47,6 +47,11 @@ public class ShareController {
 	@RequestMapping(value = "/shareNow")
 	public String shareContent() throws Exception {
 		return "infra/share/user/shareNow";
+	}
+	
+	@RequestMapping(value = "/shareMyPage")
+	public String shareMyPage() throws Exception {
+		return "infra/share/user/shareMyPage";
 	}
 	
 	@RequestMapping(value = "/shareLikeList")

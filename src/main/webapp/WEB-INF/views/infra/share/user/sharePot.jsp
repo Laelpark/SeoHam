@@ -155,7 +155,7 @@
 									${list.price}
 								</div>
 								<div class="col text-center"> 
-									<i class="fas fa-light fa-star" id="star" style="font-size: 20px;"></i>
+									<i class="fas fa-light fa-star" type="button"  id="star" style="font-size: 20px;"></i>
 								</div>
 							</div>
 						</div>
@@ -163,7 +163,7 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-		<footer>
+		<footer class="mt-5">
 			<%@include file="../../common/xdmin/includeV1/pagination.jsp"%>
 		</footer>
 	</form>
