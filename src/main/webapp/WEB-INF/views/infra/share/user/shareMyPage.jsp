@@ -5,40 +5,27 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
-<head>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-</head>
-<body>
-	<div class="d-flex align-items-center">
-		<strong>&ensp; &ensp; 마이페이지는 준비중입니다.</strong>
-		<div class="spinner-border m-5" role="status"></div>
-	</div>
-
-</body>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
-<!-- <!doctype html>
+<!doctype html>
 <html lang="ko">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>userInfo.html</title>
+	<title>shareMyPage</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="../css/userprofile.css">
+	<link rel="stylesheet" type="text/css" href="/resources/css/share/userprofile.css">
 
 </head>
 <body>
-	start
+	<!-- start -->
 	<div class="navbar" style="background-color:rgb(142, 68, 173); height: 30px;"></div>
 	<div class="header">
 		<a class="navbar-brand" href="../member_Login_Done/LoginDoneMain.html">
-			<img src="../img/fullLogo_p.png" id="logoimg">
+			<img src="../../resources/images/share/fullLogo_p.png" id="logoimg">
 		</a>
 		<a href="../member_Login_Done/LoginDoneMain.html">
-			<button type="button" class="btn col">적용</button>
+			<button type="button" class="btn col" id="btn">적용</button>
 		</a>
-		<button type="button" class="btn col">취소</button>
+		<button type="button" class="btn col" id="btn">취소</button>
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
 			  <a class="nav-link active" aria-current="page" href="#">프로필 수정</a>
@@ -52,12 +39,11 @@
 		<div class="col-3" id="side">프로필 사진 변경</div>
 		<div class="col-md-6 ms-3">
 			<div class="filebox">
-				<img src="../img/smile.png" id="preview">	
 				<label for="ex_file"></label>
-				<input type="file" id="ex_file" name="chooseFile"  accept="image/*" onchange="loadFile(this)">
+				<input class="mb-5" type="file" id="ex_file" name="chooseFile"  accept="image/*" onchange="loadFile(this)">
 				<div class="row mt-5">
-					<button type="button" class="btn col offset-2">사진변경</button>
-					<button type="button" class="btn col offset-2 btn">삭제</button>
+					<button type="button" class="btn col offset-2" id="btn">변경</button>
+					<button type="button" class="btn col offset-2" id="btn">삭제</button>
 					<div class="col offset-2"></div>
 				</div>
 			</div>
@@ -71,13 +57,16 @@
 	</div>
 	<div class="row" id="content2">
 		<div class="col-3" id="side">비밀번호 변경</div>
-		<div class="col-md-6 ms-4">
+		<div class="col-md-6 ms-3">
+			<button  class="btn mt-5" type="button" id="btn"> 비밀번호 변경</button>
+		</div>
+		<!-- <div class="col-md-6 ms-4">
 			<div class="row mt-3">
 				<input id="textBox" type="text" placeholder="현재 비밀번호">
 				<input id="textBox" type="text" placeholder="새 비밀번호">
 				<input id="textBox" type="text" placeholder="새 비밀번호 확인">
 			</div>
-		</div>
+		</div> -->
 	</div>
 	<div class="row" id="content2">
 		<div class="col-3" id="side">닉네임 변경</div>
@@ -87,9 +76,10 @@
 	</div>
 
 
-	end 
+	<!-- end --> 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 
         // 이미지 미리보기
@@ -104,4 +94,3 @@
 	</script>
 </body>
 </html>
- -->

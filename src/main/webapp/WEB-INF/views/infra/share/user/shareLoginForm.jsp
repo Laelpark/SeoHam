@@ -10,14 +10,14 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>shareLoginForm</title>
+	<title>shareSignup</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link rel="stylesheet" href="../resources/css/share/shareLoginForm.css">
 	<script defer type="text/javascript" src="/resources/js/validation.js"></script>
 </head>
 <body>
 	<!-- start -->
-	<div class="navbar" style="background-color:rgb(142, 68, 173); height: 30px;"></div>
+	<div class="navbar" style="background-color:rgb(142, 68, 173); height: 30px; width:auto;"></div>
 	<div class="row">
 		<img class="col-6 ms-3 mt-3" src="../../resources/images/share/fullLogo_p.png" onclick="location.href='share'" style="width: 150px; height: 45px;" type="button">
 		<h2 class="col-6 offset-4 mt-5" id="newmem">회원가입</h2>

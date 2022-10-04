@@ -50,6 +50,8 @@
 			,place
 			,time
 			,price
+			,food_div
+			,people_num
 		)
 		VALUES (
 			#{title}
@@ -57,6 +59,8 @@
 			,#{place}
 			,#{time}
 			,#{price}
+			,#{food_div}
+			,#{people_num}
 		)
 		
 		<selectKey resultType="String" keyProperty="seq" order="AFTER">

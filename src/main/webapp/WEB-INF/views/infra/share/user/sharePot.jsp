@@ -18,7 +18,7 @@
 </head>
 <body>
 	<!-- start -->
-	<nav class="navbar mb-3" style="background-color:rgb(142, 68, 173); height: 30%;"></nav>
+	<nav class="navbar mb-3" style="background-color:rgb(142, 68, 173); height: 30px;"></nav>
 	<nav class="bg-transparent">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="share">
@@ -81,7 +81,7 @@
 				</li>
 				<li class="nav-item dropdown">
 					<form class="d-flex" role="search">
-						<input class="form-control me-2 text-center" id= "searchBox" type="search" style="width: 200px;" placeholder="검색어를 입력하세요." aria-label="Search">
+						<input class="form-control me-2 text-center" name="shValue" id="shValue" value="<c:out value="${vo.shValue }"/>" autocomplete="off" type="search" style="width: 200px;" placeholder="검색어를 입력하세요." aria-label="Search">
 						<button type="button" class="btn btn-outline-success bg-transparent" href="#">Search</button>
 					</form>
 				</li>

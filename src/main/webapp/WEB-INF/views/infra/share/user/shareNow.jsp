@@ -10,6 +10,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>shareNow</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<style  type="text/css">
@@ -68,7 +69,7 @@
 </head>
 <body>
 	<!-- start -->
-	<nav class="navbar mb-3" style="background-color:rgb(142, 68, 173); height: 30%;"></nav>
+	<nav class="navbar mb-3" style="background-color:rgb(142, 68, 173); height: 30px;"></nav>
 	<nav class="bg-transparent">
 		<div class="container">
 			<a class="navbar-brand" href="share">
@@ -85,6 +86,9 @@
 		</div>
 	</nav>
 	<form id="myform" name="myform" method="post">
+		<!-- *Vo.jsp s -->
+		<%@include file="shareVo.jsp"%>
+		<!-- *Vo.jsp e -->
 		<nav class="navbar navbar-expand-lg">
 			<div class="a collapse navbar-collapse">
 				<ul class="navbar-nav mb-2 mt-2 ms-3">
@@ -113,7 +117,7 @@
 					</li>
 					<li class="nav-item dropdown">
 						<input type="hidden" class="d-flex">
-							<input class="form-control me-2 text-center" id= "title" name="title" type="text" style="width: 480px; height: 50px;" placeholder="검색어를 입력하세요." aria-label="Search">
+							<input class="form-control me-2 text-center" id= "title" name="title" type="text" style="width: 480px; height: 50px;" placeholder="타이틀을 입력하세요." aria-label="Search">
 						</input>
 					</li>
 					<li>
@@ -184,6 +188,7 @@
 
 	<!-- end --> 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script>
 	
@@ -191,18 +196,14 @@
 	var goUrlUpdt = "/shareUpdt";
 	
 	var seq = $("input:hidden[name=seq]");
-	
 	var form = $("form[name=myform]");
 	
 	$("#btnSave").on("click", function() {
-		if (ccgSeq.val() == "0" || ccgSeq.val() == "") {
+		if (seq.val() == "0" || seq.val() == "") {
 			// insert
-			// if (validationInst() == false) return false;
 			form.attr("action", goUrlInst).submit();
 		} else {
 			// update
-			/* keyName.val(atob(keyName.val())); */
-			// if (validationUpdt() == false) return false;
 			form.attr("action", goUrlUpdt).submit();
 		}
 	});

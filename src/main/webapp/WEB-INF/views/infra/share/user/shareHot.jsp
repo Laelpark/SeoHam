@@ -55,7 +55,7 @@
 </head>
 <body>
 	<!-- start -->
-	<nav class="navbar mb-3" style="background-color:rgb(142, 68, 173); height: 30%;"></nav>
+	<nav class="navbar mb-3" style="background-color:rgb(142, 68, 173); height: 30px;"></nav>
 	<nav class="bg-transparent">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="share">

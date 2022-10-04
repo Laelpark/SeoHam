@@ -10,7 +10,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>share</title>
+	<title>SHARE</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link rel="stylesheet" href="/resources/css/share/shareMain.css">
 	<link href="/resources/images/share/smLogo.png" rel="shortcut icon" type="image/x-icon">
@@ -23,35 +23,35 @@
 				<a class="navbar-brand">
 					<img src="../../resources/images/share/fullLogo_w.png" alt="" width="160px" height="60px" class="d-inline-block align-text-top">
 				</a>
-				<div class="info pt-5">
-					<a>
-						<span style="color: rgb(197, 26, 26); text-shadow: 2px 2px 2px black;" class="fw-bold fs-4 pe-5" type="button" id="btnHot" name="btnHot">실시간 HOT!</span>
-						<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4 pe-5" type="button" id="btnPot" name="btnPot">Share Pot</span>
-						<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4" type="button" id="btnNow" name="btnNow" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Share Now</span>
-						<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-							<div class="modal-dialog modal-dialog-centered">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalCenterTitle">로그인을 해주세요.</h5>
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-									</div>
-									<div class="modal-body"  align="center">
-										<i class="fas fa-light fa-circle-exclamation" style="color: red;"></i>
-										로그인 먼저 진행해주세요.
-									</div>
-									<div class="modal-footer">
-										<a>
-											<button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
-										</a>
+				<c:choose>
+					<c:when test="${empty sessSeq}">
+						<div class="info pt-5">
+							<a>
+								<span style="color: rgb(197, 26, 26); text-shadow: 2px 2px 2px black;" class="fw-bold fs-4 pe-5" type="button" id="btnHot" name="btnHot">실시간 HOT!</span>
+								<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4 pe-5" type="button" id="btnPot" name="btnPot">Share Pot</span>
+								<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Share Now</span>
+								<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalCenterTitle">로그인을 해주세요.</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+											<div class="modal-body"  align="center">
+												<i class="fas fa-light fa-circle-exclamation" style="color: red;"></i>
+												로그인 먼저 진행해주세요.
+											</div>
+											<div class="modal-footer">
+												<a>
+													<button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+												</a>
+											</div>
+										</div>
 									</div>
 								</div>
-							</div>
+							</a>
 						</div>
-					</a>
-				</div>
-				<div id="menu">
-					<c:choose>
-						<c:when test="${empty sessSeq}">
+						<div id="menu">
 							<ul class="navbar-nav flex-row ms-md-auto pe-3">
 								<li class="nav-item col-4 me-2">
 									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnLogin" name="btnLogin">
@@ -61,11 +61,11 @@
 								<li class="">
 									<a class="nav-link py-2 px-0 px-lg-2 me-2" style="cursor: pointer;" type="button">
 										<i style="color: rgb(193, 232, 100);" class="fa-solid fa-star fa-lg" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"></i>
-										<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+										<div class="modal fade" id="exampleModalCenter2" tabindex="-2" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 											<div class="modal-dialog modal-dialog-centered">
 												<div class="modal-content">
 													<div class="modal-header">
-														<h5 class="modal-title" id="exampleModalCenterTitle">로그인을 해주세요.</h5>
+														<h5 class="modal-title" id="exampleModalCenterTitle2">로그인을 해주세요.</h5>
 														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 													</div>
 													<div class="modal-body"  align="center">
@@ -84,12 +84,21 @@
 								</li>
 								<li class="nav-item col-4 me-2">
 									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnAdmin" name="btnAdmin">
-										<i class="fa-solid fa-sliders"></i>
+										<i class="fa-solid fa-screwdriver-wrench"></i>
 									</a>
 								</li>
 							</ul>
-						</c:when>
-						<c:otherwise>
+						</div>
+					</c:when>
+					<c:otherwise>
+					<div class="info pt-5">
+						<a>
+							<span style="color: rgb(197, 26, 26); text-shadow: 2px 2px 2px black;" class="fw-bold fs-4 pe-5" type="button" id="btnHot" name="btnHot">실시간 HOT!</span>
+							<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4 pe-5" type="button" id="btnPot" name="btnPot">Share Pot</span>
+							<span style="color: white; text-shadow: 2px 2px black;" class="fw-bold fs-4" type="button" id="btnNow" name="btnNow" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Share Now</span>
+						</a>
+					</div>
+						<div id="menu">
 							<ul class="navbar-nav flex-row ms-md-auto me-4">
 								<li class="nav-item col-4"></li>
 								<li class="nav-item col-4">
@@ -111,9 +120,9 @@
 							<span style="color: white; text-shadow: 2px 2px black; float: right;" class="">
 								<br><c:out value="${sessName }"/>님,
 								Welcome to SHARE!</span>
-						</c:otherwise>
-					</c:choose>
-				</div>	
+						</div>
+					</c:otherwise>
+				</c:choose>
 			</div>
 	  	</nav>
 		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">

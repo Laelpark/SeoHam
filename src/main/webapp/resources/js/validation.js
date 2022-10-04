@@ -30,8 +30,8 @@ id_check = function(obj, value, feedback, msg) {
 	if (!checkNull(obj, value)) {
         fail(obj, feedback, msg);
         return false;
-    } else if(!(($.trim($(obj).val()).length > 5) && ($.trim($(obj).val()).length < 10))) {
-        fail(obj, feedback, "5~10 자리까지 입력하시오");
+    } else if(!(($.trim($(obj).val()).length > 2) && ($.trim($(obj).val()).length < 10))) {
+        fail(obj, feedback, "3~10 자리까지 입력하시오");
         return false;
     } else { 
 		/*success(obj, feedback, "사용가능한 아이디입니다.");*/
@@ -40,7 +40,7 @@ id_check = function(obj, value, feedback, msg) {
 }	
 
 pw_check = function(obj, value, feedback, msg) {
-	const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/g;
+	/* const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/g; */ 
 	if (!checkNull(obj, value)) {
         fail(obj, feedback, msg);
         return false;
@@ -54,7 +54,6 @@ pw_check = function(obj, value, feedback, msg) {
 }
 
 pwRecheck = function(obj, value, feedback, msg) {
-	const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/g;
 	if (!checkNull(obj, value)) {
         fail(obj, feedback, msg);
         return false;
