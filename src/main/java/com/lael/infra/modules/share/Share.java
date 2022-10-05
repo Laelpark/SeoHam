@@ -3,15 +3,22 @@ package com.lael.infra.modules.share;
 public class Share {
 	
 	private String seq;
+	private Integer food_div;
 	private String title;
-	private String info;
+	private Integer people_num;
 	private String place;
 	private String time;
 	private String price;
-	private Integer food_div;
-	private Integer people_num;
+	private String info;
 	private String ccgSeq;
+	private Integer share_member_seq;
 	
+	public Integer getShare_member_seq() {
+		return share_member_seq;
+	}
+	public void setShare_member_seq(Integer share_member_seq) {
+		this.share_member_seq = share_member_seq;
+	}
 	public String getCcgSeq() {
 		return ccgSeq;
 	}

@@ -8,6 +8,7 @@ public interface ShareService {
 	public List<Share> selectList() throws Exception;			
 	public List<Share> selectList1() throws Exception;
 	
+	public Share selectOne(ShareVo vo) throws Exception;
 	public int selectOneCount(ShareVo vo) throws Exception;
 	public int insert(Share dto) throws Exception;
 	public int update(Share dto) throws Exception;

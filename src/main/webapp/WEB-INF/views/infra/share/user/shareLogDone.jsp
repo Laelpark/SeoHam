@@ -43,7 +43,7 @@
 											</div>
 											<div class="modal-footer">
 												<a>
-													<button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+													<button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="goLogin" name="goLogin">확인</button>
 												</a>
 											</div>
 										</div>
@@ -171,30 +171,18 @@
 					<div class="c navbar navbar-expand-lg">
 						<div class="box">
 							<div class="container-1">
-								<div class="dropdown">
-									<button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-										카테고리
-									</button>
-									<ul class="dropdown-menu mt-5">
-										<li><a class="dropdown-item" href="#">치킨</a></li>
-										<li><a class="dropdown-item" href="#">족발/보쌈</a></li>
-										<li><a class="dropdown-item" href="#">찜/탕/찌개</a></li>
-										<li><a class="dropdown-item" href="#">돈까스/회/일식</a></li>
-										<li><a class="dropdown-item" href="#">피자</a></li>
-										<li><a class="dropdown-item" href="#">고기/구이</a></li>
-										<li><a class="dropdown-item" href="#">양식</a></li>
-										<li><a class="dropdown-item" href="#">중식</a></li>
-										<li><a class="dropdown-item" href="#">아시안</a></li>
-										<li><a class="dropdown-item" href="#">백반/죽/국수</a></li>
-										<li><a class="dropdown-item" href="#">도시락</a></li>
-										<li><a class="dropdown-item" href="#">분식</a></li>
-										<li><a class="dropdown-item" href="#"><hr class="dropdown-divider"></a></li>
-										<li><a class="dropdown-item" href="#">카페/디저트</a></li>
-										<li><a class="dropdown-item" href="#">그외 음식</a></li>
-									</ul>
-								</div>
-								<input class="search form-control" type="search" id="search" placeholder="검색어를 입력해주세요." />
-								<button class="btn btn-outline-success text-white" type="submit">Search</button>
+								<select class="g form-select" id="shOption" name="shOption">
+									<option value="" <c:if test="${empty vo.shOption }">selected</c:if>>선택</option>
+									<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>카테고리</option>
+									<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>제목</option>
+									<option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>인원</option>
+									<option value="4" <c:if test="${vo.shOption eq 4 }">selected</c:if>>장소</option>
+									<option value="5" <c:if test="${vo.shOption eq 5 }">selected</c:if>>시간</option>
+								  	<option value="6" <c:if test="${vo.shOption eq 6 }">selected</c:if>>가격</option>
+								</select>
+								<label for="search" class="form-label" type="hidden"></label> 
+								<input class="search form-control" type="search" id="search" name="shValue" placeholder="검색어를 입력해주세요." value="<c:out value="${vo.shValue}"/>"/>
+								<button class="btn btn-outline-success text-white" id="btnSearch" name="btnSearch" type="submit">Search</button>
 							</div>
 						</div>
 					</div>
@@ -231,6 +219,11 @@
 	var goUrlLikeList = "shareLikeList";				
 	var goUrlAdmin = "adminLogin";
 	
+	var form = $("form[name=myform]");
+	
+	$("#btnSearch").on("click", function() {
+		form.attr("action", goUrlPot).submit();
+	});
 	
 	$('#btnHot').on("click", function() {
 		 $(location).attr("href", goUrlHot);
@@ -239,6 +232,7 @@
 	$('#btnPot').on("click", function() {
 		 $(location).attr("href", goUrlPot);
 		});
+	
 	$('#btnNow').on("click", function() {
 		 $(location).attr("href", goUrlNow);
 		});
@@ -246,9 +240,15 @@
 	$('#btnLogin').on("click", function() {
 		 $(location).attr("href", goUrlLogin);
 		});
+	
+	$('#goLogin').on("click", function() {
+		 $(location).attr("href", goUrlLogin);
+		});
+	
 	$('#btnMypage').on("click", function() {
 		 $(location).attr("href", goUrlMyPage);
 		});
+	
 	$('#btnList').on("click", function() {
 		 $(location).attr("href", goUrlLikeList);
 		});

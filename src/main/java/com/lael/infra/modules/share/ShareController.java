@@ -17,7 +17,14 @@ public class ShareController {
 	@Autowired
 	ShareServiceImpl service;
 	
-	  @RequestMapping(value = "/share")
+	 private void setSearchAndPaging(ShareVo vo) throws Exception {
+		  vo.setShDelNy(vo.getShDelNy() == null ? 0: vo.getShDelNy());
+		  vo.setParamsPaging(service.selectOneCount(vo)); 
+	  }
+	 
+	 // 유저
+	
+  @RequestMapping(value = "/share")
 	public String main(HttpSession httpSession) throws Exception {
 		return "infra/share/user/shareLogDone";
 	}
@@ -29,21 +36,26 @@ public class ShareController {
 
 	
 	@RequestMapping(value = "/sharePot")
-	public String sharePot( @ModelAttribute("vo") ShareVo vo, Model model) throws Exception {
+	public String sharePot( @ModelAttribute("vo") ShareVo vo, Model model, Share dto) throws Exception {
 		
-		 vo.setParamsPaging(service.selectOneCount(vo)); 
-		 
+		setSearchAndPaging(vo); 
+		
 		List<Share> list = service.selectList(vo);
 		model.addAttribute("list", list); 
+		
 		return "infra/share/user/sharePot";
 	}
 	
 	@RequestMapping(value = "/shareNow")
-	public String shareContent() throws Exception {
+	public String shareContent(@ModelAttribute("vo") ShareVo vo, Model model) throws Exception {
+		
+		Share item = service.selectOne(vo);
+		  model.addAttribute("item", item);
+		
 		return "infra/share/user/shareNow";
 	}
 	
-	@RequestMapping(value = "shareInst")
+	@RequestMapping(value = "/shareInst")
 	public String shareInst(ShareVo vo, Share dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.insert(dto);
@@ -51,7 +63,7 @@ public class ShareController {
 		vo.setSeq(dto.getSeq());
 		redirectAttributes.addFlashAttribute("vo", vo); 
 
-		return "redirect:/share/user/shareNow";
+		return "redirect:/shareNow";
 	}
 	
 	@RequestMapping(value = "/shareMyPage")
@@ -64,9 +76,16 @@ public class ShareController {
 		return "infra/share/user/shareLikeList";
 	}
 	
+	// 관리자
+	
 	@RequestMapping(value = "/adminLogin")
-	public String shareAdminLogin() throws Exception {
+	public String adminLogin() throws Exception {
 		return "infra/share/admin/adminLogin";
+	}
+	
+	@RequestMapping(value = "/adminMain")
+	public String adminMain() throws Exception {
+		return "infra/share/admin/adminMain";
 	}
 	
 }

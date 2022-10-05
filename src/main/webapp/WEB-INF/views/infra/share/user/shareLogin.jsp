@@ -55,7 +55,7 @@
 				</label>
 			</div>
 			<div class="col-2 text-center">
-				<button type="button" id="btnLogin" name="btnLogin" class="btn" style=" width: 100px; height: 70px; float: right; background-color: blueviolet; color: white;">로그인</button>
+				<button type="submit" id="btnLogin" name="btnLogin" class="btn" style=" width: 100px; height: 70px; float: right; background-color: blueviolet; color: white;">로그인</button>
 			</div>
 			<div class="col-4 offset-4 text-center">
 				<div class="input-group has-validation">
@@ -72,10 +72,10 @@
 			<div class="container text-center mt-3">
 				<div class="row">
 					<div class="col-3"></div>
-						<div class="a col-3 me-3" type="button" id="btnSignup" name="btnSignup" onclick=" location='/shareSignup'">
+						<div class="a col-3 me-3" style="cursor: pointer;" id="btnSignup" name="btnSignup" onclick=" location='/shareSignup'">
 							회원가입
 						</div>
-						<div class="a col-3" href="../member/newLoginForm.html">
+						<div class="a col-3" style="cursor: pointer;">
 							아이디/비밀번호 찾기
 						</div>
 						<div class="col-3"></div>

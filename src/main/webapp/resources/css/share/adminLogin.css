@@ -1,0 +1,36 @@
+#rememberId {
+			position: relative;
+		}
+
+		#loginBtn {
+			margin-right: 90px;
+		}
+		.id {
+			border-color: transparent;
+			width: 400px;
+			height: 68px;
+		}
+
+		.pw {
+			border-color: transparent;
+			width: 400px;
+			height: 68px;
+		}
+
+		.a{
+			cursor: pointer;
+		}
+
+		.b{
+			font-size: 25px;
+			color: white;
+			cursor: pointer;
+		}
+
+		.c{
+			float: right;
+			color: white;
+			font-size: 15px;
+			margin-right: 180px;
+			text-shadow: 6px 2px 2px rgb(74, 74, 74);
+		}

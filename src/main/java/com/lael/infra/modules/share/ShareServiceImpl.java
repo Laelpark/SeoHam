@@ -11,6 +11,13 @@ import org.springframework.stereotype.Service;
 	ShareDao dao;
 	
 
+	
+	
+	@Override
+	public Share selectOne(ShareVo vo) throws Exception {
+		return dao.selectOne(vo);
+	}
+
 	@Override
 	public int selectOneCount(ShareVo vo) throws Exception {
 		return dao.selectOneCount(vo);

@@ -30,6 +30,11 @@ public class ShareDao {
 	return list; 								
 }
 	
+	public Share selectOne(ShareVo vo) {
+		Share result = sqlSession.selectOne(namespace + ".selectOne", vo);
+		return result;
+	}
+	
 	public int selectOneCount(ShareVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}

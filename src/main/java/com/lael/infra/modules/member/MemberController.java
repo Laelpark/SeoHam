@@ -65,7 +65,6 @@ public class MemberController {
 	public Map<String, Object> loginProc(Member dto, HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
-		System.out.println("testing");
 		dto.setPw(UtilSecurity.encryptSha256(dto.getPw()));
 		Member result = service.selectOneLogin(dto);
 		

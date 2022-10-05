@@ -11,19 +11,22 @@
 	<sql id ="selectCommon">
 		FROM share c
 		WHERE 1=1
-		<!-- <choose>
+		<choose>
 			<when test="shOption == 1">AND food_div = #{shValue}</when>
-			<when test="shOption == 2">AND people_num LIKE CONCAT('%',#{shValue},'%')</when>
-			<when test="shOption == 3">AND time LIKE CONCAT('%',#{shValue},'%')</when>
-		</choose> -->
+			<when test="shOption == 2">AND title LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 3">AND people_num = #{shValue}</when>
+			<when test="shOption == 4">AND place LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 5">AND time LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 6">AND price LIKE CONCAT('%',#{shValue},'%')</when>
+		</choose>
 	</sql>
 
 	<select id="selectList" resultMap="resultMapObj">
-	<include refid="Base.selectListUpperForMysql"></include>
+		<include refid="Base.selectListUpperForMysql"></include>
 		SELECT
 			c.*
 		<include refid="selectCommon" />
-		ORDER BY c.seq ASC
+		ORDER BY c.seq DESC
 		<include refid="Base.orderByLimitForMysql" />
 		<include refid="Base.selectListLowerForMysql" /> 
 	</select>
@@ -43,24 +46,34 @@
 		<include refid="selectCommon" />
 	</select>
 	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			c.*
+		FROM share c
+	 	WHERE 1=1
+	 		AND seq = #{seq}
+	</select>
+	
 	<insert id="insert">
 	INSERT INTO share (
+			food_div
 			,title
-			,info
+			,people_num
 			,place
 			,time
 			,price
-			,food_div
-			,people_num
+			,info
+			,share_member_seq
 		)
 		VALUES (
-			#{title}
-			,#{info}
+			#{food_div}
+			,#{title}
+			,#{people_num}
 			,#{place}
 			,#{time}
 			,#{price}
-			,#{food_div}
-			,#{people_num}
+			,#{info}
+			,#{share_member_seq}
 		)
 		
 		<selectKey resultType="String" keyProperty="seq" order="AFTER">

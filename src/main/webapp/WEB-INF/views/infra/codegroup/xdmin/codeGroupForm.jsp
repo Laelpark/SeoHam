@@ -95,7 +95,8 @@
 								</div>
 								<div class="row mt-3">
 									<div class="col">
-										<label for="name" class="form-label">코드그룹 이름(한글)</label> <input type="text" class="form-control" id="name" name="name" placeholder="한글,숫자" value="<c:out value="${item.name}"/>">
+										<label for="name" class="form-label">코드그룹 이름(한글)</label> 
+										<input type="text" class="form-control" id="name" name="name" placeholder="한글,숫자" value="<c:out value="${item.name}"/>">
 									</div>
 									<div class="col">
 										<label for="name_eng" class="form-label">코드그룹 이름(영문)</label> <input type="text" class="form-control" id="name_eng" name="name_eng" placeholder="영문(대소문자),숫자" value="<c:out value="${item.name_eng}"/>">

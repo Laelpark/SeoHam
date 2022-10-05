@@ -5,6 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+<jsp:useBean id="CodeServiceImpl" class="com.spopia.infra.modules.code.CodeServiceImpl"/>
+
 <!doctype html>
 <html lang="ko">
 <head>
@@ -88,42 +90,48 @@
 	<form id="myform" name="myform" method="post">
 		<!-- *Vo.jsp s -->
 		<%@include file="shareVo.jsp"%>
+		<input type="hidden" name="share_member_seq" value="<c:out value="${sessSeq}"/>"/>
 		<!-- *Vo.jsp e -->
 		<nav class="navbar navbar-expand-lg">
 			<div class="a collapse navbar-collapse">
 				<ul class="navbar-nav mb-2 mt-2 ms-3">
 					<li class="nav-item dropdown">
-						<img alt="" src="../../resources/images/share/user.png" style=" margin-left: 8px; width: 60px; height: 40px; border-radius: 100px;">
+						<img alt="" src="../../resources/images/share/user.png" style=" margin-left: 8px; width: 60px; height: 40px; border-radius: 100px; cursor: pointer;">
 					</li>
 					<li>
-						<select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="Food_Select" name="Food_Select" required>
-							<option>카테고리</option>
-							<option>치킨</option>
-							<option>족발,보쌈</option>
-							<option>찜,탕,찌개</option>
-							<option>돈까스,회,일식</option>
-							<option>피자</option>
-							<option>고기,구이</option>
-							<option>양식</option>
-							<option>중식</option>
-							<option>아시안</option>
-							<option>백반,죽,국수</option>
-							<option>도시락</option>
-							<option>분식</option>
+						<select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="food_div" name="food_div" required>
+							<option value="" <c:if test="${empty item.food_div }">selected</c:if>>카테고리</option>
+							<option value="11" <c:if test="${item.food_div eq 11}">selected</c:if>>치킨</option>
+							<option value="12" <c:if test="${item.food_div eq 12}">selected</c:if>>족발/보쌈</option>
+							<option value="13" <c:if test="${item.food_div eq 13}">selected</c:if>>찜/탕/찌개</option>
+							<option value="14" <c:if test="${item.food_div eq 14}">selected</c:if>>돈까스/회/일식</option>
+							<option value="15" <c:if test="${item.food_div eq 15}">selected</c:if>>피자</option>
+							<option value="16" <c:if test="${item.food_div eq 16}">selected</c:if>>고기/구이</option>
+							<option value="17" <c:if test="${item.food_div eq 17}">selected</c:if>>양식</option>
+							<option value="18" <c:if test="${item.food_div eq 18}">selected</c:if>>중식</option>
+							<option value="19" <c:if test="${item.food_div eq 19}">selected</c:if>>아시안</option>
+							<option value="20" <c:if test="${item.food_div eq 20}">selected</c:if>>백반/죽/국수</option>
+							<option value="21" <c:if test="${item.food_div eq 21}">selected</c:if>>도시락</option>
+							<option value="22" <c:if test="${item.food_div eq 22}">selected</c:if>>분식</option>
 							<option><hr class="dropdown-divider"></option>
-							<option>카페,디저트</option>
-							<option>그외 음식</option>
+							<option value="23" <c:if test="${item.food_div eq 23}">selected</c:if>>카페/디저트</option>
+							<option value="24" <c:if test="${item.food_div eq 24}">selected</c:if>>그 외</option>
 						</select>
 					</li>
 					<li class="nav-item dropdown">
-						<input type="hidden" class="d-flex">
-							<input class="form-control me-2 text-center" id= "title" name="title" type="text" style="width: 480px; height: 50px;" placeholder="타이틀을 입력하세요." aria-label="Search">
+						<input type="hidden" class="d-flex" for="title">
+							<input class="form-control me-2 text-center" id= "title" name="title" type="text" style="width: 480px; height: 50px;" placeholder="타이틀을 입력하세요." value="<c:out value="${item.title}"/>">
 						</input>
 					</li>
 					<li>
-						<select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="emailSelect" required>
-							<option>인원</option>
-							<option>1인</option>
+						<select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="people_num" name="people_num" required>
+							<option value="" <c:if test="${empty item.people_num}">selected</c:if>>인원</option>
+							<option value="25" <c:if test="${item.people_num eq 25}">selected</c:if>>1인</option>
+							<option value="26" <c:if test="${item.people_num eq 26}">selected</c:if>>2인</option>
+							<option value="27" <c:if test="${item.people_num eq 27}">selected</c:if>>3인</option>
+							<option value="28" <c:if test="${item.people_num eq 28}">selected</c:if>>4인</option>
+							<option><hr class="dropdown-divider"></option>
+							<option value="29" <c:if test="${item.people_num eq 29}">selected</c:if>>그 외</option>
 						</select>
 					</li>
 				</ul>
@@ -139,8 +147,10 @@
 					</div>
 				</div>
 	            <div class="ms-3">
-	                <div class="c">
-	                    <textarea class="form-control" id="info" name="info" placeholder="주문하실 음식점 이름과 메뉴, 가격 등을 자세히 기재해주세요." rows="10"></textarea>
+	                <div class="c" for="info">
+	                	<textarea class="form-control" placeholder="주문하실 음식점 이름과 메뉴, 가격 등을 자세히 기재해주세요." rows="10" id="info" name="info" aria-label="info"> 
+	                		${item.info}
+	                	</textarea>
 	                </div>
 	            </div>
 	        </div>
@@ -154,8 +164,8 @@
 								<div class="col-4">
 									<p id="date">거래 장소</p>
 								</div>
-								<div class="col-8">
-									<input type="text" style="width: 850px; margin-left: auto;" id="place" name="place">
+								<div class="col-8" for="date">
+									<input type="text" style="width: 850px; margin-left: auto;" id="place" name="place" value="<c:out value="${item.place}"/>">
 								</div>
 							</div>
 						</nav>
@@ -164,8 +174,8 @@
 								<div class="col-4">
 									<p id="date">거래 시간</p>
 								</div>
-								<div class="col-8">
-									<input type="text" style="width: 850px; margin-left: auto;" id="time" name="time">
+								<div class="col-8" for="time">
+									<input type="text" style="width: 850px; margin-left: auto;" id="time" name="time" value="<c:out value="${item.time}"/>">
 								</div>
 							</div>
 						</nav>
@@ -174,8 +184,8 @@
 								<div class="col-4">
 									<p id="date">인당 가격</p>
 								</div>
-								<div class="col-8">
-									<input type="text" style="width: 850px; margin-left: auto;" id="price" name="price">
+								<div class="col-8" for="price">
+									<input type="text" style="width: 850px; margin-left: auto;" id="price" name="price" value="<c:out value="${item.price}"/>">
 								</div>
 							</div>
 						</nav>
@@ -194,9 +204,10 @@
 	
 	var goUrlInst = "/shareInst";
 	var goUrlUpdt = "/shareUpdt";
+	var goUrlDele = "/shareDele";
 	
 	var seq = $("input:hidden[name=seq]");
-	var form = $("form[name=myform]");
+	var form = $("#myform");
 	
 	$("#btnSave").on("click", function() {
 		if (seq.val() == "0" || seq.val() == "") {
