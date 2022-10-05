@@ -19,13 +19,13 @@
 	<!-- start -->
 	<div class="navbar" style="background-color:rgb(142, 68, 173); height: 30px;"></div>
 	<div class="header">
-		<a class="navbar-brand" href="../member_Login_Done/LoginDoneMain.html">
+		<a class="navbar-brand" href="share">
 			<img src="../../resources/images/share/fullLogo_p.png" id="logoimg">
 		</a>
 		<a href="../member_Login_Done/LoginDoneMain.html">
-			<button type="button" class="btn col" id="btn">적용</button>
+			<button type="button" class="btn col" id="btnSave">적용</button>
 		</a>
-		<button type="button" class="btn col" id="btn">취소</button>
+		<button type="button" class="btn col" id="btnCancle">취소</button>
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
 			  <a class="nav-link active" aria-current="page" href="#">프로필 수정</a>
@@ -52,7 +52,7 @@
 	<div class="row" id="content1">
 		<div class="col-3" id="side">주 share 장소</div>
 		<div class="col-md-6 ms-3">
-			<input class="mt-5" id="textBox" type="text" placeholder="주 거래 장소를 입력해주세요.">
+			<input class="mt-5 form-control" id="textBox" type="text" placeholder="주 거래 장소를 입력해주세요.">
 		</div>
 	</div>
 	<div class="row" id="content2">
@@ -71,7 +71,7 @@
 	<div class="row" id="content2">
 		<div class="col-3" id="side">닉네임 변경</div>
 		<div class="col-md-6 ms-3">
-			<input class="mt-5" id="textBox" placeholder="변경하실 닉네임을 입력해주세요.">
+			<input class="mt-5 form-control" id="textBox" placeholder="변경하실 닉네임을 입력해주세요.">
 		</div>
 	</div>
 
