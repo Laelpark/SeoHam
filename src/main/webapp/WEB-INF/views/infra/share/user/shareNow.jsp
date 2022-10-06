@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
-<jsp:useBean id="CodeServiceImpl" class="com.spopia.infra.modules.code.CodeServiceImpl"/>
+<%-- <jsp:useBean id="CodeServiceImpl" class="com.lael.infra.modules.code.CodeServiceImpl"/> --%>
 
 <!doctype html>
 <html lang="ko">
@@ -15,59 +15,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>shareNow</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<style  type="text/css">
-		.a {
-			float: inline-start;
-			display: inline-block;
-			background-color: rgb(224, 224, 224);
-			height: 70px;;
-			margin-top: 5px;
-			margin-left: 40px;
-			margin-right: 40px;
-			border-radius:5px;
-			border-style: solid;
-			border-width: 1px;
-			border-color: rgb(193, 232, 100);
-			box-shadow: 3px 5px 6px rgb(142, 150, 150);
-			/* justify-content: center; */
-		}
-
-		.b{
-			background-color: transparent;
-			border-width: 1px;
-			border-style: solid;
-			border-color: white;
-			height: 265px;
-			width: 300px;
-			margin-left: 30px;
-		}
-
-		.c{
-			height: 250px;
-			width: 900px;
-		}
-
-		.d{
-			height: 50px;
-			border-radius:8px;
-			border-style: solid;
-			border-width: 1px;
-			border-color: white;
-			margin-right: 30px;
-		}
-
-		.topBtn {
-			float: right;
-			margin-right: 50px;
-			justify-content: end;
-			display:  block;
-		}
-
-		#date {
-			text-align: center;
-			margin-top: 5px;
-		}
-	</style>
+	<link rel="stylesheet" href="/resources/css/share/shareNow.css">
 </head>
 <body>
 	<!-- start -->
@@ -141,9 +89,9 @@
 			<div class="a collapse navbar-collapse" style="height: 300px;">
 				<div class="b me-3">
 					<div class="filebox">
-						<img src="" id="preview" width="250px;" id="preview">	
-						<label for="ex_file"></label>
-						<input type="file" id="ex_file" name="chooseFile" accept="image/*" onchange="loadFile(this)">
+						<label for="chooseImg"> 📷 사진 업로드하기</label>
+						<img src="" id="img" width="250px;" id="img">	
+						<input type="file" id="chooseImg" name="chooseImg" accept="image/*" onchange="loadFile(this)" multiple>
 					</div>
 				</div>
 	            <div class="ms-3">
@@ -218,6 +166,17 @@
 			form.attr("action", goUrlUpdt).submit();
 		}
 	});
+	
+	// 사진 업로드
+	
+	const reader = new FileReader();
+        reader.onload = (readerEvent) => {
+            document.querySelector("#img").setAttribute("src", readerEvent.target.result);
+        };
+        document.querySelector("#chooseImg").addEventListener("change", (changeEvent) => {
+            const imgFile = changeEvent.target.files[0];
+            reader.readAsDataURL(imgFile);
+        })
 	
 	</script>
 </body>

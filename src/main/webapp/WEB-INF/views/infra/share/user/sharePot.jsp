@@ -59,6 +59,9 @@
 		<div class="a pt-2 position-relative">
 			<div class="container">
 				<div class="row">
+					<!-- <div class="col">
+						아이디
+					</div> -->
 					<div class="col">
 						카테고리
 					</div>
@@ -96,7 +99,10 @@
 					<div class="b pt-2 position-relative">
 						<div class="container" onclick="newPage()">
 							<div class="row">
-								<div class="col">
+								<%-- <div class="col">
+								 	<input name="share_member_seq" value="<c:out value="${sessSeq}"/>"/>
+								</div> --%>
+								<div class="col text-center">
 									${list.food_div }
 									<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
 										<c:if test="${list.food_div eq listFood.cdSeq}"><c:out value="${listFood.name}"/></c:if>
@@ -121,7 +127,10 @@
 									<span>${list.price}</span>	
 								</div>
 								<div class="col text-center"> 
-									<i class="fas fa-light fa-star" type="button"  id="star" style="font-size: 20px;"></i>
+									<input type="hidden" id="starAllowedNy" name="starAllowedNy" value="0">
+									<button id="star" type="button">
+										<img src="" style="font-size: 20px;">
+									</button>
 								</div>
 							</div>
 						</div>
@@ -141,10 +150,10 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script type="text/javascript">
-		var star = document.querySelector("#star");
+		/* var star = document.querySelector("#star");
 		star.onclick = function() {
 			star.style.color = "yellow";
-		};
+		}; */
 		
 		var goUrlList = "/sharePot";
 		var form = $("#myForm");
@@ -166,6 +175,23 @@
 	        don = price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	        console.log(price);  // 콘솔창에 123,123,123 찍힘
 	     });
+	    		
+
+		 $("#star").on("click", function(){
+			
+			 var allow = $("#starAllowedNy").val();
+			 
+			 if (allow == 0) {
+				document.getElementById("starAllowedNy").value = 1;
+				$("#star").attr("src", )
+				
+			} else {
+				
+				document.getElementById("starAllowedNy").value = 0;
+			}
+		 });
+	    
+	    
 	</script>
 </body>
 </html>

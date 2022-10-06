@@ -1,8 +1,6 @@
 package com.lael.infra.modules.share;
 
 import java.util.List;
-import java.util.Locale;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,13 +22,18 @@ public class ShareController {
 	 
 	 // 유저
 	
+	 @RequestMapping(value = "/")
+	 public String shareMain() throws Exception {
+		return "infra/share/main/shareMain";
+	}
+	 
   @RequestMapping(value = "/share")
-	public String main(HttpSession httpSession) throws Exception {
+	public String main() throws Exception {
 		return "infra/share/user/shareLogDone";
 	}
 	
 	@RequestMapping(value = "/shareHot")
-	public String shareHot(Locale locale, Model model) throws Exception {
+	public String shareHot() throws Exception {
 		return "infra/share/user/shareHot";
 	}
 
@@ -64,6 +67,15 @@ public class ShareController {
 		redirectAttributes.addFlashAttribute("vo", vo); 
 
 		return "redirect:/shareNow";
+	}
+	
+	@RequestMapping(value = "/shareUpdt")
+	public String shareUpdt(ShareVo vo, Share dto, RedirectAttributes redirectAttributes) throws Exception {
+
+		service.insert(dto);
+		
+		redirectAttributes.addFlashAttribute("vo", vo); 
+		return "redirect:/sharePot";
 	}
 	
 	@RequestMapping(value = "/shareMyPage")

@@ -37,7 +37,6 @@
     width: 100%;
 }
 
-.star:active {
-	color:rgb(255, 225, 0);
+.star {
+	border: 1px solid transparent;
 }
-
