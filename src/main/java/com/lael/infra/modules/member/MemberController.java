@@ -1,6 +1,7 @@
 package com.lael.infra.modules.member;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class MemberController {
 	public String memberForm(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
 		
 		 Member item = service.selectOne(vo);
+		 
+		 // jsp로 보내는 요소
 		  model.addAttribute("item", item);
 		
 		return "infra/member/xdmin/memberForm";
@@ -87,9 +90,29 @@ public class MemberController {
 	@RequestMapping(value = "logoutProc")
 	public Map<String, Object> logoutProc(HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-//		UtilCookie.deleteCookie();
 		httpSession.invalidate();
 		returnMap.put("rt", "success");
 		return returnMap;
 	}
+	
+	// 관리자
+	
+	@RequestMapping(value = "/adminLogin")
+	public String adminLogin() throws Exception {
+		return "infra/share/admin/adminLogin";
+	}
+	
+	@RequestMapping(value = "/adminMain")
+	public String adminMain(MemberVo vo, Model model) throws Exception {
+
+		//아이디 카운트 && 페이지 네이션도 사용
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
+		// db아이디 불러오기
+		List<Member> list = service.selectList(vo);
+		model.addAttribute("list", list);
+		return "infra/share/admin/adminMain";
+	}
+	
+	
 }

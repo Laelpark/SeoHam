@@ -26,6 +26,10 @@ public class CodeGroup {
 	private String ccgId;
 	private String ccgPw;
 	
+//	private MultipartFile[] img1;
+//	private MultipartFile[] file;
+//	private MultipartFile[]
+	
 	
 	
 	public String getCcgPw() {

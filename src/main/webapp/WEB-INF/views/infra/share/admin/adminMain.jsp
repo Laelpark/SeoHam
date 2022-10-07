@@ -12,6 +12,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>adminMain</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link rel="stylesheet" type="text/css" href="/resources/css/share/chartCss.css">
 </head>
 <body style="background-color: rgb(224, 224, 224);">
@@ -42,7 +44,7 @@
                     <div class="row">
                        <p class="ms-4 col mt-3" style="font-weight: bold;">
                             Today 신규가입자 아이디:
-                            <span class="num">nn</span>
+                            <%-- <span id="num" class="num">${vo.totalRows}</span> --%>
                             명
                         </p>
                         <p class="offset-md-3 col-5 m-3" style="font-size: 12px; text-align: right;">
@@ -51,17 +53,17 @@
                         </p> 
                     </div>
                     <div class="ms-3 scroll" style="height: 200px; text-align: left;">
-                        <p></p>
-                        <p>안녕프렌체스카</p>
-                        <p>새로운 아이디</p>
-                        <p>NEW ID</p>
-                        <p>새로운 멤버</p>
-                        <p>NEW MEMBER</p>
-                        <p>안녕프렌체스카</p>
-                        <p>새로운 아이디</p>
-                        <p>NEW ID</p>
-                        <p>새로운 멤버</p>
-                        <p>NEW MEMBER</p>
+                        <br>
+						<c:choose>
+							<c:when test="${fn:length(list) eq 0}">
+								<p class="text-center">There is no data!</p>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${list}" var="list" varStatus="status">
+			                        <p id="id" name="id">${list.id}</p>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>	
                     </div>
                 </div>
                 <div class="newmem2 mt-4" style="height: 280px;">
@@ -119,7 +121,7 @@
         </main>
         <div id="sidebar">
             <div class="side_img">
-                <img id="home" src="../../user/img/fullLogo_w.png">
+                <img id="home" src="/resources/images/share/fullLogo_w.png">
             </div>
             <div class="side_info">
                 <hr style="color: white;">
@@ -144,19 +146,18 @@
                 <div class="footer_inner">
                     <!--[주]고객센터,제휴문의,서비스안내-->
                     <ul class="footer_link" id="footer_link">
-                        <li><a target="_blank" class="footer_item" href="http://www.naver.com/rules/service.html"
+                        <li><a target="_blank" class="footer_item"
                                 id="fot.agreement"><span class="text">이용약관</span></a></li>
-                        <li><a target="_blank" class="footer_item" href="http://www.naver.com/rules/privacy.html"
+                        <li><a target="_blank" class="footer_item"
                                 id="fot.privacy"><span class="text"><strong>개인정보처리방침</strong></span></a></li>
-                        <li><a target="_blank" class="footer_item" href="http://www.naver.com/rules/disclaimer.html"
+                        <li><a target="_blank" class="footer_item"
                                 id="fot.disclaimer"><span class="text">책임의 한계와 법적고지</span></a></li>
                         <li><a target="_blank" class="footer_item"
-                                href="https://help.naver.com/support/service/main.nhn?serviceNo=532" id="fot.help"><span
-                                    class="text">회원정보 고객센터</span></a></li>
+                      		 	id="fot.help"><span class="text">회원정보 고객센터</span></a></li>
                     </ul>
                     <div class="footer_copy">
-                        <a id="fot.naver" href="../../user/member/main.html">
-                            <img src="../../user/img/logo_p-removebg-preview.png" alt="logo" style="width: 45px;">
+                        <a id="fot.naver">
+                            <img src="/resources/images/share/logo_p-removebg-preview.png" alt="logo" style="width: 45px;">
                         </a>
                         <span class="text">Copyright</span>
                         <span class="corp">© SHARE Corp.</span>

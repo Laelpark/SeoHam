@@ -83,21 +83,14 @@ public class ShareController {
 		return "infra/share/user/shareMyPage";
 	}
 	
+	@RequestMapping(value = "/shareMyPageInst")
+	public String shareMyPageInst() throws Exception {
+		return "redirect:/shareMyPage";
+	}
+	
 	@RequestMapping(value = "/shareLikeList")
 	public String shareLikeList() throws Exception {
 		return "infra/share/user/shareLikeList";
-	}
-	
-	// 관리자
-	
-	@RequestMapping(value = "/adminLogin")
-	public String adminLogin() throws Exception {
-		return "infra/share/admin/adminLogin";
-	}
-	
-	@RequestMapping(value = "/adminMain")
-	public String adminMain() throws Exception {
-		return "infra/share/admin/adminMain";
 	}
 	
 }

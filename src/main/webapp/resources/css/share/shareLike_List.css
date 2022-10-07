@@ -8,22 +8,18 @@
 
 .a {
     width: auto;
+    height: 80px;
     box-shadow: -3px 3px 6px rgb(142, 150, 150);
     margin-top: 3px;
-    margin-left: 20px;
-    margin-right: 20px;
-    padding: 10px 30px;
     border-radius:30px;
     background-color: rgba(233, 231, 58, 0.66);
 }
 
 .b {
     width: auto;
+    height: 80px;
     box-shadow: -3px 3px 6px rgb(142, 150, 150);
     margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    padding: 10px 30px;
     border-radius:30px;
     border-style: solid;
     border-width: 1px;
@@ -32,10 +28,17 @@
     cursor: pointer;
 }
 
+#cate2 {
+	padding-top: 20px;
+}
+
+#cate {
+	padding-top: 20px;
+}
+
 .c {
     float: right;
     display: inline-block;
-    margin-right: 50px;
     justify-content: end;
 }
 
@@ -44,3 +47,11 @@
     bottom: 0;
     width: 100%;
 }
+
+.container1 {
+  margin: 0 auto;
+  max-width: 1800px;
+  max-height: 900px;
+  display: grid;
+}
+

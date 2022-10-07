@@ -28,6 +28,8 @@
 		<interceptor>
 			<mapping path="/**"/>
 			<exclude-mapping path="/resources/**" />
+			<exclude-mapping path="/codeGroup/codeGroupList" />
+			<exclude-mapping path="/codeGroup/codeGroupForm" />
 			<exclude-mapping path="/share" />
 			<exclude-mapping path="/shareHot" />
 			<exclude-mapping path="/sharePot" />

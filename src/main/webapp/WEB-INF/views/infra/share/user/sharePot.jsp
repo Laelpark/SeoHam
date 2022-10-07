@@ -24,122 +24,119 @@
 		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
 		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 		<input type="hidden" name="seq" value="<c:out value="${vo.seq}"/>">
-		<nav class="navbar mb-3" style="background-color:rgb(142, 68, 173); height: 30px;"></nav>
-		<nav class="bg-transparent">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="share">
-					<img src="/resources/images/share/sharepot.png" alt="" width="200" height="50" class="d-inline-block align-text-top ms-3">
-				</a>
-			</div>
-		</nav>
-		<nav class="navbar navbar-expand-lg bg-transparent mt-3 mb-3 js">
-			<div class="c collapse navbar-collapse">
-				<ul class="navbar-nav mb-2">
-					<li class="nav-item dropdown" value="">
-						<select class="form-select" id="shOption" name="shOption">
-							<option value="" <c:if test="${empty vo.shOption }">selected</c:if>>선택</option>
-							<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>카테고리</option>
-							<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>제목</option>
-							<option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>인원</option>
-							<option value="4" <c:if test="${vo.shOption eq 4 }">selected</c:if>>장소</option>
-							<option value="5" <c:if test="${vo.shOption eq 5 }">selected</c:if>>시간</option>
-						  	<option value="6" <c:if test="${vo.shOption eq 6 }">selected</c:if>>가격</option>
-						</select>
-					</li>
-					<li class="nav-item dropdown ms-3">
-						<div class="d-flex" role="search">
-							<input class="form-control me-2 text-center" name="shValue" id="shValue" value="<c:out value="${vo.shValue}"/>" autocomplete="off" type="search" style="width: 300px;" placeholder="검색어를 입력하세요.">
-							<button class="btn btn-outline-success bg-transparent me-2" type="submit" id="searching">Search</button>
-							<button class="btn btn-danger" type="reset" id="btnReset" name="btnReset"><i class="fa-solid fa-rotate-right"></i></button>
+		<p style="background-color:rgb(142, 68, 173); height: 30px;"></p>
+		<div class="container1">
+			<nav class="bg-transparent">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="share">
+						<img src="/resources/images/share/sharepot.png" alt="" width="200" height="50" class="d-inline-block align-text-top ms-3 mt-4">
+					</a>
+				</div>
+			</nav>
+			<nav class="navbar navbar-expand-lg bg-transparent mt-3 mb-3 js">
+				<div class="c collapse navbar-collapse">
+					<ul class="navbar-nav mb-2">
+						<li class="nav-item dropdown" value="">
+							<select class="form-select" id="shOption" name="shOption">
+								<option value="" <c:if test="${empty vo.shOption }">selected</c:if>>선택</option>
+								<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>카테고리</option>
+								<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>제목</option>
+								<option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>인원</option>
+								<option value="4" <c:if test="${vo.shOption eq 4 }">selected</c:if>>장소</option>
+								<option value="5" <c:if test="${vo.shOption eq 5 }">selected</c:if>>시간</option>
+							  	<option value="6" <c:if test="${vo.shOption eq 6 }">selected</c:if>>가격</option>
+							</select>
+						</li>
+						<li class="nav-item dropdown ms-3">
+							<div class="d-flex" role="search">
+								<input class="form-control me-2 text-center" name="shValue" id="shValue" value="<c:out value="${vo.shValue}"/>" autocomplete="off" type="search" style="width: 300px;" placeholder="검색어를 입력하세요.">
+								<button class="btn btn-outline-success bg-transparent me-2" type="submit" id="searching">Search</button>
+								<button class="btn btn-danger" type="reset" id="btnReset" name="btnReset"><i class="fa-solid fa-rotate-right"></i></button>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<div class="a pt-2 position-relative">
+				<div class="container">
+					<div class="row" id="cate">
+						<div class="col text-center">
+							카테고리
 						</div>
-					</li>
-				</ul>
-			</div>
-		</nav>
-		<div class="a pt-2 position-relative">
-			<div class="container">
-				<div class="row">
-					<!-- <div class="col">
-						아이디
-					</div> -->
-					<div class="col">
-						카테고리
-					</div>
-					<div class="col text-center">
-						제목
-					</div>
-					<div class="col text-center">
-						인원
-					</div>
-					<div class="col text-center">
-						장소
-					</div>
-					<div class="col text-center">
-						시간
-					</div>
-					<div class="col text-center">
-						가격
-					</div>
-					<div class="col text-center">
-						즐겨찾기
+						<div class="col text-center">
+							제목
+						</div>
+						<div class="col text-center">
+							인원
+						</div>
+						<div class="col text-center">
+							장소
+						</div>
+						<div class="col text-center">
+							시간
+						</div>
+						<div class="col text-center">
+							가격
+						</div>
+						<div class="col text-center">
+							즐겨찾기
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<c:set var="listCodeFood" value="${shareCodeGroupServiceImpl.selectListCachedCode('4') }" />
-		<c:set var="listCodeNum" value="${shareCodeGroupServiceImpl.selectListCachedCode('5') }" />
-		<c:choose>
-			<c:when test="${fn:length(list) eq 0}">
-				<tr>
-					<td class="text-center" colspan="8">There is no data!</td>
-				</tr>
-			</c:when>
-			<c:otherwise>		
-				<c:forEach items="${list}" var="list" varStatus="status">
-					<div class="b pt-2 position-relative">
-						<div class="container" onclick="newPage()">
-							<div class="row">
-								<%-- <div class="col">
-								 	<input name="share_member_seq" value="<c:out value="${sessSeq}"/>"/>
-								</div> --%>
-								<div class="col text-center">
-									${list.food_div }
-									<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
-										<c:if test="${list.food_div eq listFood.cdSeq}"><c:out value="${listFood.name}"/></c:if>
-									</c:forEach>
-								</div>
-								<div class="col text-center">
-									${list.title}
-								</div>
-								<div class="col text-center">
-									${list.people_num }
-									<c:forEach items="${listCodeNum}" var="listNum" varStatus="statusNum">
-										<c:if test="${list.people_num eq listNum.cdSeq}"><c:out value="${listNum.name}"/></c:if>
-									</c:forEach>
-								</div>
-								<div class="col text-center">
-									${list.place}
-								</div>
-								<div class="col text-center">
-									${list.time}
-								</div>
-								<div class="col text-center">
-									<span>${list.price}</span>	
-								</div>
-								<div class="col text-center"> 
-									<input type="hidden" id="starAllowedNy" name="starAllowedNy" value="0">
-									<button id="star" type="button">
-										<img src="" style="font-size: 20px;">
-									</button>
+			<c:set var="listCodeFood" value="${shareCodeGroupServiceImpl.selectListCachedCode('4') }" />
+			<c:set var="listCodeNum" value="${shareCodeGroupServiceImpl.selectListCachedCode('5') }" />
+			<c:choose>
+				<c:when test="${fn:length(list) eq 0}">
+					<tr>
+						<td class="text-center" colspan="8">There is no data!</td>
+					</tr>
+				</c:when>
+				<c:otherwise>		
+					<c:forEach items="${list}" var="list" varStatus="status">
+						<div class="b pt-2 position-relative">
+							<div class="container" onclick="newPage()">
+								<div class="row" id="cate2">
+									<div class="col text-center">
+										${list.food_div }
+										<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
+											<c:if test="${list.food_div eq listFood.cdSeq}"><c:out value="${listFood.name}"/></c:if>
+										</c:forEach>
+									</div>
+									<div class="col text-center">
+										${list.title}
+									</div>
+									<div class="col text-center">
+										${list.people_num }
+										<c:forEach items="${listCodeNum}" var="listNum" varStatus="statusNum">
+											<c:if test="${list.people_num eq listNum.cdSeq}"><c:out value="${listNum.name}"/></c:if>
+										</c:forEach>
+									</div>
+									<div class="col text-center">
+										${list.place}
+									</div>
+									<div class="col text-center">
+										${list.time}
+									</div>
+									<div class="col text-center">
+										<span>${list.price}</span>	
+									</div>
+									<div class="col text-center"> 
+										<input type="hidden" id="starAllowedNy" name="starAllowedNy" value="0">
+										<button id="star" type="button">
+											<img src="" style="font-size: 20px;">
+										</button>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
-		<div>		
-			<%@include file="../../common/xdmin/includeV1/pagination.jsp"%>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+			<div class="mt-5">		
+				<%@include file="../../common/xdmin/includeV1/pagination.jsp"%>
+			</div>
+			<br>
 		</div>
 	</form>
 	
@@ -166,6 +163,9 @@
 		 $("#btnReset").on("click", function(){
 			 $(location).attr("href", goUrlList);
 		 });
+		 
+		 
+		 // 숫자에 , 찍기
 		 
 	    $(document).ready(function(){
 

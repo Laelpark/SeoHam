@@ -23,7 +23,7 @@
 		<include refid="Base.selectListUpperForMysql"></include>
 		SELECT
 			a.*
-			,(select count(b.cdSeq) from shareCode b where 1=1 and a.DelNy = 0 and a.ccgSeq = b.cdSeq) as ccgSeqcount
+			,(select count(b.cdSeq) from code b where 1=1 and a.DelNy = 0 and a.ccgSeq = b.cdSeq) as ccgSeqcount
 		<include refid="selectCommon" />
 		ORDER BY a.ccgSeq DESC
 		<include refid="Base.orderByLimitForMysql" />
@@ -34,7 +34,7 @@
 		<include refid="Base.selectListUpperForMysql"></include>
 		SELECT
 			a.*
-			,(select count(b.cdSeq) from shareCode b where 1=1 and a.DelNy = 0 and a.ccgSeq = b.cdSeq) as ccgSeqcount
+			,(select count(b.cdSeq) from code b where 1=1 and a.DelNy = 0 and a.ccgSeq = b.cdSeq) as ccgSeqcount
 		<include refid="selectCommon" />
 		ORDER BY a.ccgSeq DESC
 		<include refid="Base.orderByLimitForMysql" />

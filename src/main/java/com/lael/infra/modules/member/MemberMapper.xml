@@ -38,12 +38,11 @@
 			,a.grade
 			,a.review
 			,a.location
-			,a.share_report_seq
-			,a.share_review_seq
 			,a.DelNy
 		<include refid="selectCommon" />
 		ORDER BY a.seq DESC
 		<include refid="Base.orderByLimitForMysql" />
+		<!-- 페이지 제한하는 요소--> 
 		<include refid="Base.selectListLowerForMysql" /> 
 	</select>
 	
