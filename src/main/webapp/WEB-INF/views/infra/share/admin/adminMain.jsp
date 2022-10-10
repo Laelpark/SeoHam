@@ -15,6 +15,7 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link rel="stylesheet" type="text/css" href="/resources/css/share/chartCss.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body style="background-color: rgb(224, 224, 224);">
 	<!-- start -->
@@ -43,8 +44,8 @@
                 <div class="newmem2 mt-4">
                     <div class="row">
                        <p class="ms-4 col mt-3" style="font-weight: bold;">
-                            Today 신규가입자 아이디:
-                            <%-- <span id="num" class="num">${vo.totalRows}</span> --%>
+                            Today NewMember :
+                            <span id="num" class="num">${vo.totalRows}</span>
                             명
                         </p>
                         <p class="offset-md-3 col-5 m-3" style="font-size: 12px; text-align: right;">
@@ -66,32 +67,50 @@
 						</c:choose>	
                     </div>
                 </div>
-                <div class="newmem2 mt-4" style="height: 280px;">
-                    <div class="row">
-                        <p class="ms-4 col mt-3" style="font-weight: bold;">
-                            Today New Share Pot:
-                            <span class="num">nn</span>
-                            개
-                        </p>
-                        <p class="offset-md-3 col-5 m-3" style="font-size: 12px; text-align: right;">
-                            더보기
-                            <i class="fa-solid fa-angle-right"></i>
-                        </p>
-                    </div>
-                    <div class="scroll" style="height: 200px; text-align: left;">
-                        <div class="sharepot">
-                            <div class="row">
-                                <div class="col-3">피자나라 콤비네이션</div>
-                                <div class="col-1">|</div>
-                                <div class="col-2">1/2인</div>
-                                <div class="col-1">|</div>
-                                <div class="col-2">14:00</div>
-                                <div class="col-1">|</div>
-                                <div class="col-2">15,000원</div>
+				<c:set var="listCodeNum" value="${shareCodeGroupServiceImpl.selectListCachedCode('5') }" />
+				<c:set var="listCodeTime" value="${shareCodeGroupServiceImpl.selectListCachedCode('6') }" />
+                <c:choose>
+					<c:when test="${fn:length(list) eq 0}">
+                        <td class="text-center" colspan="8">There is no data!</td>
+					</c:when>
+                	<div class="newmem2 mt-4" style="height: 280px;">
+                    	<div class="row">
+	                       <p class="ms-4 col mt-3" style="font-weight: bold;">
+	                           Today New Share Pot:
+	                           <span class="num">${vo.totalRows}</span>
+	                           개
+	                       </p>
+	                       <p class="offset-md-3 col-5 m-3" style="font-size: 12px; text-align: right;">
+	                           더보기
+	                           <i class="fa-solid fa-angle-right"></i>
+	                       </p>
+                    	</div>
+	                    <div class="scroll" style="height: 200px; text-align: left;">
+	                        <div class="sharepot">
+                                <c:otherwise>		
+                                    <c:forEach items="${list}" var="list" varStatus="status">
+                                        <div class="row">
+                                            <div class="col-3" id="title" name="title">
+                                            	
+                                           </div>
+                                            <div class="col-1">|</div>
+                                            <div class="col-2" id="people_num" name="people_num">
+                         					  ${list.people_num }
+												<c:forEach items="${listCodeNum}" var="listNum" varStatus="statusNum">
+													<c:if test="${list.people_num eq listNum.cdSeq}"><c:out value="${listNum.name}"/></c:if>
+												</c:forEach>
+											</div>
+                                            <div class="col-1">|</div>
+                                            <div class="col-2" id="time" name="time"></div>
+                                            <div class="col-1">|</div>
+                                            <div class="col-2" id="price" name="price"></div>
+                                        </div>
+                                    </c:forEach>
+                                </c:otherwise>
                             </div>
                         </div>
                     </div>
-                </div>
+                </c:choose>
                 <div class="newmem2 mt-4" style="height: 280px;">
                     <div class="row">
                         <p class="ms-4 col mt-3" style="font-weight: bold;">
@@ -235,6 +254,8 @@
         }, 210, 320, 120, 110, 160, 280]
         }]
     });
+		
+		var numItems = $('.num').length
 	</script>
 </body>
 </html>
