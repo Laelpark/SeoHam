@@ -148,19 +148,6 @@
 											</div>
 											<div class="col-md-2">
 												<button class="btn btn-warning" type="submit" id="searching"><i class="fa-solid fa-magnifying-glass"></i></button>
-												<div class="toast-container position-fixed bottom-0 end-0 p-3">
-													<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-														<div class="toast-header">
-															<img src="..." class="rounded me-2" alt="...">
-															<strong class="me-auto">Bootstrap</strong>
-															<small>11 mins ago</small>
-															<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-														</div>
-														<div class="toast-body">
-															Hello, world! This is a toast message.
-														</div>
-													</div>
-												</div>
 												<button class="btn btn-danger" type="reset" id="btnReset" name="btnReset"><i class="fa-solid fa-rotate-right"></i></button>
 											</div>
 										</div>
@@ -220,7 +207,6 @@
 				<div class="row">
 					<div class="col-md-2 offset-4"> 
 						<button class="btn btn-danger del" type="button" onclick=deleteValue(); data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i class="fa-solid fa-trash-can"></i></button>
-						<!-- <button class="btn btn-danger" type="button"><i class="fa-solid fa-xmark"></i></button> -->
 						<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 							<div class="modal-dialog modal-dialog-centered">
 								<div class="modal-content">
@@ -379,6 +365,7 @@
 			
 		  /* var form = $("form[name=myForm]"); */
 
+		  // 페이지 네이션 만들기
 			 goList = function(thisPage) {
 	 			$("input:hidden[name=thisPage]").val(thisPage);
 	 			form.attr("action", goUrlList).submit();
@@ -386,6 +373,7 @@
 	 		
 	 		/* var seq = $("input:hidden[name=ccgSeq]"); */
 
+	 		
 	 		$('#btnForm').on("click", function() {
 	 			goForm(0);                
 	 		});

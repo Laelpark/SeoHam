@@ -18,12 +18,8 @@ public class CodeGroupController {
 	
 	  private void setSearchAndPaging(CodeGroupVo vo) throws Exception {
 		  vo.setShDelNy(vo.getShDelNy() == null ? 0: vo.getShDelNy()); //
-			
-//			 vo.setDatepickerS(vo.getDatepickerS() == null || vo.getDatepickerS() == "" ? null : UtilDateTime.add00TimeString(vo.getDatepickerS())); //
-//			 vo.setDatepickerE(vo.getDatepickerE() == null || vo.getDatepickerE() == "" ? null : UtilDateTime.add59TimeString(vo.getDatepickerE())); //
-//		  	 vo.setShOption(vo.getShOption() == null ? 1 : vo.getShOption());
-		  
 		  vo.setParamsPaging(service.selectOneCount(vo)); 
+//		  	 vo.setShOption(vo.getShOption() == null ? 1 : vo.getShOption());
 	  }
 	 
 	

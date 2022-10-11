@@ -15,12 +15,7 @@ public class MemberDao {
 	
 	private static String namespace = "com.lael.infra.modules.member.MemberMapper";
 	
-	// public List<Member> selectList(MemberVo vo){ return sqlSession.selectList(namespace + ".selectList", vo);}  
-	
 	public List<Member> selectList(MemberVo vo){ 
-			// 향상된 사다리 <코드그룹 dto>
-	// List<Member> list = sqlSession.selectList(namespace + ".selectList", vo)
-																	// 쿼리 아이디
 		List<Member> list = sqlSession.selectList(namespace + ".selectList", vo);
 		return list; 								
 	}
@@ -44,6 +39,10 @@ public class MemberDao {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
 	}
 	
+	public int selectOneCount2(MemberVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOneCount2", vo);
+	}
+	
 	public int selectOneId(Member dto) {
 		return sqlSession.selectOne(namespace + ".selectOneId", dto);
 	}
@@ -59,5 +58,10 @@ public class MemberDao {
 	
 	public Member selectOneLogin(Member dto) {
 		return sqlSession.selectOne(namespace + ".selectOneLogin", dto);
+	}
+	
+	public List<Member> selectList2(MemberVo vo){ 
+		List<Member> list = sqlSession.selectList(namespace + ".selectList2", vo);
+		return list; 								
 	}
 }

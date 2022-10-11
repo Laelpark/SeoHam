@@ -13,16 +13,19 @@
 		WHERE 1=1
 		<if test="shDelNy != null and !shDelNy.equals('')">AND DelNy = #{shDelNy}</if>
 		<choose>
-			<when test="shOption == 1">AND seq = #{shValue}</when>
-			<when test="shOption == 2">AND name LIKE CONCAT('%',#{shValue},'%')</when>
-			<when test="shOption == 3">AND name_eng LIKE CONCAT('%',#{shValue},'%')</when>
+			<!-- <when test="shOption == 1">AND seq = #{shValue}</when> -->
+			<when test="shOption == 1">AND name LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 2">AND nick_nm LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 3">AND email LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 4">AND shareCount LIKE CONCAT('%',#{shValue},'%')</when>
 		</choose>
 	</sql>
 	
 	<select id="selectList" resultMap="resultMapObj">
 		<include refid="Base.selectListUpperForMysql"/>
 		SELECT
-			a.id
+			a.seq
+			,a.id
 			,a.pw
 			,a.name
 			,a.dob
@@ -30,15 +33,15 @@
 			,a.dob3
 			,a.gender
 			,a.email
-			,a.email_div
 			,a.phone
-			,a.phone_div
 			,a.nick_nm
 			,a.share_place
 			,a.grade
 			,a.review
 			,a.location
 			,a.DelNy
+			,a.createDate
+			,a.shareCount
 		<include refid="selectCommon" />
 		ORDER BY a.seq DESC
 		<include refid="Base.orderByLimitForMysql" />
@@ -61,6 +64,13 @@
 		<include refid="selectCommon" />
 	</select>
 	
+	<select id="selectOneCount2" resultType="Integer">
+		SELECT COUNT(*)
+		FROM share_member a
+		WHERE 1=1
+			and DATE(createDate) = DATE(now()) 
+	</select>
+	
 	<insert id="insert">
 		INSERT INTO share_member (
 			id
@@ -72,10 +82,9 @@
 			,dob3
 			,gender
 			,email
-			,email_div
 			,phone
-			,phone_div
 			,DelNy
+			,createDate
 		)
 		VALUES (
 			#{id}
@@ -87,10 +96,9 @@
 			,#{dob3}
 			,#{gender}
 			,#{email}
-			,#{email_div}
 			,#{phone}
-			,#{phone_div}
 			,0
+			,now()
 		)
 		<selectKey resultType="String" keyProperty="seq" order="AFTER">
 			SELECT last_insert_id()
@@ -159,6 +167,37 @@
 			AND id = #{id} 
 			AND pw = #{pw}
  	</select>
+ 	
+ 	<select id="selectList2" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"/>
+		SELECT
+			a.seq
+			,a.id
+			,a.pw
+			,a.name
+			,a.dob
+			,a.dob2
+			,a.dob3
+			,a.gender
+			,a.email
+			,a.phone
+			,a.nick_nm
+			,a.share_place
+			,a.grade
+			,a.review
+			,a.location
+			,a.DelNy
+			,a.createDate
+			,a.shareCount
+		FROM share_member a
+		WHERE 1=1
+			and DATE(createDate) = DATE(now()) 
+		ORDER BY a.seq DESC
+		<!-- 전체 검색 갯수 제한 --> 
+		<include refid="Base.orderByLimitForMysql" />
+		) a
+		limit 6 offset #{startRnumForMysql}
+	</select>
  	
 </mapper>	
 		

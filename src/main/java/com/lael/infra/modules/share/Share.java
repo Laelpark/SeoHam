@@ -11,8 +11,15 @@ public class Share {
 	private String price;
 	private String info;
 	private String ccgSeq;
+	private String createDate;
 	private Integer share_member_seq;
 	
+	public String getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
 	public Integer getShare_member_seq() {
 		return share_member_seq;
 	}

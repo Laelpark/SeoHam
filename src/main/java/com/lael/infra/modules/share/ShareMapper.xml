@@ -24,8 +24,16 @@
 	<select id="selectList" resultMap="resultMapObj">
 		<include refid="Base.selectListUpperForMysql"></include>
 		SELECT
-			c.*
-		<include refid="selectCommon" />
+			c.food_div
+			,c.title
+			,c.people_num
+			,c.info
+			,c.place
+			,c.time
+			,c.price
+			,c.DelNy
+			,c.createDate
+s		<include refid="selectCommon" />
 		ORDER BY c.seq DESC
 		<include refid="Base.orderByLimitForMysql" />
 		<include refid="Base.selectListLowerForMysql" /> 
@@ -36,7 +44,7 @@
 		SELECT
 			c.*
 		<include refid="selectCommon" />
-		ORDER BY c.seq ASC
+		ORDER BY c.seq DESC      <!-- ASC -->
 		<include refid="Base.orderByLimitForMysql" />
 		)a
 	</select>
@@ -46,12 +54,19 @@
 		<include refid="selectCommon" />
 	</select>
 	
+	<select id="selectOneCount2" resultType="Integer">
+		SELECT COUNT(*)
+		FROM share c
+		WHERE 1=1		
+			and DATE(createDate) = DATE(now()) 
+	</select>
+	
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			c.*
 		FROM share c
 	 	WHERE 1=1
-	 		AND seq = #{seq}
+	 		AND c.seq = #{seq}
 	</select>
 	
 	<insert id="insert">
@@ -87,6 +102,27 @@
 		select count(*) 
 		from share 
 		where id = #{id}
+	</select>
+	
+	<select id="selectList2" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"></include>
+		SELECT
+			c.food_div
+			,c.title
+			,c.people_num
+			,c.info
+			,c.place
+			,c.time
+			,c.price
+			,c.DelNy
+			,c.createDate
+			FROM share c
+		WHERE 1=1		
+			and DATE(createDate) = DATE(now()) 
+		ORDER BY c.seq DESC
+		<include refid="Base.orderByLimitForMysql" />
+		) a
+		limit 6 offset #{startRnumForMysql}
 	</select>
 
 </mapper>

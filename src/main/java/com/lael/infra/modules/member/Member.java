@@ -11,17 +11,19 @@ public class Member {
 	private Integer dob3;
 	private Integer gender;
 	private String email;
-	private Integer email_div;
 	private Integer phone;
-	private Integer phone_div;
 	private String nick_nm;
 	private String share_place;
-	private double grade;
+	private Integer grade;
 	private String review;
 	private String location;
 	private Integer share_report_seq;
 	private Integer share_review_seq;
 	private Integer DelNy;
+	private String createDate;
+	private Integer shareCount;
+	
+	
 	
 	public Integer getShare_report_seq() {
 		return share_report_seq;
@@ -31,6 +33,18 @@ public class Member {
 	}
 	public Integer getShare_review_seq() {
 		return share_review_seq;
+	}
+	public String getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	public Integer getShareCount() {
+		return shareCount;
+	}
+	public void setShareCount(Integer shareCount) {
+		this.shareCount = shareCount;
 	}
 	public void setShare_review_seq(Integer share_review_seq) {
 		this.share_review_seq = share_review_seq;
@@ -89,24 +103,14 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Integer getEmail_div() {
-		return email_div;
-	}
-	public void setEmail_div(Integer email_div) {
-		this.email_div = email_div;
-	}
+	
 	public Integer getPhone() {
 		return phone;
 	}
 	public void setPhone(Integer phone) {
 		this.phone = phone;
 	}
-	public Integer getPhone_div() {
-		return phone_div;
-	}
-	public void setPhone_div(Integer phone_div) {
-		this.phone_div = phone_div;
-	}
+	
 	public String getNick_nm() {
 		return nick_nm;
 	}
@@ -119,10 +123,10 @@ public class Member {
 	public void setShare_place(String share_place) {
 		this.share_place = share_place;
 	}
-	public double getGrade() {
+	public Integer getGrade() {
 		return grade;
 	}
-	public void setGrade(double grade) {
+	public void setGrade(Integer grade) {
 		this.grade = grade;
 	}
 	public String getReview() {

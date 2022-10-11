@@ -88,9 +88,7 @@
 			<c:set var="listCodeNum" value="${shareCodeGroupServiceImpl.selectListCachedCode('5') }" />
 			<c:choose>
 				<c:when test="${fn:length(list) eq 0}">
-					<tr>
 						<td class="text-center" colspan="8">There is no data!</td>
-					</tr>
 				</c:when>
 				<c:otherwise>		
 					<c:forEach items="${list}" var="list" varStatus="status">
@@ -98,7 +96,7 @@
 							<div class="container" onclick="newPage()">
 								<div class="row" id="cate2">
 									<div class="col text-center">
-										${list.food_div }
+										${list.food_div}
 										<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
 											<c:if test="${list.food_div eq listFood.cdSeq}"><c:out value="${listFood.name}"/></c:if>
 										</c:forEach>
@@ -119,7 +117,7 @@
 										${list.time}
 									</div>
 									<div class="col text-center">
-										<span>${list.price}</span>	
+										${list.price}
 									</div>
 									<div class="col text-center"> 
 										<input type="hidden" id="starAllowedNy" name="starAllowedNy" value="0">
@@ -176,7 +174,8 @@
 	        console.log(price);  // 콘솔창에 123,123,123 찍힘
 	     });
 	    		
-
+		// 즐겨찾기
+		 
 		 $("#star").on("click", function(){
 			
 			 var allow = $("#starAllowedNy").val();

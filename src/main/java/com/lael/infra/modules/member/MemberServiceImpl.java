@@ -11,6 +11,13 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired
 	MemberDao dao;
 
+	
+	
+	@Override
+	public List<Member> selectList2(MemberVo vo) throws Exception {
+		return dao.selectList2(vo);
+	}
+
 	@Override
 	public List<Member> selectList(MemberVo vo) throws Exception {
 		List<Member> list = dao.selectList(vo);
@@ -59,6 +66,12 @@ public class MemberServiceImpl implements MemberService{
 		return dao.selectOneCount(vo);
 	}
 	
+	
+	@Override
+	public int selectOneCount2(MemberVo vo) throws Exception {
+		return dao.selectOneCount2(vo);
+	}
+
 	@Override
 	public int idCheck(Member dto) throws Exception {
 		return dao.idCheck(dto);

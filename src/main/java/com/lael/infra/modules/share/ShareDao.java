@@ -20,6 +20,11 @@ public class ShareDao {
 	return list; 								
 }
 
+	public List<Share> selectList2(ShareVo vo){ 
+		List<Share> list = sqlSession.selectList(namespace + ".selectList2", vo);
+		return list; 								
+	}
+
 	public List<Share> selectList(){ 
 	List<Share> list = sqlSession.selectList(namespace + ".selectList", "");
 	return list; 								
@@ -37,6 +42,10 @@ public class ShareDao {
 	
 	public int selectOneCount(ShareVo vo) {
 		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
+	}
+	
+	public int selectOneCount2(ShareVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOneCount2", vo);
 	}
 
 public int insert(Share dto) {return sqlSession.insert(namespace + ".insert", dto); }
