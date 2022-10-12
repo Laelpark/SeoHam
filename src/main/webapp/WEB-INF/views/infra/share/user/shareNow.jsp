@@ -90,7 +90,7 @@
 					<div class="a collapse navbar-collapse" style="height: 300px;">
 						<div class="b me-3">
 							<div class="filebox">
-								<img src="" id="img" width="300px;" id="img">	
+								<img src="" id="img" style="width: 300px;" id="img">	
 								<input type="file" id="chooseImg" name="chooseImg" accept="image/*" onchange="loadFile(this)" multiple>
 								<label for="chooseImg" id="imgText"> 📷 사진 업로드하기</label>
 							</div>

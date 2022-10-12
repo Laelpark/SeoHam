@@ -25,6 +25,9 @@ public class BaseVo {
 	private Integer shDelNy;
 	private Integer shUpdt;
 	
+//	list
+	private String[] checkboxSeqArray;
+	
 	
 // --------
 	public void setParamsPaging(int totalRows) {
@@ -155,6 +158,14 @@ public class BaseVo {
 	}
 	public void setShUpdt(Integer shUpdt) {
 		this.shUpdt = shUpdt;
+	}
+
+	public String[] getCheckboxSeqArray() {
+		return checkboxSeqArray;
+	}
+
+	public void setCheckboxSeqArray(String[] checkboxSeqArray) {
+		this.checkboxSeqArray = checkboxSeqArray;
 	}
 	
 	

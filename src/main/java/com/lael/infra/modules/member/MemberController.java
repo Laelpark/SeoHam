@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.lael.infra.common.constants.Constants;
 import com.lael.infra.common.util.UtilSecurity;
 import com.lael.infra.modules.share.Share;
@@ -114,21 +116,20 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/adminMain")
-	public String adminMain(@ModelAttribute("vo") MemberVo vo, Model model, @ModelAttribute("svo") ShareVo svo) throws Exception {
+	public String adminMain(@ModelAttribute("vo") MemberVo vo, Model model, @ModelAttribute("svo") ShareVo svo, Model smodel) throws Exception {
 
-		// today new member
 		//아이디 카운트 && 페이지 네이션도 사용
+		// today new member
 		vo.setParamsPaging(service.selectOneCount2(vo));
-		// db아이디 불러오기 today new member
+		// db아이디 불러오기
 		List<Member> list = service.selectList2(vo);
 		model.addAttribute("list", list);
 		
 		
 		// today new share pot
-		vo.setParamsPaging(sService.selectOneCount2(svo));
-		
+		svo.setParamsPaging(sService.selectOneCount2(svo));
 		List<Share> sList = sService.selectList2(svo);
-		model.addAttribute("sList", sList);
+		smodel.addAttribute("sList", sList);
 		
 		return "infra/share/admin/adminMain";
 	}
@@ -145,7 +146,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/adminNewUser")
-	public String adminNewUser() throws Exception {
+	public String adminNewUser(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
+		
+		vo.setParamsPaging(service.selectOneCount2(vo));
+		List<Member> list = service.selectList2(vo);
+		model.addAttribute("list", list);
+		
 		return "infra/share/admin/adminNewUser";
 	}
 	
@@ -154,16 +160,57 @@ public class MemberController {
 		return "infra/share/admin/adminUserAll";
 	}
 	
-	/*
-	 * @RequestMapping(value= "/adMinDele") public String
-	 * adMinDele(@ModelAttribute("vo") MemberVo vo, Member dto, RedirectAttributes
-	 * redirectAttributes) throws Exception {
-	 * 
-	 * service.delete(vo);
-	 * 
-	 * redirectAttributes.addFlashAttribute("vo", vo); return
-	 * "redirect:/admin/adminUserList"; }
-	 */
+	@RequestMapping(value= "/adminUele") 
+	  public String adminUele(@ModelAttribute("vo") MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
+
+		service.uelete(dto);
+		
+	  redirectAttributes.addFlashAttribute("vo", vo); 
+	  return "redirect:/admin/adminUserList"; 
+	  
+	  }
+		
+	  @RequestMapping(value= "/adminDele") 
+	  public String adminDele(@ModelAttribute("vo") MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
+
+	  service.delete(vo);
+		  
+	  redirectAttributes.addFlashAttribute("vo", vo); 
+	  return "redirect:/admin/adminUserList"; 
+	  
+	  }
 	
 	
+  @RequestMapping(value= "/adminMultiUele") 
+  public String adminMultiUele(@ModelAttribute("vo") MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
+
+	  for (String checkboxSeq : vo.getCheckboxSeqArray()) {
+			dto.setSeq(checkboxSeq);
+			service.uelete(dto);
+	}
+	  
+  redirectAttributes.addFlashAttribute("vo", vo); 
+  return "redirect:/admin/adminUserList"; 
+  
+  }
+	
+  @RequestMapping(value= "/adminMultiDele") 
+  public String adminMultiDele(@ModelAttribute("vo") MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
+
+	  for (String checkboxSeq : vo.getCheckboxSeqArray()) {
+			vo.setSeq(checkboxSeq);
+			service.delete(vo);
+	}
+	  
+  redirectAttributes.addFlashAttribute("vo", vo); 
+  return "redirect:/admin/adminUserList"; 
+  
+  }
+  
+	@RequestMapping(value = "/adminSharePot")
+	public String adminSharePot() throws Exception {
+		return "infra/share/admin/adminSharePotList";
+	}
+  
+  
 }

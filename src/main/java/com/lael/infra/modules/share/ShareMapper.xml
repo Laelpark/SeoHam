@@ -54,13 +54,6 @@ s		<include refid="selectCommon" />
 		<include refid="selectCommon" />
 	</select>
 	
-	<select id="selectOneCount2" resultType="Integer">
-		SELECT COUNT(*)
-		FROM share c
-		WHERE 1=1		
-			and DATE(createDate) = DATE(now()) 
-	</select>
-	
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
 			c.*
@@ -102,6 +95,13 @@ s		<include refid="selectCommon" />
 		select count(*) 
 		from share 
 		where id = #{id}
+	</select>
+	
+	<select id="selectOneCount2" resultType="Integer">
+		SELECT COUNT(*)
+		FROM share c
+		WHERE 1=1		
+			and DATE(createDate) = DATE(now()) 
 	</select>
 	
 	<select id="selectList2" resultMap="resultMapObj">

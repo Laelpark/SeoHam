@@ -10,7 +10,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>UserList</title>
+	<title>SharePotList</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="/resources/css/admin/userList.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -149,14 +149,14 @@
                         <i class="fa-solid fa-sliders" id="btnAdmin" name="btnAdmin" style="cursor: pointer;">&nbsp 통계</i>
                     </li>
                     <li>
-                        <i class="fas fa-light fa-user" style="color: rgb(233, 231, 58);" id="btnUser" name="btnUser" style="cursor: pointer;">&nbsp 사용자 관리</i>
+                        <i class="fas fa-light fa-user" id="btnUser" name="btnUser" style="cursor: pointer;">&nbsp 사용자 관리</i>
                     </li>
                     <li>
                     	<button id="btnList" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 	                        	<i class="fas fa-regular fa-clipboard-list">&nbsp 쉐어리스트 </i>
 					  	</button>
 						  <ul class="dropdown-menu" id="list">
-						    <li><a class="dropdown-item" href="#" id="sharePotlist">쉐어팟관리</a></li>
+						    <li><a class="dropdown-item" style="color: rgb(233, 231, 58);" id="sharePotlist">쉐어팟관리</a></li>
 						    <li><a class="dropdown-item" href="#" id="shareHotlist">쉐어핫관리</a></li>
 						  </ul>
                     </li>

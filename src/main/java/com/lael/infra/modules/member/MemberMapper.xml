@@ -64,13 +64,6 @@
 		<include refid="selectCommon" />
 	</select>
 	
-	<select id="selectOneCount2" resultType="Integer">
-		SELECT COUNT(*)
-		FROM share_member a
-		WHERE 1=1
-			and DATE(createDate) = DATE(now()) 
-	</select>
-	
 	<insert id="insert">
 		INSERT INTO share_member (
 			id
@@ -132,15 +125,15 @@
 	 	UPDATE share_member
 	 	SET
 	 		DelNy = 1
-		WHERE 
-			seq = #{seq}
+		WHERE 1=1
+			and seq = #{seq}
  	</update>
  	
  	<delete id="delete">
  		DELETE FROM 
  			share_member 
-		WHERE 
-			seq = #{seq}
+		WHERE 1=1
+			and seq = #{seq}
  	</delete>
  	
  	
@@ -197,6 +190,13 @@
 		<include refid="Base.orderByLimitForMysql" />
 		) a
 		limit 6 offset #{startRnumForMysql}
+	</select>
+	
+	<select id="selectOneCount2" resultType="Integer">
+		SELECT COUNT(*)
+		FROM share_member a
+		WHERE 1=1
+			and DATE(createDate) = DATE(now()) 
 	</select>
  	
 </mapper>	

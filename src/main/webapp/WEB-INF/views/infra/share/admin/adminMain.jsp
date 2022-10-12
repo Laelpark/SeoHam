@@ -27,7 +27,7 @@
 	    <div class="container">
 	        <main>
 	            <div>
-	                <h4>통계</h4>
+	                <h4>Today Statistics</h4>
 	            </div>
 	            <div class="cd2">
 	                <div class="newmem row">
@@ -53,10 +53,10 @@
 	                            <span class="num">${vo.totalRows}</span>
 	                            명
 	                        </p>
-	                        <p class="offset-md-3 col-5 m-3" style="font-size: 12px; text-align: right;">
+	                        <button type="button" class="offset-md-3 col-5 m-3" id="btnMore">
 	                            더보기
 	                            <i class="fa-solid fa-angle-right"></i>
-	                        </p> 
+	                        </button> 
 	                    </div>
 	                    <div class="ms-3 scroll" style="height: 200px; text-align: left;">
 	                        <br>
@@ -66,7 +66,10 @@
 								</c:when>
 								<c:otherwise>
 									<c:forEach items="${list}" var="list" varStatus="status">
-				                        <p class="ms-4" id="id" name="id">${list.id}</p>
+										<ul id="ul">
+					                        <li class="ms-4 col" id="li" name="id">${list.name}</li>
+					                        <li class="ms-4 col" id="li" name="id">${list.id}</li>
+										</ul>
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>	
@@ -154,6 +157,10 @@
 	            <div class="side_info">
 	                <hr style="color: white;">
 	                <ul>
+	                	 <li class="row">
+	                        <i class="fa-solid fa-face-smile row" id="smile"> 안녕하세요.</i>
+	                        <span class="mb-4" style="color: white;"><c:out value="${sessName }"/> 관리자님!
+	                    </li>
 	                    <li>
 	                        <i class="fa-solid fa-sliders" style="color: rgb(233, 231, 58);" id="btnAdmin" name="btnAdmin" style="cursor: pointer;">&nbsp 통계</i>
 	                    </li>
@@ -161,7 +168,21 @@
 	                        <i class="fas fa-light fa-user" id="btnUserList" name="btnUserList" style="cursor: pointer;">&nbsp 사용자 관리</i>
 	                    </li>
 	                    <li>
-	                        <i class="fas fa-regular fa-clipboard-list" id="btnList" name="btnList" style="cursor: pointer;">&nbsp 쉐어리스트</i>
+					  		<button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+	                        	<i class="fas fa-regular fa-clipboard-list">&nbsp 쉐어리스트 </i>
+						  	</button>
+							  <ul class="dropdown-menu" id="list">
+							    <li><a class="dropdown-item" id="sharePotlist">쉐어팟관리</a></li>
+							    <li><a class="dropdown-item" id="shareHotlist">쉐어핫관리</a></li>
+							  </ul>
+	                    </li>
+	                </ul>
+	            </div>
+	            <div class="side_info" id="midLine">
+	                <hr style="color: white;">
+	                <ul>
+	                     <li>
+	                        <i class="fa-solid fa-arrow-right-from-bracket" id="btnLogout" name="btnLogout" style="cursor: pointer;">&nbsp 로그아웃</i>
 	                    </li>
 	                </ul>
 	            </div>
@@ -203,9 +224,11 @@
 	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 	<script type="text/javascript">
 	
-	var goUrlAdmin = "adminMain"; 			
-	var goUrlUserList = "adminUserList"; 			
-	var goUrlList = "adminList";				
+	var goUrlAdmin = "/adminMain"; 			
+	var goUrlUserList = "/adminUserList"; 			
+	var goUrlNewUser = "/adminNewUser";
+	var goUrlSharePotList = "/adminSharePot";
+	var goUrlShareHotList = "/#";
 	
 	$('#btnAdmin').on("click", function() {
 		 $(location).attr("href", goUrlAdmin);
@@ -217,6 +240,14 @@
 	
 	$('#btnList').on("click", function() {
 		 $(location).attr("href", goUrlList);
+		});
+	
+	$('#btnMore').on("click", function() {
+		 $(location).attr("href", goUrlNewUser);
+		});
+	
+	$('#sharePotlist').on("click", function() {
+		 $(location).attr("href", goUrlSharePotList);
 		});
 	
 	
