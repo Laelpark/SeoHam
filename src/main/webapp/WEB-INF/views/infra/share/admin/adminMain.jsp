@@ -75,28 +75,28 @@
 							</c:choose>	
 	                    </div>
 	                </div>
-					<%-- <c:set var="listCodeNum" value="${shareCodeGroupServiceImpl.selectListCachedCode('5') }" />
-					<c:set var="listCodeTime" value="${shareCodeGroupServiceImpl.selectListCachedCode('6') }" /> --%>
-	              	<%-- <c:choose>
-						<c:when test="${fn:length(list) eq 0}">
-	                        <td class="text-center" colspan="8">There is no data!</td>
-						</c:when> --%>
-	                	<div class="newmem2 mt-4" style="height: 280px;">
-	                    	<div class="row">
-		                       <p class="ms-4 col mt-3" style="font-weight: bold;">
-		                           Today New Share Pot:
-		                           <span class="num">${svo.totalRows}</span>
-		                           개
-		                       </p>
-		                       <p class="offset-md-3 col-5 m-3" style="font-size: 12px; text-align: right;">
-		                           더보기
-		                           <i class="fa-solid fa-angle-right"></i>
-		                       </p>
-	                    	</div>
-		                    <%-- <div class="scroll" style="height: 200px; text-align: left;">
-		                        <div class="sharepot">
+					<c:set var="listCodeNum" value="${shareCodeGroupServiceImpl.selectListCachedCode('5') }" />
+					<c:set var="listCodeTime" value="${shareCodeGroupServiceImpl.selectListCachedCode('6') }" />
+                	<div class="newmem2 mt-4" style="height: 280px;">
+                    	<div class="row">
+	                       <p class="ms-4 col mt-3" style="font-weight: bold;">
+	                           Today New Share Pot:
+	                           <span class="num">${svo.totalRows}</span>
+	                           개
+	                       </p>
+	                       <p class="offset-md-3 col-5 m-3" style="font-size: 12px; text-align: right;">
+	                           더보기
+	                           <i class="fa-solid fa-angle-right"></i>
+	                       </p>
+                    	</div>
+	                   <div class="scroll" style="height: 200px; text-align: left;">
+	                        <div class="sharepot">
+				              	<c:choose>
+									<c:when test="${fn:length(sList) eq 0}">
+				                        <td class="text-center" colspan="8">There is no data!</td>
+									</c:when>
 	                                <c:otherwise>		
-	                                    <c:forEach items="${list}" var="list" varStatus="status">
+	                                    <c:forEach items="${sList}" var="list" varStatus="status">
 	                                        <div class="row">
 	                                            <div class="col-3" id="title" name="title">
 	                                           		${list.title}
@@ -119,10 +119,10 @@
 	                                        </div>
 	                                    </c:forEach>
 	                                </c:otherwise>
-	                            </div>
-	                        </div> --%>
-	                    </div>
-	              <%--  </c:choose> --%>
+				              </c:choose>
+                            </div>
+                        </div>
+                    </div>
 	                <div class="newmem2 mt-4" style="height: 280px;">
 	                    <div class="row">
 	                        <p class="ms-4 col mt-3" style="font-weight: bold;">
@@ -311,6 +311,26 @@
     });
 		
 		var numItems = $('.num').length
+		
+		$("#btnLogout").on("click", function(){
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				,url: "logoutProc"
+				,data: {}
+				,success: function(response) {
+					if(response.rt == "success") {
+						location.href = "/";
+					} else {
+						// by pass
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		});
 	</script>
 </body>
 </html>

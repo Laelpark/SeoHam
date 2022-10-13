@@ -120,10 +120,9 @@
 										${list.price}
 									</div>
 									<div class="col text-center"> 
-										<input type="hidden" id="starAllowedNy" name="starAllowedNy" value="0">
-										<button id="star" type="button">
-											<img src="" style="font-size: 20px;">
-										</button>
+									   <button id="btnLike"
+									      
+									    </span>
 									</div>
 								</div>
 							</div>
@@ -189,8 +188,8 @@
 				document.getElementById("starAllowedNy").value = 0;
 			}
 		 });
-	    
-	    
+		
+
 	</script>
 </body>
 </html>

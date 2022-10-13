@@ -241,10 +241,6 @@
 		 $(location).attr("href", goUrlLogin);
 		});
 	
-	$('#goLogin').on("click", function() {
-		 $(location).attr("href", goUrlLogin);
-		});
-	
 	$('#btnMypage').on("click", function() {
 		 $(location).attr("href", goUrlMyPage);
 		});

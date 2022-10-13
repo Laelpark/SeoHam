@@ -261,3 +261,10 @@ footer {
 #midLine {
 	margin-top: 100px;
 }
+
+.btn_area {
+  position: fixed; /* 이 부분을 고정 */
+  bottom: 0; /* 하단에 여백 없이 */
+  width: 100%; /* 가로 사이즈를 브라우저에 가득 채움 */
+  position : absolute;
+}

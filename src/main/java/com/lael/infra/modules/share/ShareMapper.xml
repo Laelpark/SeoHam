@@ -71,6 +71,7 @@ s		<include refid="selectCommon" />
 			,time
 			,price
 			,info
+			,createDate
 			,share_member_seq
 		)
 		VALUES (
@@ -81,6 +82,7 @@ s		<include refid="selectCommon" />
 			,#{time}
 			,#{price}
 			,#{info}
+			,now()
 			,#{share_member_seq}
 		)
 		
@@ -89,6 +91,21 @@ s		<include refid="selectCommon" />
 		</selectKey>
 	</insert>
 
+	<update id="update">
+	 	UPDATE share
+	 	SET
+			food_div = #{food_div}
+			,title = #{title}
+			,people_num = #{people_num}
+			,place = #{place}
+			,time = #{time}
+			,price = #{price}
+			,info = #{info}
+			,share_member_seq = #{share_member_seq}
+ 			
+		WHERE
+			seq = #{seq}
+ 	</update>
 	
 	<!-- ID ajax s -->
 	<select id="idCheck" resultType="int"> 

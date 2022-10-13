@@ -105,25 +105,15 @@
 			</div>
 		</div>
 	</div>
-	<footer>
-		<nav aria-label="Page navigation example">
-			<ul class="pagination">
-				<li class="page-item"><a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-				</a></li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-				</a></li>
-			</ul>
-		</nav>
+	<footer class="mt-3 mb-3" id="btn_area">
+		<%@include file="../../common/xdmin/includeV1/pagination.jsp"%>
 	</footer>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		var goUrlAdmin = "adminMain";
 		var goUrlUserList = "adminUserList";
-		var goUrlSharePotList = "/#";
+		var goUrlSharePotList = "/adminSharePot";
 		var goUrlShareHotList = "/#";
 
 		var goUrlNewUser = "adminNewUser";
@@ -131,23 +121,31 @@
 
 		$('#btnAdmin').on("click", function() {
 			$(location).attr("href", goUrlAdmin);
-		});
+			});
 
 		$('#btnUserList').on("click", function() {
 			$(location).attr("href", goUrlUserList);
-		});
+			});
 
 		$('#btnList').on("click", function() {
 			$(location).attr("href", goUrlList);
-		});
+			});
 
 		$('#btnNewUser').on("click", function() {
 			$(location).attr("href", goUrlNewUser);
-		});
+			});
 
 		$('#btnUserAll').on("click", function() {
 			$(location).attr("href", goUrlUserAll);
-		});
+			});
+		
+		$('#sharePotlist').on("click", function() {
+			 $(location).attr("href", goUrlSharePotList);
+			});
+		
+		$('#shareHotlist').on("click", function() {
+			 $(location).attr("href", goUrlShareHotList);
+			});
 	</script>
 </body>
 </html>

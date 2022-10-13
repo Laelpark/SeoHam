@@ -72,7 +72,7 @@ public class ShareController {
 	@RequestMapping(value = "/shareUpdt")
 	public String shareUpdt(ShareVo vo, Share dto, RedirectAttributes redirectAttributes) throws Exception {
 
-		service.insert(dto);
+		service.update(dto);
 		
 		redirectAttributes.addFlashAttribute("vo", vo); 
 		return "redirect:/sharePot";

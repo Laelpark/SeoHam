@@ -34,7 +34,7 @@
 			  			<a class="nav-link active" aria-current="page" href="#css">프로필 수정</a>
 					</li>
 					<li class="nav-item">
-				  		<a class="nav-link" href="#">Share 목록</a>
+				  		<a class="nav-link" href="#">My Share 목록</a>
 					</li>
 					<li class="nav-item">
 			 	 		<a class="nav-link" href="#">보안설정</a>

@@ -149,7 +149,7 @@
                         <i class="fa-solid fa-sliders" id="btnAdmin" name="btnAdmin" style="cursor: pointer;">&nbsp 통계</i>
                     </li>
                     <li>
-                        <i class="fas fa-light fa-user" style="color: rgb(233, 231, 58);" id="btnUser" name="btnUser" style="cursor: pointer;">&nbsp 사용자 관리</i>
+                        <i class="fas fa-light fa-user" style="color: rgb(233, 231, 58);" id="btnUserList" name="btnUserList" style="cursor: pointer;">&nbsp 사용자 관리</i>
                     </li>
                     <li>
                     	<button id="btnList" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -188,7 +188,7 @@
 	<script type="text/javascript">
 	var goUrlAdmin = "/adminMain"; 			
 	var goUrlUserList = "/adminUserList"; 			
-	var goUrlSharePotList = "/#";
+	var goUrlSharePotList = "/adminSharePot";
 	var goUrlShareHotList = "/#";
 	
 	var goUrlNewUser = "/adminNewUser"; 			
@@ -227,6 +227,14 @@
 	
 	$('#btnUserAll').on("click", function() {
 		 $(location).attr("href", goUrlUserAll);
+		});
+	
+	$('#sharePotlist').on("click", function() {
+		 $(location).attr("href", goUrlSharePotList);
+		});
+	
+	$('#shareHotlist').on("click", function() {
+		 $(location).attr("href", goUrlShareHotList);
 		});
 	
 	// 데이트픽커

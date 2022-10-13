@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>SharePotList</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="/resources/css/admin/userList.css">
+	<link rel="stylesheet" type="text/css" href="/resources/css/admin/userSharePotList.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -24,92 +24,60 @@
 			<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 			<input type="hidden" name="seq" value="<c:out value="${vo.seq}"/>">
 			<input type="hidden" name="checkboxSeqArray">
-	        <nav>
-	        	<h2 class="row needs-validation ms-4 mt-3">사용자 관리</h2>
-				<div class="row needs-validation ms-3 me-3 mt-3 mb-5 p-3 shadow-lg bg-body rounded" novalidate>
-					<div class="row mb-2">
-						<div class="col-md-3">
-							<select class="form-select" id="shDelNy" name="shDelNy">
-		                     	<option value="" <c:if test="${empty vo.shDelNy }">selected</c:if>>유저상태</option>
-		                        <option value="0" <c:if test="${vo.shDelNy eq 0 }">selected</c:if>>활성화</option>
-		                        <option value="1" <c:if test="${vo.shDelNy eq 1 }">selected</c:if>>탈퇴</option>
-	                       	</select>
-						</div>
-						<div class="col-md-3">
-							<select class="form-select" id="shUpdt" name="shUpdt">
-								<option value="" <c:if test="${empty vo.shUpdt }">selected</c:if>>date선택</option>
-								<option value="1" <c:if test="${vo.shUpdt eq 1 }">selected</c:if>>가입일</option>
-								 <option value="2" <c:if test="${vo.shUpdt eq 2 }">selected</c:if>>탈퇴일</option>
-							</select>
-						</div>
-						<div class="col-md-3">
-							<input type="date" class="form-control" id="datepickerS" />
-						</div>
-						<div class="col-md-3">
-							<input type="date" class="form-control" id="datepickerE" />
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-3">
-							<select class="form-select" id="shOption" name="shOption">
-	                           <option value="" <c:if test="${empty vo.shOption }">selected</c:if>>검색구분</option>
-	                           <option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>이름</option>
-	                           <option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>닉네임</option>
-	                           <option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>이메일계정</option>
-	                           <option value="4" <c:if test="${vo.shOption eq 4 }">selected</c:if>>쉐어회수</option>
-	                        </select>
-						</div>
-						<div class="col-md-3">
-							<input placeholder="검색해주세요." type="text" class="form-control" name="shValue" id="shValue" value="<c:out value="${vo.shValue }"/>" autocomplete="off">
-							<div class="invalid-feedback" id="shValueFeeback"></div>
-						</div>
-						<div class="col-md-2">
-							<button class="btn btn-warning" type="submit" id="searching"><i class="fa-solid fa-magnifying-glass"></i></button>
-							<button class="btn btn-danger" type="reset" id="btnReset" name="btnReset"><i class="fa-solid fa-rotate-right"></i></button>
-						</div>
+	        	<h2 class="row needs-validation ms-4 mt-3">쉐어리스트</h2>
+				<div class="row needs-validation ms-3 me-2 mt-3 " novalidate>
+					<div class="mb-2">
+						<nav class="navbar navbar-expand-lg bg-transparent mt-3 js">
+							<div class="c collapse navbar-collapse">
+								<ul class="navbar-nav mb-2">
+									<li class="nav-item dropdown mt-2" value="">
+										<select class="form-select" id="shOption" name="shOption">
+											<option value="" <c:if test="${empty vo.shOption }">selected</c:if>>선택</option>
+											<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>카테고리</option>
+											<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>제목</option>
+											<option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>인원</option>
+											<option value="4" <c:if test="${vo.shOption eq 4 }">selected</c:if>>장소</option>
+											<option value="5" <c:if test="${vo.shOption eq 5 }">selected</c:if>>시간</option>
+										  	<option value="6" <c:if test="${vo.shOption eq 6 }">selected</c:if>>가격</option>
+										</select>
+									</li>
+									<li class="nav-item dropdown ms-3">
+										<div class="d-flex" role="search">
+											<input class="form-control me-2 mt-2 text-center" name="shValue" id="shValue" value="<c:out value="${vo.shValue}"/>" autocomplete="off" type="search" style="width: 300px; height: 40px;" placeholder="검색어를 입력하세요.">
+											<button class="btn btn-outline-success bg-transparent me-2" type="submit" id="searching">Search</button>
+											<button class="btn btn-danger" type="reset" id="btnReset" name="btnReset"><i class="fa-solid fa-rotate-right"></i></button>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</nav>
 					</div>
 				</div>
-	            <div class="mb-3 ms-4" id="main">
-	                <ul class="nav nav-tabs">
-	                    <li class="nav-item">
-	                        <a class="g nav-link active"  data-toggle="tab" id="btnUserList" name="btnUserList" style="cursor: pointer;">사용자목록</a>
-	                    </li>
-	                    <li class="nav-item">
-	                        <a class="g nav-link" data-toggle="tab" id="btnNewUser" name="btnNewUser" style="cursor: pointer;">신규회원관리</a>
-	                    </li>
-	                   <!--  <li class="nav-item">
-	                        <a class="g nav-link" data-toggle="tab" id="btnUserAll" name="btnUserAll" style="cursor: pointer;">회원관리</a>
-	                    </li> -->
-	                </ul>
-	            </div>
-	        </nav>
 	        <main>
             	<div class="cd2">
-	                <p class="Userlist mt-4" style="font-weight: bold;">
-	                    전체사용자
-	                    <span class="num">${vo.totalRows}</span> 명
+	                <p class="Userlist mt-4" style="font-weight: bold;">Share Pot
 	                </p>
 	                <table class="table text-center align-midde">
 	                	<thead>
-	                		<tr>
+	                		<tr class="a">
 	                			<th style="font-size: small;">
 	                				<input class="form-check-input" type="checkbox" value="" name="checkboxAll" id="checkboxAll">
 	                			</th>
 	                			<th>#</th>
-	                			<th>코드번호</th>
-	                			<th>이름</th>
-	                			<th>닉네임</th>
-	                			<th>이메일계정</th>
-	                			<th>가입일</th>
-	                			<th>쉐어횟수</th>
+	                			<th>카테고리</th>
+	                			<th>제목</th>
+	                			<th>인원</th>
+	                			<th>장소</th>
+	                			<th>시간</th>
+	                			<th>가격</th>
 	                		</tr>
 	                	</thead>
 	                	<tbody>
+		                	<c:set var="listCodeFood" value="${shareCodeGroupServiceImpl.selectListCachedCode('4') }" />
+							<c:set var="listCodeNum" value="${shareCodeGroupServiceImpl.selectListCachedCode('5') }" />	
 	                		<c:choose>
 	                			<c:when test="${fn:length(list) eq 0 }">	                			
-		                			<tr>
-		                				<td class="text-center" colspan="8">There is no data!</td>
-		                			</tr>
+	                				<td class="text-center" colspan="8">There is no data!</td>
 	                			</c:when>
 	                			<c:otherwise>
 	                				<c:forEach items="${list }" var="list" varStatus="status">	                				
@@ -118,12 +86,20 @@
 		                						<input class="form-check-input" type="checkbox" id="checkboxSeq" name="checkboxSeq" value="<c:out value="${list.seq }"/>"> 
 	                						</td>
 	                						<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
-		                					<td>${list.seq }</td>
-		                					<td>${list.name }</td>
-		                					<td>${list.nick_nm }</td>
-		                					<td>${list.email }</td>
-		                					<td>${list.createDate }</td>
-		                					<td>${list.shareCount }</td>
+		                					<td>${list.food_div}
+		                						<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
+													<c:if test="${list.food_div eq listFood.cdSeq}"><c:out value="${listFood.name}"/></c:if>
+												</c:forEach>
+		                					</td>
+		                					<td>${list.title}</td>
+		                					<td>${list.people_num }
+		                						<c:forEach items="${listCodeNum}" var="listNum" varStatus="statusNum">
+													<c:if test="${list.people_num eq listNum.cdSeq}"><c:out value="${listNum.name}"/></c:if>
+												</c:forEach>
+		                					</td>
+		                					<td>${list.place}</td>
+		                					<td>${list.time}</td>
+		                					<td${list.price}></td>
 		                				</tr>
 	                				</c:forEach>
 	                			</c:otherwise>
@@ -135,8 +111,6 @@
 	                </div>
 	            </div>
 	        </main>
-			<button id="btnDelete" class="btn btn-danger del mt-5 ms-5" type="button" style="float: left;"><i class="fa-solid fa-trash-can"></i></button>
-			<button id="btnUelete" class="btn btn-warning del mt-5 ms-3" type="button" style="float: left;"><i class="fa-solid fa-xmark"></i></button>
         </form>
         <div id="sidebar">
             <div class="side_img">
@@ -149,7 +123,7 @@
                         <i class="fa-solid fa-sliders" id="btnAdmin" name="btnAdmin" style="cursor: pointer;">&nbsp 통계</i>
                     </li>
                     <li>
-                        <i class="fas fa-light fa-user" id="btnUser" name="btnUser" style="cursor: pointer;">&nbsp 사용자 관리</i>
+                        <i class="fas fa-light fa-user" id="btnUserList" name="btnUserList" style="cursor: pointer;">&nbsp 사용자 관리</i>
                     </li>
                     <li>
                     	<button id="btnList" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -188,7 +162,7 @@
 	<script type="text/javascript">
 	var goUrlAdmin = "/adminMain"; 			
 	var goUrlUserList = "/adminUserList"; 			
-	var goUrlSharePotList = "/#";
+	var goUrlSharePotList = "/adminSharePot";
 	var goUrlShareHotList = "/#";
 	
 	var goUrlNewUser = "/adminNewUser"; 			
@@ -202,12 +176,12 @@
 	
 	 goList = function(thisPage) {
 			$("input:hidden[name=thisPage]").val(thisPage);
-			form.attr("action", goUrlUserList).submit();
+			form.attr("action", goUrlSharePotList).submit();
 		};
 	
 	$("#btnReset").on("click", function(){
-		 $(location).attr("href", goUrlUserList);
-	 });
+		 $(location).attr("href", goUrlSharePotList);
+		 });
 	
 	$('#btnAdmin').on("click", function() {
 		 $(location).attr("href", goUrlAdmin);
@@ -227,6 +201,14 @@
 	
 	$('#btnUserAll').on("click", function() {
 		 $(location).attr("href", goUrlUserAll);
+		});
+	
+	$('#sharePotlist').on("click", function() {
+		 $(location).attr("href", goUrlSharePotList);
+		});
+	
+	$('#shareHotlist').on("click", function() {
+		 $(location).attr("href", goUrlShareHotList);
 		});
 	
 	// 데이트픽커

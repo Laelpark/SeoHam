@@ -119,14 +119,14 @@ public class MemberController {
 	public String adminMain(@ModelAttribute("vo") MemberVo vo, Model model, @ModelAttribute("svo") ShareVo svo, Model smodel) throws Exception {
 
 		//아이디 카운트 && 페이지 네이션도 사용
-		// today new member
+		// today new member          
 		vo.setParamsPaging(service.selectOneCount2(vo));
 		// db아이디 불러오기
 		List<Member> list = service.selectList2(vo);
 		model.addAttribute("list", list);
 		
 		
-		// today new share pot
+		// today new share pot			// 페이지 6개 보여주기
 		svo.setParamsPaging(sService.selectOneCount2(svo));
 		List<Share> sList = sService.selectList2(svo);
 		smodel.addAttribute("sList", sList);
@@ -208,7 +208,12 @@ public class MemberController {
   }
   
 	@RequestMapping(value = "/adminSharePot")
-	public String adminSharePot() throws Exception {
+	public String adminSharePot(@ModelAttribute("vo") ShareVo vo, Model model) throws Exception {
+		
+		vo.setParamsPaging(sService.selectOneCount(vo));
+		List<Share> list = sService.selectList(vo);
+		model.addAttribute("list", list);
+		
 		return "infra/share/admin/adminSharePotList";
 	}
   
