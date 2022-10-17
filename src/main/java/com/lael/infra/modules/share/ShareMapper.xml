@@ -24,7 +24,8 @@
 	<select id="selectList" resultMap="resultMapObj">
 		<include refid="Base.selectListUpperForMysql"></include>
 		SELECT
-			c.food_div
+			c.seq
+			,c.food_div
 			,c.title
 			,c.people_num
 			,c.info
@@ -32,8 +33,8 @@
 			,c.time
 			,c.price
 			,c.DelNy
-			,c.createDate
-s		<include refid="selectCommon" />
+			,c.createDate  <!--  관리자 today를 위해 생성 -->
+		<include refid="selectCommon" />
 		ORDER BY c.seq DESC
 		<include refid="Base.orderByLimitForMysql" />
 		<include refid="Base.selectListLowerForMysql" /> 
@@ -42,7 +43,16 @@ s		<include refid="selectCommon" />
 	<select id="selectList1" resultMap="resultMapObj">
 		<include refid="Base.selectListUpperForMysql"></include>
 		SELECT
-			c.*
+			c.seq
+			,c.food_div
+			,c.title
+			,c.people_num
+			,c.info
+			,c.place
+			,c.time
+			,c.price
+			,c.DelNy
+			,c.createDate
 		<include refid="selectCommon" />
 		ORDER BY c.seq DESC      <!-- ASC -->
 		<include refid="Base.orderByLimitForMysql" />
@@ -56,7 +66,16 @@ s		<include refid="selectCommon" />
 	
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
-			c.*
+			c.seq
+			,c.food_div
+			,c.title
+			,c.people_num
+			,c.info
+			,c.place
+			,c.time
+			,c.price
+			,c.DelNy
+			,c.createDate
 		FROM share c
 	 	WHERE 1=1
 	 		AND c.seq = #{seq}

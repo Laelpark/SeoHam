@@ -57,79 +57,55 @@
 					</ul>
 				</div>
 			</nav>
-			<div class="a pt-2 position-relative">
-				<div class="container">
-					<div class="row" id="cate">
-						<div class="col text-center">
-							카테고리
-						</div>
-						<div class="col text-center">
-							제목
-						</div>
-						<div class="col text-center">
-							인원
-						</div>
-						<div class="col text-center">
-							장소
-						</div>
-						<div class="col text-center">
-							시간
-						</div>
-						<div class="col text-center">
-							가격
-						</div>
-						<div class="col text-center">
-							즐겨찾기
-						</div>
-					</div>
-				</div>
-			</div>
-			<c:set var="listCodeFood" value="${shareCodeGroupServiceImpl.selectListCachedCode('4') }" />
-			<c:set var="listCodeNum" value="${shareCodeGroupServiceImpl.selectListCachedCode('5') }" />
-			<c:choose>
-				<c:when test="${fn:length(list) eq 0}">
-						<td class="text-center" colspan="8">There is no data!</td>
-				</c:when>
-				<c:otherwise>		
-					<c:forEach items="${list}" var="list" varStatus="status">
-						<div class="b pt-2 position-relative">
-							<div class="container" onclick="newPage()">
-								<div class="row" id="cate2">
-									<div class="col text-center">
-										${list.food_div}
+            <table>
+           		<thead>
+	                <tr class="a">
+	                    <th class="text-center">카테고리</th>
+	                    <th class="text-center">제목</th>
+	                    <th class="text-center">인원</th>
+	                    <th class="text-center">장소</th>
+	                    <th class="text-center">시간</th>
+	                    <th class="text-center">가격</th>
+	                    <th class="text-center">즐겨찾기</th>
+	                </tr>
+            	 </thead>
+                 <tbody>
+                 	<c:choose>
+						<c:when test="${fn:length(list) eq 0}">
+								<td class="text-center" colspan="8">There is no data!</td>
+						</c:when>
+	               		<c:otherwise>		
+							<c:forEach items="${list}" var="list" varStatus="status">
+								<tr style="height: 20px;"></tr>
+								<tr class="pt-2 b" id="b" onclick="goNow(<c:out value="${list.seq }"/>)">
+									<td class="text-center">
+										<c:set var="listCodeFood" value="${CodeServiceImpl.selectListCachedCode('4') }" />
 										<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
-											<c:if test="${list.food_div eq listFood.cdSeq}"><c:out value="${listFood.name}"/></c:if>
+											<c:if test="${list.food_div eq listFood.cdSeq}"><c:out value="${listFood.name }"/></c:if>
 										</c:forEach>
-									</div>
-									<div class="col text-center">
-										${list.title}
-									</div>
-									<div class="col text-center">
-										${list.people_num }
+									</td>
+	                                <td class="text-center">${list.title}</td>
+	                                <td class="text-center">
+	                                	<c:set var="listCodeNum" value="${CodeServiceImpl.selectListCachedCode('5') }" />
 										<c:forEach items="${listCodeNum}" var="listNum" varStatus="statusNum">
-											<c:if test="${list.people_num eq listNum.cdSeq}"><c:out value="${listNum.name}"/></c:if>
+											<c:if test="${list.people_num eq listNum.cdSeq}"><c:out value="${listNum.name }"/></c:if>
 										</c:forEach>
-									</div>
-									<div class="col text-center">
-										${list.place}
-									</div>
-									<div class="col text-center">
-										${list.time}
-									</div>
-									<div class="col text-center">
-										${list.price}
-									</div>
-									<div class="col text-center"> 
-									   <button id="btnLike"
-									      
-									    </span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
+	                                </td>
+	                                <td class="text-center">${list.place}</td>
+	                                <td class="text-center">${list.time}</td>
+	                                <td class="text-center">${list.price}</td>
+	                                <td class="text-center">
+	                                	<!-- <input type="text" name="like" value="0"> -->
+	                                	<button type="button" class="btnLike" id="btnLike"> 
+									   		<img id="img" class="star" alt="" src="/resources/images/share/star.png">
+										</button>
+	                                </td>
+                   				</tr>	
+							</c:forEach>
+                   		</c:otherwise>
+                  	</c:choose>
+                  </tbody>
+              </table>
 			<div class="mt-5">		
 				<%@include file="../../common/xdmin/includeV1/pagination.jsp"%>
 			</div>
@@ -143,6 +119,8 @@
 	<!-- end --> 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		/* var star = document.querySelector("#star");
 		star.onclick = function() {
@@ -150,7 +128,10 @@
 		}; */
 		
 		var goUrlList = "/sharePot";
+		var goUrlNow = "/shareNow";	
 		var form = $("#myForm");
+		
+		var seq = $("input:hidden[name=seq]");
 		
 		goList = function(thisPage) {
 			$("input:hidden[name=thisPage]").val(thisPage);
@@ -160,6 +141,12 @@
 		 $("#btnReset").on("click", function(){
 			 $(location).attr("href", goUrlList);
 		 });
+		 
+		 goNow = function(keyValue) {
+	 	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+	 	    	seq.val(keyValue);
+	 			form.attr("action", goUrlNow).submit();
+	 		}
 		 
 		 
 		 // 숫자에 , 찍기
@@ -175,20 +162,18 @@
 	    		
 		// 즐겨찾기
 		 
-		 $("#star").on("click", function(){
-			
-			 var allow = $("#starAllowedNy").val();
-			 
-			 if (allow == 0) {
-				document.getElementById("starAllowedNy").value = 1;
-				$("#star").attr("src", )
-				
+		$("#btnLike").on("change", function() {
+			alert("sadsakdlj");
+			/* if ($("input[name=like]").val() == 0) {
+				alert("QWEwqeq");
+		      $("#img").attr("src", "/resources/images/share/star_y.png");
+		      $("input[name=like]").val("1");
 			} else {
-				
-				document.getElementById("starAllowedNy").value = 0;
-			}
-		 });
-		
+				alert("asdsadsajndkl");
+		      $("#img").attr("src", "/resources/images/share/star.png");
+		      $("input[name=like]").val("0");				
+			} */
+		})
 
 	</script>
 </body>
