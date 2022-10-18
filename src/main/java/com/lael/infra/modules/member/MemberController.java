@@ -108,7 +108,7 @@ public class MemberController {
 		return returnMap;
 	}
 	
-	// 관리자
+	// 관리자 //
 	
 	@RequestMapping(value = "/adminLogin")
 	public String adminLogin() throws Exception {

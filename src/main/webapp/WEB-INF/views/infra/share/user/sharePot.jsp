@@ -57,7 +57,7 @@
 					</ul>
 				</div>
 			</nav>
-            <table>
+            <table frame=void>
            		<thead>
 	                <tr class="a">
 	                    <th class="text-center">카테고리</th>
@@ -94,12 +94,19 @@
 	                                <td class="text-center">${list.place}</td>
 	                                <td class="text-center">${list.time}</td>
 	                                <td class="text-center">${list.price}</td>
-	                                <td class="text-center">
-	                                	<!-- <input type="text" name="like" value="0"> -->
-	                                	<button type="button" class="btnLike" id="btnLike"> 
-									   		<img id="img" class="star" alt="" src="/resources/images/share/star.png">
-										</button>
-	                                </td>
+	                                <c:choose>
+	                                	<c:when test="${empty sessSeq}">
+	                                		<td class="text-center">
+											    <input type="checkbox" class="like" name="chk_box" onclick="event.cancelBubble=true">
+			                                </td>
+	                                	</c:when>
+	                                	<c:otherwise>
+	                                		<td class="text-center">
+	                                			<input type="hidden" value="0" name="likeCount"> 
+											    <input type="checkbox" name="chk_box" onclick="event.cancelBubble=true">
+			                                </td>
+	                                	</c:otherwise>
+	                                </c:choose>
                    				</tr>	
 							</c:forEach>
                    		</c:otherwise>
@@ -121,6 +128,8 @@
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
 		/* var star = document.querySelector("#star");
 		star.onclick = function() {
@@ -129,6 +138,7 @@
 		
 		var goUrlList = "/sharePot";
 		var goUrlNow = "/shareNow";	
+		var goUrlLogin = "/shareLogin"; 
 		var form = $("#myForm");
 		
 		var seq = $("input:hidden[name=seq]");
@@ -162,19 +172,30 @@
 	    		
 		// 즐겨찾기
 		 
-		$("#btnLike").on("change", function() {
-			alert("sadsakdlj");
-			/* if ($("input[name=like]").val() == 0) {
-				alert("QWEwqeq");
-		      $("#img").attr("src", "/resources/images/share/star_y.png");
-		      $("input[name=like]").val("1");
-			} else {
-				alert("asdsadsajndkl");
-		      $("#img").attr("src", "/resources/images/share/star.png");
-		      $("input[name=like]").val("0");				
-			} */
+		$(".btn-like").click(function() {
+			$(this).toggleClass("done");
 		})
 
+		
+		// like 버큰
+		
+		$(".like").on("click", function() {
+	    	swAlert("로그인", "로그인 하시겠습니까?", "success");
+		});
+	    
+	    function swAlert(title, text, icon) {
+			swal({
+				title: title
+				,text: text
+				,icon: icon
+				,buttons: "로그인"
+			}).then((value) => {
+				if (value) {
+					location.href = goUrlLogin;
+				}
+			})
+		}
+		
 	</script>
 </body>
 </html>

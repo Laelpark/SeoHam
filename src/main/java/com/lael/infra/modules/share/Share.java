@@ -13,7 +13,14 @@ public class Share {
 	private String ccgSeq;
 	private String createDate;
 	private Integer share_member_seq;
+	private Integer likeCount;
 	
+	public Integer getLikeCount() {
+		return likeCount;
+	}
+	public void setLikeCount(Integer likeCount) {
+		this.likeCount = likeCount;
+	}
 	public String getCreateDate() {
 		return createDate;
 	}

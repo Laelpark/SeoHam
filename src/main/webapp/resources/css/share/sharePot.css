@@ -6,7 +6,7 @@
     box-shadow: -3px 3px 6px rgb(142, 150, 150);
     margin: 10px 0px;
     border-radius:30px;
-    border-width: 1px;
+   /*  border-width: 1px; */
     border-color: rgb(193, 232, 100);
     background-color: transparent;
     cursor: pointer;
@@ -55,10 +55,23 @@
 	background-color: transparent;
 }
 
-.star {
-	width: 30px;
-	height: 30px;
-	margin-bottom: 17px;
+.btn-like {
+  color: transparent;
+  text-shadow: 0 0 2px rgba(255,255,255,.7), 0 0 0 #000;
+  border-radius: 30px;
+  border-color: transparent;
+  padding-bottom: 8px;
+  background-color: transparent;
 }
-
+.btn-like:hover {
+  text-shadow: 0 0 0 #ea0;
+}
+.btn-like.done {
+  color: inherit;
+  text-shadow: 0;
+}
+.btn-like.done:hover {
+  color: transparent;
+  text-shadow: 0 0 0 #777;
+}
 

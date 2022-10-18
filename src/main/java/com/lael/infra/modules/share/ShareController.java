@@ -7,13 +7,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import com.lael.infra.modules.member.Member;
+import com.lael.infra.modules.member.MemberServiceImpl;
+import com.lael.infra.modules.member.MemberVo;
 
 @Controller
 public class ShareController {
 
 	@Autowired
 	ShareServiceImpl service;
+	
+	@Autowired
+	MemberServiceImpl Mservice;
 	
 	 private void setSearchAndPaging(ShareVo vo) throws Exception {
 		  vo.setShDelNy(vo.getShDelNy() == null ? 0: vo.getShDelNy());
@@ -79,13 +84,32 @@ public class ShareController {
 	}
 	
 	@RequestMapping(value = "/shareMyPage")
-	public String shareMyPage() throws Exception {
+	public String shareMyPage(@ModelAttribute("vo") MemberVo vo,  Model model) throws Exception {
+		
+		Member item = Mservice.selectOne(vo);
+		model.addAttribute("item", item); 
+		
 		return "infra/share/user/shareMyPage";
 	}
 	
 	@RequestMapping(value = "/shareMyPageInst")
-	public String shareMyPageInst() throws Exception {
+	public String shareMyPageInst(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
+		
+		Mservice.insert(dto);
+		
+		vo.setSeq(dto.getSeq());
+		redirectAttributes.addFlashAttribute("vo", vo); 
+		
 		return "redirect:/shareMyPage";
+	}
+	
+	@RequestMapping(value = "/shareMyPageUpdt")
+	public String shareMyPageUpdt(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
+
+		Mservice.update(dto);
+		
+		redirectAttributes.addFlashAttribute("vo", vo); 
+		return "redirect:/sharePot";
 	}
 	
 	@RequestMapping(value = "/shareLikeList")
