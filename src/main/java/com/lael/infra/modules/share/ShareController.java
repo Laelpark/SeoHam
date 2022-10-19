@@ -83,34 +83,57 @@ public class ShareController {
 		return "redirect:/sharePot";
 	}
 	
-	@RequestMapping(value = "/shareMyPage")
+	@RequestMapping(value = "/myPage")
 	public String shareMyPage(@ModelAttribute("vo") MemberVo vo,  Model model) throws Exception {
 		
 		Member item = Mservice.selectOne(vo);
 		model.addAttribute("item", item); 
 		
-		return "infra/share/user/shareMyPage";
+		return "infra/share/user/myPage";
+	}
+	
+	@RequestMapping(value = "/shareMyPageUpdt")
+	public String shareMyPageUpdt(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
+		
+		Mservice.myUpdate(dto);
+		
+		redirectAttributes.addFlashAttribute("vo", vo); 
+		return "redirect:/myPage";
 	}
 	
 	@RequestMapping(value = "/shareMyPageInst")
 	public String shareMyPageInst(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
 		
-		Mservice.insert(dto);
+		Mservice.myInsert(dto);
 		
 		vo.setSeq(dto.getSeq());
 		redirectAttributes.addFlashAttribute("vo", vo); 
 		
-		return "redirect:/shareMyPage";
+		return "redirect:/myPage";
 	}
 	
-	@RequestMapping(value = "/shareMyPageUpdt")
-	public String shareMyPageUpdt(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
-
-		Mservice.update(dto);
+	@RequestMapping(value = "/myList")
+	public String MyList(@ModelAttribute("vo") ShareVo vo, Model model, Share dto) throws Exception {
 		
-		redirectAttributes.addFlashAttribute("vo", vo); 
-		return "redirect:/sharePot";
+		setSearchAndPaging(vo); 
+		
+		vo.setParamsPaging(service.selectMyCount(vo)); 
+		
+		List<Share> list = service.selectMyList(vo);
+		model.addAttribute("list", list); 
+		
+		return "infra/share/user/myList";
 	}
+	
+	@RequestMapping(value = "/mySecurity")
+	public String mySecurity(@ModelAttribute("vo") ShareVo vo, Model model, Share dto) throws Exception {
+		
+		List<Share> list = service.selectMyList(vo);
+		model.addAttribute("list", list); 
+		
+		return "infra/share/user/mySecurity";
+	}
+	
 	
 	@RequestMapping(value = "/shareLikeList")
 	public String shareLikeList() throws Exception {

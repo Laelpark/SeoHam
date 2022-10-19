@@ -14,11 +14,21 @@ import org.springframework.stereotype.Service;
 	public int selectOneCount2(ShareVo svo) throws Exception {
 		return dao.selectOneCount2(svo);
 	}
-
+	@Override
+	public int selectMyCount(ShareVo vo) throws Exception {
+		return dao.selectOneCount2(vo);
+	}
+	
 	@Override
 	public List<Share> selectList2(ShareVo svo) throws Exception {
 		List<Share> sList = dao.selectList2(svo);
 		return sList;
+	}
+	
+	@Override
+	public List<Share> selectMyList(ShareVo vo) throws Exception {
+		List<Share> List = dao.selectMyList(vo);
+		return List;
 	}
 	
 	@Override

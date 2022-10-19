@@ -70,6 +70,7 @@
 			,pw
 			,name
 			,nick_nm
+			,share_place
 			,dob
 			,dob2
 			,dob3
@@ -84,6 +85,7 @@
 			,#{pw}
 			,#{name}
 			,#{nick_nm}
+			,#{share_place}
 			,#{dob}
 			,#{dob2}
 			,#{dob3}
@@ -92,6 +94,22 @@
 			,#{phone}
 			,0
 			,now()
+		)
+		<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<insert id="myInsert">
+		INSERT INTO share_member (
+			nick_nm
+			,share_place
+			,modDate
+		)
+		VALUES (
+			#{nick_nm}
+			,#{share_place}
+			,#{modDate}
 		)
 		<selectKey resultType="String" keyProperty="seq" order="AFTER">
 			SELECT last_insert_id()
@@ -116,6 +134,16 @@
 	 	SET
  			name = #{name}
  			,id = #{id}
+ 			
+		WHERE
+			seq = #{seq}
+ 	</update>
+ 	
+ 	<update id="myUpdate">
+	 	UPDATE share_member
+	 	SET
+ 			nick_nm = #{nick_nm}
+ 			,share_place = #{share_place}
  			
 		WHERE
 			seq = #{seq}

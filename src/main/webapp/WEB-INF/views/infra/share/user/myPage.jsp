@@ -10,7 +10,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>shareMyPage</title>
+	<title>MyPage</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="/resources/css/share/userprofile.css">
 
@@ -19,7 +19,6 @@
 	<form id="myForm" name="myForm" method="post">
 		<!-- *Vo.jsp s -->
 		<%@include file="shareVo.jsp"%>
-		<input type="hidden" name="share_member_seq" value="<c:out value="${sessSeq}"/>"/>
 		<!-- *Vo.jsp e -->
 		<div class="navbar" style="background-color:rgb(142, 68, 173); height: 30px; width: 100%;"></div>
 		<div class="sideEmty">
@@ -27,17 +26,18 @@
 				<a class="navbar-brand" href="share">
 					<img src="../../resources/images/share/fullLogo_p.png" id="logoimg">
 				</a>
-				<!-- <button type="button" class="btn btn-outline-primary mb-2 ms-3">적용</button>
-				<button type="button" class="btn btn-outline-danger mb-2 ms-3">취소</button> -->
+				<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnLogout" name="btnLogout">
+					<i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
+				</a>
 				<ul class="nav nav-tabs mt-5">
 					<li class="nav-item">
-			  			<a class="nav-link active" aria-current="page" href="#css">프로필 수정</a>
+			  			<a class="nav-link active" aria-current="page" href="myPage?seq=${sessSeq }">프로필 수정</a>
 					</li>
 					<li class="nav-item">
-				  		<a class="nav-link" href="#">My Share 목록</a>
+				  		<button type="button" id="myList" class="nav-link">My Share 목록</button>
 					</li>
 					<li class="nav-item">
-			 	 		<a class="nav-link" href="#">보안설정</a>
+			 	 		<a class="nav-link" href="mySecurity?seq=${sessSeq }">개인정보 수정</a>
 					</li>
 				</ul>
 			</div>
@@ -73,11 +73,13 @@
 		    </div>
 		</div>
 	</form>
+</body>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
+	
 	
 		const reader = new FileReader();
 	
@@ -93,16 +95,17 @@
 	
 		var goUrlInst = "/shareMyPageInst";
 		var goUrlUpdt = "/shareMyPageUpdt";
-		var goUrlDele = "/shareDele";
 		var goUrlHome = "/share";
+		var goUrlList = "/myList";
 		
 		var form = $("#myForm");
 		var seq = $("input:hidden[name=seq]");
+		var mSeq = $("input[name=mSeq]").val();
 	
-		
-		// 정보 넘기기s
+		// 업데이트 정보 넘기기s
 		
 		$("#btnS").on("click", function() {
+			alert("cbvb");
 			if (seq.val() == "0" || seq.val() == "") {
 				// insert
 				form.attr("action", goUrlInst).submit();
@@ -111,6 +114,10 @@
 				form.attr("action", goUrlUpdt).submit();
 			}
 		});
+		
+		$("#myList").on("click", function() {
+			form.attr("action", goUrlList).submit();
+		})
 		
 		</script>
 		<script>

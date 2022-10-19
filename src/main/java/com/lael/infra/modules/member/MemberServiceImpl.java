@@ -40,6 +40,12 @@ public class MemberServiceImpl implements MemberService{
 	    	dto.setPw(UtilSecurity.encryptSha256(dto.getPw()));
 		return dao.insert(dto);
 	}
+	
+	@Override
+	public int myInsert(Member dto) throws Exception {
+		/* dto.setPw(UtilSecurity.encryptSha256(dto.getPw())); */
+		return dao.insert(dto);
+	}
 
 	@Override
 	public Member selectOne(MemberVo vo) throws Exception {
@@ -48,6 +54,11 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public int update(Member dto) throws Exception {
+		return dao.update(dto);
+	}
+	
+	@Override
+	public int myUpdate(Member dto) throws Exception {
 		return dao.update(dto);
 	}
 

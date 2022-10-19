@@ -102,7 +102,7 @@
 							<ul class="navbar-nav flex-row ms-md-auto me-4">
 								<li class="nav-item col-4"></li>
 								<li class="nav-item col-4">
-									<a class="nav-link py-2 px-0 px-lg-2" href="/shareMyPage?seq=${sessSeq }" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnMypage" name="btnMypage">
+									<a class="nav-link py-2 px-0 px-lg-2" href="/myPage?seq=${sessSeq }" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnMypage" name="btnMypage">
 										<i class="fa-solid fa-user fa-lg"></i>
 									</a>
 								</li>

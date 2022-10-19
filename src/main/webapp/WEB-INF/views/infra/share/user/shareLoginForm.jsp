@@ -67,7 +67,7 @@
 				</td>
 			</table>
 			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<table>
+			<table class="info">
 				<td>
 					<label>이름 <span class="text-danger">*</span></label>
 					<input class="a mt-2 form-control" id="name" name="name"  placeholder="이름 입력" required>

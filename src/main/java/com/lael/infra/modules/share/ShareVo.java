@@ -5,12 +5,18 @@ import com.lael.infra.common.base.BaseVo;
 public class ShareVo extends BaseVo{
 
 	private String seq;
+	private String mSeq;
 	private Integer shOption;
 	private String shValue;
 	private Integer DelNy;
 	private Integer shUpdt;
 	
-	
+	public String getmSeq() {
+		return mSeq;
+	}
+	public void setmSeq(String mSeq) {
+		this.mSeq = mSeq;
+	}
 	public String getSeq() {
 		return seq;
 	}
