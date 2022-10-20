@@ -63,7 +63,7 @@
 					<div class="invalid-feedback" id="pwCheckFeedback"></div>
 				</td>
 				<td>
-					<i class="fa-solid fa-lock" id="lock"></i>
+					<i class="fa-solid fa-unlock" id="lock"></i>
 				</td>
 			</table>
 			<hr style="color: rgb(78, 78, 78); width: 800px;">

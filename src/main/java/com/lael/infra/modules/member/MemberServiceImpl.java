@@ -59,7 +59,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public int myUpdate(Member dto) throws Exception {
-		return dao.update(dto);
+		return dao.myUpdate(dto);
 	}
 
 	@Override

@@ -22,22 +22,22 @@
 		<!-- *Vo.jsp e -->
 		<div class="navbar" style="background-color:rgb(142, 68, 173); height: 30px; width: 100%;"></div>
 		<div class="sideEmty">
-			<div class="header">
-				<a class="navbar-brand" href="share">
+			<div class="header row">
+				<a class="navbar-brand col" href="share">
 					<img src="../../resources/images/share/fullLogo_p.png" id="logoimg">
-				</a>
-				<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnLogout" name="btnLogout">
-					<i class="fa-solid fa-arrow-right-from-bracket fa-lg"></i>
+					<button id="btnLogout" type="button" class="btn" style="height: 30px; text-align: center;">
+					<img src="../../resources/images/share/logout.png" id="Imglogout">
+					Logout</button>
 				</a>
 				<ul class="nav nav-tabs mt-5">
 					<li class="nav-item">
-			  			<a class="nav-link active" aria-current="page" href="myPage?seq=${sessSeq }">프로필 수정</a>
+			  			<a class="nav-link active" aria-current="page" href="myPage?seq=${sessSeq }">My Page</a>
 					</li>
 					<li class="nav-item">
-				  		<button type="button" id="myList" class="nav-link">My Share 목록</button>
+				  		<a class="nav-link" href="myList?seq=${sessSeq }">My Share List</a>
 					</li>
 					<li class="nav-item">
-			 	 		<a class="nav-link" href="mySecurity?seq=${sessSeq }">개인정보 수정</a>
+			 	 		<a class="nav-link" href="mySecurity?seq=${sessSeq }">Personal Information</a>
 					</li>
 				</ul>
 			</div>
@@ -47,11 +47,11 @@
 		         	<div class="col" style="margin-left: 90px; height: 300px; margin-top: 30px;">
 							<div class="filebox">
 								<img src="" id="img" width="295px;" height="230px;"> 
+								<input type="file" id="chooseImg" name="chooseImg" style="width: 100%" multiple="multiple" onChange="upload('articleImage', 1, 0, 1, 0, 0, 1);"> 
 								<label for="chooseImg" style="padding: 0 70px;"> 📷 사진 업로드하기</label>
-								<input type="file" id="chooseImg" name="chooseImg" style="width: 100%" multiple="multiple" aria-label="file example" onChange="upload('articleImage', 1, 0, 1, 0, 0, 1);"> 
 							</div>
 							<div class="row mt-5">
-								<button type="button" class="btn btn-outline-secondary me-4" style="border-color: lightgray;">확인</button>
+								<button type="button" class="btn btn-outline-secondary ms-5 me-4" style="border-color: lightgray;">확인</button>
 								<button type="button" class="btn btn-outline-secondary" style="border-color: lightgray;">취소</button>
 							</div>
 				    </div>
@@ -95,7 +95,7 @@
 	
 		var goUrlInst = "/shareMyPageInst";
 		var goUrlUpdt = "/shareMyPageUpdt";
-		var goUrlHome = "/share";
+		var goUrlMypage = "/myPage";
 		var goUrlList = "/myList";
 		
 		var form = $("#myForm");
@@ -105,19 +105,41 @@
 		// 업데이트 정보 넘기기s
 		
 		$("#btnS").on("click", function() {
-			alert("cbvb");
 			if (seq.val() == "0" || seq.val() == "") {
 				// insert
 				form.attr("action", goUrlInst).submit();
 			} else {
 				// update
 				form.attr("action", goUrlUpdt).submit();
+				alert("정보변경 완료!")
 			}
 		});
 		
-		$("#myList").on("click", function() {
-			form.attr("action", goUrlList).submit();
+		$("#btnC").on("click", function() {
+			form.attr("action", goUrlMypage).submit();
 		})
+		
+		//로그아웃 버튼
+		
+		$("#btnLogout").on("click", function(){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,url: "logoutProc"
+			,data: {}
+			,success: function(response) {
+				if(response.rt == "success") {
+					location.href = "/share";
+				} else {
+					// by pass
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
 		
 		</script>
 		<script>

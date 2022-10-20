@@ -31,13 +31,13 @@
 				</a>
 				<ul class="nav nav-tabs mt-5">
 					<li class="nav-item">
-			  			<a class="nav-link" aria-current="page" href="myPage?seq=${sessSeq }">프로필 수정</a>
+			  			<a class="nav-link" aria-current="page" href="myPage?seq=${sessSeq }">My Page</a>
 					</li>
 					<li class="nav-item">
-				  		<a class="nav-link" href="myList?seq=${sessSeq }">My Share 목록</a>
+				  		<a class="nav-link" href="myList?seq=${sessSeq }">My Share List</a>
 					</li>
 					<li class="nav-item">
-			 	 		<a class="nav-link active" href="mySecurity?seq=${sessSeq }">개인정보 수정</a>
+			 	 		<a class="nav-link active" href="mySecurity?seq=${sessSeq }">Personal Information</a>
 					</li>
 				</ul>
 			</div>
@@ -45,20 +45,15 @@
 			<table>
 				<td>
 					<label for="id" class="form-label">아이디 <span class="text-danger">*</span></label>
-					<input type="hidden" id="idAllowedNy" name="idAllowedNy" value="0">
-					<input type="text" class="a mt-2 form-control" id="id" name="id"
-						value="<c:out value="${item.id}"/>" maxlength="20" placeholder="아이디 입력" 
-						<c:if test="${not empty item.id}">readonly</c:if>>
-					  <div type="hidden" class="msg" id="id_msg" name="id_msg" style="display: none;"></div>
-					<div type="hidden" class="invalid-feedback" id="idFeedback"></div>
-					
+					<input class="a mt-2 form-control" id="id" name="id"  placeholder="아이디 입력" value="<c:out value="${item.id}"/>" required>
+					<div class="invalid-feedback" id="idFeedback"></div>
 				</td>
 			</table>
 			<hr style="color: rgb(78, 78, 78); width: 800px;">
 			<label for="pw">기존 비밀번호 <span class="text-danger">*</span></label>
 			<table>
 				<td>
-					<input type="password" class="a mt-2 form-control" id="pw" name="pw" placeholder="기존 비밀번호를 입력" onkeydown="validation()">
+					<input type="password" class="a mt-2 form-control" id="pw" name="pw" placeholder="현재 비밀번호 입력" onkeydown="validation()">
 				  	<div type="hidden" class="msg" id="pw_msg" name="pw_msg" style="display: none;"></div>
 					<div type="hidden" class="invalid-feedback" id="pwFeedback"></div>
 				</td>
@@ -79,10 +74,22 @@
 				</td>
 			</table>
 			<hr style="color: rgb(78, 78, 78); width: 800px;">
+			<label for="pw">변경 비밀번호 <span class="text-danger">*</span></label>
+			<table>
+				<td>
+					<input type="password" class="a mt-2 form-control" id="pw" name="pw" placeholder="변경하실 비밀번호 입력" onkeydown="validation()">
+				  	<div type="hidden" class="msg" id="pw_msg" name="pw_msg" style="display: none;"></div>
+					<div type="hidden" class="invalid-feedback" id="pwFeedback"></div>
+				</td>
+				<td>
+					<i class="fa-solid fa-unlock" id="lock"></i>
+				</td>
+			</table>
+			<hr style="color: rgb(78, 78, 78); width: 800px;">
 			<table>
 				<td>
 					<label>이름 <span class="text-danger">*</span></label>
-					<input class="a mt-2 form-control" id="name" name="name"  placeholder="이름 입력" required>
+					<input class="a mt-2 form-control" id="name" name="name"  placeholder="이름 입력" value="<c:out value="${item.name}"/>" required>
 					<div class="invalid-feedback" id="nameCheckFeedback"></div>
 				</td>
 			</table>
@@ -90,7 +97,7 @@
 			<table>
 				<td>
 					<label>닉네임 <span class="text-danger">*</span></label>
-					<input class="a mt-2 form-control" id="nick_nm" name="nick_nm"  placeholder="닉네임 입력" required>
+					<input class="a mt-2 form-control" id="nick_nm" name="nick_nm" value="<c:out value="${item.nick_nm}"/>" placeholder="닉네임 입력" required>
 					<div class="invalid-feedback" id="nick_nmCheckFeedback"></div>
 				</td>
 			</table>
@@ -99,18 +106,18 @@
 			<table>
 				<td>
 					<input class="b col mt-2 form-control" placeholder="이메일주소" id="email" name="email"
-						value="<c:out value="${item.email}"/>"
-					>
+						value="<c:out value="${item.email}"/>">
 				</td>
 				<td>
 					<span class="ms-3 mt-2">@</span>
 				</td>
 				<td>
 					<select class="select ms-3 mt-2 form-select" id="email_div" name="email_div">
-						<option selected disabled value="">이메일</option>
-						<option value="4" <c:if test = "${item.email_div eq 4}">selected</c:if>>네이버(naver.com)</option>
-						<option value="5" <c:if test = "${item.email_div eq 5}">selected</c:if>>다음(daum.net)</option>
-						<option value="6" <c:if test = "${item.email_div eq 6}">selected</c:if>>지메일(gmail.com)</option>
+						<option selected disabled value="" <c:if test="${empty item.email}">selected</c:if>>이메일선택</option>
+						<c:set var="listCodeEmail" value="${CodeServiceImpl.selectListCachedCode('2') }" />
+							<c:forEach items="${listCodeEmail}" var="listEmail" varStatus="statusEmail">
+							<option value="${item.email }" <c:if test="${item.email eq listEmail.cdSeq}">selected</c:if>><c:out value="${listEmail.name }"/></option>
+						</c:forEach>
 					</select>
 				</td>
 			</table>
@@ -118,11 +125,12 @@
 			<label>전화번호</label>
 			<table>
 				<td>
-					<select name="phone_div" class="select mt-2 form-select" requiredss>
-						<option value="" <c:if test = "${empty item.phone_div}">selected</c:if>>통신사</option>
-						<option value="9" <c:if test = "${item.phone_div eq 9}">selected</c:if>>SKT</option>
-						<option value="8" <c:if test = "${item.phone_div eq 8}">selected</c:if>>KT</option>
-						<option value="10" <c:if test = "${item.phone_div eq 10}">selected</c:if>>LG</option>
+					<select class="select mt-2 form-select" id="phone_div" name="phone_div">
+						<option selected disabled value="" <c:if test="${empty item.phone}">selected</c:if>>통신사선택</option>
+						<c:set var="listCodePhone" value="${CodeServiceImpl.selectListCachedCode('3') }" />
+							<c:forEach items="${listCodePhone}" var="listPhone" varStatus="statusPhone">
+							<option value="${item.phone }" <c:if test="${item.phone eq listPhone.cdSeq}">selected</c:if>><c:out value="${listPhone.name }"/></option>
+						</c:forEach>
 					</select>
 				</td>
 				<td>

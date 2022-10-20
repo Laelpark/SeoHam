@@ -115,9 +115,12 @@ public class ShareController {
 	@RequestMapping(value = "/myList")
 	public String MyList(@ModelAttribute("vo") ShareVo vo, Model model, Share dto) throws Exception {
 		
-		setSearchAndPaging(vo); 
-		
-		vo.setParamsPaging(service.selectMyCount(vo)); 
+		/*
+		 * System.out.println("wewe1 : " + vo.getmSeq()); System.out.println("wewe2 : "
+		 * + vo.getSeq());
+		 * 
+		 * vo.setParamsPaging(service.selectMyCount(vo));
+		 */
 		
 		List<Share> list = service.selectMyList(vo);
 		model.addAttribute("list", list); 
@@ -126,10 +129,10 @@ public class ShareController {
 	}
 	
 	@RequestMapping(value = "/mySecurity")
-	public String mySecurity(@ModelAttribute("vo") ShareVo vo, Model model, Share dto) throws Exception {
+	public String mySecurity(@ModelAttribute("vo") MemberVo vo,  Model model) throws Exception {
 		
-		List<Share> list = service.selectMyList(vo);
-		model.addAttribute("list", list); 
+		Member item = Mservice.selectOne(vo);
+		model.addAttribute("item", item);  
 		
 		return "infra/share/user/mySecurity";
 	}

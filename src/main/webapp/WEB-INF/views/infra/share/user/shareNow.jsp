@@ -44,24 +44,28 @@
 				<div class="a collapse navbar-collapse">
 					<ul class="navbar-nav mb-2 mt-2 ms-3">
 						<li class="nav-item dropdown"><img alt="" src="../../resources/images/share/user.png" style="width: 60px; height: 40px; border-radius: 100px; cursor: pointer;"></li>
-						<li><select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="food_div" name="food_div" required>
+						<li>
+							<select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="food_div" name="food_div" required>
 								<option value="" <c:if test="${empty item.food_div }">selected</c:if>>카테고리</option>
 								<c:set var="listCodeFood" value="${CodeServiceImpl.selectListCachedCode('4') }" />
 								<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
 									<option value="${item.food_div }" <c:if test="${item.food_div eq listFood.cdSeq}">selected</c:if>><c:out value="${listFood.name }"/></option>
 								</c:forEach>
-						</select></li>
+							</select>
+						</li>
 						<li class="nav-item dropdown">
 							<!-- <input type="hidden" class="d-flex" for="title"/>  -->
 							<input class="form-control me-2 text-center" id="title" name="title" type="text" style="width: 480px; height: 50px;" placeholder="타이틀을 입력하세요." value='<c:out value="${item.title}"/>'/>
 						</li>
-						<li><select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="people_num" name="people_num" required>
+						<li>
+							<select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="people_num" name="people_num" required>
 								<option value="" <c:if test="${empty item.people_num}">selected</c:if>>인원</option>
 								<c:set var="listCodeNum" value="${CodeServiceImpl.selectListCachedCode('5') }" />
 								<c:forEach items="${listCodeNum}" var="listNum" varStatus="statusNum">
 									<option value="${item.people_num }" <c:if test="${item.people_num eq listNum.cdSeq}">selected</c:if>><c:out value="${listNum.name }"/></option>
 								</c:forEach>
-						</select></li>
+							</select>
+						</li>
 					</ul>
 				</div>
 			</nav>

@@ -3,6 +3,19 @@
 	 margin:auto;
 }
 
+#btnLogout {
+     --bs-btn-padding-x: 0rem;
+    --bs-btn-padding-y: 0rem;
+    --bs-btn-border-width: 0px;
+    
+}
+
+#Imglogout {
+	width: 30px;
+	height: 30px;
+}
+
+
 #btnS, #btnC {
 	 margin:auto;
      display: inline-block;
@@ -82,7 +95,6 @@ div.sideEmty {
 
 button.btn {
 	width: 80px;
-	height: 50px;
 }
 
 #btnS {

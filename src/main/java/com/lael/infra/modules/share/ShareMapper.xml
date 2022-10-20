@@ -40,6 +40,43 @@
 		<include refid="Base.selectListLowerForMysql" /> 
 	</select>
 	
+	<select id="selectMyList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"></include>
+		SELECT
+			c.seq
+			,c.food_div
+			,c.title
+			,c.people_num
+			,c.info
+			,c.place
+			,c.time
+			,c.price
+			,c.DelNy
+			,c.createDate  <!--  관리자 today를 위해 생성 -->
+		FROM share c
+		WHERE 1=1	
+			and share_member_seq = #{seq}
+			<choose>
+				<when test="shOption == 1">AND food_div = #{shValue}</when>
+				<when test="shOption == 2">AND title LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND people_num = #{shValue}</when>
+				<when test="shOption == 4">AND place LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 5">AND time LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 6">AND price LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+		ORDER BY c.seq DESC
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" /> 
+	</select>
+	
+	<select id="selectMyCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM share c
+		WHERE 1=1		
+			and share_member_seq = #{seq}
+		ORDER BY c.createDate DESC
+	</select>
+	
 	<select id="selectList1" resultMap="resultMapObj">
 		<include refid="Base.selectListUpperForMysql"></include>
 		SELECT
@@ -161,42 +198,5 @@
 		limit 6 offset #{startRnumForMysql}
 	</select>
 	
-	<select id="selectMyList" resultMap="resultMapObj">
-		<include refid="Base.selectListUpperForMysql"></include>
-		SELECT
-			c.seq
-			,c.food_div
-			,c.title
-			,c.people_num
-			,c.info
-			,c.place
-			,c.time
-			,c.price
-			,c.DelNy
-			,c.createDate
-			FROM share c
-		WHERE 1=1
-			and share_member_seq = #{mSeq}
-			<choose>
-				<when test="shOption == 1">AND food_div Like CONCAT #{shValue}</when>
-				<when test="shOption == 2">AND title LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test="shOption == 3">AND people_num = #{shValue}</when>
-				<when test="shOption == 4">AND place LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test="shOption == 5">AND time LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test="shOption == 6">AND price LIKE CONCAT('%',#{shValue},'%')</when>
-			</choose>
-		ORDER BY c.seq DESC
-		<include refid="Base.orderByLimitForMysql" />
-		) a
-		limit 6 offset #{startRnumForMysql}
-	</select>
-	
-	<select id="selectMyCount" resultType="Integer">
-		SELECT COUNT(*)
-		FROM share c
-		WHERE 1=1		
-			and share_member_seq = #{seq}
-		ORDER BY c.createDate DESC
-	</select>
 
 </mapper>

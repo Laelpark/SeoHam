@@ -33,13 +33,13 @@
 				</a>
 				<ul class="nav nav-tabs mt-5">
 					<li class="nav-item">
-			  			<a class="nav-link" aria-current="page" href="myPage?seq=${sessSeq }">프로필 수정</a>
+			  			<a class="nav-link" aria-current="page" href="myPage?seq=${sessSeq }">My Page</a>
 					</li>
 					<li class="nav-item">
-				  		<a class="nav-link active" href="myList?seq=${sessSeq }">My Share 목록</a>
+				  		<a class="nav-link active" onclick="goList">My Share List</a>
 					</li>
 					<li class="nav-item">
-			 	 		<a class="nav-link" href="mySecurity?seq=${sessSeq }">개인정보 수정</a>
+			 	 		<a class="nav-link" href="mySecurity?seq=${sessSeq }">Personal Information</a>
 					</li>
 				</ul>
 			</div>
@@ -86,7 +86,8 @@
                  <tbody>
                  	<c:choose>
 						<c:when test="${fn:length(list) eq 0}">
-							<tr>
+							<tr style="height: 20px;"></tr>
+							<tr class="b">
 								<td class="text-center" colspan="8">There is no data!</td>
 							</tr>
 						</c:when>
@@ -94,7 +95,7 @@
 							<c:forEach items="${list}" var="list" varStatus="status">
 								<tr style="height: 20px;"></tr>
 								<tr class="pt-2 b" id="b" onclick="goNow(<c:out value="${list.seq }"/>)">
-									<td class="ps-3" style="font-size: small">
+									<td class="text-center ps-3 pe-3" style="font-size: small">
                 						<input class="form-check-input" type="checkbox" id="checkboxSeq" name="checkboxSeq" value="<c:out value="${list.seq }"/>"> 
                						</td>
 									<td class="text-center">
@@ -128,22 +129,29 @@
 </body>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
 	
+	alert($("input[name=mSeq]").val())
+	
 	var goUrlList = "/myList";
+	
 	var form = $("#myForm");
 	var seq = $("input:hidden[name=seq]");
 	
-	goList = function(thisPage) {
-		$("input:hidden[name=thisPage]").val(thisPage);
+	goList = function(keyValue) {
+		seq.val(keyValue);
 		form.attr("action", goUrlList).submit();
 	};
 	
 	 $("#btnReset").on("click", function(){
 		 $(location).attr("href", goUrlList);
 	 });
+	 
+	 
 	
 	</script>
 
