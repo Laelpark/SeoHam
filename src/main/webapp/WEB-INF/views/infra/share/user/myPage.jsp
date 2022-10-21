@@ -31,13 +31,13 @@
 				</a>
 				<ul class="nav nav-tabs mt-5">
 					<li class="nav-item">
-			  			<a class="nav-link active" aria-current="page" href="myPage?seq=${sessSeq }">My Page</a>
+			  			<a class="nav-link active" aria-current="page" onclick="goMyPage()">My Page</a>
 					</li>
 					<li class="nav-item">
-				  		<a class="nav-link" href="myList?seq=${sessSeq }">My Share List</a>
+				  		<a class="nav-link" onclick="goList()">My Share List</a>
 					</li>
 					<li class="nav-item">
-			 	 		<a class="nav-link" href="mySecurity?seq=${sessSeq }">Personal Information</a>
+			 	 		<a class="nav-link" onclick="goInfo()">Personal Information</a>
 					</li>
 				</ul>
 			</div>
@@ -92,15 +92,28 @@
 	        const imgFile = changeEvent.target.files[0];
 	        reader.readAsDataURL(imgFile);
 	    })
-	
+	    
+	    var goUrlMyList = "/myList";
+		var goUrlMyPage = "/myPage";
+		var goUrlMySecurity = "/mySecurity";
 		var goUrlInst = "/shareMyPageInst";
 		var goUrlUpdt = "/shareMyPageUpdt";
-		var goUrlMypage = "/myPage";
-		var goUrlList = "/myList";
+		
+		var seq = $("input:hidden[name=seq]");
 		
 		var form = $("#myForm");
-		var seq = $("input:hidden[name=seq]");
-		var mSeq = $("input[name=mSeq]").val();
+	
+		goList = function() {
+			form.attr("action", goUrlMyList).submit();
+		};
+		
+		goMyPage = function() {
+			form.attr("action", goUrlMyPage).submit();
+		};
+		
+		goInfo = function() {
+			form.attr("action", goUrlMySecurity).submit();
+		};
 	
 		// 업데이트 정보 넘기기s
 		

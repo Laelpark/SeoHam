@@ -22,9 +22,12 @@
 </head>
 <body>
 	<form id="myForm" name="myForm" method="post">
-		<!-- *Vo.jsp s -->
+		<%-- <!-- *Vo.jsp s -->
 		<%@include file="shareVo.jsp"%>
-		<!-- *Vo.jsp e -->
+		<!-- *Vo.jsp e --> --%>
+		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+		<input type="hidden" name="seq" value="<c:out value="${vo.seq}"/>"/>
 		<div class="navbar" style="background-color:rgb(142, 68, 173); height: 30px; width: 100%;"></div>
 		<div class="sideEmty">
 			<div class="header">
@@ -33,13 +36,13 @@
 				</a>
 				<ul class="nav nav-tabs mt-5">
 					<li class="nav-item">
-			  			<a class="nav-link" aria-current="page" href="myPage?seq=${sessSeq }">My Page</a>
+			  			<a class="nav-link" aria-current="page" onclick="goMyPage()">My Page</a>
 					</li>
 					<li class="nav-item">
-				  		<a class="nav-link active" onclick="goList">My Share List</a>
+				  		<a class="nav-link active" onclick="goList()">My Share List</a>
 					</li>
 					<li class="nav-item">
-			 	 		<a class="nav-link" href="mySecurity?seq=${sessSeq }">Personal Information</a>
+			 	 		<a class="nav-link"  onclick="goInfo()">Personal Information</a>
 					</li>
 				</ul>
 			</div>
@@ -96,7 +99,7 @@
 								<tr style="height: 20px;"></tr>
 								<tr class="pt-2 b" id="b" onclick="goNow(<c:out value="${list.seq }"/>)">
 									<td class="text-center ps-3 pe-3" style="font-size: small">
-                						<input class="form-check-input" type="checkbox" id="checkboxSeq" name="checkboxSeq" value="<c:out value="${list.seq }"/>"> 
+                						<input class="form-check-input" type="checkbox" id="checkboxSeq" name="checkboxSeq"> 
                						</td>
 									<td class="text-center">
 										<c:set var="listCodeFood" value="${CodeServiceImpl.selectListCachedCode('4') }" />
@@ -126,7 +129,7 @@
 			</div>
 		</div>
 	</form>
-</body>
+	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
@@ -134,23 +137,29 @@
     <script src="//code.jquery.com/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
+		
+		var goUrlMyList = "/myList";
+		var goUrlMyPage = "/myPage";
+		var goUrlMySecurity = "/mySecurity";
+		
+		var form = $("#myForm");
 	
-	alert($("input[name=mSeq]").val())
-	
-	var goUrlList = "/myList";
-	
-	var form = $("#myForm");
-	var seq = $("input:hidden[name=seq]");
-	
-	goList = function(keyValue) {
-		seq.val(keyValue);
-		form.attr("action", goUrlList).submit();
-	};
-	
-	 $("#btnReset").on("click", function(){
-		 $(location).attr("href", goUrlList);
-	 });
-	 
+		goList = function() {
+			form.attr("action", goUrlMyList).submit();
+		};
+		
+		goMyPage = function() {
+			form.attr("action", goUrlMyPage).submit();
+		};
+		
+		goInfo = function() {
+			form.attr("action", goUrlMySecurity).submit();
+		};
+		
+		 $("#btnReset").on("click", function(){
+			 $(location).attr("href", goUrlMyList);
+		 });
+		 
 	 
 	
 	</script>

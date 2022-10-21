@@ -5,6 +5,11 @@
     margin-left: 150px;
 }
 
+.form-control:disabled, .form-control[readonly] {
+   	background-color: transparent;
+    opacity: 1;
+}
+
 .sideBar {
     width: 300px;
 }

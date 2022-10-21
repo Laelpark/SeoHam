@@ -31,21 +31,21 @@
 				</a>
 				<ul class="nav nav-tabs mt-5">
 					<li class="nav-item">
-			  			<a class="nav-link" aria-current="page" href="myPage?seq=${sessSeq }">My Page</a>
+			  			<a class="nav-link" aria-current="page" onclick="goMyPage()">My Page</a>
 					</li>
 					<li class="nav-item">
-				  		<a class="nav-link" href="myList?seq=${sessSeq }">My Share List</a>
+				  		<a class="nav-link" onclick="goList()">My Share List</a>
 					</li>
 					<li class="nav-item">
-			 	 		<a class="nav-link active" href="mySecurity?seq=${sessSeq }">Personal Information</a>
+			 	 		<a class="nav-link active" onclick="goInfo()">Personal Information</a>
 					</li>
 				</ul>
 			</div>
 			<div style="margin: 30px 0px 0px 200px;">
 			<table>
 				<td>
-					<label for="id" class="form-label">아이디 <span class="text-danger">*</span></label>
-					<input class="a mt-2 form-control" id="id" name="id"  placeholder="아이디 입력" value="<c:out value="${item.id}"/>" required>
+					<label for="id" class="form-label">아이디</label>
+					<input class="a mt-2 form-control" id="id" name="id"  placeholder="아이디 입력" value="<c:out value="${item.id}"/>" disabled="disabled">
 					<div class="invalid-feedback" id="idFeedback"></div>
 				</td>
 			</table>
@@ -58,7 +58,7 @@
 					<div type="hidden" class="invalid-feedback" id="pwFeedback"></div>
 				</td>
 				<td>
-					<i class="fa-solid fa-lock" id="lock"></i>
+					<i class="fa-solid fa-user-lock" id="lock"></i>
 				</td>
 			</table>
 			<hr style="color: rgb(78, 78, 78); width: 800px;">
@@ -74,10 +74,10 @@
 				</td>
 			</table>
 			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<label for="pw">변경 비밀번호 <span class="text-danger">*</span></label>
+			<label for="pw">변경 비밀번호 확인 <span class="text-danger">*</span></label>
 			<table>
 				<td>
-					<input type="password" class="a mt-2 form-control" id="pw" name="pw" placeholder="변경하실 비밀번호 입력" onkeydown="validation()">
+					<input type="password" class="a mt-2 form-control" id="pw" name="pw" placeholder="변경하신 비밀번호 재 입력" onkeydown="validation()">
 				  	<div type="hidden" class="msg" id="pw_msg" name="pw_msg" style="display: none;"></div>
 					<div type="hidden" class="invalid-feedback" id="pwFeedback"></div>
 				</td>
@@ -163,7 +163,111 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
-	</script>
+	
+	var goUrlMyList = "/myList";
+	var goUrlMyPage = "/myPage";
+	var goUrlMySecurity = "/mySecurity";
+	
+	var form = $("#myForm");
 
+	goList = function() {
+		form.attr("action", goUrlMyList).submit();
+	};
+	
+	goMyPage = function() {
+		form.attr("action", goUrlMyPage).submit();
+	};
+	
+	goInfo = function() {
+		form.attr("action", goUrlMySecurity).submit();
+	};
+	</script>
+	<script type="text/javascript">
+	
+	//Pw ajax
+	
+	$("#password").on("focusout", function() {
+		var id = $("#password").val();
+		
+		if (!id_check("#password", $("#password").val(), "#idFeedback"	, "아이디를 입력하세요")) {
+			return false;
+		} else {
+            $.ajax({
+				async: true
+				,cache: false
+				,type: "post"
+				,url: "idCheck"
+				,data : {"id" :  $("#id").val()}
+				,success: function(response) {
+					
+					if (response.rt == "success") {
+						document.getElementById("id").classList.remove('is-invalid');
+						document.getElementById("id").classList.add('is-valid');
+						
+						document.getElementById("idFeedback").classList.remove('invalid-feedback');
+						document.getElementById("idFeedback").classList.add('valid-feedback');
+						
+						document.getElementById("idFeedback").innerText = "사용가능한 아이디입니다.";
+						document.getElementById("idAllowedNy").value = 1;
+					} else {
+						document.getElementById("id").classList.add('is-invalid');
+						
+						document.getElementById("idFeedback").classList.remove('valid-feedback');
+						document.getElementById("idFeedback").classList.add('invalid-feedback');
+						document.getElementById("idFeedback").innerText = "사용 불가능한 아이디입니다.";
+						
+						$("#id").focus();
+						
+						document.getElementById("idAllowedNy").value = 0;
+					}
+				}
+				, error : function(jqXHR, textStatus, errorThrown) {
+					alert("ajaxUpdate "  + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+			
+		}
+	});
+	
+	// validation.js파일
+	
+ 	validation = function() {
+		if (!id_check("#id", $("#id").val(), "#idFeedback"	, "아이디를 입력하세요.")) {
+			return false;
+		} else if (!pw_check("#pw", $("#pw").val(), "#pwFeedback", "비밀번호를 입력하세요.")) {
+			return false;
+		} else if (!pwRecheck("#pwCheck", $("#pwCheck").val(), "#pwCheckFeedback", "비밀번호를 입력하세요.")) {
+			return false;
+		} else if (!name_check("#name", $("#name").val(), "#nameCheckFeedback", "이름을 입력하세요.")) {
+			return false;
+		} else if (!nick_nm_check("#nick_nm", $("#nick_nm").val(), "#nick_nmCheckFeedback", "닉네임을 입력하세요.")) {
+			return false;
+		} else true;
+	};
+		
+
+	$("#btnSave").on("click", function() {
+		/* if (validation() == false) {
+			return false;
+		} else { */
+			swAlert("가입성공!", "Welcometo SHARE!", "success");
+		/* } */
+		
+	});
+ 		
+	 	function swAlert(title, text, icon) {
+		swal({
+			title: title,
+			text: text,
+			icon: icon,
+			button: "확인"
+		}).then((value) => {
+			if (value) {
+				location.href = "/shareLogin";
+			}
+		});
+	}
+	</script>
+	
 </body>
 </html>

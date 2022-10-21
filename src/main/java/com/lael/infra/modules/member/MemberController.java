@@ -73,6 +73,7 @@ public class MemberController {
 		} else {
 			returnMap.put("rt", "success");
 		}
+		
 		return returnMap;
 	}
 	

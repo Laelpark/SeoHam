@@ -115,15 +115,15 @@ public class ShareController {
 	@RequestMapping(value = "/myList")
 	public String MyList(@ModelAttribute("vo") ShareVo vo, Model model, Share dto) throws Exception {
 		
-		/*
-		 * System.out.println("wewe1 : " + vo.getmSeq()); System.out.println("wewe2 : "
-		 * + vo.getSeq());
-		 * 
-		 * vo.setParamsPaging(service.selectMyCount(vo));
-		 */
 		
-		List<Share> list = service.selectMyList(vo);
-		model.addAttribute("list", list); 
+		  System.out.println("mSeq : " +vo.getmSeq()); 
+		  System.out.println("Seq : " + vo.getSeq());
+		  
+		  vo.setParamsPaging(service.selectMyCount(vo));
+		 
+		
+		List<Share> mList = service.selectMyList(vo);
+		model.addAttribute("list", mList); 
 		
 		return "infra/share/user/myList";
 	}
