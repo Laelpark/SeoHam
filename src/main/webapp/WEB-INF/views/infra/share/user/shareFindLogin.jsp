@@ -66,13 +66,7 @@
 				<hr style="color: rgb(78, 78, 78); width: 800px;">
 				<table class="a mt-5" style="text-decoration: none; text-align: center;">
 					<td>
-						<h5 type="text" value="<c:out value="${item.name}"/>">님의 </h5>
-					</td>
-					<td>
-						<h5 type="text"> 아이디는 </h5>
-					</td>
-					<td>
-						<h5 type="text" value="<c:out value="${item.id}"/>"> 입니다.</h5>
+						<p type="text"> 회원님의 아이디는 <span type="text" value="" id="id"></span>입니다.</p>
 					</td>
 				</table>
 			</div>
@@ -104,7 +98,6 @@
 	//ID ajax
 	
 	$("#findId").on("click", function() {
-			
 			$.ajax({
 				async: true
 				,cache: false
@@ -113,7 +106,8 @@
 				,data: {"name": $("#name").val(), "dob": $("#dob").val(), "dob2": $("#dob2").val(), "dob3": $("#dob3").val(), "phone" : $("#phone").val()}
 				,success : function(response) {
 					if (response.rt == "success") {
-						$(".personerId").html(response.id.id);
+						$("#name").html(response.id.name);
+						$("#id").html(response.id.id);
 					} else {
 						alert("정확한 정보를 입력해주세요.");
 					}
@@ -122,7 +116,7 @@
 					alert("알 수 없는 에러 [ " + error + " ]");
 				} */
 				error : function(jqXHR, status, error) {
-					$(".personerId").html("없는 정보");
+					$("#id").html("없는 정보");
 					alert("등록된 회원 정보가 없습니다.");
 				}
 			});

@@ -89,6 +89,11 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
+	public Member idFind(Member dto) throws Exception {
+		return dao.idFind(dto);
+	}
+	
+	@Override
 	public Member selectOneLogin(Member dto) throws Exception {
 		return dao.selectOneLogin(dto);
 	}

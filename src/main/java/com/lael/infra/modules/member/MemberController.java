@@ -78,6 +78,23 @@ public class MemberController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "idFind")
+	public Map<String, Object> idFind(Member dto) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		Member result = service.idFind(dto);
+		
+		if (result != null) {
+			returnMap.put("rt", "success");
+			returnMap.put("id", result);  // 테이블에 있는 전체 값을 담고 있으므로 하나만 생성
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		
+		return returnMap;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "loginProc")
 	public Map<String, Object> loginProc(Member dto, HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();

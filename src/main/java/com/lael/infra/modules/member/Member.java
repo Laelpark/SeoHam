@@ -11,7 +11,7 @@ public class Member {
 	private Integer dob3;
 	private Integer gender;
 	private String email;
-	private Integer phone;
+	private String phone;
 	private String nick_nm;
 	private String share_place;
 	private Integer grade;
@@ -104,10 +104,10 @@ public class Member {
 		this.email = email;
 	}
 	
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	
