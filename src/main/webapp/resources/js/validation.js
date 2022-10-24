@@ -25,33 +25,6 @@ const setSuccess = element => {
     inputControl.classList.remove('error');
 };
 
-
-// name
-name_V = function(obj, value, message, hide) {
-    const re = /^[ㄱ-ㅎ가-힣a-zA-z]{1,10}$/g;
-    if (!checkNull(obj, value)) {
-        hide.parent().addClass('error')
-        $(hide).text(message)
-        $(hide).show()
-        return false;
-    } else if (!(re.test($.trim($(obj).val())))) {
-        $(hide).text('양식에 맞게 작성하시오')
-        hide.parent().addClass('error')
-        $(hide).show()
-        return false;
-    } else if(!(($.trim($(obj).val()).length > 1) && ($.trim($(obj).val()).length < 10))) {
-        $(hide).text('2~10자 사이의 이름을 작성하시오')
-        hide.parent().addClass('error')
-        $(hide).show()
-        return false;
-    } else {
-        hide.parent().removeClass('error')
-        hide.parent().addClass('success')
-        $(hide).hide()
-        return true;
-    }
-}
-
 // 아이디
 
 id_check = function(obj, value, feedback, msg) {
@@ -102,5 +75,32 @@ pwRecheck = function(obj, value, message, hide) {
         return true;
     }
 }
+
+// name
+name_V = function(obj, value, message, hide) {
+    const re = /^[ㄱ-ㅎ가-힣a-zA-z]{1,10}$/g;
+    if (!checkNull(obj, value)) {
+        hide.parent().addClass('error')
+        $(hide).text(message)
+        $(hide).show()
+        return false;
+    } else if (!(re.test($.trim($(obj).val())))) {
+        $(hide).text('양식에 맞게 작성하시오')
+        hide.parent().addClass('error')
+        $(hide).show()
+        return false;
+    } else if(!(($.trim($(obj).val()).length > 1) && ($.trim($(obj).val()).length < 10))) {
+        $(hide).text('2~10자 사이의 이름을 작성하시오')
+        hide.parent().addClass('error')
+        $(hide).show()
+        return false;
+    } else {
+        hide.parent().removeClass('error')
+        hide.parent().addClass('success')
+        $(hide).hide()
+        return true;
+    }
+}
+
 
 

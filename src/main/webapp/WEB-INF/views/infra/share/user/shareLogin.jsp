@@ -76,7 +76,7 @@
 							<div class="a col-3 me-3" style="cursor: pointer;" id="btnSignup" name="btnSignup" onclick=" location='/shareSignup'">
 								회원가입
 							</div>
-							<div class="a col-3" style="cursor: pointer;">
+							<div class="a col-3" style="cursor: pointer;" onclick=" location='/shareFindLogin'">
 								아이디/비밀번호 찾기
 							</div>
 							<div class="col-3"></div>

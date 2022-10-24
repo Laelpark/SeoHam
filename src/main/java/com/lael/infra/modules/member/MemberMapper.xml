@@ -128,6 +128,19 @@
 	<select id="idCheck" parameterType="String" resultType="int">
 		select count(*) from share_member where id = #{id}
 	</select>
+
+	<!-- id찾기 -->
+	<select id="idFind" resultMap="resultMapObj">
+		SELECT
+			a.id
+		FROM share_member a
+	 	WHERE 1=1
+	 		AND a.name = #{name}
+	 		and a.dob = #{dob}
+			and a.dob2 = #{dob2}
+			and a.dob3 = #{dob3}
+			and a.phone = #{phone}
+	</select>
 	
  	<update id="update">
 	 	UPDATE share_member

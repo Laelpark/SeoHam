@@ -143,4 +143,8 @@ public class ShareController {
 		return "infra/share/user/shareLikeList";
 	}
 	
+	@RequestMapping(value = "/shareFindLogin")
+	public String shareFindLogin() throws Exception {
+		return "infra/share/user/shareFindLogin";
+	}
 }
