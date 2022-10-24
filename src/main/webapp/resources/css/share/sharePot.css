@@ -75,3 +75,17 @@
   text-shadow: 0 0 0 #777;
 }
 
+#btnLike {
+	border: none;
+	background-color: transparent;
+}
+
+.like {
+	width: 30px;
+	height: 30px;
+}
+
+.btn_like.after {
+	background-image: "/resources/images/share/star_y.png";
+}
+

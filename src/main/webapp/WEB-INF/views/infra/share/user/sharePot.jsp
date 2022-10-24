@@ -96,19 +96,12 @@
 	                                <td class="text-center">${list.place}</td>
 	                                <td class="text-center">${list.time}</td>
 	                                <td class="text-center">${list.price}</td>
-	                                <c:choose>
-	                                	<c:when test="${empty sessSeq}">
-	                                		<td class="text-center">
-											    <input type="checkbox" class="like" name="chk_box" onclick="event.cancelBubble=true">
-			                                </td>
-	                                	</c:when>
-	                                	<c:otherwise>
-	                                		<td class="text-center">
-	                                			<input type="hidden" value="0" name="likeCount"> 
-											    <input type="checkbox" name="chk_box" onclick="event.cancelBubble=true">
-			                                </td>
-	                                	</c:otherwise>
-	                                </c:choose>
+                   					<td class="text-center">
+	                                	<input type="hidden" name="like_value" class="like_value${status.index }" value="0"> 
+									    <button type="button" name="btnLike${status.index }" class="btn_like after btnLike">
+									    	<img alt="" src="/resources/images/share/star_e.png" class="like" id="like${status.index }" title="star icons">
+									    </button>
+	                                </td>
                    				</tr>	
 							</c:forEach>
                    		</c:otherwise>
@@ -171,30 +164,32 @@
 	        don = price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	        console.log(price);  // 콘솔창에 123,123,123 찍힘
 	     });
-	    		
-		// 즐겨찾기
-		 
-		$(".btn-like").click(function() {
-			$(this).toggleClass("done");
-		})
-
 		
 		// like 버큰
 		
-		$(".like").on("click", function() {
-	    	swAlert("로그인", "로그인 하시겠습니까?", "success");
-		});
-	    
-	    function swAlert(title, text, icon) {
-			swal({
-				title: title
-				,text: text
-				,icon: icon
-				,buttons: "로그인"
-			}).then((value) => {
-				if (value) {
-					location.href = goUrlLogin;
-				}
+		var like = $(".like_value");
+		
+		/* $(".btnLike").on("click", function() {
+			alert($(".like").attr("id"));
+			if (like.val() == 1) {
+				like.val("0");
+				$("#like").attr("src", "/resources/images/share/star_e.png");
+			} else {
+				like.val("1");
+				$("#like").attr("src", "/resources/images/share/star_y.png");
+			}
+			return false;
+		}); */
+		
+		alert("length : "+ $(".btnLike").length);
+			
+		for (var i=0; i<$(".btnLike").length; i++) {
+			alert($("button[name=btnLike"+i+"]").attr("name"));
+			$(".btnLike").on("click", function() {
+				/* if ($("button[name=btnLike"+i+"]").attr("name").slice(-1) == i) {
+					alert(i);
+					return false;
+				} */
 			})
 		}
 		

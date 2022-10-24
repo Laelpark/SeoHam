@@ -34,7 +34,6 @@
 			<exclude-mapping path="/share" />
 			<exclude-mapping path="/shareHot" />
 			<exclude-mapping path="/sharePot" />
-			<exclude-mapping path="/shareNow" />
 			<exclude-mapping path="/shareLogin" />
 			<exclude-mapping path="/adminLogin" />
 			<exclude-mapping path="/loginProc" />
