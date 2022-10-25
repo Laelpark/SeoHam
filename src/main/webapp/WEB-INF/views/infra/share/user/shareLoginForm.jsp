@@ -232,6 +232,7 @@
 	</script>
 	<script>
 	
+	
 	// validation.js파일
 		
 	 	validation = function() {
