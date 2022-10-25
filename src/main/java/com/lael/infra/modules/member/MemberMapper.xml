@@ -142,6 +142,17 @@
 			and a.phone = #{phone}
 	</select>
 	
+	<!-- pw찾기 -->
+	<select id="pwFind" resultMap="resultMapObj">
+		SELECT
+			a.pw
+		FROM share_member a
+	 	WHERE 1=1
+	 		AND a.name = #{name}
+	 		and a.id = #{id}
+			and a.phone = #{phone}
+	</select>
+	
  	<update id="update">
 	 	UPDATE share_member
 	 	SET

@@ -61,6 +61,10 @@ public class MemberDao {
 	public Member idFind(Member dto) {
 		return sqlSession.selectOne(namespace + ".idFind" , dto);
 	}
+
+	public Member pwFind(Member dto) {
+		return sqlSession.selectOne(namespace + ".pwFind" , dto);
+	}
 	
 	public Member selectOneLogin(Member dto) {
 		return sqlSession.selectOne(namespace + ".selectOneLogin", dto);

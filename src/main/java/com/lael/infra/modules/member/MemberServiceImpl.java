@@ -88,9 +88,29 @@ public class MemberServiceImpl implements MemberService{
 		return dao.idCheck(dto);
 	}
 
-	@Override
+	@Override   // 아이디 마스킹 처리
 	public Member idFind(Member dto) throws Exception {
-		return dao.idFind(dto);
+		Member id = dao.idFind(dto);
+		String idStar = id.getId().substring(0, 3);
+		int starLength =  id.getId().length() - idStar.length();
+		
+		System.out.println("starLength" + starLength);
+		System.out.println("idStar" + idStar.length());
+		
+		
+		  for(int i=0; i<starLength; i++){
+			  idStar += "*";
+		  }
+		  
+		  System.out.println("idStar :" + idStar);
+		  
+		  dto.setId(idStar);
+		  return dto;
+	}
+
+	@Override
+	public Member pwFind(Member dto) throws Exception {
+		return dao.pwFind(dto);
 	}
 	
 	@Override

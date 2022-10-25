@@ -180,7 +180,16 @@
 
 	//ID ajax
  	
+/* 	$("#id").val(); // id값이 id인 value값 가져오기
+	$("#id").val("abc"); //id값이 id인 곳의 value 값으로 "abc" 넣기 */ 
+	
 	$("#id").on("focusout", function(){
+		if ($("#id").val() == null || $("#id").val() == "" ) {
+			document.getElementById("idFeedback").classList.add('invalid-feedback');
+			alert("sdf");
+			document.getElementById("idFeedback").innerText = "아이디를 입력해주세요.";
+			$("#id").focus();
+		} else {
 			$.ajax({
 				async: true 
 				,cache: false
@@ -216,6 +225,7 @@
 					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 				}
 			});
+		}
 			
 		});
 
@@ -224,11 +234,8 @@
 	
 	// validation.js파일
 		
-		
-		$('.error').hide();
-
 	 	validation = function() {
-	 		if (!id_check("#id", $("#id").val(), "idFeedback", "아이디")) {
+	 		if (!id_check("#id", $("#id").val(), "idFeedback", "아이디를 입력하세요.")) {
 	 			return false;
 	 		} else if (!pw_check("#pw", $("#pw").val(), "#pwFeedback", "비밀번호를 입력하세요.")) {
 				return false;

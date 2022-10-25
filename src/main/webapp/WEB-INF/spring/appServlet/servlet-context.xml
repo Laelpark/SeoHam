@@ -36,13 +36,15 @@
 			<exclude-mapping path="/sharePot" />
 			<exclude-mapping path="/shareLogin" />
 			<exclude-mapping path="/shareFindLogin" />
+			<exclude-mapping path="/shareFindPw" />
 			<exclude-mapping path="/adminLogin" />
 			<exclude-mapping path="/loginProc" />
 			<exclude-mapping path="/idCheck" />
+			<exclude-mapping path="/idFind" />
+			<exclude-mapping path="/pwFind" />
 			<exclude-mapping path="/shareSignup" />
 			<exclude-mapping path="/MemberInst" />
 			<exclude-mapping path="/adminMain" />
-			<exclude-mapping path="/idFind" />
 			<exclude-mapping path="/" />
 			<!-- <exclude-mapping path="/shareInst" /> -->
 			<beans:bean id="checkLoginSessionInterception" class="com.lael.infra.common.interceptor.CheckLoginSessionInterception"/>

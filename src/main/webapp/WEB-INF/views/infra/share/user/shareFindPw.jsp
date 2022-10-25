@@ -10,7 +10,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>shareFindLogin</title>
+	<title>shareFindPw</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link rel="stylesheet" href="/resources/css/share/shareFindLogin.css">
 	<script defer type="text/javascript" src="/resources/js/validation.js"></script>
@@ -21,15 +21,15 @@
 		<div class="navbar" style="background-color:rgb(142, 68, 173); height: 30px; width:auto;"></div>
 		<div class="row">
 			<img class="col-6 ms-3 mt-3" src="../../resources/images/share/fullLogo_p.png" onclick="location.href='share'" style="width: 150px; height: 45px;" type="button">
-			<h2 class="col-6 offset-4" id="newmem">아이디 찾기</h2>
+			<h2 class="col-6 offset-4" id="newmem">비밀번호 찾기</h2>
 		</div>
 		<div class="container">
 			<ul class="nav nav-tabs mt-5">
 				<li class="nav-item" id="shareFindLogin">
-		  			<a class="nav-link active" aria-current="page">Find Id</a>
+		  			<a class="nav-link" aria-current="page">Find Id</a>
 				</li>
 				<li class="nav-item" id="shareFindPw">
-			  		<a class="nav-link">Find PassWord</a>
+			  		<a class="nav-link active">Find PassWord</a>
 				</li>
 			</ul>
 			<div class="mt-5" id="input">
@@ -40,43 +40,49 @@
 					</td>
 				</table>
 				<hr style="color: rgb(78, 78, 78); width: 800px;">
-				<label>생년월일</label>
 				<table>
 					<td>
-						<input class="b col mt-2 form-control" placeholder="년(4자)" id="dob" name="dob">
-					</td>
-					<td>
-						<input class="b mt-2 ms-4 form-control" placeholder="월" id="dob2" name="dob2">
-					</td>
-					<td>
-						<input class="b mt-2 ms-4 form-control" placeholder="일" id="dob3" name="dob3">
+						<label class="form-label">아이디</label>
+						<input type="text" class="a col mt-2 form-control" placeholder="아이디 입력" id="id" name="id">
 					</td>
 				</table>
 				<hr style="color: rgb(78, 78, 78); width: 800px;">
-				<label>전화번호</label>
 				<table>
 					<td>
-						<input class="mt-2 ms-3 form-control" style="width: 400px; height: 35px;" placeholder="특수문자(-)없이 숫자만 입력" id="phone" name="phone"
-							value="<c:out value="${item.phone}"/>">
+						<label class="form-label">전화번호</label>
+						<input type="text" class="a mt-2 ms-3 form-control" style="width: 400px; height: 35px;" placeholder="특수문자(-)없이 숫자만 입력" id="phone" name="phone">
 					</td>
 				</table>
 				<div class="idPop" style="display: none;">
 					<hr style="color: rgb(78, 78, 78); width: 800px;">
-					<table class="a mt-5 FindId" style="text-decoration: none; text-align: center;">
+					<label class="form-label">변경할 비밀번호 입력<span style="color: #dc3545;"> *</span></label>
+					<table style="text-decoration: none; text-align: center;">
 						<td>
-							<p type="text"> 회원님의 아이디는 <span type="text" value="" id="id" style="text-decoration: underline; "></span>입니다.</p>
+							<input type="text" class="a col mt-2 form-control" placeholder="변경하실 비밀번호 입력" id="pwB" name="pwB">
+						</td>
+					</table>
+					<hr style="color: rgb(78, 78, 78); width: 800px;">
+					<label class="form-label">변경 된 비밀번호 재 입력<span style="color: #dc3545;"> *</span></label>
+					<table style="text-decoration: none; text-align: center;">
+						<td>
+							<input type="text" class="a col mt-2 form-control" placeholder="변경하신 비밀번호 재 입력" id="pwA" name="pwA">
 						</td>
 					</table>
 				</div>
 			</div>
 			<table id="wrapper" class="mb-3 mt-5" style="padding-top: 50px;">
-				<td>
+				<td class="pwPop">
 					<button id="findId" name="findId" type="button" class="btn">
-						아이디 찾기
+						비밀번호 찾기
 					</button>
 				</td>
 				<td class="idPop" style="display: none;">
-					<button id="btnLogin" name="btnLogin" type="button" class="btn" style="background-color: blueviolet; color:white;">
+					<button id="btnPw" name="btnPw" type="button" class="btn">
+						비밀번호 변경
+					</button>
+				</td>
+				<td class="idPop" style="display: none;">
+					<button id="btnLogin" name="btnLogin" type="button" class="btn" style="background-color: blueviolet; color:white;"">
 						로그인
 					</button>
 				</td>
@@ -102,7 +108,7 @@
 
 	var form = $("form[name=myform]");
 	var formVo = $("form[name=formVo]");
-
+	
 	$("#btnLogin").on("click", function(){
 		 $(location).attr("href", goUrlLogin);
 	 });
@@ -114,22 +120,22 @@
 	$("#shareFindPw").on("click", function(){
 		 $(location).attr("href", goUrlFindPw);
 	 });
-	
-	//ID 찾기
+
+	//pw 변경
 	
 	$("#findId").on("click", function() {
 			$.ajax({
 				async: true
 				,cache: false
 				,type:"POST"
-				,url: "idFind"
-				,data: {"name": $("#name").val(), "dob": $("#dob").val(), "dob2": $("#dob2").val(), "dob3": $("#dob3").val(), "phone" : $("#phone").val()}
+				,url: "pwFind"
+				,data: {"name": $("#name").val(), "id": $("#id").val(), "phone" : $("#phone").val()}
 				,success : function(response) {
 					if (response.rt == "success") {
-						$(".idPop").css("display", "");  // 아이디 찾기 성공하며 띄어주는 화면
-						$("#name").html(response.id.name);
-						$("#id").html(response.id.id);
-						$mValue = preg_replace('/.{3}$/', '***', $str);
+						$(".idPop").css("display", "");  // 비밀번호 찾기 성공하며 띄어주는 화면
+						$(".pwPop").css("display", "none");
+						$("#name").html(response.pw.name);
+						$("#pw").html(response.pw.pw);
 					} else {
 						alert("정확한 정보를 입력해주세요.");
 					}
@@ -144,7 +150,6 @@
 			});
 		})
 	
-
 	</script>
 </body>
 </html>
