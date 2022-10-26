@@ -60,6 +60,9 @@ public class ShareController {
 		Share item = service.selectOne(vo);
 		  model.addAttribute("item", item);
 		
+	   List<Share> list = service.selectList(vo);
+	   	model.addAttribute("list", list);  
+	   
 		return "infra/share/user/shareNow";
 	}
 	

@@ -21,14 +21,17 @@
             <div id="img">
                 <img src="/resources/images/share/fullLogo_w.png" alt="logo">
             </div>
+             <div class="user_text">
+                 User Page
+             </div>
+             <div class="admin_text">
+              	Admin Page
+             </div>
             <div id="content">
                 <a id="user" href="/share">
                     <div class="card">
                         <div class="user_img me-3">
-                            <img class="card_img" src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" alt="user_page">
-                        </div>
-                        <div class="user_text">
-                            User Page
+                            <img class="card_img" src="../../resources/images/share//1g.jpg" alt="user_page">
                         </div>
                     </div>
                 </a>
@@ -36,9 +39,6 @@
                     <div class="card">
                         <div class="admin_img">
                             <img class="card_img" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="admin_page">
-                        </div>
-                        <div class="admin_text">
-                            admin Page
                         </div>
                     </div>
                 </a>

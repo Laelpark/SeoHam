@@ -155,7 +155,7 @@
 			<hr style="color: rgb(78, 78, 78); width: 800px;">
 		</div>
 		<div id="wrapper" class="mt-5 mb-3">
-			<button id="btnSave" name="btnSave" type="button" class="btn btn-primary btn-lg" onclick="validation();">   <!-- data-bs-toggle="modal" data-bs-target="#exampleModalCenter" -->
+			<button id="btnSave" name="btnSave" type="button" class="btn btn-primary btn-lg" onclick="validation()"> <!-- data-bs-toggle="modal" data-bs-target="#exampleModalCenter" -->
 				가입하기
 			</button>
 		</div>
@@ -247,15 +247,16 @@
 			} else if (!nick_nm_check("#nick_nm", $("#nick_nm").val(), "#nick_nmCheckFeedback", "닉네임을 입력하세요.")) {
 				return false;
 			} else true;
-		};
+		}; 
  		
 	
 		$("#btnSave").on("click", function() {
-			if(validationUpdt())
+			/* if(validationUpdt()) */
 				form.attr("action", goUrlInst).submit();
+			alert("가입이 완료되었습니다.")
 		});;
 	 		
- 	 	function swAlert(title, text, icon) {
+/*   	 	function swAlert(title, text, icon) {
 			swal({
 				title: title,
 				text: text,
@@ -266,8 +267,8 @@
 					location.href = "/shareLogin";
 				}
 			});
-		}
-	 		
+		} 
+	 		 */
 	</script>
 	
 </body>

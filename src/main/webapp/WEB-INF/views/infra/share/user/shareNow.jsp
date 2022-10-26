@@ -46,11 +46,20 @@
 						<li class="nav-item dropdown"><img alt="" src="../../resources/images/share/user.png" style="width: 60px; height: 40px; border-radius: 100px; cursor: pointer;"></li>
 						<li>
 							<select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="food_div" name="food_div" required>
-								<option value="" <c:if test="${empty item.food_div }">selected</c:if>>카테고리</option>
-								<c:set var="listCodeFood" value="${CodeServiceImpl.selectListCachedCode('4') }" />
-								<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
-									<option value="${item.food_div }" <c:if test="${item.food_div eq listFood.cdSeq}">selected</c:if>><c:out value="${listFood.name }"/></option>
-								</c:forEach>
+								<c:choose>
+									<c:when test="${empty item.gSeq }">
+									
+									</c:when>
+									
+									
+									
+									<option value="" <c:if test="${empty item.food_div }">selected</c:if>>카테고리</option>
+									<c:set var="listCodeFood" value="${CodeServiceImpl.selectListCachedCode('4') }" />
+									<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
+										<option value="${item.food_div }" <c:if test="${item.food_div eq listFood.cdSeq}">selected</c:if>><c:out value="${listFood.name }"/></option>
+									</c:forEach>
+								</c:choose>
+							
 							</select>
 						</li>
 						<li class="nav-item dropdown">
@@ -138,7 +147,7 @@
 	
 	// 이미지 미리보기
 	
-	const reader = new FileReader();
+	/* const reader = new FileReader();
 
     reader.onload = (readerEvent) => {
         document.querySelector("#img").setAttribute("src", readerEvent.target.result);
@@ -148,7 +157,7 @@
 
         const imgFile = changeEvent.target.files[0];
         reader.readAsDataURL(imgFile);
-    })
+    }) */
 
 	var goUrlInst = "/shareInst";
 	var goUrlUpdt = "/shareUpdt";

@@ -47,8 +47,7 @@ public class ShareDao {
 	}
 	
 	public Share selectOne(ShareVo vo) {
-		Share result = sqlSession.selectOne(namespace + ".selectOne", vo);
-		return result;
+		return sqlSession.selectOne(namespace + ".selectOne", vo);
 	}
 
 	public int selectOneCount(ShareVo vo) {

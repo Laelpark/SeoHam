@@ -81,6 +81,7 @@ import org.springframework.stereotype.Service;
 	public int idCheck(Share dto) throws Exception {
 		return dao.idCheck(dto);
 	}
+	
 	@Override
 	public Share selectOne(ShareVo vo) throws Exception {
 		return dao.selectOne(vo);
