@@ -31,11 +31,6 @@ import org.springframework.stereotype.Service;
 	}
 	
 	@Override
-	public Share selectOne(ShareVo vo) throws Exception {
-		return dao.selectOne(vo);
-	}
-
-	@Override
 	public int selectOneCount(ShareVo vo) throws Exception {
 		return dao.selectOneCount(vo);
 	}
@@ -63,6 +58,21 @@ import org.springframework.stereotype.Service;
 	}
 
 	@Override
+	public int likeCount(Share dto) throws Exception {
+		return dao.likeCount(dto);
+	}
+
+	@Override
+	public int likeUpdt(Share dto) throws Exception {
+		return dao.likeUpdt(dto);
+	}
+
+	@Override
+	public Share likeOne(Share dto) throws Exception {
+		return dao.likeOne(dto);
+	}
+	
+	@Override
 	public int update(Share dto) throws Exception {
 		return dao.update(dto);
 	}
@@ -71,7 +81,9 @@ import org.springframework.stereotype.Service;
 	public int idCheck(Share dto) throws Exception {
 		return dao.idCheck(dto);
 	}
-
-	
+	@Override
+	public Share selectOne(ShareVo vo) throws Exception {
+		return dao.selectOne(vo);
+	}
 	
 }

@@ -128,6 +128,20 @@ public class ShareController {
 		return "infra/share/user/myList";
 	}
 	
+	@RequestMapping(value = "/likeCount")
+	public String likeCount(Share dto) throws Exception {
+	
+		Share one = service.likeOne(dto);
+		
+		if(one == null) {
+			service.likeCount(dto);
+		} else {
+			service.likeUpdt(dto);
+		}
+		
+		return "redirect:/sharePot";
+	}
+	
 	@RequestMapping(value = "/mySecurity")
 	public String mySecurity(@ModelAttribute("vo") MemberVo vo,  Model model) throws Exception {
 		

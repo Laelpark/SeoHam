@@ -14,6 +14,9 @@ public interface ShareService {
 	public int selectOneCount2(ShareVo svo) throws Exception;
 	public Share selectOne(ShareVo vo) throws Exception;
 	public int selectOneCount(ShareVo vo) throws Exception;
+	public int likeCount(Share dto) throws Exception;
+	public int likeUpdt(Share dto) throws Exception;
+	public Share likeOne(Share dto) throws Exception;			
 	public int insert(Share dto) throws Exception;
 	public int update(Share dto) throws Exception;
 	public int idCheck(Share dto) throws Exception;

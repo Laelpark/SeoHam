@@ -15,6 +15,39 @@ public class Share {
 	private Integer share_member_seq;
 	private Integer likeCount;
 	
+	// favorite s
+	private String likeSeq;
+	private Integer memberSeq;
+	private Integer shareSeq;
+	private Integer likeNy;
+	
+	public String getLikeSeq() {
+		return likeSeq;
+	}
+	public void setLikeSeq(String likeSeq) {
+		this.likeSeq = likeSeq;
+	}
+	public Integer getMemberSeq() {
+		return memberSeq;
+	}
+	public void setMemberSeq(Integer memberSeq) {
+		this.memberSeq = memberSeq;
+	}
+	public Integer getShareSeq() {
+		return shareSeq;
+	}
+	public void setShareSeq(Integer shareSeq) {
+		this.shareSeq = shareSeq;
+	}
+	public Integer getLikeNy() {
+		return likeNy;
+	}
+	public void setLikeNy(Integer likeNy) {
+		this.likeNy = likeNy;
+	}
+	
+	// favorite e
+	
 	public Integer getLikeCount() {
 		return likeCount;
 	}

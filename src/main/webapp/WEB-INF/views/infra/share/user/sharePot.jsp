@@ -24,6 +24,7 @@
 		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
 		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 		<input type="hidden" name="seq" value="<c:out value="${vo.seq}"/>">
+		<input type="hidden" name="memberSeq" value="<c:out value="${sessSeq}"/>">
 		<p style="background-color:rgb(142, 68, 173); height: 30px;"></p>
 		<div class="container1">
 			<nav class="bg-transparent">
@@ -97,10 +98,22 @@
 	                                <td class="text-center">${list.time}</td>
 	                                <td class="text-center">${list.price}</td>
                    					<td class="text-center">
-	                                	<input type="hidden" name="like_value" class="like_value${status.index }" value="0"> 
+                   						<span class="rating-star">
+									        <span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq})">
+									        	<input type="hidden" value="0" name="likeNy">
+									        	<img alt="" src="/resources/images/share/star_e.png" style="width: 30px; height: 30px;">
+									        </span>
+									        <span class="Favorites" value="Favorites" style="display: none;" onclick="Unfavorites(this, ${list.seq})">
+									        	<input type="hidden" value="1" name="likeNy">
+									        	<img alt="" src="/resources/images/share/star_y.png" style="width: 30px; height: 30px;">
+									        </span>
+									    </span>
+                   					
+                   						
+	                                	<%-- <input type="hidden" name="like_value" class="like_value${status.index }" value="0"> 
 									    <button type="button" name="btnLike${status.index }" class="btn_like after btnLike">
 									    	<img alt="" src="/resources/images/share/star_e.png" class="like" id="like${status.index }" title="star icons">
-									    </button>
+									    </button> --%>
 	                                </td>
                    				</tr>	
 							</c:forEach>
@@ -134,6 +147,8 @@
 		var goUrlList = "/sharePot";
 		var goUrlNow = "/shareNow";	
 		var goUrlLogin = "/shareLogin"; 
+		var goUrlInst = "/likeCount"
+		
 		var form = $("#myForm");
 		
 		var seq = $("input:hidden[name=seq]");
@@ -165,33 +180,26 @@
 	        console.log(price);  // 콘솔창에 123,123,123 찍힘
 	     });
 		
+		 
 		// like 버큰
-		
-		var like = $(".like_value");
-		
-		/* $(".btnLike").on("click", function() {
-			alert($(".like").attr("id"));
-			if (like.val() == 1) {
-				like.val("0");
-				$("#like").attr("src", "/resources/images/share/star_e.png");
-			} else {
-				like.val("1");
-				$("#like").attr("src", "/resources/images/share/star_y.png");
-			}
-			return false;
-		}); */
-		
-		alert("length : "+ $(".btnLike").length);
-			
-		for (var i=0; i<$(".btnLike").length; i++) {
-			alert($("button[name=btnLike"+i+"]").attr("name"));
-			$(".btnLike").on("click", function() {
-				/* if ($("button[name=btnLike"+i+"]").attr("name").slice(-1) == i) {
-					alert(i);
-					return false;
-				} */
-			})
-		}
+		function favorites(e, seq){
+			$("input[name=seq]").val(seq);
+			 	event.stopPropagation();
+		      var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
+		      document.getElementsByClassName('Unfavorites')[i].style.display = "none"; // 즐겨찾기 취소 버튼 비활성화
+		      document.getElementsByClassName('Favorites')[i].style.display = "inline"; // 즐겨찾기 추가 버튼 활성화
+		      form.attr("action", goUrlInst).submit();
+		   }
+		   // like 해제
+		   function Unfavorites(e, seq){
+				$("input[name=seq]").val(seq);
+			   event.stopPropagation();
+		      var i = $(".Favorites").index(e); // 같은 클래스 내 index 값을 가져옴
+		      document.getElementsByClassName('Unfavorites')[i].style.display = "inline"; // 즐겨찾기 취소 버튼 비활성화
+		      document.getElementsByClassName('Favorites')[i].style.display = "none"; // 즐겨찾기 추가 버튼 활성화
+		      form.attr("action", goUrlInst).submit();
+		   }
+		   
 		
 	</script>
 </body>

@@ -77,6 +77,45 @@
 		ORDER BY c.createDate DESC
 	</select>
 	
+	<insert id="likeCount">
+	INSERT INTO favorite (
+			memberSeq
+			,shareSeq
+			,likeNy
+		)
+		VALUES (
+			#{memberSeq}
+			,#{seq}
+			,1
+		)
+
+		<selectKey resultType="String" keyProperty="likeSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>		
+	</insert>
+	
+	<update id="likeUpdt">
+		UPDATE favorite
+		SET
+			likeNy = #{likeNy}
+		where 1=1
+			and memberSeq = #{memberSeq}
+			and shareSeq = #{seq}
+	</update>
+	
+	<select id="likeOne" resultMap="resultMapObj">
+		SELECT
+			likeSeq
+			,memberSEq
+			,shareSeq
+			,likeNy
+			
+		FROM favorite
+		where 1=1
+			and memberSeq = #{memberSeq}
+			and shareSeq = #{seq}
+	</select>
+	
 	<select id="selectList1" resultMap="resultMapObj">
 		<include refid="Base.selectListUpperForMysql"></include>
 		SELECT
