@@ -157,6 +157,25 @@
 	 		AND c.seq = #{seq}
 	</select>
 	
+	<select id="nowList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"></include>
+		SELECT
+			c.seq
+			,c.food_div
+			,c.title
+			,c.people_num
+			,c.info
+			,c.place
+			,c.time
+			,c.price
+			,c.DelNy
+			,c.createDate
+		<include refid="selectCommon" />
+		ORDER BY c.seq DESC
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" /> 
+	</select>
+	
 	<insert id="insert">
 	INSERT INTO share (
 			food_div

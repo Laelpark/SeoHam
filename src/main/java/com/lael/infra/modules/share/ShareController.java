@@ -38,7 +38,14 @@ public class ShareController {
 	}
 	
 	@RequestMapping(value = "/shareHot")
-	public String shareHot() throws Exception {
+	public String shareHot(@ModelAttribute("vo") ShareVo vo, Model model, Share dto) throws Exception {
+		
+		setSearchAndPaging(vo); 
+		
+		
+		List<Share> list = service.selectList(vo);
+		model.addAttribute("list", list); 
+		
 		return "infra/share/user/shareHot";
 	}
 
@@ -60,10 +67,22 @@ public class ShareController {
 		Share item = service.selectOne(vo);
 		  model.addAttribute("item", item);
 		
-	   List<Share> list = service.selectList(vo);
+	   List<Share> list = service.nowList(vo);
 	   	model.addAttribute("list", list);  
 	   
 		return "infra/share/user/shareNow";
+	}
+	
+	@RequestMapping(value = "/shareNowView")
+	public String shareNowView(@ModelAttribute("vo") ShareVo vo, Model model) throws Exception {
+		
+		Share item = service.selectOne(vo);
+		model.addAttribute("item", item);
+		
+		List<Share> list = service.nowList(vo);
+		model.addAttribute("list", list);  
+		
+		return "infra/share/user/shareNowView";
 	}
 	
 	@RequestMapping(value = "/shareInst")

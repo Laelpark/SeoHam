@@ -17,6 +17,7 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link rel="stylesheet" href="/resources/css/share/sharePot.css">
+	<link href="/resources/images/share/smLogo.png" rel="shortcut icon" type="image/x-icon">
 </head>
 <body>
 	<!-- start -->
@@ -26,7 +27,7 @@
 		<input type="hidden" name="seq" value="<c:out value="${vo.seq}"/>">
 		<input type="hidden" name="memberSeq" value="<c:out value="${sessSeq}"/>">
 		<p style="background-color:rgb(142, 68, 173); height: 30px;"></p>
-		<div class="container1">
+		<div class="container1 ms-3 me-3">
 			<nav class="bg-transparent">
 				<div class="container-fluid">
 					<a class="navbar-brand" href="share">
@@ -108,12 +109,6 @@
 									        	<img alt="" src="/resources/images/share/star_y.png" style="width: 30px; height: 30px;">
 									        </span>
 									    </span>
-                   					
-                   						
-	                                	<%-- <input type="hidden" name="like_value" class="like_value${status.index }" value="0"> 
-									    <button type="button" name="btnLike${status.index }" class="btn_like after btnLike">
-									    	<img alt="" src="/resources/images/share/star_e.png" class="like" id="like${status.index }" title="star icons">
-									    </button> --%>
 	                                </td>
                    				</tr>	
 							</c:forEach>
@@ -139,13 +134,9 @@
     <script src="//code.jquery.com/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
-		/* var star = document.querySelector("#star");
-		star.onclick = function() {
-			star.style.color = "yellow";
-		}; */
-		
+
 		var goUrlList = "/sharePot";
-		var goUrlNow = "/shareNow";	
+		var goUrlNowView = "/shareNowView";	
 		var goUrlLogin = "/shareLogin"; 
 		var goUrlInst = "/likeCount"
 		
@@ -165,7 +156,7 @@
 		 goNow = function(keyValue) {
 	 	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
 	 	    	seq.val(keyValue);
-	 			form.attr("action", goUrlNow).submit();
+	 			form.attr("action", goUrlNowView).submit();
 	 		}
 		 
 		 
@@ -183,21 +174,21 @@
 		 
 		// like 버큰
 		function favorites(e, seq){
-			/* $("input[name=seq]").val(seq); */
-			 	event.stopPropagation();
+			 $("input[name=seq]").val(seq);
+		 		event.stopPropagation();
 		      var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
 		      document.getElementsByClassName('Unfavorites')[i].style.display = "none"; // 즐겨찾기 취소 버튼 비활성화
 		      document.getElementsByClassName('Favorites')[i].style.display = "inline"; // 즐겨찾기 추가 버튼 활성화
-		     /*  form.attr("action", goUrlInst).submit(); */
+		     form.attr("action", goUrlInst).submit();
 		   }
 		   // like 해제
 		   function Unfavorites(e, seq){
-				/* $("input[name=seq]").val(seq); */
+				$("input[name=seq]").val(seq);
 			   event.stopPropagation();
 		      var i = $(".Favorites").index(e); // 같은 클래스 내 index 값을 가져옴
 		      document.getElementsByClassName('Unfavorites')[i].style.display = "inline"; // 즐겨찾기 취소 버튼 비활성화
 		      document.getElementsByClassName('Favorites')[i].style.display = "none"; // 즐겨찾기 추가 버튼 활성화
-		      /* form.attr("action", goUrlInst).submit(); */
+     		form.attr("action", goUrlInst).submit();
 		   }
 		   
 		

@@ -15,6 +15,7 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link rel="stylesheet" href="/resources/css/share/shareHot.css">
+	<link href="/resources/images/share/smLogo.png" rel="shortcut icon" type="image/x-icon">
 </head>
 <body>
 	<!-- start -->
@@ -23,11 +24,11 @@
 		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 		<input type="hidden" name="seq" value="<c:out value="${vo.seq}"/>">
 		<p style="background-color:rgb(142, 68, 173); height: 30px;"></p>
-		<div class="container1">
+		<div class="container1 ms-3 me-3">
 			<nav class="bg-transparent">
 				<div class="container-fluid">
 					<a class="navbar-brand" href="share">
-						<img src="../../resources/images/share/sharehot.png" alt="" width="200" height="50" class="d-inline-block align-text-top ms-3">
+						<img src="../../resources/images/share/sharehot.png" alt="" width="200" height="50" class="d-inline-block align-text-top ms-3 mt-4">
 					</a>
 				</div>
 			</nav>
@@ -55,79 +56,50 @@
 					</ul>
 				</div>
 			</nav>
-			<div class="a pt-2 position-relative">
-				<div class="container">
-					<div class="row" id="cate">
-						<div class="col">
-							카테고리
-						</div>
-						<div class="col text-center">
-							제목
-						</div>
-						<div class="col text-center">
-							인원
-						</div>
-						<div class="col text-center">
-							장소
-						</div>
-						<div class="col text-center">
-							시간
-						</div>
-						<div class="col text-center">
-							가격
-						</div>
-					</div>
-				</div>
-			</div>
-			<c:set var="listCodeFood" value="${shareCodeGroupServiceImpl.selectListCachedCode('4') }" />
-			<c:set var="listCodeNum" value="${shareCodeGroupServiceImpl.selectListCachedCode('5') }" />
-			<c:choose>
-				<c:when test="${fn:length(list) eq 0}">
-					<tr>
-						<td class="text-center" colspan="8">There is no data!</td>
-					</tr>
-				</c:when>
-				<c:otherwise>		
-					<c:forEach items="${list}" var="list" varStatus="status">
-						<div class="b pt-2 position-relative">
-							<div class="container" onclick="newPage()">
-								<div class="row" id="cate2">
-									<div class="col text-center">
-										${list.food_div }
+            <table frame=void>
+           		<thead>
+	                <tr class="a">
+	                    <th class="text-center">카테고리</th>
+	                    <th class="text-center">제목</th>
+	                    <th class="text-center">인원</th>
+	                    <th class="text-center">장소</th>
+	                    <th class="text-center">시간</th>
+	                    <th class="text-center">가격</th>
+	                </tr>
+            	 </thead>
+                 <tbody>
+                 	<c:choose>
+						<c:when test="${fn:length(list) eq 0}">
+							<tr>
+								<td class="text-center" colspan="7">There is no data!</td>
+							</tr>
+						</c:when>
+	               		<c:otherwise>		
+							<c:forEach items="${list}" var="list" varStatus="status">
+								<tr style="height: 20px;"></tr>
+								<tr class="pt-2 b" id="b" onclick="goNow(<c:out value="${list.seq }"/>)">
+									<td class="text-center">
+										<c:set var="listCodeFood" value="${CodeServiceImpl.selectListCachedCode('4') }" />
 										<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
-											<c:if test="${list.food_div eq listFood.cdSeq}"><c:out value="${listFood.name}"/></c:if>
+											<c:if test="${list.food_div eq listFood.cdSeq}"><c:out value="${listFood.name }"/></c:if>
 										</c:forEach>
-									</div>
-									<div class="col text-center">
-										${list.title}
-									</div>
-									<div class="col text-center">
-										${list.people_num }
+									</td>
+	                                <td class="text-center">${list.title}</td>
+	                                <td class="text-center">
+	                                	<c:set var="listCodeNum" value="${CodeServiceImpl.selectListCachedCode('5') }" />
 										<c:forEach items="${listCodeNum}" var="listNum" varStatus="statusNum">
-											<c:if test="${list.people_num eq listNum.cdSeq}"><c:out value="${listNum.name}"/></c:if>
+											<c:if test="${list.people_num eq listNum.cdSeq}"><c:out value="${listNum.name }"/></c:if>
 										</c:forEach>
-									</div>
-									<div class="col text-center">
-										${list.place}
-									</div>
-									<div class="col text-center">
-										${list.time}
-									</div>
-									<div class="col text-center">
-										<span>${list.price}</span>	
-									</div>
-									<div class="col text-center"> 
-										<input type="hidden" id="starAllowedNy" name="starAllowedNy" value="0">
-										<button id="star" type="button">
-											<img src="" style="font-size: 20px;">
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
+	                                </td>
+	                                <td class="text-center">${list.place}</td>
+	                                <td class="text-center">${list.time}</td>
+	                                <td class="text-center">${list.price}</td>
+                   				</tr>	
+							</c:forEach>
+                   		</c:otherwise>
+                  	</c:choose>
+                  </tbody>
+              </table>
 			<div class="mt-5">		
 				<%@include file="../../common/xdmin/includeV1/pagination.jsp"%>
 			</div>

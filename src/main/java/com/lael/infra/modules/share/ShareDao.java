@@ -32,6 +32,10 @@ public class ShareDao {
 	public List<Share> selectMyList(ShareVo vo){ 
 		return sqlSession.selectList(namespace + ".selectMyList", vo); 								
 	}
+
+	public List<Share> nowList(ShareVo vo){ 
+		return sqlSession.selectList(namespace + ".nowList", vo); 								
+	}
 	public int selectMyCount(ShareVo vo) {
 		return sqlSession.selectOne(namespace + ".selectMyCount", vo);
 	}

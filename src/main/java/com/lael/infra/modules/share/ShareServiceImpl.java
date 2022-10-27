@@ -23,6 +23,11 @@ import org.springframework.stereotype.Service;
 	public List<Share> selectMyList(ShareVo vo) throws Exception {
 		return dao.selectMyList(vo);
 	}
+
+	@Override
+	public List<Share> nowList(ShareVo vo) throws Exception {
+		return dao.nowList(vo);
+	}
 	
 	@Override
 	public List<Share> selectList2(ShareVo svo) throws Exception {

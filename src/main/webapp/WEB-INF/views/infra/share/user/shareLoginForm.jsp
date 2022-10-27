@@ -30,8 +30,9 @@
 			<table>
 				<td>
 					<label class="form-label">아이디<span style="color: #dc3545;">*</span></label> 
-					<input type="text" class="a mt-2 form-control" value="<c:out value="${item.id}"/>" placeholder="아이디 입력" name="id" id="id">
+					<input type="text" class="a mt-2 form-control" value="<c:out value="${item.id}"/>" placeholder="아이디 입력" name="id" id="id" onkeypress="validationUpdt()">
 					<input type="hidden" id="idAllowedNY" name="idAllowedNY" value="0">
+					<div type="hidden" class="msg" id="id_msg" name="id_msg" style="display: none; color: #dc3545;"></div>
 					<div class="invalid-feedback" id="idFeedback"></div>
 				</td>
 			</table>
@@ -186,7 +187,6 @@
 	$("#id").on("focusout", function(){
 		if ($("#id").val() == null || $("#id").val() == "" ) {
 			document.getElementById("idFeedback").classList.add('invalid-feedback');
-			alert("sdf");
 			document.getElementById("idFeedback").innerText = "아이디를 입력해주세요.";
 			$("#id").focus();
 		} else {
@@ -234,27 +234,24 @@
 	
 	
 	// validation.js파일
-		
-	 	validation = function() {
-	 		if (!id_check("#id", $("#id").val(), "idFeedback", "아이디를 입력하세요.")) {
-	 			return false;
-	 		} else if (!pw_check("#pw", $("#pw").val(), "#pwFeedback", "비밀번호를 입력하세요.")) {
-				return false;
-			} else if (!pwRecheck("#pwCheck", $("#pwCheck").val(), "#pwCheckFeedback", "비밀번호를 입력하세요.")) {
-				return false;
-			} else if (!name_check("#name", $("#name").val(), "#nameCheckFeedback", "이름을 입력하세요.")) {
-				return false;
-			} else if (!nick_nm_check("#nick_nm", $("#nick_nm").val(), "#nick_nmCheckFeedback", "닉네임을 입력하세요.")) {
-				return false;
-			} else true;
-		}; 
- 		
 	
-		$("#btnSave").on("click", function() {
-			/* if(validationUpdt()) */
-				form.attr("action", goUrlInst).submit();
-			alert("가입이 완료되었습니다.")
-		});;
+	 validationUpdt = function() {
+            if (!idCheck($('#id'), $('#id').val(), "아이디를 입력하세요!", $('#id_msg'))) {
+            	return false;
+            } else if(!nameCheck($('#name'), $('#name').val(), "이름을 입력하세요!", $('#name_msg'))) {
+                return false;
+            } else if(!pwCheck($('#pw'), $('#pw').val(), "비밀번호를 입력하세요!", $('#pw_msg'))) {
+                return false;
+            } else if(!pwRecheck($('#pwCheck'), $('#pwCheck').val(), "비밀번호를 입력하세요!", $('#pwCheck_msg'))) {
+                return false;
+           	alert("회원가입이 완료 되었습니다.");
+        };
+	
+/* 		$("#btnSave").on("click", function() {
+			if(validationUpdt())
+				form.attr("action", goUrlInst).submit(); */
+			/* alert("가입이 완료되었습니다.") */
+/* 		});; */
 	 		
 /*   	 	function swAlert(title, text, icon) {
 			swal({

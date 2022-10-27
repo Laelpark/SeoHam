@@ -16,7 +16,6 @@
 <title>shareNow</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <link rel="stylesheet" href="/resources/css/share/shareNow.css">
-<link href="/resources/images/share/smLogo.png" rel="shortcut icon" type="image/x-icon">
 </head>
 <body>
 	<!-- start -->
@@ -32,7 +31,7 @@
 			<div class="topBtn collapse navbar-collapse" id="navbarSupportedContent">
 				<input type="hidden" class="d-flex" role="search">
 				<button type="button" class="btn btn-outline-danger me-4">취소</button>
-				<button type="button" class="btn btn-outline-success" id="btnSave" name="btnSave">저장</button>
+				<button type="button" class="btn btn-outline-success" id="btnGoShare" name="btnGoShare">Go Share</button>
 				</input>
 			</div>
 		</nav>
@@ -160,15 +159,9 @@
 	var seq = $("input:hidden[name=seq]");
 	var form = $("#myform");
 	
-	$("#btnSave").on("click", function() {
-		if (seq.val() == "0" || seq.val() == "") {
-			// insert
-			form.attr("action", goUrlInst).submit();
-		} else {
-			// update
-			form.attr("action", goUrlUpdt).submit();
-		}
-	});
+	$("#btnGoShare").on("click", function() {
+		alert("쉐어되었습니다!");
+	}
 	
 	</script>
 	<script>
