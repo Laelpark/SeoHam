@@ -18,149 +18,116 @@
 <body>
 	<!-- start -->
 	<div class="navbar" style="background-color:rgb(142, 68, 173); height: 30px; width:auto;"></div>
-	<div class="row">
-		<img class="col-6 ms-3 mt-3" src="../../resources/images/share/fullLogo_p.png" onclick="location.href='share'" style="width: 150px; height: 45px;" type="button">
-		<h2 class="col-6 offset-4 mt-5" id="newmem">회원가입</h2>
-	</div>
-	<form id="myform" name="myform" method="post" autocomplete="off">
+	<div class="container">
+		<form id="myform" name="myform" method="post" autocomplete="off">
+			<img class="logo" src="../../resources/images/share/fullLogo_p.png" onclick="location.href='share'" style="width: 150px; height: 45px;" type="button">
+			<h4 class="mt-5 text-center" id="newmem">회원가입</h4>
 			<!-- *Vo.jsp s -->
 			<%-- <%@include file="memberVo.jsp"%> --%>
 			<!-- *Vo.jsp e -->
-		<div id="input">
-			<table>
-				<td>
-					<label class="form-label">아이디<span style="color: #dc3545;">*</span></label> 
-					<input type="text" class="a mt-2 form-control" value="<c:out value="${item.id}"/>" placeholder="아이디 입력" name="id" id="id" onkeypress="validationUpdt()">
-					<input type="hidden" id="idAllowedNY" name="idAllowedNY" value="0">
-					<div type="hidden" class="msg" id="id_msg" name="id_msg" style="display: none; color: #dc3545;"></div>
-					<div class="invalid-feedback" id="idFeedback"></div>
-				</td>
-			</table>
-			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<table>
-				<td>
-					<label class="form-label">비밀번호<span style="color:#dc3545;">*</span></label> 
-					<input type="password" class="a mt-2 form-control" placeholder="영대소문자, 숫자, 특수문자, 4~20자리" name="pw" id="pw" onkeypress="validationUpdt()"> 
-					<div type="hidden" class="msg" id="pw_msg" name="pw_msg" style="display: none; color: #dc3545;"></div>
-					<div type="hidden" class="invalid-feedback" id="pwFeedback"></div>
-				</td>
-				<td>
-					<i class="fa-solid fa-lock" id="lock"></i>
-				</td>
-			</table>
-			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<table>
-				<td>
-					<label  for="pwCheck" class="form-label">비밀번호 재확인<span class="text-danger">*</span></label>
-					<input type="password" class="a mt-2 form-control" placeholder="비밀번호 재 입력" id="pwCheck" name="pwCheck" onkeypress="validationUpdt()">
-					<div class="msg" id="pwCheck_msg" name="pwCheck_msg" style="display: none; color: #dc3545;"></div>
-				</td>
-				<td>
-					<i class="fa-solid fa-unlock" id="lock"></i>
-				</td>
-			</table>
-			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<table class="info">
-				<td>
-					<label>이름 <span class="text-danger">*</span></label>
-					
-					<input type="text" class="a mt-2 form-control" value="<c:out value="${item.name}"/>" name="name" id="name" placeholder="이름 입력" onkeypress="validationUpdt()">
-					<div class="msg" id="name_msg" name="name_msg" style="display: none; color: #dc3545;"></div>
-				</td>
-			</table>
-			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<table>
-				<td>
-					<label>닉네임 <span class="text-danger">*</span></label>
-					<input class="a mt-2 form-control" id="nick_nm" name="nick_nm"  placeholder="닉네임 입력" required>
-					<div class="invalid-feedback" id="nick_nmCheckFeedback"></div>
-				</td>
-			</table>
-			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<label>생년월일</label>
-			<table>
-				<td>
-					<input class="b col mt-2 form-control" placeholder="년(4자)" id="dob" name="dob"
-						value="<c:out value="${item.dob}"/>"
-					>
-				</td>
-				<td>
-					<input class="b mt-2 ms-4 form-control" placeholder="월" id="dob2" name="dob2"
-						value="<c:out value="${item.dob2}"/>"
-					>
-				</td>
-				<td>
-					<input class="b mt-2 ms-4 form-control" placeholder="일" id="dob3" name="dob3"
-						value="<c:out value="${item.dob3}"/>"
-					>
-				</td>
-			</table>
-			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<label>성별</label>
-			<table>
-				<td>
-					<select name="gender" class="select mt-2 form-select">
-						<option selected value="">성별</option>
-						<option value="1" <c:if test = "${item.gender eq 1}">selected</c:if>>남성</option>
-						<option value="2" <c:if test = "${item.gender eq 2}">selected</c:if>>여성</option>
-						<option value="3" <c:if test = "${item.gender eq 3}">selected</c:if>>선택안함</option>
-					</select>
-				</td>
-			</table>
-			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<label>이메일</label>
-			<table>
-				<td>
-					<input class="b col mt-2 form-control" placeholder="이메일주소" id="email" name="email"
-						value="<c:out value="${item.email}"/>"
-					>
-				</td>
-				<td>
-					<span class="ms-3 mt-2">@</span>
-				</td>
-				<td>
-					<select class="select ms-3 mt-2 form-select" id="email_div" name="email_div">
-						<option selected disabled value="">이메일</option>
-						<option value="4" <c:if test = "${item.email_div eq 4}">selected</c:if>>네이버(naver.com)</option>
-						<option value="5" <c:if test = "${item.email_div eq 5}">selected</c:if>>다음(daum.net)</option>
-						<option value="6" <c:if test = "${item.email_div eq 6}">selected</c:if>>지메일(gmail.com)</option>
-					</select>
-				</td>
-			</table>
-			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<label>전화번호</label>
-			<table>
-				<td>
-					<select name="phone_div" class="select mt-2 form-select" requiredss>
-						<option value="" <c:if test = "${empty item.phone_div}">selected</c:if>>통신사</option>
-						<option value="9" <c:if test = "${item.phone_div eq 9}">selected</c:if>>SKT</option>
-						<option value="8" <c:if test = "${item.phone_div eq 8}">selected</c:if>>KT</option>
-						<option value="10" <c:if test = "${item.phone_div eq 10}">selected</c:if>>LG</option>
-					</select>
-				</td>
-				<td>
-					<input class="mt-2 ms-3 form-control" style="width: 400px; height: 35px;" placeholder="특수문자(-)없이 숫자만 입력" id="phone" name="phone"
-						value="<c:out value="${item.phone}"/>">
-				</td>
-				<td>
-					<button type="button" class="mt-2 ms-3 btn btn-outline-secondary">전송</button>
-				</td>
-			</table>
-			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<label>인증번호</label>
-			<table>
-				<td>
-					<input class="mt-2 form-control" placeholder="인증번호 입력">
-				</td>
-			</table>
-			<hr style="color: rgb(78, 78, 78); width: 800px;">
-		</div>
-		<div id="wrapper" class="mt-5 mb-3">
-			<button id="btnSave" name="btnSave" type="button" class="btn btn-primary btn-lg" onclick="validation()"> <!-- data-bs-toggle="modal" data-bs-target="#exampleModalCenter" -->
-				가입하기
-			</button>
-		</div>
-	</form>
+			
+			<div class="row">
+              	<div class="col-8 offset-2">
+                    <div class="input-control">
+                        <label for="id">Id<span style="color: red;">*</span></label>
+                        <input type="hidden" id="idAllowedNy" name="idAllowedNy" value="0">
+                        <input id="id" name="id" type="text" value="<c:out value="${item.id }"/>" autocomplete="off"> 
+                        <div class="msg" id="id_msg" name="id_msg" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <div class="input-control">
+                        <label for="name">Username<span style="color: red;">*</span></label>
+                        <input id="name" name="name" type="text" onfocusout="validationUpdt()" autocomplete="off"> 
+                        <div class="msg" id="name_msg" name="name_msg" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>                
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <div class="input-control">
+                        <label for="email">Email<span style="color: red;">*</span></label>
+                        <input id="email" name="email" type="text" onfocusout="validationUpdt()" autocomplete="off">
+                        <div class="msg" id="email_msg" name="email_msg" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <div class="input-control">
+                        <label for="pwd">Password<span style="color: red;">*</span></label>
+                        <input id="pwd" name="pwd" type="password" onkeypress="validationUpdt()" onfocusout="validationUpdt()" autocomplete="off">
+                        <div class="msg" id="pwd_msg" name="pwd_msg" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <div class="input-control">
+                        <label for="pwd2">Password again<span style="color: red;">*</span></label>
+                        <input id="pwd2" name="pwd2" type="password" onkeyup="validationUpdt()" onfocusout="validationUpdt()" autocomplete="off">
+                        <div class="msg" id="pwd2_msg" name="pwd2_msg" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <div class="input-control">
+                        <label for="dob">생년월일<span style="color: red;">*</span></label>
+                        <input id="dob" name="dob" class="datepicker" type="text" placeholder="1900-01-01" autocomplete="off" onfocusout="validationUpdt()">
+                        <div class="msg" id="dob_msg" name="dob_msg" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>			
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <div class="input-control">
+                        <label for="gender">성별<span style="color: red;">*</span></label>
+                        <select id="gender" name="gender" aria-label=".form-select-lg example" onfocusout="validationUpdt()">
+                            <option value="" <c:if test="${empty item.gender}">selected</c:if>>선택</option>
+                            <option value="5" <c:if test="${item.gender eq 5 }">selected</c:if>>남성</option>
+                            <option value="6" <c:if test="${item.gender eq 6 }">selected</c:if>>여성</option>
+                        </select>
+                        <div class="msg" id="gender_msg" name="gender_msg" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>	
+            <div class="row">
+                <div class="col-2 offset-2">
+                    <div class="input-control">
+                        <label for="gender">통신사<span style="color: red;">*</span></label>
+                        <select id="gender" name="gender" aria-label=".form-select-lg example" onfocusout="validationUpdt()">
+                            <option value="" <c:if test="${empty item.gender}">selected</c:if>>선택</option>
+                            <option value="5" <c:if test="${item.gender eq 5 }">selected</c:if>>남성</option>
+                            <option value="6" <c:if test="${item.gender eq 6 }">selected</c:if>>여성</option>
+                        </select>
+                        <div class="msg" id="gender_msg" name="gender_msg" style="display: none;"></div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="input-control">
+                        <label for="dob">전화번호<span style="color: red;">*</span></label>
+                        <input id="dob" name="dob" class="datepicker" type="text" placeholder="1900-01-01" autocomplete="off" onfocusout="validationUpdt()">
+                        <div class="msg" id="dob_msg" name="dob_msg" style="display: none;"></div>
+                    </div>
+                </div>
+                <div class="col-3 mt-3">
+					<button id="btnSave" name="btnSave" type="button" class="btn btn-primary btn-lg" onclick="validation()"> <!-- data-bs-toggle="modal" data-bs-target="#exampleModalCenter" -->
+						인증
+					</button>
+				</div>
+            </div>	
+            <div class="row">
+				<div id="wrapper" class="col-8 offset-2">
+					<button id="btnSave" name="btnSave" type="button" class="btn btn-primary btn-lg col-4 offset-4" onclick="validation()"> <!-- data-bs-toggle="modal" data-bs-target="#exampleModalCenter" -->
+						가입하기
+					</button>
+				</div>
+            </div>		
+		</form>
+	</div>
 
 
 	<!-- end --> 
@@ -194,9 +161,7 @@
 				async: true 
 				,cache: false
 				,type: "post"
-				/* ,dataType:"json" */
-				,url: "idCheck"
-				/* ,data : $("#formLogin").serialize() */
+				,url: "id_regex"
 				,data : { "id" : $("#id").val() }
 				,success: function(response) {
 					if(response.rt == "success") {
@@ -233,25 +198,38 @@
 	<script>
 	
 	
-	// validation.js파일
+		// validation.js파일
+		validationUpdt = function() {
+			if (!id_regex($('input[name=id]'), $('input[name=id]').val(), "아이디를 입력하세요!", $('#id_msg'))) {
+		    	return false;
+		    } else if(!name_regex($('input[name=name]'), $('input[name=name]').val(), "이름을 입력하세요!", $('#name_msg'))) {
+		        return false;
+		    } else if(!email_regex($('input[name=email]'), $('input[name=email]').val(), "이메일을 입력하세요!", $('#email_msg'))) {
+		        return false;
+		    } else if(!pwd_regex($('input[name=pwd]'), $('input[name=pwd]').val(), "비밀번호를 입력하세요!", $('#pwd_msg'))) {
+		        return false;
+		    } else if(!pwd2_regex($('input[name=pwd2]'), $('input[name=pwd2]').val(), "비밀번호를 입력하세요!", $('#pwd2_msg'))) {
+		        return false;
+		    } else if(!dob_regex($('input[name=dob]'), $('input[name=dob]').val(), "생년월일을 입력하세요!", $('#dob_msg'))) {
+		        return false;
+		    } else if(!gender_regex($('#gender'), $('#gender').val(), "성별을 선택하세요!", $('#gender_msg'))) {
+		        return false;
+		    } else if(!radio_regex($('#radio_operator'), $('#radio_operator').val(), "통신사를 선택하세요!", $('#radio_operator_msg'))) {
+		        return false;
+		    } else if(!tel_regex($('input[name=phone]'), $('input[name=phone]').val(), "전화번호를 입력하세요!", $('#phone_msg'))) {
+		        return false;
+		    }  else {
+		        return true;
+		    }
+		};
 	
-	 validationUpdt = function() {
-            if (!idCheck($('#id'), $('#id').val(), "아이디를 입력하세요!", $('#id_msg'))) {
-            	return false;
-            } else if(!nameCheck($('#name'), $('#name').val(), "이름을 입력하세요!", $('#name_msg'))) {
-                return false;
-            } else if(!pwCheck($('#pw'), $('#pw').val(), "비밀번호를 입력하세요!", $('#pw_msg'))) {
-                return false;
-            } else if(!pwRecheck($('#pwCheck'), $('#pwCheck').val(), "비밀번호를 입력하세요!", $('#pwCheck_msg'))) {
-                return false;
-           	alert("회원가입이 완료 되었습니다.");
-        };
-	
-/* 		$("#btnSave").on("click", function() {
-			if(validationUpdt())
-				form.attr("action", goUrlInst).submit(); */
+		$("#btnSave").on("click", function() {
+			if(validationUpdt() == false) {
+				return false;
+			}
+			form.attr("action", goUrlInst).submit();
 			/* alert("가입이 완료되었습니다.") */
-/* 		});; */
+ 		});;
 	 		
 /*   	 	function swAlert(title, text, icon) {
 			swal({
