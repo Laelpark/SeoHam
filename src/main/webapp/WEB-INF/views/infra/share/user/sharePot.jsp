@@ -120,9 +120,7 @@
 										${list.price}
 									</div>
 									<div class="col text-center"> 
-									   <button id="btnLike"
-									      
-									    </span>
+									   <button id="btnLike">g</button>
 									</div>
 								</div>
 							</div>
