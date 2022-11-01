@@ -63,6 +63,56 @@ id_regex = function(obj, value, message, hide) {
     }
 }
 
+pwd_regex = function(obj, value, message, hide) {
+	const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/g;
+    if (!checkNull(obj, value)) {
+        hide.parent().addClass('error')
+        $(hide).text(message)
+        $(hide).show()
+        return false;
+    } else if (re.test($.trim($(obj).val()))) {
+		hide.parent().addClass('error')
+        $(hide).text("최소 6자, 하나 이상의 대문자, 소문자, 숫자 및 하나의 특수 문자 입력하시오")
+        $(hide).show()
+        return false;
+	} else if(!(($.trim($(obj).val()).length > 5))) {
+        $(hide).text('6자 이상의 비밀번호를 작성하시오')
+        hide.parent().addClass('error')
+        $(hide).show()
+        return false;
+    } else {
+        hide.parent().removeClass('error')
+        hide.parent().addClass('success')
+        $(hide).hide()
+        return true;
+    }
+}
+
+pwd2_regex = function(obj, value, message, hide) {
+	const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/g;
+    if (!checkNull(obj, value)) {
+        hide.parent().addClass('error')
+        $(hide).text(message)
+        $(hide).show()
+        return false;
+    }  else if(!(($.trim($(obj).val()).length > 5))) {
+        $(hide).text('6자 이상의 비밀번호를 작성하시오')
+        hide.parent().addClass('error')
+        $(hide).show()
+        return false;
+    } else if(!(($.trim($(obj).val()) == $.trim($('#pw').val())))) {
+        $(hide).text('비밀번호가 일치하지 않습니다.')
+        hide.parent().addClass('error')
+        $(hide).show()
+        return false;
+    } else {
+        hide.parent().removeClass('error')
+        hide.parent().addClass('success')
+        $(hide).hide()
+        return true;
+    }
+}
+
 name_regex = function(obj, value, message, hide) {
     const re = /^[ㄱ-ㅎ가-힣a-zA-z]{1,10}$/g;
     if (!checkNull(obj, value)) {
@@ -82,111 +132,6 @@ name_regex = function(obj, value, message, hide) {
         hide.parent().addClass('error')
         $(hide).show()
         obj.focus();
-        return false;
-    } else {
-        hide.parent().removeClass('error')
-        hide.parent().addClass('success')
-        $(hide).hide()
-        return true;
-    }
-}
-
-email_regex = function(obj, value, message, hide) {
-    const re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-    // const re = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
-    if (!checkNull(obj, value)) {
-        hide.parent().addClass('error')
-        $(hide).text(message)
-        $(hide).show()
-        return false;
-    } else if (!(re.test($.trim($(obj).val())))) {
-        $(hide).text('양식에 맞게 작성하시오')
-        hide.parent().addClass('error')
-        $(hide).show()
-        return false;
-    } else {
-        hide.parent().removeClass('error')
-        hide.parent().addClass('success')
-        $(hide).hide()
-        return true;
-    }
-}
-
-pwd_regex = function(obj, value, message, hide) {
-	const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/g;
-    if (!checkNull(obj, value)) {
-        hide.parent().addClass('error')
-        $(hide).text(message)
-        $(hide).show()
-        return false;
-    } else if (re.test($.trim($(obj).val()))) {
-		hide.parent().addClass('error')
-        $(hide).text("최소 8자, 하나 이상의 대문자, 소문자, 숫자 및 하나의 특수 문자 입력하시오")
-        $(hide).show()
-        return false;
-	} else if(!(($.trim($(obj).val()).length > 7))) {
-        $(hide).text('8자 이상의 비밀번호를 작성하시오')
-        hide.parent().addClass('error')
-        $(hide).show()
-        return false;
-    } else {
-        hide.parent().removeClass('error')
-        hide.parent().addClass('success')
-        $(hide).hide()
-        return true;
-    }
-}
-
-pwd2_regex = function(obj, value, message, hide) {
-	const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/g;
-    if (!checkNull(obj, value)) {
-        hide.parent().addClass('error')
-        $(hide).text(message)
-        $(hide).show()
-        return false;
-    }  else if(!(($.trim($(obj).val()).length > 7))) {
-        $(hide).text('8자 이상의 비밀번호를 작성하시오')
-        hide.parent().addClass('error')
-        $(hide).show()
-        return false;
-    } else if(!(($.trim($(obj).val()) == $.trim($('#pwd').val())))) {
-        $(hide).text('비밀번호가 일치하지 않습니다.')
-        hide.parent().addClass('error')
-        $(hide).show()
-        return false;
-    } else {
-        hide.parent().removeClass('error')
-        hide.parent().addClass('success')
-        $(hide).hide()
-        return true;
-    }
-}
-
-dob_regex = function(obj, value, message, hide) {
-    const re = /^[1-2]{1}[0-9]{3}-[0-1]{1}[0-9]{1}-[0-3]{1}[0-9]{1}$/g;
-    if (!checkNull(obj, value)) {
-        hide.parent().addClass('error')
-        $(hide).text(message)
-        $(hide).show()
-        return false;
-    } else if (!(re.test($.trim($(obj).val())))) {
-        hide.parent().addClass('error')
-        $(hide).text("양식에 맞게 작성하세요")
-        $(hide).show()
-        return false;
-    } else {
-        hide.parent().removeClass('error')
-        hide.parent().addClass('success')
-        $(hide).hide()
-        return true;
-    }
-}
-
-gender_regex = function(obj, value, message, hide) {
-    if (!checkNull(obj, value)) {
-        hide.parent().addClass('error')
-        $(hide).text(message)
-        $(hide).show()
         return false;
     } else {
         hide.parent().removeClass('error')

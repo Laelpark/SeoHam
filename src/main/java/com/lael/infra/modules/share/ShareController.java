@@ -137,10 +137,6 @@ public class ShareController {
 	@RequestMapping(value = "/myList")
 	public String MyList(@ModelAttribute("vo") ShareVo vo, Model model, Share dto) throws Exception {
 		
-		
-		  System.out.println("mSeq : " +vo.getmSeq()); 
-		  System.out.println("Seq : " + vo.getSeq());
-		  
 		  vo.setParamsPaging(service.selectMyCount(vo));
 		 
 		

@@ -102,12 +102,12 @@
                    						<span class="rating-star">
 									        <span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq})">
 									        	<input type="hidden" value="0" name="likeNy">
-									        	<img alt="" src="/resources/images/share/star_e.png" style="width: 30px; height: 30px;">
+									        	<img alt="" class="like" src="/resources/images/share/star_e.png" style="width: 30px; height: 30px;">
 									        </span>
-									        <span class="Favorites" value="Favorites" style="display: none;" onclick="Unfavorites(this, ${list.seq})">
+									        <%-- <span class="Favorites" value="Favorites" style="display: none;" onclick="Unfavorites(this, ${list.seq})">
 									        	<input type="hidden" value="1" name="likeNy">
 									        	<img alt="" src="/resources/images/share/star_y.png" style="width: 30px; height: 30px;">
-									        </span>
+									        </span> --%>
 									    </span>
 	                                </td>
                    				</tr>	
@@ -172,8 +172,8 @@
 	     });
 		
 		 
-		// like 버큰
-		function favorites(e, seq){
+		 // like 버튼
+	/* 	function favorites(e, seq){
 			 $("input[name=seq]").val(seq);
 		 		event.stopPropagation();
 		      var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
@@ -189,9 +189,26 @@
 		      document.getElementsByClassName('Unfavorites')[i].style.display = "inline"; // 즐겨찾기 취소 버튼 비활성화
 		      document.getElementsByClassName('Favorites')[i].style.display = "none"; // 즐겨찾기 추가 버튼 활성화
      		form.attr("action", goUrlInst).submit();
-		   }
+		   }  */
 		   
-		
+	</script>
+	
+	<script type="text/javascript">
+		favorites = function(e, keyValue) {
+			event.stopPropagation();
+			var like = $("input[name=likeNy]").val();
+			if (like == 0) {
+				$("input[name=likeNy]").val(1);
+				 var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
+				 document.getElementsByClassName('like')[i].attr("src", "/resources/images/share/star_y.png");
+				 alert("asdsa")
+			} else {
+				$(".like").attr("src", "/resources/images/share/star_e.png");
+				$("input[name=likeNy]").val(0);
+				 var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
+				 document.getElementsByClassName('like')[i].attr("src", "/resources/images/share/star_e.png");
+			}
+		}
 	</script>
 </body>
 </html>

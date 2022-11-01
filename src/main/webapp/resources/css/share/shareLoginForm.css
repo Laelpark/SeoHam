@@ -137,3 +137,14 @@ a:-webkit-any-link {
     max-width: 768px;
     min-width: 400px;
 }
+
+#btnSave {
+	background-color: rgb(142, 68, 173);
+	width: 150px;
+    border-style: none;
+    color: white;
+}
+
+#btnPhone {
+	width: 100px;
+}
