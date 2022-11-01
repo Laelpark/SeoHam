@@ -215,7 +215,7 @@
 			//	 form.attr("action", goUrlInst).submit();
 			//	 alert("disLike")
 			}
-		}
+		};
 	</script>
 </body>
 </html>
