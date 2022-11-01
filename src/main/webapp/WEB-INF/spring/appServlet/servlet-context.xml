@@ -27,6 +27,7 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/**"/>
+			<exclude-mapping path="/rest/member/**" />
 			<exclude-mapping path="/resources/**" />
 			<exclude-mapping path="/codeGroup/codeGroupList" />
 			<exclude-mapping path="/codeGroup/codeGroupForm" />

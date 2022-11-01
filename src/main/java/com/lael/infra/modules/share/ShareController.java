@@ -160,6 +160,19 @@ public class ShareController {
 		return "redirect:/sharePot";
 	}
 	
+//	@RequestMapping(value = "/likeUpdt")
+//	public String likeUpdt(ShareVo vo, Share dto, RedirectAttributes redirectAttributes) throws Exception {
+//
+//		Share one = service.likeOne(dto);
+//		
+//		if(one == null) {
+//			service.likeCount(dto);
+//		} else {
+//			service.likeUpdt(dto);
+//		}
+//		return "redirect:/sharePot";
+//	}
+	
 	@RequestMapping(value = "/mySecurity")
 	public String mySecurity(@ModelAttribute("vo") MemberVo vo,  Model model) throws Exception {
 		

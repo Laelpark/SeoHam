@@ -137,8 +137,9 @@
 
 		var goUrlList = "/sharePot";
 		var goUrlNowView = "/shareNowView";	
-		var goUrlLogin = "/shareLogin"; 
+		var goUrlLogin = "/shareLogin";
 		var goUrlInst = "/likeCount"
+		var goUrlUpdt = "/likeUpdt"
 		
 		var form = $("#myForm");
 		
@@ -200,13 +201,19 @@
 			if (like == 0) {
 				$("input[name=likeNy]").val(1);
 				 var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
-				 document.getElementsByClassName('like')[i].attr("src", "/resources/images/share/star_y.png");
-				 alert("asdsa")
+			//	 $('like').attr('src','/resources/images/share/star_y.png')
+			//	 document.getElementsByClassName('like')[i].attr('src', '/resources/images/share/star_y.png');
+				 document.getElementsByClassName("like")[i].src = "/resources/images/share/star_y.png";
+			//	 form.attr("action", goUrlInst).submit();
+			//	 alert("like")
 			} else {
-				$(".like").attr("src", "/resources/images/share/star_e.png");
+			//	$(".like").attr("src", "/resources/images/share/star_e.png");
 				$("input[name=likeNy]").val(0);
 				 var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
-				 document.getElementsByClassName('like')[i].attr("src", "/resources/images/share/star_e.png");
+			//	 document.getElementsByClassName('like')[i].attr("src", "/resources/images/share/star_e.png");
+				 document.getElementsByClassName("like")[i].src = "/resources/images/share/star_e.png";
+			//	 form.attr("action", goUrlInst).submit();
+			//	 alert("disLike")
 			}
 		}
 	</script>
