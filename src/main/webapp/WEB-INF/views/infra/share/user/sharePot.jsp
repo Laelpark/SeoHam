@@ -94,27 +94,6 @@
 										<c:forEach items="${listCodeNum}" var="listNum" varStatus="statusNum">
 											<c:if test="${list.people_num eq listNum.cdSeq}"><c:out value="${listNum.name }"/></c:if>
 										</c:forEach>
-<<<<<<< HEAD
-									</div>
-									<div class="col text-center">
-										${list.place}
-									</div>
-									<div class="col text-center">
-										${list.time}
-									</div>
-									<div class="col text-center">
-										${list.price}
-									</div>
-									<div class="col text-center"> 
-									   <button id="btnLike">g</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
-=======
 	                                </td>
 	                                <td class="text-center">${list.place}</td>
 	                                <td class="text-center">${list.time}</td>
@@ -137,7 +116,6 @@
                   	</c:choose>
                   </tbody>
               </table>
->>>>>>> branch 'main' of https://github.com/Laelpark/SeoHam.git
 			<div class="mt-5">		
 				<%@include file="../../common/xdmin/includeV1/pagination.jsp"%>
 			</div>
@@ -237,7 +215,7 @@
 			//	 form.attr("action", goUrlInst).submit();
 			//	 alert("disLike")
 			}
-		};
+		}
 	</script>
 </body>
 </html>
