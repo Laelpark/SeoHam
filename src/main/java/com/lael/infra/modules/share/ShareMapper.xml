@@ -24,7 +24,27 @@
 	<select id="selectList" resultMap="resultMapObj">
 		<include refid="Base.selectListUpperForMysql"></include>
 		SELECT
-			c.food_div
+			c.seq
+			,c.food_div
+			,c.title
+			,c.people_num
+			,c.info
+			,c.place
+			,c.time
+			,c.price
+			,c.DelNy
+			,c.createDate  <!--  관리자 today를 위해 생성 -->
+		<include refid="selectCommon" />
+		ORDER BY c.seq DESC
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" /> 
+	</select>
+	
+	<select id="selectMyList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"></include>
+		SELECT
+			c.seq
+			,c.food_div
 			,c.title
 			,c.people_num
 			,c.info
@@ -33,16 +53,92 @@
 			,c.price
 			,c.DelNy
 			,c.createDate
-s		<include refid="selectCommon" />
+		FROM share c
+		WHERE 1=1
+			and share_member_seq = #{seq}
+			<choose>
+				<when test="shOption == 1">AND food_div = #{shValue}</when>
+				<when test="shOption == 2">AND title LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND people_num = #{shValue}</when>
+				<when test="shOption == 4">AND place LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 5">AND time LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 6">AND price LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
 		ORDER BY c.seq DESC
 		<include refid="Base.orderByLimitForMysql" />
 		<include refid="Base.selectListLowerForMysql" /> 
 	</select>
+
+	<select id="selectMyCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM share c
+		WHERE 1=1		
+			and share_member_seq = #{seq}
+		ORDER BY c.createDate DESC
+	</select>
+	
+	<insert id="likeCount">
+	INSERT INTO favorite (
+			memberSeq
+			,shareSeq
+			,likeNy
+		)
+		VALUES (
+			#{memberSeq}
+			,#{seq}
+			,1
+		)
+
+		<selectKey resultType="String" keyProperty="likeSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>		
+	</insert>
+	
+	<select id="likeOne" resultMap="resultMapObj">
+		SELECT
+			likeSeq
+			,memberSEq
+			,shareSeq
+			,likeNy
+			
+		FROM favorite
+		where 1=1
+			and memberSeq = #{memberSeq}
+			and shareSeq = #{seq}
+	</select>
+	
+	<update id="likeUpdt">
+		UPDATE favorite
+		SET
+			likeNy = #{likeNy}
+		where 1=1
+			and memberSeq = #{memberSeq}
+			and shareSeq = #{seq}
+	</update>
+  
+<!--   <update id="likeUpdt_cancel" parameterType="HashMap">
+	    UPDATE favorite
+	    SET 
+	    	likeNy = 0
+	    WHERE 1=1
+	    	and memberSeq = #{memberSeq}
+			and shareSeq = #{seq}
+  </update> -->
+	
 	
 	<select id="selectList1" resultMap="resultMapObj">
 		<include refid="Base.selectListUpperForMysql"></include>
 		SELECT
-			c.*
+			c.seq
+			,c.food_div
+			,c.title
+			,c.people_num
+			,c.info
+			,c.place
+			,c.time
+			,c.price
+			,c.DelNy
+			,c.createDate
 		<include refid="selectCommon" />
 		ORDER BY c.seq DESC      <!-- ASC -->
 		<include refid="Base.orderByLimitForMysql" />
@@ -56,10 +152,38 @@ s		<include refid="selectCommon" />
 	
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
-			c.*
+			c.seq
+			,c.food_div
+			,c.title
+			,c.people_num
+			,c.info
+			,c.place
+			,c.time
+			,c.price
+			,c.DelNy
+			,c.createDate
 		FROM share c
 	 	WHERE 1=1
 	 		AND c.seq = #{seq}
+	</select>
+	
+	<select id="nowList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"></include>
+		SELECT
+			c.seq
+			,c.food_div
+			,c.title
+			,c.people_num
+			,c.info
+			,c.place
+			,c.time
+			,c.price
+			,c.DelNy
+			,c.createDate
+		<include refid="selectCommon" />
+		ORDER BY c.seq DESC
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" /> 
 	</select>
 	
 	<insert id="insert">
@@ -141,5 +265,6 @@ s		<include refid="selectCommon" />
 		) a
 		limit 6 offset #{startRnumForMysql}
 	</select>
+	
 
 </mapper>

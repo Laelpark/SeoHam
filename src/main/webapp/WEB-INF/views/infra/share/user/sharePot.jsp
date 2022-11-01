@@ -17,6 +17,7 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link rel="stylesheet" href="/resources/css/share/sharePot.css">
+	<link href="/resources/images/share/smLogo.png" rel="shortcut icon" type="image/x-icon">
 </head>
 <body>
 	<!-- start -->
@@ -24,8 +25,9 @@
 		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
 		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
 		<input type="hidden" name="seq" value="<c:out value="${vo.seq}"/>">
+		<input type="hidden" name="memberSeq" value="<c:out value="${sessSeq}"/>">
 		<p style="background-color:rgb(142, 68, 173); height: 30px;"></p>
-		<div class="container1">
+		<div class="container1 ms-3 me-3">
 			<nav class="bg-transparent">
 				<div class="container-fluid">
 					<a class="navbar-brand" href="share">
@@ -57,58 +59,42 @@
 					</ul>
 				</div>
 			</nav>
-			<div class="a pt-2 position-relative">
-				<div class="container">
-					<div class="row" id="cate">
-						<div class="col text-center">
-							카테고리
-						</div>
-						<div class="col text-center">
-							제목
-						</div>
-						<div class="col text-center">
-							인원
-						</div>
-						<div class="col text-center">
-							장소
-						</div>
-						<div class="col text-center">
-							시간
-						</div>
-						<div class="col text-center">
-							가격
-						</div>
-						<div class="col text-center">
-							즐겨찾기
-						</div>
-					</div>
-				</div>
-			</div>
-			<c:set var="listCodeFood" value="${shareCodeGroupServiceImpl.selectListCachedCode('4') }" />
-			<c:set var="listCodeNum" value="${shareCodeGroupServiceImpl.selectListCachedCode('5') }" />
-			<c:choose>
-				<c:when test="${fn:length(list) eq 0}">
-						<td class="text-center" colspan="8">There is no data!</td>
-				</c:when>
-				<c:otherwise>		
-					<c:forEach items="${list}" var="list" varStatus="status">
-						<div class="b pt-2 position-relative">
-							<div class="container" onclick="newPage()">
-								<div class="row" id="cate2">
-									<div class="col text-center">
-										${list.food_div}
+            <table frame=void>
+           		<thead>
+	                <tr class="a">
+	                    <th class="text-center">카테고리</th>
+	                    <th class="text-center">제목</th>
+	                    <th class="text-center">인원</th>
+	                    <th class="text-center">장소</th>
+	                    <th class="text-center">시간</th>
+	                    <th class="text-center">가격</th>
+	                    <th class="text-center">즐겨찾기</th>
+	                </tr>
+            	 </thead>
+                 <tbody>
+                 	<c:choose>
+						<c:when test="${fn:length(list) eq 0}">
+							<tr>
+								<td class="text-center" colspan="8">There is no data!</td>
+							</tr>
+						</c:when>
+	               		<c:otherwise>		
+							<c:forEach items="${list}" var="list" varStatus="status">
+								<tr style="height: 20px;"></tr>
+								<tr class="pt-2 b" id="b" onclick="goNow(<c:out value="${list.seq }"/>)">
+									<td class="text-center">
+										<c:set var="listCodeFood" value="${CodeServiceImpl.selectListCachedCode('4') }" />
 										<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
-											<c:if test="${list.food_div eq listFood.cdSeq}"><c:out value="${listFood.name}"/></c:if>
+											<c:if test="${list.food_div eq listFood.cdSeq}"><c:out value="${listFood.name }"/></c:if>
 										</c:forEach>
-									</div>
-									<div class="col text-center">
-										${list.title}
-									</div>
-									<div class="col text-center">
-										${list.people_num }
+									</td>
+	                                <td class="text-center">${list.title}</td>
+	                                <td class="text-center">
+	                                	<c:set var="listCodeNum" value="${CodeServiceImpl.selectListCachedCode('5') }" />
 										<c:forEach items="${listCodeNum}" var="listNum" varStatus="statusNum">
-											<c:if test="${list.people_num eq listNum.cdSeq}"><c:out value="${listNum.name}"/></c:if>
+											<c:if test="${list.people_num eq listNum.cdSeq}"><c:out value="${listNum.name }"/></c:if>
 										</c:forEach>
+<<<<<<< HEAD
 									</div>
 									<div class="col text-center">
 										${list.place}
@@ -128,6 +114,30 @@
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
+=======
+	                                </td>
+	                                <td class="text-center">${list.place}</td>
+	                                <td class="text-center">${list.time}</td>
+	                                <td class="text-center">${list.price}</td>
+                   					<td class="text-center">
+                   						<span class="rating-star">
+									        <span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq})">
+									        	<input type="hidden" value="0" name="likeNy">
+									        	<img alt="" class="like" src="/resources/images/share/star_e.png" style="width: 30px; height: 30px;">
+									        </span>
+									        <%-- <span class="Favorites" value="Favorites" style="display: none;" onclick="Unfavorites(this, ${list.seq})">
+									        	<input type="hidden" value="1" name="likeNy">
+									        	<img alt="" src="/resources/images/share/star_y.png" style="width: 30px; height: 30px;">
+									        </span> --%>
+									    </span>
+	                                </td>
+                   				</tr>	
+							</c:forEach>
+                   		</c:otherwise>
+                  	</c:choose>
+                  </tbody>
+              </table>
+>>>>>>> branch 'main' of https://github.com/Laelpark/SeoHam.git
 			<div class="mt-5">		
 				<%@include file="../../common/xdmin/includeV1/pagination.jsp"%>
 			</div>
@@ -141,14 +151,21 @@
 	<!-- end --> 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
-		/* var star = document.querySelector("#star");
-		star.onclick = function() {
-			star.style.color = "yellow";
-		}; */
-		
+
 		var goUrlList = "/sharePot";
+		var goUrlNowView = "/shareNowView";	
+		var goUrlLogin = "/shareLogin";
+		var goUrlInst = "/likeCount"
+		var goUrlUpdt = "/likeUpdt"
+		
 		var form = $("#myForm");
+		
+		var seq = $("input:hidden[name=seq]");
 		
 		goList = function(thisPage) {
 			$("input:hidden[name=thisPage]").val(thisPage);
@@ -158,6 +175,12 @@
 		 $("#btnReset").on("click", function(){
 			 $(location).attr("href", goUrlList);
 		 });
+		 
+		 goNow = function(keyValue) {
+	 	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+	 	    	seq.val(keyValue);
+	 			form.attr("action", goUrlNowView).submit();
+	 		}
 		 
 		 
 		 // 숫자에 , 찍기
@@ -170,24 +193,51 @@
 	        don = price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	        console.log(price);  // 콘솔창에 123,123,123 찍힘
 	     });
-	    		
-		// 즐겨찾기
-		 
-		 $("#star").on("click", function(){
-			
-			 var allow = $("#starAllowedNy").val();
-			 
-			 if (allow == 0) {
-				document.getElementById("starAllowedNy").value = 1;
-				$("#star").attr("src", )
-				
-			} else {
-				
-				document.getElementById("starAllowedNy").value = 0;
-			}
-		 });
 		
-
+		 
+		 // like 버튼
+	/* 	function favorites(e, seq){
+			 $("input[name=seq]").val(seq);
+		 		event.stopPropagation();
+		      var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
+		      document.getElementsByClassName('Unfavorites')[i].style.display = "none"; // 즐겨찾기 취소 버튼 비활성화
+		      document.getElementsByClassName('Favorites')[i].style.display = "inline"; // 즐겨찾기 추가 버튼 활성화
+		     form.attr("action", goUrlInst).submit();
+		   }
+		   // like 해제
+		   function Unfavorites(e, seq){
+				$("input[name=seq]").val(seq);
+			   event.stopPropagation();
+		      var i = $(".Favorites").index(e); // 같은 클래스 내 index 값을 가져옴
+		      document.getElementsByClassName('Unfavorites')[i].style.display = "inline"; // 즐겨찾기 취소 버튼 비활성화
+		      document.getElementsByClassName('Favorites')[i].style.display = "none"; // 즐겨찾기 추가 버튼 활성화
+     		form.attr("action", goUrlInst).submit();
+		   }  */
+		   
+	</script>
+	
+	<script type="text/javascript">
+		favorites = function(e, keyValue) {
+			event.stopPropagation();
+			var like = $("input[name=likeNy]").val();
+			if (like == 0) {
+				$("input[name=likeNy]").val(1);
+				 var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
+			//	 $('like').attr('src','/resources/images/share/star_y.png')
+			//	 document.getElementsByClassName('like')[i].attr('src', '/resources/images/share/star_y.png');
+				 document.getElementsByClassName("like")[i].src = "/resources/images/share/star_y.png";
+			//	 form.attr("action", goUrlInst).submit();
+			//	 alert("like")
+			} else {
+			//	$(".like").attr("src", "/resources/images/share/star_e.png");
+				$("input[name=likeNy]").val(0);
+				 var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
+			//	 document.getElementsByClassName('like')[i].attr("src", "/resources/images/share/star_e.png");
+				 document.getElementsByClassName("like")[i].src = "/resources/images/share/star_e.png";
+			//	 form.attr("action", goUrlInst).submit();
+			//	 alert("disLike")
+			}
+		};
 	</script>
 </body>
 </html>

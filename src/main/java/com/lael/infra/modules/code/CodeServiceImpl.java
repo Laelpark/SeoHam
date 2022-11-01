@@ -64,7 +64,6 @@ public class CodeServiceImpl implements CodeService{
 	public static List<Code> selectListCachedCode(String ccgSeq) throws Exception {
 		List<Code> rt = new ArrayList<Code>();
 		for (Code codeRow : Code.cachedCodeArrayList) {
-			System.out.println("codeRow : " + codeRow.getCcgSeq());
 			if (codeRow.getCcgSeq().equals(ccgSeq)) {
 				rt.add(codeRow);
 			} else {

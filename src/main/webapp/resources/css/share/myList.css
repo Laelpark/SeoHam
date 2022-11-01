@@ -1,0 +1,72 @@
+
+.content {
+	width: 1300px;
+    height: 250px;
+    margin-top: 10px;
+    margin-left: 150px;
+}
+
+.sideBar {
+    width: 300px;
+}
+
+#logoimg {
+    width: 230px;
+    height: 80px;
+    margin: 30px 20px;
+}
+
+.nav-link {
+  margin-left: 10px;
+}
+
+ul {
+    border-style: solid;
+    border: 1px;
+}
+
+ol, ul {
+    padding-left: 2rem;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+div.sideEmty {
+	 margin: 0px 100px 0px 100px;
+	padding: 0px 100px 0px 100px;
+}
+
+/* 리스트 css */
+
+
+.aa {
+	width: auto;
+	height: 80px;
+    box-shadow: -3px 3px 6px rgb(142, 150, 150);
+    background-color: rgba(233, 231, 58, 0.66);
+    margin: 5px 10px 5px 10px;
+}
+
+#b {
+    width: auto;
+    height: 80px;
+    box-shadow: -3px 3px 6px rgb(142, 150, 150);
+    border-radius:30px;
+    border-color: rgb(193, 232, 100);
+    background-color: transparent;
+    cursor: pointer;
+}
+/* 검색창 */
+.c {
+    float: right;
+    display: inline-block;
+    justify-content: end;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

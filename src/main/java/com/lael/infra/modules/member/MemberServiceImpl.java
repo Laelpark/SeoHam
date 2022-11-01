@@ -40,6 +40,12 @@ public class MemberServiceImpl implements MemberService{
 	    	dto.setPw(UtilSecurity.encryptSha256(dto.getPw()));
 		return dao.insert(dto);
 	}
+	
+	@Override
+	public int myInsert(Member dto) throws Exception {
+		/* dto.setPw(UtilSecurity.encryptSha256(dto.getPw())); */
+		return dao.insert(dto);
+	}
 
 	@Override
 	public Member selectOne(MemberVo vo) throws Exception {
@@ -49,6 +55,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int update(Member dto) throws Exception {
 		return dao.update(dto);
+	}
+	
+	@Override
+	public int myUpdate(Member dto) throws Exception {
+		return dao.myUpdate(dto);
 	}
 
 	@Override
@@ -77,6 +88,31 @@ public class MemberServiceImpl implements MemberService{
 		return dao.idCheck(dto);
 	}
 
+	@Override   // 아이디 마스킹 처리
+	public Member idFind(Member dto) throws Exception {
+		Member id = dao.idFind(dto);
+		String idStar = id.getId().substring(0, 3);
+		int starLength =  id.getId().length() - idStar.length();
+		
+		System.out.println("starLength" + starLength);
+		System.out.println("idStar" + idStar.length());
+		
+		
+		  for(int i=0; i<starLength; i++){
+			  idStar += "*";
+		  }
+		  
+		  System.out.println("idStar :" + idStar);
+		  
+		  dto.setId(idStar);
+		  return dto;
+	}
+
+	@Override
+	public Member pwFind(Member dto) throws Exception {
+		return dao.pwFind(dto);
+	}
+	
 	@Override
 	public Member selectOneLogin(Member dto) throws Exception {
 		return dao.selectOneLogin(dto);

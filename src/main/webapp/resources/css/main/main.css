@@ -12,7 +12,6 @@
   grid-gap: 0.2rem;
   font-family: "Inter", sans-serif;
   font-weight: 800;
-  text-transform: uppercase;
   color: #42448f;
   text-align: center;
 }
@@ -77,13 +76,13 @@ a {
 
 .user_text {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 32%;
+  left: 36%;
   transform: translate(-50%, -50%);
   font-size: 30px;
   font-weight: 800;
   color: white;
-  text-shadow: 2px -3px 4px white;
+  text-shadow: 2px -3px 4px darkgrey;
 }
 
 #admin {
@@ -93,13 +92,13 @@ a {
 
 .admin_text {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 32%;
+  left: 63%;
   transform: translate(-50%, -50%);
   font-size: 30px;
   font-weight: 800;
   color: white;
-  text-shadow: 2px -3px 4px darkgray;
+  text-shadow: 2px -3px 4px darkgrey;
 }
 
 /* footer 영역 */

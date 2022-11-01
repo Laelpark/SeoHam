@@ -1,31 +1,24 @@
-.a {
-    width: auto;
-    height: 80px;
-    box-shadow: -3px 3px 6px rgb(142, 150, 150);
-   	margin: 5px 10px 5px 10px;
-    border-radius:30px;
-    background-color: rgba(233, 231, 58, 0.66);
-}
+
 
 .b {
     width: auto;
     height: 80px;
     box-shadow: -3px 3px 6px rgb(142, 150, 150);
-    margin: 5px 10px 5px 10px;
+    margin: 10px 0px;
     border-radius:30px;
-    border-style: solid;
-    border-width: 1px;
+   /*  border-width: 1px; */
     border-color: rgb(193, 232, 100);
-    background-color: white;
+    background-color: transparent;
     cursor: pointer;
 }
 
-#cate2 {
-	padding-top: 20px;
-}
-
-#cate {
-	padding-top: 20px;
+.a {
+ 	width: auto;
+    height: 80px;
+    box-shadow: -3px 3px 6px rgb(142, 150, 150);
+   	margin: 5px 10px 5px 10px;
+    border-radius:30px;
+    background-color: rgba(233, 231, 58, 0.66);
 }
 
 .c {
@@ -50,3 +43,49 @@
   max-height: 900px;
   display: grid;
 }
+
+.goNow {
+	text-decoration: none;
+	color: black;
+}
+
+.btnLike{
+	border: 0px;
+	border-color: transparent;
+	background-color: transparent;
+}
+
+.btn-like {
+  color: transparent;
+  text-shadow: 0 0 2px rgba(255,255,255,.7), 0 0 0 #000;
+  border-radius: 30px;
+  border-color: transparent;
+  padding-bottom: 8px;
+  background-color: transparent;
+}
+.btn-like:hover {
+  text-shadow: 0 0 0 #ea0;
+}
+.btn-like.done {
+  color: inherit;
+  text-shadow: 0;
+}
+.btn-like.done:hover {
+  color: transparent;
+  text-shadow: 0 0 0 #777;
+}
+
+#btnLike {
+	border: none;
+	background-color: transparent;
+}
+
+.like {
+	width: 30px;
+	height: 30px;
+}
+
+.btn_like.after {
+	background-image: "/resources/images/share/star_y.png";
+}
+

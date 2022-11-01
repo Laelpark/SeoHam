@@ -102,7 +102,7 @@
 							<ul class="navbar-nav flex-row ms-md-auto me-4">
 								<li class="nav-item col-4"></li>
 								<li class="nav-item col-4">
-									<a class="nav-link py-2 px-0 px-lg-2" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnMypage" name="btnMypage">
+									<a class="nav-link py-2 px-0 px-lg-2" href="/myPage?seq=${sessSeq }" style="color: rgb(193, 232, 100); cursor: pointer;" type="button" id="btnMypage" name="btnMypage">
 										<i class="fa-solid fa-user fa-lg"></i>
 									</a>
 								</li>
@@ -173,8 +173,8 @@
 							<div class="container-1">
 								<select class="g form-select" id="shOption" name="shOption">
 									<option value="" <c:if test="${empty vo.shOption }">selected</c:if>>선택</option>
-									<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>카테고리</option>
 									<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>제목</option>
+									<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>카테고리</option>
 									<option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>인원</option>
 									<option value="4" <c:if test="${vo.shOption eq 4 }">selected</c:if>>장소</option>
 									<option value="5" <c:if test="${vo.shOption eq 5 }">selected</c:if>>시간</option>
@@ -241,9 +241,9 @@
 		 $(location).attr("href", goUrlLogin);
 		});
 	
-	$('#btnMypage').on("click", function() {
+	/* $('#btnMypage').on("click", function() {
 		 $(location).attr("href", goUrlMyPage);
-		});
+		}); */
 	
 	$('#btnList').on("click", function() {
 		 $(location).attr("href", goUrlLikeList);

@@ -70,6 +70,7 @@
 			,pw
 			,name
 			,nick_nm
+			,share_place
 			,dob
 			,dob2
 			,dob3
@@ -84,6 +85,7 @@
 			,#{pw}
 			,#{name}
 			,#{nick_nm}
+			,#{share_place}
 			,#{dob}
 			,#{dob2}
 			,#{dob3}
@@ -92,6 +94,22 @@
 			,#{phone}
 			,0
 			,now()
+		)
+		<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<insert id="myInsert">
+		INSERT INTO share_member (
+			nick_nm
+			,share_place
+			,modDate
+		)
+		VALUES (
+			#{nick_nm}
+			,#{share_place}
+			,#{modDate}
 		)
 		<selectKey resultType="String" keyProperty="seq" order="AFTER">
 			SELECT last_insert_id()
@@ -108,7 +126,33 @@
 	
 	<!-- ID ajax s -->
 	<select id="idCheck" parameterType="String" resultType="int">
-		select count(*) from share_member where id = #{id}
+		select count(*) 
+		from share_member 
+		where id = #{id}
+	</select>
+
+	<!-- id찾기 -->
+	<select id="idFind" resultMap="resultMapObj">
+		SELECT
+			a.id
+		FROM share_member a
+	 	WHERE 1=1
+	 		AND a.name = #{name}
+	 		and a.dob = #{dob}
+			and a.dob2 = #{dob2}
+			and a.dob3 = #{dob3}
+			and a.phone = #{phone}
+	</select>
+	
+	<!-- pw찾기 -->
+	<select id="pwFind" resultMap="resultMapObj">
+		SELECT
+			a.pw
+		FROM share_member a
+	 	WHERE 1=1
+	 		AND a.name = #{name}
+	 		and a.id = #{id}
+			and a.phone = #{phone}
 	</select>
 	
  	<update id="update">
@@ -116,6 +160,16 @@
 	 	SET
  			name = #{name}
  			,id = #{id}
+ 			
+		WHERE
+			seq = #{seq}
+ 	</update>
+ 	
+ 	<update id="myUpdate">
+	 	UPDATE share_member
+	 	SET
+ 			nick_nm = #{nick_nm}
+ 			,share_place = #{share_place}
  			
 		WHERE
 			seq = #{seq}

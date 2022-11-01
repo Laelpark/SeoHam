@@ -27,6 +27,7 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/**"/>
+			<exclude-mapping path="/rest/member/**" />
 			<exclude-mapping path="/resources/**" />
 			<exclude-mapping path="/codeGroup/codeGroupList" />
 			<exclude-mapping path="/codeGroup/codeGroupForm" />
@@ -34,11 +35,14 @@
 			<exclude-mapping path="/share" />
 			<exclude-mapping path="/shareHot" />
 			<exclude-mapping path="/sharePot" />
-			<exclude-mapping path="/shareNow" />
 			<exclude-mapping path="/shareLogin" />
+			<exclude-mapping path="/shareFindLogin" />
+			<exclude-mapping path="/shareFindPw" />
 			<exclude-mapping path="/adminLogin" />
 			<exclude-mapping path="/loginProc" />
 			<exclude-mapping path="/idCheck" />
+			<exclude-mapping path="/idFind" />
+			<exclude-mapping path="/pwFind" />
 			<exclude-mapping path="/shareSignup" />
 			<exclude-mapping path="/MemberInst" />
 			<exclude-mapping path="/adminMain" />
