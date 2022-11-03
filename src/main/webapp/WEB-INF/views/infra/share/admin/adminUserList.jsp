@@ -35,18 +35,20 @@
 		                        <option value="1" <c:if test="${vo.shDelNy eq 1 }">selected</c:if>>탈퇴</option>
 	                       	</select>
 						</div>
+						 <div class="col-md-3">
+				            <select id="shOptionDate" name="shOptionDate" class="form-select">
+				                <option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜</option>
+				                <option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>가입일</option>
+				                <option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>탈퇴일</option>
+				            </select>
+				        </div> 
 						<div class="col-md-3">
-							<select class="form-select" id="shUpdt" name="shUpdt">
-								<option value="" <c:if test="${empty vo.shUpdt }">selected</c:if>>date선택</option>
-								<option value="1" <c:if test="${vo.shUpdt eq 1 }">selected</c:if>>가입일</option>
-								 <option value="2" <c:if test="${vo.shUpdt eq 2 }">selected</c:if>>탈퇴일</option>
-							</select>
+							<fmt:parseDate var="shDateStart" value="${vo.shDateStart }" pattern="yyyy-MM-dd HH:mm:ss"/>
+            				<input type="date" id="shDateStart" name="shDateStart" value="<fmt:formatDate value="${shDateStart }" pattern="yyyy-MM-dd" />" class="form-control" autocomplete="off">
 						</div>
 						<div class="col-md-3">
-							<input type="date" class="form-control" id="datepickerS" />
-						</div>
-						<div class="col-md-3">
-							<input type="date" class="form-control" id="datepickerE" />
+							<fmt:parseDate var="shDateEnd" value="${vo.shDateEnd }" pattern="yyyy-MM-dd HH:mm:ss" />
+	        				<input type="date" id="shDateEnd" name="shDateEnd" value="<fmt:formatDate value="${shDateEnd }" pattern="yyyy-MM-dd"/>" class="form-control" autocomplete="off">
 						</div>
 					</div>
 					<div class="row">
@@ -137,6 +139,7 @@
 	        </main>
 			<button id="btnDelete" class="btn btn-danger del mt-5 ms-5" type="button" style="float: left;"><i class="fa-solid fa-trash-can"></i></button>
 			<button id="btnUelete" class="btn btn-warning del mt-5 ms-3" type="button" style="float: left;"><i class="fa-solid fa-xmark"></i></button>
+			<button id="btnExcel" class="btn btn-success del mt-5 me-4" type="button" style="float: right; color: white;"><i class="fa-regular fa-file-excel"></i></button>
         </form>
         <div id="sidebar">
             <div class="side_img">
@@ -197,6 +200,8 @@
 	var goUrlDele = "/adminDele";
 	var goUrlUele = "/adminUele";
 	
+	var excelUri = "/excelDownload";
+	
 	var form = $("#myForm");
 	var seq = $("input:hidden[name=seq]");
 	
@@ -236,6 +241,10 @@
 	$('#shareHotlist').on("click", function() {
 		 $(location).attr("href", goUrlShareHotList);
 		});
+	
+	$("#btnExcel").click(function() {
+		form.attr("action", excelUri).submit();
+	});
 	
 	// 데이트픽커
 	document.getElementById('datepickerS').valueAsDate = new Date();

@@ -3,6 +3,8 @@ package com.lael.infra.modules.member;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,10 +15,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lael.infra.common.constants.Constants;
+import com.lael.infra.common.util.UtilDateTime;
 import com.lael.infra.common.util.UtilSecurity;
 import com.lael.infra.modules.share.Share;
 import com.lael.infra.modules.share.ShareServiceImpl;
 import com.lael.infra.modules.share.ShareVo;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 @Controller
 public class MemberController {
@@ -26,10 +37,13 @@ public class MemberController {
 	@Autowired
 	ShareServiceImpl sService;
 	
-	private void setSearchAndPaging(MemberVo vo) throws Exception {
+	private void setSearch(MemberVo vo) throws Exception {
 		vo.setShOption(vo.getShOption() == null ? 0: vo.getShOption());
 		vo.setShDelNy(vo.getShDelNy() == null ? 0: vo.getShDelNy());
 		vo.setParamsPaging(service.selectOneCount(vo)); 
+		vo.setShOptionDate(vo.getShOptionDate() == null ? null : vo.getShOptionDate());
+		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
+		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
 	  }
 	
 	@RequestMapping(value = "memberForm")
@@ -174,13 +188,95 @@ public class MemberController {
 	@RequestMapping(value = "/adminUserList")
 	public String adminUser(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
 		
-		setSearchAndPaging(vo);
+		setSearch(vo);
 		
 		List<Member> list = service.selectList(vo);
 		model.addAttribute("list", list);
 		
 		return "infra/share/admin/adminUserList";
 	}
+	
+	@RequestMapping("/excelDownload")
+    public void excelDownload(MemberVo vo, HttpServletResponse httpServletResponse) throws Exception {
+		
+		setSearch(vo);
+		vo.setParamsPaging(service.selectOneCount(vo));
+
+		if (vo.getTotalRows() > 0) {
+			List<Member> list = service.selectList(vo);
+			
+//			Workbook workbook = new HSSFWorkbook();	// for xls
+	        Workbook workbook = new XSSFWorkbook();
+	        Sheet sheet = workbook.createSheet("Sheet1");
+	        CellStyle cellStyle = workbook.createCellStyle();        
+	        Row row = null;
+	        Cell cell = null;
+	        int rowNum = 0;
+			
+//	        each column width setting	        
+	        sheet.setColumnWidth(0, 2100);
+	        sheet.setColumnWidth(1, 3100);
+
+//	        Header
+	        String[] tableHeader = {"Seq", "이름", "닉네임", "이메일", "가입일"};
+
+	        row = sheet.createRow(rowNum++);
+	        
+			for(int i=0; i<tableHeader.length; i++) {
+				cell = row.createCell(i);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+				cell.setCellValue(tableHeader[i]);
+			}
+
+//	        Body
+	        for (int i=0; i<list.size(); i++) {
+	            row = sheet.createRow(rowNum++);
+	            
+//	            String type: null 전달 되어도 ok
+//	            int, date type: null 시 오류 발생 하므로 null check
+//	            String type 이지만 정수형 데이터가 전체인 seq 의 경우 캐스팅	            
+	            
+	            cell = row.createCell(0);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	            cell.setCellValue(Integer.parseInt(list.get(i).getSeq()));
+	            
+	            cell = row.createCell(1);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(list.get(i).getName());
+	        	
+	            cell = row.createCell(2);
+	        	cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	        	cell.setCellStyle(cellStyle);
+	        	cell.setCellValue(list.get(i).getNick_nm());
+	            
+	            cell = row.createCell(3);
+	            cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	            cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getEmail());
+	            
+	            cell = row.createCell(4);
+	            cellStyle.setAlignment(HorizontalAlignment.CENTER);
+	            cell.setCellStyle(cellStyle);
+	            cell.setCellValue(list.get(i).getCreateDate());
+	            
+//	            cell = row.createCell(5);
+//	            cellStyle.setAlignment(HorizontalAlignment.CENTER);
+//	            cell.setCellStyle(cellStyle);
+//	            cell.setCellValue(list.get(i).getShareCount());    
+	            
+	        }
+
+	        httpServletResponse.setContentType("ms-vnd/excel");
+//	        httpServletResponse.setHeader("Content-Disposition", "attachment;filename=example.xls");	// for xls
+	        httpServletResponse.setHeader("Content-Disposition", "attachment;filename=example.xlsx");
+
+	        workbook.write(httpServletResponse.getOutputStream());
+	        workbook.close();
+		}
+    }
 	
 	@RequestMapping(value = "/adminNewUser")
 	public String adminNewUser(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {

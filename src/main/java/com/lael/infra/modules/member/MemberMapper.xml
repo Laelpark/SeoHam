@@ -13,11 +13,15 @@
 		WHERE 1=1
 		<if test="shDelNy != null and !shDelNy.equals('')">AND DelNy = #{shDelNy}</if>
 		<choose>
+			<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+			<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+		</choose>
+		<choose>
 			<!-- <when test="shOption == 1">AND seq = #{shValue}</when> -->
-			<when test="shOption == 1">AND name LIKE CONCAT('%',#{shValue},'%')</when>
-			<when test="shOption == 2">AND nick_nm LIKE CONCAT('%',#{shValue},'%')</when>
-			<when test="shOption == 3">AND email LIKE CONCAT('%',#{shValue},'%')</when>
-			<when test="shOption == 4">AND shareCount LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 1">AND a.name LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 2">AND a.nick_nm LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 3">AND a.email LIKE CONCAT('%',#{shValue},'%')</when>
+			<!-- <when test="shOption == 4">AND shareCount LIKE CONCAT('%',#{shValue},'%')</when> -->
 		</choose>
 	</sql>
 	
