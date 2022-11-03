@@ -29,6 +29,8 @@
 			<mapping path="/**"/>
 			<exclude-mapping path="/rest/member/**" />
 			<exclude-mapping path="/resources/**" />
+			<exclude-mapping path="/test" />
+			<exclude-mapping path="/test2" />
 			<exclude-mapping path="/codeGroup/codeGroupList" />
 			<exclude-mapping path="/codeGroup/codeGroupForm" />
 			<exclude-mapping path="/codeGroup/codeGroupDele" />

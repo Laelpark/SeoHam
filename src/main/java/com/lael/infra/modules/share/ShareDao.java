@@ -20,6 +20,11 @@ public class ShareDao {
 	return list; 								
 	}
 
+	public List<Share> selectListFav(ShareVo vo){ 
+		List<Share> list = sqlSession.selectList(namespace + ".selectListFav", vo);
+		return list; 								
+	}
+
 	public List<Share> selectList2(ShareVo svo){ 
 		List<Share> sList = sqlSession.selectList(namespace + ".selectList2", svo);
 		return sList; 								

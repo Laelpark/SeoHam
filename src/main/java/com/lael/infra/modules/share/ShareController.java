@@ -1,11 +1,15 @@
 package com.lael.infra.modules.share;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lael.infra.modules.member.Member;
 import com.lael.infra.modules.member.MemberServiceImpl;
@@ -55,10 +59,28 @@ public class ShareController {
 		
 		setSearchAndPaging(vo); 
 		
-		List<Share> list = service.selectList(vo);
+		List<Share> list = service.selectListFav(vo);
 		model.addAttribute("list", list); 
 		
 		return "infra/share/user/sharePot";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/favorite")
+	public Map<String, Object> favorite(Share dto) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		Share like = service.likeOne(dto);
+		
+		if (like.getLikeNy() == null) {
+			service.likeCount(dto);
+			returnMap.put("rt", "success");
+		} else if (like.getLikeNy() != null) {
+			service.likeUpdt(dto);
+			returnMap.put("rt", "update");
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
 	}
 	
 	@RequestMapping(value = "/shareNow")
@@ -160,18 +182,18 @@ public class ShareController {
 		return "redirect:/sharePot";
 	}
 	
-//	@RequestMapping(value = "/likeUpdt")
-//	public String likeUpdt(ShareVo vo, Share dto, RedirectAttributes redirectAttributes) throws Exception {
-//
-//		Share one = service.likeOne(dto);
-//		
-//		if(one == null) {
-//			service.likeCount(dto);
-//		} else {
-//			service.likeUpdt(dto);
-//		}
-//		return "redirect:/sharePot";
-//	}
+	@RequestMapping(value = "/likeUpdt")
+	public String likeUpdt(ShareVo vo, Share dto, RedirectAttributes redirectAttributes) throws Exception {
+
+		Share one = service.likeOne(dto);
+		
+		if(one == null) {
+			service.likeCount(dto);
+		} else {
+			service.likeUpdt(dto);
+		}
+		return "redirect:/sharePot";
+	}
 	
 	@RequestMapping(value = "/mySecurity")
 	public String mySecurity(@ModelAttribute("vo") MemberVo vo,  Model model) throws Exception {

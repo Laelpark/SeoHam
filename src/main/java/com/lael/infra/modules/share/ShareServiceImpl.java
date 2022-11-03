@@ -45,6 +45,12 @@ import org.springframework.stereotype.Service;
 		List<Share> list = dao.selectList(vo);
 		return list;
 	}
+
+	@Override
+	public List<Share> selectListFav(ShareVo vo) throws Exception {
+		List<Share> list = dao.selectListFav(vo);
+		return list;
+	}
 	
 	@Override
 	public List<Share> selectList() throws Exception {

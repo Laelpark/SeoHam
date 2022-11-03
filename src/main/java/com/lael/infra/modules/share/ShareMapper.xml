@@ -5,7 +5,6 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.lael.infra.modules.share.ShareMapper">
-
     <resultMap id="resultMapObj" type="com.lael.infra.modules.share.Share"></resultMap>
 
 	<sql id ="selectCommon">
@@ -35,6 +34,28 @@
 			,c.DelNy
 			,c.createDate  <!--  관리자 today를 위해 생성 -->
 		<include refid="selectCommon" />
+		ORDER BY c.seq DESC
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" /> 
+	</select>
+	
+	<select id="selectListFav" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"></include>
+		SELECT
+			c.seq
+			,c.food_div
+			,c.title
+			,c.people_num
+			,c.info
+			,c.place
+			,c.time
+			,c.price
+			,c.DelNy
+			,c.createDate  <!--  관리자 today를 위해 생성 -->
+			,f.likeNy
+		FROM share c
+			JOIN favorite f on f.shareSeq = c.seq  <!-- shareSeq와 seq를 맞춰야 함 -->
+		WHERE 1=1
 		ORDER BY c.seq DESC
 		<include refid="Base.orderByLimitForMysql" />
 		<include refid="Base.selectListLowerForMysql" /> 
@@ -77,7 +98,7 @@
 		ORDER BY c.createDate DESC
 	</select>
 	
-	<insert id="likeCount">
+	<insert id="likeCount">  <!-- Inst -->
 	INSERT INTO favorite (
 			memberSeq
 			,shareSeq
@@ -257,7 +278,7 @@
 			,c.price
 			,c.DelNy
 			,c.createDate
-			FROM share c
+		FROM share c
 		WHERE 1=1		
 			and DATE(createDate) = DATE(now()) 
 		ORDER BY c.seq DESC

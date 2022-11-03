@@ -100,10 +100,20 @@
 	                                <td class="text-center">${list.price}</td>
                    					<td class="text-center">
                    						<span class="rating-star">
-									        <span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq})">
-									        	<input type="hidden" value="0" name="likeNy">
-									        	<img alt="" class="like" src="/resources/images/share/star_e.png" style="width: 30px; height: 30px;">
-									        </span>
+                   							<c:forEach>
+                   								<c:when test="${empty list.likeNy }">
+											        <span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq})">
+											        	<input type="hidden" value="0" name="likeNy">
+											        	<img alt="" class="like" src="/resources/images/share/star_e.png" style="width: 30px; height: 30px;">
+											        </span>
+                   								</c:when>
+                   								<c:otherwise>
+											        <span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq})">
+											        	<input type="hidden" value="${list.likeNy }" name="likeNy">
+											        	<img alt="" class="like" src="/resources/images/share/star_y.png" style="width: 30px; height: 30px;">
+											        </span>
+                   								</c:otherwise>
+                   							</c:forEach>
 									        <%-- <span class="Favorites" value="Favorites" style="display: none;" onclick="Unfavorites(this, ${list.seq})">
 									        	<input type="hidden" value="1" name="likeNy">
 									        	<img alt="" src="/resources/images/share/star_y.png" style="width: 30px; height: 30px;">
@@ -144,6 +154,7 @@
 		var form = $("#myForm");
 		
 		var seq = $("input:hidden[name=seq]");
+		var memberSeq = $("input:hidden[name=memberSeq]");
 		
 		goList = function(thisPage) {
 			$("input:hidden[name=thisPage]").val(thisPage);
@@ -174,7 +185,7 @@
 		
 		 
 		 // like 버튼
-	/* 	function favorites(e, seq){
+	 	/* function favorites(e, seq){
 			 $("input[name=seq]").val(seq);
 		 		event.stopPropagation();
 		      var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
@@ -190,32 +201,61 @@
 		      document.getElementsByClassName('Unfavorites')[i].style.display = "inline"; // 즐겨찾기 취소 버튼 비활성화
 		      document.getElementsByClassName('Favorites')[i].style.display = "none"; // 즐겨찾기 추가 버튼 활성화
      		form.attr("action", goUrlInst).submit();
-		   }  */
-		   
-	</script>
-	
-	<script type="text/javascript">
-		favorites = function(e, keyValue) {
+		   } 
+		    */
+/* 		 favorites = function(e, seq) {
 			event.stopPropagation();
 			var like = $("input[name=likeNy]").val();
 			if (like == 0) {
 				$("input[name=likeNy]").val(1);
 				 var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
-			//	 $('like').attr('src','/resources/images/share/star_y.png')
-			//	 document.getElementsByClassName('like')[i].attr('src', '/resources/images/share/star_y.png');
 				 document.getElementsByClassName("like")[i].src = "/resources/images/share/star_y.png";
-			//	 form.attr("action", goUrlInst).submit();
-			//	 alert("like")
+				 form.attr("action", goUrlInst).submit();
 			} else {
-			//	$(".like").attr("src", "/resources/images/share/star_e.png");
 				$("input[name=likeNy]").val(0);
 				 var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
-			//	 document.getElementsByClassName('like')[i].attr("src", "/resources/images/share/star_e.png");
 				 document.getElementsByClassName("like")[i].src = "/resources/images/share/star_e.png";
-			//	 form.attr("action", goUrlInst).submit();
-			//	 alert("disLike")
+				 form.attr("action", goUrlUpdt).submit();
 			}
-		}
+		}  */
+	</script>
+	
+	<script type="text/javascript">
+	
+		favorites = function(e, seq) {
+			event.stopPropagation();
+			$.ajax({
+				async: true
+				,cache: false
+				,type:"POST"
+				,url: "/favorite"
+				,data: {"memberSeq": $("input[name=memberSeq]").val(), "seq": $("input[name=seq]").val()}
+				,success : function(response) {
+					if (response.rt == "fail") {
+						alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
+						return false;
+					} else {
+						window.location.href = "/sportMain";
+					}
+				},
+				error : function(jqXHR, status, error) {
+					alert("알 수 없는 에러 [ " + error + " ]");
+				}
+			});
+			
+			var like = $("input[name=likeNy]").val();
+			if (like == 0) {
+				$("input[name=likeNy]").val(1);
+				 var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
+				 document.getElementsByClassName("like")[i].src = "/resources/images/share/star_y.png";
+				 form.attr("action", goUrlInst).submit();
+			} else {
+				$("input[name=likeNy]").val(0);
+				 var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
+				 document.getElementsByClassName("like")[i].src = "/resources/images/share/star_e.png";
+				 form.attr("action", goUrlUpdt).submit();
+			}
+		} 
 	</script>
 </body>
 </html>
