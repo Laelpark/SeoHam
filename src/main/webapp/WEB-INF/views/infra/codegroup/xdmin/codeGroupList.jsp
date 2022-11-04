@@ -179,10 +179,10 @@
 													<c:otherwise>		
 														<c:forEach items="${list}" var="list" varStatus="status">
 															<tr onclick="newPage()" class="info">
-																<th scope="row" class="td1" src="./memberMod.html">
+																<th scope="row" class="td1" src="#">
 																	<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
 																</th>
-																<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
+																<td><c:out value="${vo.totalRows2 - ((vo.thisPage2 - 1) * vo.rowNumToShow2 + status.index) }"/></td>
 																<td>${list.ccgSeq}</td>
 																<td><a href="javascript:goForm(<c:out value="${list.ccgSeq }"/>)" class="text-decoration-none"><c:out value="${list.name }"/></a></td>
 																<td>${list.name_eng}</td>
