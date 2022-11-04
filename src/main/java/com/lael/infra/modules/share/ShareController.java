@@ -168,30 +168,30 @@ public class ShareController {
 		return "infra/share/user/myList";
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/likeCount")
-	public String likeCount(Share dto) throws Exception {
+	public Map<String, Object> likeCount(Share dto) throws Exception {
 	
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
 		Share one = service.likeOne(dto);
 		
 		if(one == null) {
-			service.likeCount(dto);
+			returnMap.put("rt", "success");
+		} else if(one.getLikeNy() == 0) {
+			returnMap.put("rt", "unLike");
+		} else if(one.getLikeNy() == 1){
+			returnMap.put("rt", "like");
 		} else {
-			service.likeUpdt(dto);
+			returnMap.put("rt", "fail");
 		}
-		
-		return "redirect:/sharePot";
+		return returnMap;
 	}
 	
 	@RequestMapping(value = "/likeUpdt")
 	public String likeUpdt(ShareVo vo, Share dto, RedirectAttributes redirectAttributes) throws Exception {
 
-		Share one = service.likeOne(dto);
-		
-		if(one == null) {
-			service.likeCount(dto);
-		} else {
-			service.likeUpdt(dto);
-		}
+		service.likeUpdt(dto);
 		return "redirect:/sharePot";
 	}
 	

@@ -67,7 +67,7 @@
                 <div class="col-8 offset-2">
                     <div class="input-control">
                         <label for="email">이메일</label>
-                        <input id="email" name="email" type="text" onfocusout="validationUpdt()" autocomplete="off">
+                        <input id="email" name="email" type="text" onfocusout="validationUpdt()" autocomplete="off" placeholder=" example) share@도메인">
                         <div class="msg" id="email_msg" name="email_msg" style="display: none;"></div>
                     </div>
                 </div>
@@ -167,7 +167,56 @@
 /* 	$("#id").val(); // id값이 id인 value값 가져오기
 	$("#id").val("abc"); //id값이 id인 곳의 value 값으로 "abc" 넣기 */ 
 	
-	$("#id").on("focusout", function(){
+	 errorValidation = function(input, msg, message) {
+     	$(msg).parent().removeClass('success');						
+		 	$(msg).parent().addClass('error');
+	        $(msg).text(message);
+	        $(msg).show();
+	        $(input).val('');
+	        $(input).focus();
+		}
+     
+     successValidation = function(input, msg, message) {
+     	$(msg).parent().removeClass('error');
+		 	$(msg).parent().addClass('success');
+	        $(msg).text(message);
+	        $(msg).show();
+		}
+     
+ 	$("#id").on("focusout", function(){
+ 		var id = $("#id").val();
+ 		
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "idCheck"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "id" : id }
+				,success: function(response) {
+					if(response.rt == "success") {
+						if (id.length > 0) {
+ 						successValidation('#id', '#id_msg', "사용가능한 아이디 입니다.");
+ 						document.getElementById("idAllowedNy").value = 1;
+						} else {
+							 errorValidation('#id', '#id_msg', "아이디를 입력해주세요!!!");
+							 document.getElementById("idAllowedNy").value = 0;
+						}
+					} else {
+						errorValidation('#id', '#id_msg', "중복된 아이디입니다.");
+						document.getElementById("idAllowedNy").value = 0;
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+ 		
+ 	});
+	
+	
+	/* $("#id").on("focusout", function(){
 		if ($("#id").val() == null || $("#id").val() == "" ) {
 			document.getElementById("idFeedback").classList.add('invalid-feedback');
 			document.getElementById("idFeedback").innerText = "아이디를 입력해주세요.";
@@ -206,7 +255,7 @@
 			});
 		}
 			
-		});
+		}); */
 
 	</script>
 	<script>

@@ -119,7 +119,8 @@
 							</ul>
 							<span style="color: white; text-shadow: 2px 2px black; float: right;" class="">
 								<br><c:out value="${sessName }"/>님,
-								Welcome to SHARE!</span>
+								Welcome to SHARE!
+							</span>
 						</div>
 					</c:otherwise>
 				</c:choose>

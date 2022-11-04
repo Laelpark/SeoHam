@@ -74,4 +74,13 @@ public class MemberDao {
 		List<Member> list = sqlSession.selectList(namespace + ".selectList2", vo);
 		return list; 								
 	}
+
+	/* Kakao Login */
+
+	public int kakaoInst(Member dto) {return sqlSession.insert(namespace + ".kakaoInst", dto); }
+	public Member snsLoginCheck(Member dto) {return sqlSession.selectOne(namespace + ".snsLoginCheck", dto); }
+	
+
 }
+	
+	

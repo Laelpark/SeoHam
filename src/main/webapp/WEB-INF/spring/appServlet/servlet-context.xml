@@ -49,6 +49,9 @@
 			<exclude-mapping path="/MemberInst" />
 			<exclude-mapping path="/adminMain" />
 			<exclude-mapping path="/excelDownload" />
+			<exclude-mapping path="/kakaoInst" />
+			<exclude-mapping path="/snsLoginCheck" />
+			<exclude-mapping path="/kakaoLoginProc" />
 			<exclude-mapping path="/" />
 			<!-- <exclude-mapping path="/shareInst" /> -->
 			<beans:bean id="checkLoginSessionInterception" class="com.lael.infra.common.interceptor.CheckLoginSessionInterception"/>

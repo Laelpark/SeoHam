@@ -257,5 +257,37 @@
 			and DATE(createDate) = DATE(now()) 
 	</select>
  	
+ 	<!-- KakaoLogin -->
+	<insert id="kakaoInst">
+		INSERT INTO share_member (
+			id
+			,name
+			,email
+			,DelNy
+		)
+		VALUES (
+			#{snsId}
+			,#{name}
+			,#{email}
+			,0
+		)
+		<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<select id="snsLoginCheck" resultMap="resultMapObj">
+		select 
+			 a.seq
+			,a.id
+			,a.name
+			,a.email
+		from share_member a
+		where 1=1
+			and id = #{snsId}
+			and name = #{name}
+	</select>
+ 	
+ 	
 </mapper>	
 		

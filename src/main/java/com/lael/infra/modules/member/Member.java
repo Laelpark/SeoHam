@@ -23,7 +23,23 @@ public class Member {
 	private String createDate;
 	private Integer shareCount;
 	
+	/* Kakao Login s */
+	private String snsId;
+	private String snsImg;
 	
+	public String getSnsId() {
+		return snsId;
+	}
+	public void setSnsId(String snsId) {
+		this.snsId = snsId;
+	}
+	public String getSnsImg() {
+		return snsImg;
+	}
+	public void setSnsImg(String snsImg) {
+		this.snsImg = snsImg;
+	}
+	/* Kakao Login e*/
 	
 	public Integer getShare_report_seq() {
 		return share_report_seq;

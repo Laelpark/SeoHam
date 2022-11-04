@@ -100,7 +100,7 @@
 										<p id="date">거래 장소</p>
 									</div>
 									<div class="col-8" for="date">
-										<input type="text" style="width: 850px; margin-left: auto;" id="place" name="place" value="<c:out value="${item.place}"/>">
+										<input type="text" style="width: 850px; margin-left: auto;" id="place" name="place" placeholder=" 자세한 거래 장소를 입력하세요." value="<c:out value="${item.place}"/>">
 									</div>
 								</div>
 							</nav>
@@ -110,7 +110,7 @@
 										<p id="date">거래 시간</p>
 									</div>
 									<div class="col-8" for="time">
-										<input type="text" style="width: 850px; margin-left: auto;" id="time" name="time" value="<c:out value="${item.time}"/>">
+										<input type="text" style="width: 850px; margin-left: auto;" id="time" name="time" placeholder=" 거래시간을 입력하세요." value="<c:out value="${item.time}"/>">
 									</div>
 								</div>
 							</nav>
@@ -120,7 +120,7 @@
 										<p id="date">인당 가격</p>
 									</div>
 									<div class="col-8" for="price">
-										<input type="text" style="width: 850px; margin-left: auto;" id="price" name="price" value="<c:out value="${item.price}"/>">
+										<input type="text" style="width: 850px; margin-left: auto;" id="price" name="price" placeholder=" 가격이 정해지지 않은 경우 숫자 '0'으로 입력하세요." value="<c:out value="${item.price}"/>">
 									</div>
 								</div>
 							</nav>

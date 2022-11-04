@@ -25,7 +25,9 @@
 </head>
 <body style="background-color: rgb(224, 224, 224);">
 	<!-- start -->
-	<form action="" id="login_form">
+	<form action="" id="login_form"  name="form">
+	<input type="hidden" name="snsId"> 
+	<input type="hidden" name="name"> 
 		<div class="navbar" style="background-color:rgb(142, 68, 173); height: 50px;"></div>
 		<div class="container-fluid">
 			<div class="row pt-5">
@@ -73,14 +75,22 @@
 				<div class="container text-center mt-3">
 					<div class="row">
 						<div class="col-3"></div>
-							<div class="a col-3 me-3" style="cursor: pointer;" id="btnSignup" name="btnSignup" onclick=" location='/shareSignup'">
-								회원가입
-							</div>
-							<div class="a col-3" style="cursor: pointer;" onclick=" location='/shareFindLogin'">
-								아이디/비밀번호 찾기
-							</div>
-							<div class="col-3"></div>
+						<div class="a col-3 me-3" style="cursor: pointer;" id="btnSignup" name="btnSignup" onclick=" location='/shareSignup'">
+							회원가입
 						</div>
+						<div class="a col-3" style="cursor: pointer;" onclick=" location='/shareFindLogin'">
+							아이디/비밀번호 찾기
+						</div>
+						<div class="col-3"></div>
+					</div>
+				</div>
+				<div class="container text-center mt-3">
+					<div class="row">
+						<div class="col-3"></div>
+						<div class="a col-3 me-3" style="cursor: pointer;" id="btnKakao" name="btnSignup">
+							<button class='btn' type="button" name="btnKakao" id="btnKakao" style="background-color: #ffcc00">카카오 로그인</button>
+						</div>
+						<div class="col-3"></div>
 					</div>
 				</div>
 			</div>
@@ -91,8 +101,8 @@
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script>
-		
 		// 로그인
 		
 		$("#btnLogin").on("click", function(){
@@ -117,6 +127,61 @@
 			});
 		});
 		
+	</script>
+	<script type="text/javascript">
+	
+	var goUrlList = "/share";
+	
+	Kakao.init('bd29bc43140391b0206f367d2b8c01eb');
+	console.log(Kakao.isInitialized());
+	
+	$("#btnKakao").on("click", function() {
+		/* Kakao.Auth.authorize({
+		      redirectUri: 'http://localhost:8080/member/kakaoCallback',
+		    }); */
+		
+		Kakao.Auth.login({
+		      success: function (response) {
+		        Kakao.API.request({
+		          url: '/v2/user/me',
+		          success: function (response) {
+		        	  
+		        	  var accessToken = Kakao.Auth.getAccessToken();
+		        	  Kakao.Auth.setAccessToken(accessToken);
+
+		        	  var account = response.kakao_account;
+  	        	  
+  	        	 /*  $("form[name=form]").attr("action", "/member/kakaoLoginProc").submit(); */
+  	        	 
+  	        	  $.ajax({
+					async: true
+					,cache: false
+					,type:"POST"
+					,url: "/kakaoLoginProc"
+					,data: {"name": account.profile.nickname, "snsId": "카카오로그인", "email": account.email}
+					,success : function(response) {
+						if (response.rt == "fail") {
+							alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
+							return false;
+						} else {
+							window.location.href = "/share";
+						}
+					},
+					error : function(jqXHR, status, error) {
+						alert("알 수 없는 에러 [ " + error + " ]");
+					}
+				});
+		          },
+		          fail: function (error) {
+		            console.log(error)
+		          },
+		        })
+		      },
+		      fail: function (error) {
+		        console.log(error)
+		      },
+		    })
+	});
 	</script>
 	
 </body>
