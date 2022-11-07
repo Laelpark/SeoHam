@@ -108,13 +108,13 @@
 											<c:choose>
 												<c:when test="${empty list.likeNy }">
 													<span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq})"> 
-														<input type="hidden" value="0" name="likeNy"> <img alt="" class="like" src="/resources/images/share/star_e.png" style="width: 30px; height: 30px;">
+														<input type="hidden" value="0" name="likeNy"><img alt="" class="like" src="/resources/images/share/star_e.png" style="width: 30px; height: 30px;">
 													</span>
 												</c:when>
 												<c:otherwise>
 													<span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq})"> 
-														<input type="hidden" value="${list.likeNy }" name="likeNy"> 
-														<img alt="" class="like" src="/resources/images/share/star_y.png" style="width: 30px; height: 30px;">
+														<input type="hidden" value="${list.likeNy }" name="likeNy${status.index }"> 
+														<img alt="" name="img" class="like${status.index }" src="${list.img}" style="width: 30px; height: 30px;">
 													</span>
 												</c:otherwise>
 											</c:choose> 
@@ -190,7 +190,7 @@
      		form.attr("action", goUrlInst).submit();
 		   } 
 		    */
-/* 		 favorites = function(e, seq) {
+ 		 favorites = function(e, seq) {
 			event.stopPropagation();
 			var like = $("input[name=likeNy]").val();
 			if (like == 0) {
@@ -204,45 +204,17 @@
 				 document.getElementsByClassName("like")[i].src = "/resources/images/share/star_e.png";
 				 form.attr("action", goUrlUpdt).submit();
 			}
-		}  */
+		}  
 	</script>
 	<script type="text/javascript">
-		function favorites(e, seq){
-			  var like = $("input[name=likeNy]").val();
-			  $.ajax({
-			  	async: true
-			  	,url: "/likeCount",
-			    ,type: "POST",
-			    ,cache: false,
-			   /*  dataType: "json", */
-			    ,data: {"memberSeq": $("input[name=memberSeq]").val(), "seq": $("input[name=seq]").val(), "likeNy" : $("input[name=likeNy]").val()}
-			    success: function(response) {
-			    	if (response.rt == "success") {
-				    	event.stopPropagation();
-			    		document.getElementByClassName("likeNy").val(1);
-			    		 var i = $(".Unfavorites").index(e);
-			    	  	document.getElementsByClassName("like")[i].src = "/resources/images/share/star_y.png";
-			    		form.attr("action", goUrlInst).submit();
-			    	} else if (response.rt == "unLike") {
-			    		document.getElementByClassName("likeNy").val(1);
-			    		 var i = $(".Unfavorites").index(e);
-			    	  	document.getElementsByClassName("like")[i].src = "/resources/images/share/star_y.png";
-			    	  	form.attr("action", goUrlUpdt).submit();
-			    	} else if(response.rt == "like"){
-			    		document.getElementByClassName("likeNy").val(0);
-			    		 var i = $(".Unfavorites").index(e);
-			    	  	document.getElementsByClassName("like")[i].src = "/resources/images/share/star_e.png";
-			    	  	form.attr("action", goUrlUpdt).submit();
-			      } else {
-			    	  alert("다시 선택해주세요!!!");
-			      }
-		    	},
-			    error: function(jqXHR, status, error){
-			    	alert("알 수 없는 에러 [ " + error + " ]");
-			    }
-			  });
-			}
-
+		
+	/* 	like = function(e, seq) {
+   			if ($("input[name=likeNy").val() == 0) {
+   				$(".like").attr("src", "/resources/images/share/star_e.png");
+   			} else {
+   				$(".like").attr("src", "/resources/images/share/star_y.png");
+   			}
+		} */
 	</script>
 </body>
 </html>

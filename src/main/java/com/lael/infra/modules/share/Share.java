@@ -20,6 +20,7 @@ public class Share {
 	private Integer memberSeq;
 	private Integer shareSeq;
 	private Integer likeNy;
+	private String img;
 	
 	public String getLikeSeq() {
 		return likeSeq;
@@ -44,6 +45,12 @@ public class Share {
 	}
 	public void setLikeNy(Integer likeNy) {
 		this.likeNy = likeNy;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
 	}
 	
 	// favorite e

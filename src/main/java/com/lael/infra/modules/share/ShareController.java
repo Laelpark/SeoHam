@@ -195,11 +195,17 @@ public class ShareController {
 		return "redirect:/sharePot";
 	}
 	
-	@RequestMapping(value = "/mySecurity")
-	public String mySecurity(@ModelAttribute("vo") MemberVo vo,  Model model) throws Exception {
+	@RequestMapping(value = "/personalInformation")
+	public String personalInformation(@ModelAttribute("vo") MemberVo vo,  Model model) throws Exception {
 		
 		Member item = Mservice.selectOne(vo);
 		model.addAttribute("item", item);  
+		
+		return "infra/share/user/personalInformation";
+	}
+	
+	@RequestMapping(value = "/mySecurity")
+	public String mySecurity(@ModelAttribute("vo") MemberVo vo,  Model model) throws Exception {
 		
 		return "infra/share/user/mySecurity";
 	}

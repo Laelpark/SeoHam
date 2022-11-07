@@ -39,6 +39,9 @@
 					<li class="nav-item">
 			 	 		<a class="nav-link" onclick="goInfo()">Personal Information</a>
 					</li>
+					<li class="nav-item">
+			 	 		<a class="nav-link" onclick="goSecu()">MY Security</a>
+					</li>
 				</ul>
 			</div>
 			<div class="content">
@@ -47,8 +50,6 @@
 		         	<div class="col" style="margin-left: 90px; height: 300px; margin-top: 30px;">
 							<div class="filebox">
 								<img src="" id="img" width="295px;" height="230px;"> 
-								<input type="file" id="chooseImg" name="chooseImg" style="width: 100%" multiple="multiple" onChange="upload('articleImage', 1, 0, 1, 0, 0, 1);"> 
-								<label for="chooseImg" style="padding: 0 70px;"> 📷 사진 업로드하기</label>
 							</div>
 							<div class="row mt-5">
 								<button type="button" class="btn btn-outline-secondary ms-5 me-4" style="border-color: lightgray;">확인</button>
@@ -58,11 +59,11 @@
 		        </div>
 		        <div class="row">
 			        <div class="second col-3">주 share 장소</div>
-			         <input type="text" id="share_place" name="share_place" class="form-control col" placeholder="주 거래 장소를 입력해주세요." value="<c:out value="${item.share_place}"/>">
+			         <input type="text" id="share_place" name="share_place" class="form-control col" placeholder="주 거래 장소를 입력해주세요." value="<c:out value="${item.share_place}"/>" disabled="disabled">
 		        </div>
 		        <div class="row">
 			        <div class="third col-3">닉네임 변경</div>
-			        <input type="text" id="nick_nm" name="nick_nm" class="form-control col" placeholder="변경할 닉네임을 입력해주세요." value="<c:out value="${item.nick_nm}"/>">
+			        <input type="text" id="nick_nm" name="nick_nm" class="form-control col" placeholder="변경할 닉네임을 입력해주세요." value="<c:out value="${item.nick_nm}"/>" disabled="disabled">
 		        </div>
 		        <br>
 		        <br>
@@ -95,8 +96,10 @@
 	    
 	    var goUrlMyList = "/myList";
 		var goUrlMyPage = "/myPage";
-		var goUrlMySecurity = "/mySecurity";
+		var goUrlMyInfo = "/personalInformation";
+		var goUrlMySecu = "/mySecurity";
 		var goUrlInst = "/shareMyPageInst";
+		var goUrlUpdt = "/shareMyPageUpdt";
 		var goUrlUpdt = "/shareMyPageUpdt";
 		
 		var seq = $("input:hidden[name=seq]");
@@ -112,6 +115,10 @@
 		};
 		
 		goInfo = function() {
+			form.attr("action", goUrlMyInfo).submit();
+		};
+		
+		goSecu = function() {
 			form.attr("action", goUrlMySecurity).submit();
 		};
 	

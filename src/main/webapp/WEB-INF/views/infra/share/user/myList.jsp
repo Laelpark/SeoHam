@@ -44,6 +44,9 @@
 					<li class="nav-item">
 			 	 		<a class="nav-link"  onclick="goInfo()">Personal Information</a>
 					</li>
+					<li class="nav-item">
+			 	 		<a class="nav-link" onclick="goSecu()">MY Security</a>
+					</li>
 				</ul>
 			</div>
 			 <!-- 검색창 -->
@@ -138,27 +141,33 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
 		
-		var goUrlMyList = "/myList";
-		var goUrlMyPage = "/myPage";
-		var goUrlMySecurity = "/mySecurity";
-		
-		var form = $("#myForm");
+	var goUrlMyList = "/myList";
+	var goUrlMyPage = "/myPage";
+	var goUrlMyInfo = "/personalInformation";
+	var goUrlMySecu = "/mySecurity";
+	var goUrlInst = "/shareMyPageInst";
+	var goUrlUpdt = "/shareMyPageUpdt";
+	var goUrlUpdt = "/shareMyPageUpdt";
 	
-		goList = function() {
-			form.attr("action", goUrlMyList).submit();
-		};
-		
-		goMyPage = function() {
-			form.attr("action", goUrlMyPage).submit();
-		};
-		
-		goInfo = function() {
-			form.attr("action", goUrlMySecurity).submit();
-		};
-		
-		 $("#btnReset").on("click", function(){
-			 $(location).attr("href", goUrlMyList);
-		 });
+	var seq = $("input:hidden[name=seq]");
+	
+	var form = $("#myForm");
+
+	goList = function() {
+		form.attr("action", goUrlMyList).submit();
+	};
+	
+	goMyPage = function() {
+		form.attr("action", goUrlMyPage).submit();
+	};
+	
+	goInfo = function() {
+		form.attr("action", goUrlMyInfo).submit();
+	};
+	
+	goSecu = function() {
+		form.attr("action", goUrlMySecurity).submit();
+	};
 		 
 	 
 	

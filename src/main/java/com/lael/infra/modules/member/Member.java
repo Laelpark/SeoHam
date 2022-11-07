@@ -22,6 +22,9 @@ public class Member {
 	private Integer DelNy;
 	private String createDate;
 	private Integer shareCount;
+	private Integer user_div;
+	private Integer sns_type;
+	private String img;
 	
 	/* Kakao Login s */
 	private String snsId;
@@ -41,8 +44,27 @@ public class Member {
 	}
 	/* Kakao Login e*/
 	
+	
 	public Integer getShare_report_seq() {
 		return share_report_seq;
+	}
+	public Integer getUser_div() {
+		return user_div;
+	}
+	public void setUser_div(Integer user_div) {
+		this.user_div = user_div;
+	}
+	public Integer getSns_type() {
+		return sns_type;
+	}
+	public void setSns_type(Integer sns_type) {
+		this.sns_type = sns_type;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
 	}
 	public void setShare_report_seq(Integer share_report_seq) {
 		this.share_report_seq = share_report_seq;

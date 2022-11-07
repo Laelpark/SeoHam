@@ -37,10 +37,10 @@
 				  		<a class="nav-link" onclick="goList()">My Share List</a>
 					</li>
 					<li class="nav-item">
-			 	 		<a class="nav-link" onclick="goInfo()">Personal Information</a>
+			 	 		<a class="nav-link active" onclick="goInfo()">Personal Information</a>
 					</li>
 					<li class="nav-item">
-			 	 		<a class="nav-link active" onclick="goSecu()">MY Security</a>
+			 	 		<a class="nav-link" onclick="goSecu()">MY Security</a>
 					</li>
 				</ul>
 			</div>
@@ -50,42 +50,6 @@
 					<label for="id" class="form-label">아이디</label>
 					<input class="a mt-2 form-control" id="id" name="id"  placeholder="아이디 입력" value="<c:out value="${item.id}"/>" disabled="disabled">
 					<div class="invalid-feedback" id="idFeedback"></div>
-				</td>
-			</table>
-			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<label for="pw">기존 비밀번호 <span class="text-danger">*</span></label>
-			<table>
-				<td>
-					<input type="password" class="a mt-2 form-control" id="pw" name="pw" placeholder="현재 비밀번호 입력" onkeydown="validation()">
-				  	<div type="hidden" class="msg" id="pw_msg" name="pw_msg" style="display: none;"></div>
-					<div type="hidden" class="invalid-feedback" id="pwFeedback"></div>
-				</td>
-				<td>
-					<i class="fa-solid fa-user-lock" id="lock"></i>
-				</td>
-			</table>
-			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<label for="pw">변경 비밀번호 <span class="text-danger">*</span></label>
-			<table>
-				<td>
-					<input type="password" class="a mt-2 form-control" id="pw" name="pw" placeholder="변경하실 비밀번호 입력" onkeydown="validation()">
-				  	<div type="hidden" class="msg" id="pw_msg" name="pw_msg" style="display: none;"></div>
-					<div type="hidden" class="invalid-feedback" id="pwFeedback"></div>
-				</td>
-				<td>
-					<i class="fa-solid fa-lock" id="lock"></i>
-				</td>
-			</table>
-			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<label for="pw">변경 비밀번호 확인 <span class="text-danger">*</span></label>
-			<table>
-				<td>
-					<input type="password" class="a mt-2 form-control" id="pw" name="pw" placeholder="변경하신 비밀번호 재 입력" onkeydown="validation()">
-				  	<div type="hidden" class="msg" id="pw_msg" name="pw_msg" style="display: none;"></div>
-					<div type="hidden" class="invalid-feedback" id="pwFeedback"></div>
-				</td>
-				<td>
-					<i class="fa-solid fa-unlock" id="lock"></i>
 				</td>
 			</table>
 			<hr style="color: rgb(78, 78, 78); width: 800px;">
@@ -101,6 +65,14 @@
 				<td>
 					<label>닉네임 <span class="text-danger">*</span></label>
 					<input class="a mt-2 form-control" id="nick_nm" name="nick_nm" value="<c:out value="${item.nick_nm}"/>" placeholder="닉네임 입력" required>
+					<div class="invalid-feedback" id="nick_nmCheckFeedback"></div>
+				</td>
+			</table>
+			<hr style="color: rgb(78, 78, 78); width: 800px;">
+			<table>
+				<td>
+					<label>주 쉐어장소</label>
+					<input class="a mt-2 form-control" id="nick_nm" name="nick_nm"  placeholder="주 거래 장소를 입력해주세요." value="<c:out value="${item.share_place}"/>" required>
 					<div class="invalid-feedback" id="nick_nmCheckFeedback"></div>
 				</td>
 			</table>
@@ -241,6 +213,45 @@
 			
 		}
 	});
+	
+	// validation.js파일
+	
+ 	validation = function() {
+		if (!id_check("#id", $("#id").val(), "#idFeedback"	, "아이디를 입력하세요.")) {
+			return false;
+		} else if (!pw_check("#pw", $("#pw").val(), "#pwFeedback", "비밀번호를 입력하세요.")) {
+			return false;
+		} else if (!pwRecheck("#pwCheck", $("#pwCheck").val(), "#pwCheckFeedback", "비밀번호를 입력하세요.")) {
+			return false;
+		} else if (!name_check("#name", $("#name").val(), "#nameCheckFeedback", "이름을 입력하세요.")) {
+			return false;
+		} else if (!nick_nm_check("#nick_nm", $("#nick_nm").val(), "#nick_nmCheckFeedback", "닉네임을 입력하세요.")) {
+			return false;
+		} else true;
+	};
+		
+
+	$("#btnSave").on("click", function() {
+		/* if (validation() == false) {
+			return false;
+		} else { */
+			swAlert("가입성공!", "Welcometo SHARE!", "success");
+		/* } */
+		
+	});
+ 		
+	 	function swAlert(title, text, icon) {
+		swal({
+			title: title,
+			text: text,
+			icon: icon,
+			button: "확인"
+		}).then((value) => {
+			if (value) {
+				location.href = "/shareLogin";
+			}
+		});
+	}
 	</script>
 	
 </body>

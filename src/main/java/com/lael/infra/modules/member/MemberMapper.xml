@@ -46,6 +46,10 @@
 			,a.DelNy
 			,a.createDate
 			,a.shareCount
+			,a.user_div
+			,a.sns_type
+			,a.snsImg 
+			,a.img
 		<include refid="selectCommon" />
 		ORDER BY a.seq DESC
 		<include refid="Base.orderByLimitForMysql" />

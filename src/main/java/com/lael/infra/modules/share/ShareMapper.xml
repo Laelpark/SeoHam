@@ -52,6 +52,7 @@
 			,c.price
 			,c.DelNy
 			,c.createDate  <!--  관리자 today를 위해 생성 -->
+			,f.img
 			,f.likeNy
 		FROM share c
 			JOIN favorite f on f.shareSeq = c.seq  <!-- shareSeq와 seq를 맞춰야 함 -->
@@ -102,11 +103,13 @@
 	INSERT INTO favorite (
 			memberSeq
 			,shareSeq
+			,img
 			,likeNy
 		)
 		VALUES (
 			#{memberSeq}
 			,#{seq}
+			,#{img}
 			,1
 		)
 
@@ -120,6 +123,7 @@
 			likeSeq
 			,memberSEq
 			,shareSeq
+			,img
 			,likeNy
 			
 		FROM favorite
@@ -132,6 +136,7 @@
 		UPDATE favorite
 		SET
 			likeNy = #{likeNy}
+			img = #{img}
 		where 1=1
 			and memberSeq = #{memberSeq}
 			and shareSeq = #{seq}
