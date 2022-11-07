@@ -155,12 +155,9 @@
 									<div class="col">
 										<label for="ccgId" class="form-label">아이디 <span class="text-danger">*</span></label>
 										<input type="hidden" id="ccgIdAllowedNy" name="ccgIdAllowedNy" value="0">
-										<input type="text" class="form-control" id="ccgId" name="ccgId"
-											value="<c:out value="${item.ccgId}"/>"
-											maxlength="20"
+										<input type="text" class="form-control" id="ccgId" name="ccgId"value="<c:out value="${item.ccgId}"/>"maxlength="20"
 											placeholder="영대소문자, 숫자, 특수문자, 4~20자리"
-											<c:if test="${not empty item.ccgId}">readonly</c:if>
-										>
+											<c:if test="${not empty item.ccgId}">readonly</c:if>>
 										<div class="invalid-feedback" id="ccgIdFeedback"></div>
 									</div>
 									<div class="col">
@@ -311,54 +308,6 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bd29bc43140391b0206f367d2b8c01eb&libraries=services"></script>
 	<script>
-
-		/* function test() {
-			alert("test");
-			
-			alert(document.getElementById("name").value);
-			alert(document.getElementById("name_eng").value);
-			alert(document.getElementById("codeGroup_code").value);
-			alert(document.getElementById("codeGroup_another").value);
-			alert(document.getElementById("codeGroup_tel").options[document.getElementById("codeGroup_tel").selectedIndex].value);  //select문 띄우는 구 방식
-			alert(document.querySelector("input[name= 'codeGroup_Gender']:checked").value); */
-
-		/* if(document.getElementById("name").value == '' || document.getElementById("name").value == null) {
-			alert("코드그룹 이름(한글)을 입력해주세요.");
-			document.getElementById("name").value = "";
-			document.getElementById("name").focus();
-			return false;
-		} 
-		
-		if(document.getElementById("codeGroup_tel").value == '' || document.getElementById("codeGroup_tel").value == null) {
-			alert("통신사를 선택해주세요.");
-			document.getElementById("codeGroup_tel").value = "";
-			document.getElementById("codeGroup_tel").focus();
-			return false;
-		}  */
-
-		// radio 선택여부 확인용 ver.jquery
-		/* 	 if($('input:radio[name=codeGroup_Gender]').is(':checked') == false) {
-		    	alert("성별을 선택하세요");
-				} */
-
-		// radio 선택여부 확인용 ver.Javascript
-		/* 		if (document.querySelector('input[type=radio][name=codeGroup_Gender]:checked') == null) {
-					alert("성별을 선택해주세요");
-				} else {
-					alert(document.querySelector('input[name=codeGroup_Gender]:checked').value);
-				}
-		 
-			var result = '';
-			const checks = document.getElementsByName("codeGroup_marry");
-		 	if (document.querySelector('input[type=checkbox][name=codeGroup_marry]:checked') == null) {
-				alert("결혼여부를 선택해주세요");
-			} else {
-				// 두개 선택 시 모두 출력
-				for (var i = 0; i <checks.length; i++) {
-					result += checks[i].value + " ";
-				} 
-				alert(result);
-			} */
 
 		var goUrlList = "/codeGroup/codeGroupList"; /* #-> */
 		var goUrlInst = "/codeGroup/codeGroupInst"; /* #-> */

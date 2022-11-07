@@ -182,7 +182,7 @@
 																<th scope="row" class="td1" src="#">
 																	<input type="checkbox" name="chk_box" onclick="checkSelectAll(this)">
 																</th>
-																<td><c:out value="${vo.totalRows2 - ((vo.thisPage2 - 1) * vo.rowNumToShow2 + status.index) }"/></td>
+																<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
 																<td>${list.ccgSeq}</td>
 																<td><a href="javascript:goForm(<c:out value="${list.ccgSeq }"/>)" class="text-decoration-none"><c:out value="${list.name }"/></a></td>
 																<td>${list.name_eng}</td>
@@ -308,11 +308,13 @@
 					checkbox.checked = selectAll.checked
 				})
 			}
+			
 			function deleteValue(){
 				var ur1 = "delete";
 				var valueArr = new Array();
 				var list = $()
 			}
+			
 			function newPage() {
 				window.location.href = './memberMod.html'
 			} */
