@@ -136,21 +136,11 @@
 		UPDATE favorite
 		SET
 			likeNy = #{likeNy}
-			img = #{img}
+			,img = #{img}
 		where 1=1
 			and memberSeq = #{memberSeq}
 			and shareSeq = #{seq}
 	</update>
-  
-<!--   <update id="likeUpdt_cancel" parameterType="HashMap">
-	    UPDATE favorite
-	    SET 
-	    	likeNy = 0
-	    WHERE 1=1
-	    	and memberSeq = #{memberSeq}
-			and shareSeq = #{seq}
-  </update> -->
-	
 	
 	<select id="selectList1" resultMap="resultMapObj">
 		<include refid="Base.selectListUpperForMysql"></include>

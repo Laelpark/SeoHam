@@ -57,7 +57,7 @@ public class ShareController {
 	@RequestMapping(value = "/sharePot")
 	public String sharePot( @ModelAttribute("vo") ShareVo vo, Model model, Share dto) throws Exception {
 		
-		setSearchAndPaging(vo); 
+		vo.setParamsPaging(service.selectOneCount(vo)); 
 		
 		List<Share> list = service.selectListFav(vo);
 		model.addAttribute("list", list); 
@@ -95,6 +95,26 @@ public class ShareController {
 		return "infra/share/user/shareNow";
 	}
 	
+	@RequestMapping(value = "/shareInst")
+	public String shareInst(ShareVo vo, Share dto, RedirectAttributes redirectAttributes) throws Exception {
+		
+		service.insert(dto);
+		
+		vo.setSeq(dto.getSeq());
+		redirectAttributes.addFlashAttribute("vo", vo); 
+		
+		return "redirect:/shareNow";
+	}
+	
+	@RequestMapping(value = "/shareUpdt")
+	public String shareUpdt(ShareVo vo, Share dto, RedirectAttributes redirectAttributes) throws Exception {
+		
+		service.update(dto);
+		
+		redirectAttributes.addFlashAttribute("vo", vo); 
+		return "redirect:/sharePot";
+	}
+	
 	@RequestMapping(value = "/shareNowView")
 	public String shareNowView(@ModelAttribute("vo") ShareVo vo, Model model) throws Exception {
 		
@@ -105,26 +125,6 @@ public class ShareController {
 		model.addAttribute("list", list);  
 		
 		return "infra/share/user/shareNowView";
-	}
-	
-	@RequestMapping(value = "/shareInst")
-	public String shareInst(ShareVo vo, Share dto, RedirectAttributes redirectAttributes) throws Exception {
-
-		service.insert(dto);
-		
-		vo.setSeq(dto.getSeq());
-		redirectAttributes.addFlashAttribute("vo", vo); 
-
-		return "redirect:/shareNow";
-	}
-	
-	@RequestMapping(value = "/shareUpdt")
-	public String shareUpdt(ShareVo vo, Share dto, RedirectAttributes redirectAttributes) throws Exception {
-
-		service.update(dto);
-		
-		redirectAttributes.addFlashAttribute("vo", vo); 
-		return "redirect:/sharePot";
 	}
 	
 	@RequestMapping(value = "/myPage")
@@ -177,11 +177,14 @@ public class ShareController {
 		Share one = service.likeOne(dto);
 		
 		if(one == null) {
+		    service.likeCount(dto);
 			returnMap.put("rt", "success");
 		} else if(one.getLikeNy() == 0) {
-			returnMap.put("rt", "unLike");
+		    service.likeUpdt(dto);
+			returnMap.put("rt", "success");
 		} else if(one.getLikeNy() == 1){
-			returnMap.put("rt", "like");
+		    service.likeUpdt(dto);
+			returnMap.put("rt", "success");
 		} else {
 			returnMap.put("rt", "fail");
 		}

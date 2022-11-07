@@ -22,9 +22,8 @@
 <body>
 	<!-- start -->
 	<form id="myForm" name="myForm" method="post">
-		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>"> <input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>"> <input type="hidden" name="seq" value="<c:out value="${vo.seq}"/>"> <input type="hidden"
-			name="memberSeq" value="<c:out value="${sessSeq}"/>"
-		>
+		<%@include file="shareVo.jsp"%>
+		<input type="hidden" name="memberSeq" value="<c:out value="${sessSeq}"/>">
 		<p style="background-color: rgb(142, 68, 173); height: 30px;"></p>
 		<div class="container1 ms-3 me-3">
 			<nav class="bg-transparent">
@@ -107,13 +106,14 @@
 										<span class="rating-star"> 
 											<c:choose>
 												<c:when test="${empty list.likeNy }">
-													<span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq})"> 
+													<span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq}, ${status.index })"> 
 														<input type="hidden" value="0" name="likeNy"><img alt="" class="like" src="/resources/images/share/star_e.png" style="width: 30px; height: 30px;">
 													</span>
 												</c:when>
 												<c:otherwise>
-													<span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq})"> 
+													<span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq}, ${status.index })"> 
 														<input type="hidden" value="${list.likeNy }" name="likeNy${status.index }"> 
+														<input type="hidden" value="" name="img${status.index }"> 
 														<img alt="" name="img" class="like${status.index }" src="${list.img}" style="width: 30px; height: 30px;">
 													</span>
 												</c:otherwise>
@@ -148,6 +148,8 @@
 		var goUrlList = "/sharePot";
 		var goUrlNowView = "/shareNowView";	
 		var goUrlLogin = "/shareLogin";
+		
+		//like 버튼 inst, updt
 		var goUrlInst = "/likeCount"
 		var goUrlUpdt = "/likeUpdt"
 		
@@ -171,50 +173,44 @@
 	 			form.attr("action", goUrlNowView).submit();
 	 		}
 
-		 // like 버튼
-	 	/* function favorites(e, seq){
-			 $("input[name=seq]").val(seq);
-		 		event.stopPropagation();
-		      var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
-		      document.getElementsByClassName('Unfavorites')[i].style.display = "none"; // 즐겨찾기 취소 버튼 비활성화
-		      document.getElementsByClassName('Favorites')[i].style.display = "inline"; // 즐겨찾기 추가 버튼 활성화
-		     form.attr("action", goUrlInst).submit();
-		   }
-		   // like 해제
-		   function Unfavorites(e, seq){
-				$("input[name=seq]").val(seq);
-			   event.stopPropagation();
-		      var i = $(".Favorites").index(e); // 같은 클래스 내 index 값을 가져옴
-		      document.getElementsByClassName('Unfavorites')[i].style.display = "inline"; // 즐겨찾기 취소 버튼 비활성화
-		      document.getElementsByClassName('Favorites')[i].style.display = "none"; // 즐겨찾기 추가 버튼 활성화
-     		form.attr("action", goUrlInst).submit();
-		   } 
-		    */
- 		 favorites = function(e, seq) {
-			event.stopPropagation();
-			var like = $("input[name=likeNy]").val();
-			if (like == 0) {
-				$("input[name=likeNy]").val(1);
-				 var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
-				 document.getElementsByClassName("like")[i].src = "/resources/images/share/star_y.png";
-				 form.attr("action", goUrlInst).submit();
-			} else {
-				$("input[name=likeNy]").val(0);
-				 var i = $(".Unfavorites").index(e); // 같은 클래스 내 index 값을 가져옴
-				 document.getElementsByClassName("like")[i].src = "/resources/images/share/star_e.png";
-				 form.attr("action", goUrlUpdt).submit();
-			}
-		}  
 	</script>
+	
+	<!-- Like 버튼 구현 -->
+	
 	<script type="text/javascript">
 		
-	/* 	like = function(e, seq) {
-   			if ($("input[name=likeNy").val() == 0) {
-   				$(".like").attr("src", "/resources/images/share/star_e.png");
-   			} else {
-   				$(".like").attr("src", "/resources/images/share/star_y.png");
-   			}
-		} */
+	function favorites(e, seq, keyValue){
+		$("input[name=seq]").val(seq);
+		event.stopPropagation();
+		
+		if ($("input[name=likeNy"+keyValue+"]").val() == "0") {
+			$("input[name=likeNy"+keyValue+"]").val("1");
+			$("input[name=img"+keyValue+"]").val("/resources/images/share/star_y.png");
+			$(".like"+keyValue).attr("src", "/resources/images/share/star_y.png");
+		} else {
+			$("input[name=likeNy"+keyValue+"]").val("0");
+			$("input[name=img"+keyValue+"]").val("/resources/images/share/star_e.png");
+			$(".like"+keyValue).attr("src", "/resources/images/share/star_e.png");
+		}
+		/* form.attr("action", goUrlInst).submit(); */
+		$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/likeCount"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "memberSeq" : $("input[name=memberSeq]").val(), "seq" : $("input[name=seq]").val(), "img": $('input[name=img'+keyValue+']').val(), "likeNy" : $('input[name=likeNy'+keyValue+']').val()}
+				,success: function(response) {
+					if(response.rt == "fail") {
+						alert("제대로 선택하세요!!");
+					} 
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+	}
 	</script>
 </body>
 </html>

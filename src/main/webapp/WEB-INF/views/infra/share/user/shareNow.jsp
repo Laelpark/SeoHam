@@ -137,8 +137,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
-	<script>
-	
+	<script type="text/javascript">
 	// 이미지 미리보기
 	
 	 const reader = new FileReader();
@@ -153,6 +152,8 @@
         reader.readAsDataURL(imgFile);
     })
 
+    </script>
+   <script type="text/javascript">
 	var goUrlInst = "/shareInst";
 	var goUrlUpdt = "/shareUpdt";
 	var goUrlDele = "/shareDele";
@@ -169,9 +170,8 @@
 			form.attr("action", goUrlUpdt).submit();
 		}
 	});
-	
 	</script>
-	<script>
+	<script type="text/javascript">
      // 파일 업로드 s
 
 	upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType) {

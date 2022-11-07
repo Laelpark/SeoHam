@@ -45,26 +45,16 @@
 				</ul>
 			</div>
 			<div class="content">
-				<div class="row">
-			        <div class="first col-3">프로필 수정</div>
-		         	<div class="col" style="margin-left: 90px; height: 300px; margin-top: 30px;">
-							<div class="filebox">
-								<img src="" id="img" width="295px;" height="230px;"> 
-							</div>
-							<div class="row mt-5">
-								<button type="button" class="btn btn-outline-secondary ms-5 me-4" style="border-color: lightgray;">확인</button>
-								<button type="button" class="btn btn-outline-secondary" style="border-color: lightgray;">취소</button>
-							</div>
-				    </div>
-		        </div>
-		        <div class="row">
-			        <div class="second col-3">주 share 장소</div>
-			         <input type="text" id="share_place" name="share_place" class="form-control col" placeholder="주 거래 장소를 입력해주세요." value="<c:out value="${item.share_place}"/>" disabled="disabled">
-		        </div>
-		        <div class="row">
-			        <div class="third col-3">닉네임 변경</div>
-			        <input type="text" id="nick_nm" name="nick_nm" class="form-control col" placeholder="변경할 닉네임을 입력해주세요." value="<c:out value="${item.nick_nm}"/>" disabled="disabled">
-		        </div>
+		        <div class="first col-3">프로필 수정</div>
+				<img src="/resources/images/share/user.png" id="img"> 
+				<div class="mt-5">
+					<button type="button" class="btn btn-outline-secondary ms-5 me-4" style="border-color: lightgray;">확인</button>
+					<button type="button" class="btn btn-outline-secondary" style="border-color: lightgray;">취소</button>
+				</div>
+		        <div class="second col-3">주 share 장소</div>
+		         <input type="text" id="share_place" name="share_place" class="form-control col" placeholder="주 거래 장소를 입력해주세요." value="<c:out value="${item.share_place}"/>" disabled="disabled">
+		        <div class="third col-3">닉네임 변경</div>
+		        <input type="text" id="nick_nm" name="nick_nm" class="form-control col" placeholder="변경할 닉네임을 입력해주세요." value="<c:out value="${item.nick_nm}"/>" disabled="disabled">
 		        <br>
 		        <br>
 			    <br><div class='col-3' id="btn">
