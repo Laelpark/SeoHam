@@ -19,6 +19,10 @@ public class ShareDao {
 	List<Share> list = sqlSession.selectList(namespace + ".selectList", vo);
 	return list; 								
 	}
+	
+	public int selectOneCount(ShareVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
+	}
 
 	public List<Share> selectListFav(ShareVo vo){ 
 		List<Share> list = sqlSession.selectList(namespace + ".selectListFav", vo);
@@ -59,16 +63,16 @@ public class ShareDao {
 		return sqlSession.selectOne(namespace + ".selectOne", vo);
 	}
 
-	public int selectOneCount(ShareVo vo) {
-		return sqlSession.selectOne(namespace + ".selectOneCount", vo);
-	}
-	
 	public int likeCount(Share dto) {
 		return sqlSession.insert(namespace + ".likeCount", dto); 
 	}
 	
 	public int likeUpdt(Share dto) {
 		return sqlSession.update(namespace + ".likeUpdt", dto); 
+	}
+
+	public int likeCountUpdt(Share dto) {
+		return sqlSession.update(namespace + ".likeCountUpdt", dto); 
 	}
 
 	public Share likeOne(Share dto){ 

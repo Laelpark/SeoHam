@@ -24,10 +24,10 @@ public class ShareController {
 	@Autowired
 	MemberServiceImpl Mservice;
 	
-	 private void setSearchAndPaging(ShareVo vo) throws Exception {
-		  vo.setShDelNy(vo.getShDelNy() == null ? 0: vo.getShDelNy());
-		  vo.setParamsPaging(service.selectOneCount(vo)); 
-	  }
+//	 private void setSearchAndPaging(ShareVo vo) throws Exception {
+//		  vo.setShDelNy(vo.getShDelNy() == null ? 0: vo.getShDelNy());
+//		  vo.setParamsPaging(service.selectOneCount(vo)); 
+//	  }
 	 
 	 // 유저
 	
@@ -42,11 +42,9 @@ public class ShareController {
 	}
 	
 	@RequestMapping(value = "/shareHot")
-	public String shareHot(@ModelAttribute("vo") ShareVo vo, Model model, Share dto) throws Exception {
+	public String shareHot(@ModelAttribute("vo") ShareVo vo, Model model) throws Exception {
 		
-		setSearchAndPaging(vo); 
-		
-		
+		vo.setParamsPaging(service.selectOneCount(vo));
 		List<Share> list = service.selectList(vo);
 		model.addAttribute("list", list); 
 		
@@ -55,10 +53,9 @@ public class ShareController {
 
 	
 	@RequestMapping(value = "/sharePot")
-	public String sharePot( @ModelAttribute("vo") ShareVo vo, Model model, Share dto) throws Exception {
+	public String sharePot( @ModelAttribute("vo") ShareVo vo, Model model) throws Exception {
 		
-		vo.setParamsPaging(service.selectOneCount(vo)); 
-		
+		vo.setParamsPaging(service.selectOneCount(vo));
 		List<Share> list = service.selectListFav(vo);
 		model.addAttribute("list", list); 
 		
@@ -72,10 +69,10 @@ public class ShareController {
 		Share like = service.likeOne(dto);
 		
 		if (like.getLikeNy() == null) {
-			service.likeCount(dto);
+			service.likeInst(dto);
 			returnMap.put("rt", "success");
 		} else if (like.getLikeNy() != null) {
-			service.likeUpdt(dto);
+			service.likeUpdt2(dto);
 			returnMap.put("rt", "update");
 		} else {
 			returnMap.put("rt", "fail");
@@ -177,13 +174,13 @@ public class ShareController {
 		Share one = service.likeOne(dto);
 		
 		if(one == null) {
-		    service.likeCount(dto);
+		    service.likeInst(dto);
 			returnMap.put("rt", "success");
 		} else if(one.getLikeNy() == 0) {
-		    service.likeUpdt(dto);
+		    service.likeUpdt2(dto);
 			returnMap.put("rt", "success");
 		} else if(one.getLikeNy() == 1){
-		    service.likeUpdt(dto);
+		    service.likeUpdt2(dto);
 			returnMap.put("rt", "success");
 		} else {
 			returnMap.put("rt", "fail");

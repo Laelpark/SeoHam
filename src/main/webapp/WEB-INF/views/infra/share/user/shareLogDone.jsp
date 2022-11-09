@@ -242,10 +242,6 @@
 		 $(location).attr("href", goUrlLogin);
 		});
 	
-	/* $('#btnMypage').on("click", function() {
-		 $(location).attr("href", goUrlMyPage);
-		}); */
-	
 	$('#btnList').on("click", function() {
 		 $(location).attr("href", goUrlLikeList);
 		});

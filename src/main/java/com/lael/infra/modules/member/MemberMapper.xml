@@ -17,7 +17,6 @@
 			<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 		</choose>
 		<choose>
-			<!-- <when test="shOption == 1">AND seq = #{shValue}</when> -->
 			<when test="shOption == 1">AND a.name LIKE CONCAT('%',#{shValue},'%')</when>
 			<when test="shOption == 2">AND a.nick_nm LIKE CONCAT('%',#{shValue},'%')</when>
 			<when test="shOption == 3">AND a.email LIKE CONCAT('%',#{shValue},'%')</when>

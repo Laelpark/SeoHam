@@ -18,7 +18,10 @@ import org.springframework.stereotype.Service;
 	public int selectMyCount(ShareVo vo) throws Exception {
 		return dao.selectOneCount2(vo);
 	}
-	
+	@Override
+	public int selectOneCount(ShareVo vo) throws Exception {
+		return dao.selectOneCount(vo);
+	}
 	@Override
 	public List<Share> selectMyList(ShareVo vo) throws Exception {
 		return dao.selectMyList(vo);
@@ -33,11 +36,6 @@ import org.springframework.stereotype.Service;
 	public List<Share> selectList2(ShareVo svo) throws Exception {
 		List<Share> sList = dao.selectList2(svo);
 		return sList;
-	}
-	
-	@Override
-	public int selectOneCount(ShareVo vo) throws Exception {
-		return dao.selectOneCount(vo);
 	}
 
 	@Override
@@ -77,6 +75,11 @@ import org.springframework.stereotype.Service;
 	public int likeUpdt(Share dto) throws Exception {
 		return dao.likeUpdt(dto);
 	}
+	
+	@Override
+	public int likeCountUpdt(Share dto) throws Exception {
+		return dao.likeCountUpdt(dto);
+	}
 
 	@Override
 	public Share likeOne(Share dto) throws Exception {
@@ -96,6 +99,22 @@ import org.springframework.stereotype.Service;
 	@Override
 	public Share selectOne(ShareVo vo) throws Exception {
 		return dao.selectOne(vo);
+	}
+	
+	public void likeInst(Share dto) throws Exception {
+		System.out.println("insert 여기 맞음?");
+		likeCount(dto);
+		System.out.println("likeCount 확인");
+		likeCountUpdt(dto);
+		System.out.println("likeCountUpdt 확인");
+	}
+	
+	public void likeUpdt2(Share dto) throws Exception {
+		System.out.println("update 여기 맞음?");
+		likeUpdt(dto);
+		System.out.println("likeCount 확인");
+		likeCountUpdt(dto);
+		System.out.println("likeCountUpdt 확인");
 	}
 	
 }

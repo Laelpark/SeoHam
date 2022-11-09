@@ -6,11 +6,15 @@ public class ShareVo extends BaseVo{
 
 	private String seq;
 	private String mSeq;
-	private Integer shOption;
-	private String shValue;
 	private Integer DelNy;
-	private Integer shUpdt;
+	private String memberSeq;
 	
+	public String getMemberSeq() {
+		return memberSeq;
+	}
+	public void setMemberSeq(String memberSeq) {
+		this.memberSeq = memberSeq;
+	}
 	public String getmSeq() {
 		return mSeq;
 	}
@@ -23,31 +27,11 @@ public class ShareVo extends BaseVo{
 	public void setSeq(String seq) {
 		this.seq = seq;
 	}
-	public Integer getShOption() {
-		return shOption;
-	}
-	public void setShOption(Integer shOption) {
-		this.shOption = shOption;
-	}
-	public String getShValue() {
-		return shValue;
-	}
-	public void setShValue(String shValue) {
-		this.shValue = shValue;
-	}
 	public Integer getDelNy() {
 		return DelNy;
 	}
 	public void setDelNy(Integer DelNy) {
 		this.DelNy = DelNy;
 	}
-	public Integer getShUpdt() {
-		return shUpdt;
-	}
-	public void setShUpdt(Integer shUpdt) {
-		this.shUpdt = shUpdt;
-	}
-	
-	
 
 }

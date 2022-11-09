@@ -24,15 +24,16 @@
 	<div class="container1">
 		<nav class="bg-transparent">
 			<div class="container">
-				<a class="hidden" href="share" style="width: 150px;"> <img src="../../resources/images/share/sharenow.png" alt="" width="230" height="60" class="d-inline-block align-text-top ms-3">
+				<a class="hidden" href="share" style="width: 150px;"> 
+				<img src="../../resources/images/share/sharenow.png" alt="" width="230" height="60" class="d-inline-block align-text-top ms-3">
 				</a>
 			</div>
 		</nav>
 		<nav class="navbar navbar-expand-lg bg-transparent">
 			<div class="topBtn collapse navbar-collapse" id="navbarSupportedContent">
 				<input type="hidden" class="d-flex" role="search">
-				<button type="button" class="btn btn-outline-danger me-4">취소</button>
-				<button type="button" class="btn btn-outline-success" id="btnSave" name="btnSave">저장</button>
+					<button type="button" class="btn btn-outline-danger me-4">취소</button>
+					<button type="button" class="btn btn-outline-success" id="btnSave" name="btnSave">저장</button>
 				</input>
 			</div>
 		</nav>
@@ -50,7 +51,8 @@
 								<option value="" <c:if test="${empty item.food_div }">selected</c:if>>카테고리</option>
 								<c:set var="listCodeFood" value="${CodeServiceImpl.selectListCachedCode('4') }" />
 								<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
-									<option value="${item.food_div }" <c:if test="${item.food_div eq listFood.cdSeq}">selected</c:if>>
+									<option value="${listFood.cdSeq }" 
+										<c:if test="${item.food_div eq listFood.cdSeq}">selected</c:if>>
 										<c:out value="${listFood.name }"/>
 									</option>
 								</c:forEach>
@@ -65,7 +67,10 @@
 								<option value="" <c:if test="${empty item.people_num}">selected</c:if>>인원</option>
 								<c:set var="listCodeNum" value="${CodeServiceImpl.selectListCachedCode('5') }" />
 								<c:forEach items="${listCodeNum}" var="listNum" varStatus="statusNum">
-									<option value="${item.people_num }" <c:if test="${item.people_num eq listNum.cdSeq}">selected</c:if>><c:out value="${listNum.name }"/></option>
+									<option value="${listNum.cdSeq }" 
+										<c:if test="${item.people_num eq listNum.cdSeq}">selected</c:if>>
+										<c:out value="${listNum.name }"/>
+									</option>
 								</c:forEach>
 							</select>
 						</li>

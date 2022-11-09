@@ -12,8 +12,8 @@ public class Share {
 	private String info;
 	private String ccgSeq;
 	private String createDate;
-	private Integer share_member_seq;
 	private Integer likeCount;
+	private Integer share_member_seq;
 	
 	// favorite s
 	private String likeSeq;

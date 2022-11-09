@@ -12,10 +12,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>SharePotList</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="/resources/css/admin/userSharePotList.css">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" type="text/css" href="/resources/css/admin/userSharePotList.css">
+	<link rel="stylesheet" href="/code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body style="background-color: rgb(224, 224, 224);">
     <div class="container">
@@ -73,8 +73,6 @@
 	                		</tr>
 	                	</thead>
 	                	<tbody>
-		                	<c:set var="listCodeFood" value="${shareCodeGroupServiceImpl.selectListCachedCode('4') }" />
-							<c:set var="listCodeNum" value="${shareCodeGroupServiceImpl.selectListCachedCode('5') }" />	
 	                		<c:choose>
 	                			<c:when test="${fn:length(list) eq 0 }">	                			
 	                				<td class="text-center" colspan="8">There is no data!</td>
@@ -85,16 +83,24 @@
 		                					<td style="font-size: small">
 		                						<input class="form-check-input" type="checkbox" id="checkboxSeq" name="checkboxSeq" value="<c:out value="${list.seq }"/>"> 
 	                						</td>
-	                						<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
+	                						<td>
+	                							<c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/>
+	               							</td>
 		                					<td>${list.food_div}
+		                					<c:set var="listCodeFood" value="${shareCodeGroupServiceImpl.selectListCachedCode('4') }" />
 		                						<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
-													<c:if test="${list.food_div eq listFood.cdSeq}"><c:out value="${listFood.name}"/></c:if>
+													<c:if test="${list.food_div eq listFood.cdSeq}">
+														<c:out value="${listFood.name}"/>
+													</c:if>
 												</c:forEach>
 		                					</td>
 		                					<td>${list.title}</td>
 		                					<td>${list.people_num }
+		                						<c:set var="listCodeNum" value="${shareCodeGroupServiceImpl.selectListCachedCode('5') }" />	
 		                						<c:forEach items="${listCodeNum}" var="listNum" varStatus="statusNum">
-													<c:if test="${list.people_num eq listNum.cdSeq}"><c:out value="${listNum.name}"/></c:if>
+													<c:if test="${list.people_num eq listNum.cdSeq}">
+														<c:out value="${listNum.name}"/>
+													</c:if>
 												</c:forEach>
 		                					</td>
 		                					<td>${list.place}</td>
@@ -177,7 +183,7 @@
 	 goList = function(thisPage) {
 			$("input:hidden[name=thisPage]").val(thisPage);
 			form.attr("action", goUrlSharePotList).submit();
-		};
+	};
 	
 	$("#btnReset").on("click", function(){
 		 $(location).attr("href", goUrlSharePotList);
@@ -210,7 +216,8 @@
 	$('#shareHotlist').on("click", function() {
 		 $(location).attr("href", goUrlShareHotList);
 		});
-	
+	</script>
+	<script type="text/javascript">
 	// 데이트픽커
 	document.getElementById('datepickerS').valueAsDate = new Date();
 	document.getElementById('datepickerE').valueAsDate = new Date();
@@ -243,7 +250,8 @@
 			  yearSuffix: '년'
 		  });
 	  });
-	  
+	  </script>
+	  <script type="text/javascript">
 	  // 체크박스
 	  	
 	  $("#checkboxAll").click(function() {
@@ -321,7 +329,6 @@
 							
 		form.attr("action", goUrlMultiDele).submit();
 	});
-	 
 	</script>
 </body>
 </html>
