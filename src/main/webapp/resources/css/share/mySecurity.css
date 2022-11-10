@@ -247,3 +247,19 @@ ul {
     border-style: none;
     color: black;
 }
+
+.nav-link {
+	cursor: pointer;
+}
+
+#btnLogout {
+     --bs-btn-padding-x: 0rem;
+    --bs-btn-padding-y: 0rem;
+    --bs-btn-border-width: 0px;
+    
+}
+
+#Imglogout {
+	width: 30px;
+	height: 30px;
+}

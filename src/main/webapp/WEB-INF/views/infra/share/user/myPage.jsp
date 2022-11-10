@@ -23,11 +23,12 @@
 		<div class="navbar" style="background-color:rgb(142, 68, 173); height: 30px; width: 100%;"></div>
 		<div class="sideEmty">
 			<div class="header row">
-				<a class="navbar-brand col" href="share">
+				<a class="navbar-brand" href="share" style="width: 500px;">
 					<img src="../../resources/images/share/fullLogo_p.png" id="logoimg">
-					<button id="btnLogout" type="button" class="btn" style="height: 30px; text-align: center;">
-					<img src="../../resources/images/share/logout.png" id="Imglogout">
-					Logout</button>
+					<button id="btnLogout" type="button" class="btn ms-5" style="height: 30px; text-align: center;">
+						<img src="../../resources/images/share/logout.png" id="Imglogout">
+						Logout
+					</button>
 				</a>
 				<ul class="nav nav-tabs mt-5">
 					<li class="nav-item">
@@ -37,31 +38,47 @@
 				  		<a class="nav-link" onclick="goList()">My Share List</a>
 					</li>
 					<li class="nav-item">
-			 	 		<a class="nav-link" onclick="goInfo()">Personal Information</a>
+			 	 		<a class="nav-link" onclick="goInfo()">Change My Information</a>
 					</li>
 					<li class="nav-item">
 			 	 		<a class="nav-link" onclick="goSecu()">MY Security</a>
 					</li>
 				</ul>
 			</div>
-			<div class="content">
-		        <div class="first col-3">프로필 수정</div>
-				<img src="/resources/images/share/user.png" id="img"> 
-				<div class="mt-5">
-					<button type="button" class="btn btn-outline-secondary ms-5 me-4" style="border-color: lightgray;">확인</button>
-					<button type="button" class="btn btn-outline-secondary" style="border-color: lightgray;">취소</button>
-				</div>
-		        <div class="second col-3">주 share 장소</div>
-		         <input type="text" id="share_place" name="share_place" class="form-control col" placeholder="주 거래 장소를 입력해주세요." value="<c:out value="${item.share_place}"/>" disabled="disabled">
-		        <div class="third col-3">닉네임 변경</div>
-		        <input type="text" id="nick_nm" name="nick_nm" class="form-control col" placeholder="변경할 닉네임을 입력해주세요." value="<c:out value="${item.nick_nm}"/>" disabled="disabled">
-		        <br>
-		        <br>
-			    <br><div class='col-3' id="btn">
-			        <button type="button" class="btn btn-outline-primary mb-2 ms-3" id="btnS">적용</button>
-					<button type="button" class="btn btn-outline-danger mb-2 ms-3" id="btnC">취소</button>
-			    </div>
-		    </div>
+			<div style="margin: 30px 0px 0px 200px;">
+				<table>
+					<label for="img" class="form-label">My Profile</label>
+					<td>
+						<div class="mt-2 mb-2">
+							<label for="img1" class="form-label input-file-button">
+					 			<input class="form-control form-control-sm" id="img1" name="img1" type="file" style="display: none;" onChange="upload('memberUploadedImg', 1, 0, 1, 0, 0, 1);">
+								<img src="/resources/images/share/user.png" id="img1" name="img1"> 
+							</label>
+							<div class="addScroll">
+								<ul id="ulFile1" class="list-group"></ul>
+							</div>
+						</div>
+						<button type="button" class="btn btn-outline-secondary ms-5 me-4" style="border-color: lightgray;">확인</button>
+						<button type="button" class="btn btn-outline-secondary" style="border-color: lightgray;">취소</button>
+					</td>
+				</table>
+				<hr style="color: rgb(78, 78, 78); width: 800px;">
+				<table>
+					<td>
+						<label>My Share Place</label>
+						<input class="mt-2 form-control" id="share_place" name="share_place" value="<c:out value="${item.share_place}"/>" disabled="disabled">
+						<div class="invalid-feedback" id="idFeedback"></div>
+					</td>
+				</table>
+				<hr style="color: rgb(78, 78, 78); width: 800px;">
+				<table>
+					<td>
+						<label>My Nick Name</label>
+						<input class="mt-2 form-control" id="nick_nm" name="nick_nm" value="<c:out value="${item.nick_nm}"/>" disabled="disabled">
+						<div class="invalid-feedback" id="nick_nmCheckFeedback"></div>
+					</td>
+				</table>
+			</div>
 		</div>
 	</form>
 </body>
@@ -71,23 +88,10 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
 	
-	
-		const reader = new FileReader();
-	
-	    reader.onload = (readerEvent) => {
-	        document.querySelector("#img").setAttribute("src", readerEvent.target.result);
-	    };
-	
-	    document.querySelector("#chooseImg").addEventListener("change", (changeEvent) => {
-	
-	        const imgFile = changeEvent.target.files[0];
-	        reader.readAsDataURL(imgFile);
-	    })
-	    
 	    var goUrlMyList = "/myList";
 		var goUrlMyPage = "/myPage";
 		var goUrlMyInfo = "/personalInformation";
-		var goUrlMySecu = "/mySecurity";
+		var goUrlMySecurity = "/mySecurity";
 		var goUrlInst = "/shareMyPageInst";
 		var goUrlUpdt = "/shareMyPageUpdt";
 		var goUrlUpdt = "/shareMyPageUpdt";
@@ -129,6 +133,9 @@
 			form.attr("action", goUrlMypage).submit();
 		})
 		
+		</script>
+		<script type="text/javascript">
+		
 		//로그아웃 버튼
 		
 		$("#btnLogout").on("click", function(){
@@ -153,6 +160,20 @@
 		
 		</script>
 		<script>
+		
+		// 이미지 미리보기
+		
+			const reader = new FileReader();
+			
+		    reader.onload = (readerEvent) => {
+	        document.querySelector("#img").setAttribute("src", readerEvent.target.result);
+	    };
+	
+	    	document.querySelector("#chooseImg").addEventListener("change", (changeEvent) => {
+	
+	        const imgFile = changeEvent.target.files[0];
+	        reader.readAsDataURL(imgFile);
+	    })
 		
 		 // 파일 업로드 s
 

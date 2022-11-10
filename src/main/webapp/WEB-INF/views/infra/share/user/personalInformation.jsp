@@ -13,7 +13,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>personal information</title>
+	<title>Change My Information</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="/resources/css/share/mySecurity.css">
 
@@ -28,6 +28,10 @@
 			<div class="header">
 				<a class="navbar-brand" href="share">
 					<img src="../../resources/images/share/fullLogo_p.png" id="logoimg">
+					<button id="btnLogout" type="button" class="btn ms-4" style="height: 30px; text-align: center;">
+						<img src="../../resources/images/share/logout.png" id="Imglogout">
+						Logout
+					</button>
 				</a>
 				<ul class="nav nav-tabs mt-5">
 					<li class="nav-item">
@@ -37,7 +41,7 @@
 				  		<a class="nav-link" onclick="goList()">My Share List</a>
 					</li>
 					<li class="nav-item">
-			 	 		<a class="nav-link active" onclick="goInfo()">Personal Information</a>
+			 	 		<a class="nav-link active" onclick="goInfo()">Change My Information</a>
 					</li>
 					<li class="nav-item">
 			 	 		<a class="nav-link" onclick="goSecu()">MY Security</a>
@@ -47,7 +51,7 @@
 			<div style="margin: 30px 0px 0px 200px;">
 			<table>
 				<td>
-					<label for="id" class="form-label">아이디</label>
+					<label for="id" class="form-label">Id<span class="text-danger" style="font-size: 10px;"> 아이디는 변경불가</span></label>
 					<input class="a mt-2 form-control" id="id" name="id"  placeholder="아이디 입력" value="<c:out value="${item.id}"/>" disabled="disabled">
 					<div class="invalid-feedback" id="idFeedback"></div>
 				</td>
@@ -55,7 +59,7 @@
 			<hr style="color: rgb(78, 78, 78); width: 800px;">
 			<table>
 				<td>
-					<label>이름 <span class="text-danger">*</span></label>
+					<label>Name <span class="text-danger">*</span></label>
 					<input class="a mt-2 form-control" id="name" name="name"  placeholder="이름 입력" value="<c:out value="${item.name}"/>" required>
 					<div class="invalid-feedback" id="nameCheckFeedback"></div>
 				</td>
@@ -63,7 +67,7 @@
 			<hr style="color: rgb(78, 78, 78); width: 800px;">
 			<table>
 				<td>
-					<label>닉네임 <span class="text-danger">*</span></label>
+					<label>Nick Name <span class="text-danger">*</span></label>
 					<input class="a mt-2 form-control" id="nick_nm" name="nick_nm" value="<c:out value="${item.nick_nm}"/>" placeholder="닉네임 입력" required>
 					<div class="invalid-feedback" id="nick_nmCheckFeedback"></div>
 				</td>
@@ -71,13 +75,13 @@
 			<hr style="color: rgb(78, 78, 78); width: 800px;">
 			<table>
 				<td>
-					<label>주 쉐어장소</label>
+					<label>Share Place</label>
 					<input class="a mt-2 form-control" id="nick_nm" name="nick_nm"  placeholder="주 거래 장소를 입력해주세요." value="<c:out value="${item.share_place}"/>" required>
 					<div class="invalid-feedback" id="nick_nmCheckFeedback"></div>
 				</td>
 			</table>
 			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<label>이메일</label>
+			<label>Email</label>
 			<table>
 				<td>
 					<input class="b col mt-2 form-control" placeholder="이메일주소" id="email" name="email"
@@ -97,7 +101,7 @@
 				</td>
 			</table>
 			<hr style="color: rgb(78, 78, 78); width: 800px;">
-			<label>전화번호</label>
+			<label>Phone</label>
 			<table>
 				<td>
 					<select class="select mt-2 form-select" id="phone_div" name="phone_div">
@@ -142,7 +146,7 @@
 	var goUrlMyList = "/myList";
 	var goUrlMyPage = "/myPage";
 	var goUrlMyInfo = "/personalInformation";
-	var goUrlMySecu = "/mySecurity";
+	var goUrlMySecurity = "/mySecurity";
 	var goUrlInst = "/shareMyPageInst";
 	var goUrlUpdt = "/shareMyPageUpdt";
 	var goUrlUpdt = "/shareMyPageUpdt";
@@ -166,6 +170,7 @@
 	goSecu = function() {
 		form.attr("action", goUrlMySecurity).submit();
 	};
+	
 	</script>
 	<script type="text/javascript">
 	

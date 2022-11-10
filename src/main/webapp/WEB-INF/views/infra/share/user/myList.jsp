@@ -33,6 +33,10 @@
 			<div class="header">
 				<a class="navbar-brand" href="share">
 					<img src="../../resources/images/share/fullLogo_p.png" id="logoimg">
+					<button id="btnLogout" type="button" class="btn ms-4" style="height: 30px; text-align: center;">
+						<img src="../../resources/images/share/logout.png" id="Imglogout">
+						Logout
+					</button>
 				</a>
 				<ul class="nav nav-tabs mt-5">
 					<li class="nav-item">
@@ -42,7 +46,7 @@
 				  		<a class="nav-link active" onclick="goList()">My Share List</a>
 					</li>
 					<li class="nav-item">
-			 	 		<a class="nav-link"  onclick="goInfo()">Personal Information</a>
+			 	 		<a class="nav-link"  onclick="goInfo()">Change My Information</a>
 					</li>
 					<li class="nav-item">
 			 	 		<a class="nav-link" onclick="goSecu()">MY Security</a>
@@ -56,8 +60,8 @@
 						<li class="nav-item dropdown" value="">
 							<select class="form-select" id="shOption" name="shOption">
 								<option value="" <c:if test="${empty vo.shOption }">selected</c:if>>선택</option>
-								<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>카테고리</option>
 								<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>제목</option>
+								<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>카테고리</option>
 								<option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>인원</option>
 								<option value="4" <c:if test="${vo.shOption eq 4 }">selected</c:if>>장소</option>
 								<option value="5" <c:if test="${vo.shOption eq 5 }">selected</c:if>>시간</option>
@@ -144,7 +148,7 @@
 	var goUrlMyList = "/myList";
 	var goUrlMyPage = "/myPage";
 	var goUrlMyInfo = "/personalInformation";
-	var goUrlMySecu = "/mySecurity";
+	var goUrlMySecurity = "/mySecurity";
 	var goUrlInst = "/shareMyPageInst";
 	var goUrlUpdt = "/shareMyPageUpdt";
 	var goUrlUpdt = "/shareMyPageUpdt";
@@ -168,6 +172,10 @@
 	goSecu = function() {
 		form.attr("action", goUrlMySecurity).submit();
 	};
+
+	 /* $("#btnReset").on("click", function(){
+		 $(location).attr("href", goUrlMyList);
+	 }); */
 		 
 	 
 	

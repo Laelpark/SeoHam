@@ -88,3 +88,9 @@
 	background-image: "/resources/images/share/star_y.png";
 }
 
+#goNow {
+	border-style: solid;
+	border-color: rgb(142, 68, 173);
+	color: rgb(142, 68, 173);
+}
+

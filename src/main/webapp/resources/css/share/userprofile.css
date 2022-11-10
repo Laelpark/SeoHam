@@ -93,24 +93,33 @@ button.btn {
 }
 
 #share_place{
-	
-	width: 50px;
+	width: auto;
 	height: 50px;
-	margin-top: 90px;
-	margin-left: 20px;
+	border-color: transparent;
+	background-color: transparent;
 }
 
 #nick_nm{
-	width: 10px;
+	width: auto;
 	height: 50px;
-	margin-top: 90px;
-	margin-left: 20px;
+	border-color: transparent;
+	background-color: transparent;
 }
 
-#img {
+#img1 {
 	width: 138px;
 	height: 133px;
+	border-style:solid;
+	border-color: lightgrey;
 	border-radius: 95px;
 	margin-left: 60px;
 	margin-top: 20px;
+}
+
+hr {
+	width: 300px;
+}
+
+.nav-link {
+	cursor: pointer;
 }

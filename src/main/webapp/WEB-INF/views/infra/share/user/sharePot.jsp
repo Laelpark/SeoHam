@@ -37,6 +37,11 @@
 			<nav class="navbar navbar-expand-lg bg-transparent mt-3 mb-3 js">
 				<div class="c collapse navbar-collapse">
 					<ul class="navbar-nav mb-2">
+						<li class="nav-item dropdown ms-3">
+							<div class="d-flex">
+								<button class="btn bg-transparent me-2" type="button" id="goNow">Go Now</button>
+							</div>
+						</li>
 						<li class="nav-item dropdown" value=""><select class="form-select" id="shOption" name="shOption">
 								<option value="" <c:if test="${empty vo.shOption }">selected</c:if>>선택</option>
 								<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>카테고리</option>
@@ -160,6 +165,7 @@
 
 		var goUrlList = "/sharePot";
 		var goUrlNowView = "/shareNowView";	
+		var goUrlNow = "/shareNow";	
 		var goUrlLogin = "/shareLogin";
 		
 		//like 버튼 inst, updt
@@ -186,6 +192,9 @@
 	 			form.attr("action", goUrlNowView).submit();
 	 		}
 
+		 $("#goNow").on("click", function(){
+			 $(location).attr("href", goUrlNow);
+		 });
 	</script>
 	
 	<!-- Like 버튼 구현 -->
@@ -200,7 +209,7 @@
 		if ($("input[name=likeNy"+keyValue+"]").val() == "0") {
 			$("input[name=likeNy"+keyValue+"]").val("1");
 			likeCount = parseInt(likeCount) + 1;
-			alert(likeCount)
+			/* alert(likeCount) */
 			$("input[name=likeCount"+keyValue+"]").val(likeCount);
 			$("input[name=img"+keyValue+"]").val("/resources/images/share/star_y.png");
 			$(".like"+keyValue).attr("src", "/resources/images/share/star_y.png");
