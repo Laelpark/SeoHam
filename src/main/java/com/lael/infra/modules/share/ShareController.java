@@ -59,6 +59,9 @@ public class ShareController {
 		List<Share> list = service.selectListFav(vo);
 		model.addAttribute("list", list); 
 		
+		List<Share> list1 = (service.selectListStar(vo));
+		model.addAttribute("list1", list1); 
+		
 		return "infra/share/user/sharePot";
 	}
 	

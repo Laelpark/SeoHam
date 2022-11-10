@@ -55,10 +55,10 @@
 			,c.likeCount 
 			,f.img
 			,f.likeNy
+			,f.memberSeq
 		FROM share c
 			LEFT JOIN favorite f on f.shareSeq = c.seq  <!-- shareSeq와 seq를 맞춰야 함 -->
 		WHERE 1=1
-			and share_member_seq = #{memberSeq}
 		<choose>
 			<when test="shOption == 1">AND food_div = #{shValue}</when>
 			<when test="shOption == 2">AND title LIKE CONCAT('%',#{shValue},'%')</when>
@@ -68,6 +68,19 @@
 			<when test="shOption == 6">AND price LIKE CONCAT('%',#{shValue},'%')</when>
 		</choose>
 		ORDER BY c.seq DESC
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" /> 
+	</select>
+	
+	<select id="selectListStar" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"></include>
+		SELECT
+			f.img
+			,f.likeNy
+			,f.shareSeq
+		FROM favorite f
+		WHERE 1=1
+			and f.memberSeq = #{memberSeq}
 		<include refid="Base.orderByLimitForMysql" />
 		<include refid="Base.selectListLowerForMysql" /> 
 	</select>

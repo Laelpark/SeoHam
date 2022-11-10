@@ -63,90 +63,169 @@
 					</ul>
 				</div>
 			</nav>
-			<table frame=void>
-				<thead>
-					<tr class="a">
-						<th class="text-center">#</th>
-						<th class="text-center">카테고리</th>
-						<th class="text-center">제목</th>
-						<th class="text-center">인원</th>
-						<th class="text-center">장소</th>
-						<th class="text-center">시간</th>
-						<th class="text-center">가격</th>
-						<th class="text-center">즐겨찾기</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:choose>
-						<c:when test="${fn:length(list) eq 0}">
-							<tr>
-								<td class="text-center" colspan="9">There is no data!</td>
+			<c:choose>
+				<c:when test="${empty sessSeq}">
+					<table frame=void>
+						<thead>
+							<tr class="a">
+								<th class="text-center">#</th>
+								<th class="text-center">카테고리</th>
+								<th class="text-center s">제목</th>
+								<th class="text-center">인원</th>
+								<th class="text-center s">장소</th>
+								<th class="text-center">시간</th>
+								<th class="text-center">가격</th>
 							</tr>
-						</c:when>
-						<c:otherwise>
-							<c:forEach items="${list}" var="list" varStatus="status">
-								<tr style="height: 20px;"></tr>
-								<tr class="pt-2 b" id="b" onclick="goNow(<c:out value="${list.seq }"/>)">
-									<td class="text-center ps-3">
-               							<c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/>
-           							</td>
-									<td class="text-center">
-										<c:set var="listCodeFood" value="${CodeServiceImpl.selectListCachedCode('4') }" /> 
-										<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
-											<c:if test="${list.food_div eq listFood.cdSeq}">
-												<c:out value="${listFood.name }" />
-											</c:if>
-										</c:forEach>
-									</td>
-									<td class="text-center">${list.title}</td>
-									<td class="text-center">
-										<c:set var="listCodeNum" value="${CodeServiceImpl.selectListCachedCode('5') }" /> 
-										<c:forEach items="${listCodeNum}" var="listNum" varStatus="statusNum">
-											<c:if test="${list.people_num eq listNum.cdSeq}">
-												<c:out value="${listNum.name }" />
-											</c:if>
-										</c:forEach>
-									</td>
-									<td class="text-center">${list.place}</td>
-									<td class="text-center">${list.time}</td>
-									<td class="text-center">
-										<c:choose>
-											<c:when test="${empty list.price }">
-												미정
-											</c:when>
-											<c:otherwise>
-												<fmt:formatNumber type="number" pattern="#,###" value="${list.price}"/>
-											</c:otherwise>
-										</c:choose>
-									</td>
-									<td class="text-center">
-										<span class="rating-star"> 
-											<c:choose>
-												<c:when test="${empty list.likeNy }">
-													<span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq}, ${status.index })"> 
-														<input type="hidden" value="0" name="likeNy${status.index }">
-														<input type="hidden" value="" name="img${status.index }"> 
-														<input type="hidden" name="likeCount${status.index }" value="0">
-														<img alt="" class="like${status.index }" src="/resources/images/share/star_e.png" style="width: 30px; height: 30px;">
-													</span>
-												</c:when>
-												<c:otherwise>
-													<span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq}, ${status.index })"> 
-														<input type="hidden" value="${list.likeNy }" name="likeNy${status.index }"> 
-														<input type="hidden" value="" name="img${status.index }"> 
-														<input type="hidden" name="likeCount${status.index }" value="<c:out value="${list.likeCount}"/>">
-														<img alt="" name="img" class="like${status.index }" src="${list.img}" style="width: 30px; height: 30px;">
-													</span>
-												</c:otherwise>
-											</c:choose> 
-										</span>
-									</td>
-								</tr>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
-				</tbody>
-			</table>
+						</thead>
+						<tbody>
+							<c:choose>
+								<c:when test="${fn:length(list) eq 0}">
+									<tr>
+										<td class="text-center" colspan="8">There is no data!</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<c:forEach items="${list}" var="list" varStatus="status">
+										<tr style="height: 20px;"></tr>
+										<tr class="pt-2 b" id="b" onclick="goNow(<c:out value="${list.seq }"/>)">
+											<td class="text-center ps-3">
+		               							<c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/>
+		           							</td>
+											<td class="text-center">
+												<c:set var="listCodeFood" value="${CodeServiceImpl.selectListCachedCode('4') }" /> 
+												<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
+													<c:if test="${list.food_div eq listFood.cdSeq}">
+														<c:out value="${listFood.name }" />
+													</c:if>
+												</c:forEach>
+											</td>
+											<td class="text-center s">${list.title}</td>
+											<td class="text-center">
+												<c:set var="listCodeNum" value="${CodeServiceImpl.selectListCachedCode('5') }" /> 
+												<c:forEach items="${listCodeNum}" var="listNum" varStatus="statusNum">
+													<c:if test="${list.people_num eq listNum.cdSeq}">
+														<c:out value="${listNum.name }" />
+													</c:if>
+												</c:forEach>
+											</td>
+											<td class="text-center s">${list.place}</td>
+											<td class="text-center">${list.time}</td>
+											<td class="text-center">
+												<c:choose>
+													<c:when test="${empty list.price }">
+														미정
+													</c:when>
+													<c:otherwise>
+														<fmt:formatNumber type="number" pattern="#,###" value="${list.price}"/>
+													</c:otherwise>
+												</c:choose>
+											</td>
+										</tr>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+						</tbody>
+					</table>
+				</c:when>
+				<c:otherwise>
+					<table frame=void>
+						<thead>
+							<tr class="a">
+								<th class="text-center">#</th>
+								<th class="text-center">카테고리</th>
+								<th class="text-center">제목</th>
+								<th class="text-center">인원</th>
+								<th class="text-center">장소</th>
+								<th class="text-center">시간</th>
+								<th class="text-center">가격</th>
+								<th class="text-center">즐겨찾기</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:choose>
+								<c:when test="${fn:length(list) eq 0}">
+									<tr>
+										<td class="text-center" colspan="9">There is no data!</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<c:forEach items="${list}" var="list" varStatus="status">
+										<tr style="height: 20px;"></tr>
+										<tr class="pt-2 b" id="b" onclick="goNow(<c:out value="${list.seq }"/>)">
+											<td class="text-center ps-3">
+		               							<c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/>
+		           							</td>
+											<td class="text-center">
+												<c:set var="listCodeFood" value="${CodeServiceImpl.selectListCachedCode('4') }" /> 
+												<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
+													<c:if test="${list.food_div eq listFood.cdSeq}">
+														<c:out value="${listFood.name }" />
+													</c:if>
+												</c:forEach>
+											</td>
+											<td class="text-center">${list.title}</td>
+											<td class="text-center">
+												<c:set var="listCodeNum" value="${CodeServiceImpl.selectListCachedCode('5') }" /> 
+												<c:forEach items="${listCodeNum}" var="listNum" varStatus="statusNum">
+													<c:if test="${list.people_num eq listNum.cdSeq}">
+														<c:out value="${listNum.name }" />
+													</c:if>
+												</c:forEach>
+											</td>
+											<td class="text-center">${list.place}</td>
+											<td class="text-center">${list.time}</td>
+											<td class="text-center">
+												<c:choose>
+													<c:when test="${empty list.price }">
+														미정
+													</c:when>
+													<c:otherwise>
+														<fmt:formatNumber type="number" pattern="#,###" value="${list.price}"/>
+													</c:otherwise>
+												</c:choose>
+											</td>
+											<td class="text-center">
+												<span class="rating-star"> 
+													<c:choose>
+														<c:when test="${empty list.likeNy }">
+															<span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq}, ${status.index })"> 
+																<input type="hidden" value="0" name="likeNy${status.index }">
+																<input type="hidden" value="" name="img${status.index }"> 
+																<input type="hidden" name="likeCount${status.index }" value="0">
+																<img alt="" class="like${status.index }" src="/resources/images/share/star_e.png" style="width: 30px; height: 30px;">
+															</span>
+														</c:when>
+														<c:when test="${list.memberSeq eq sessSeq}">
+															<c:choose>
+																<c:when test="${empty list.likeCount }">
+																	<span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq}, ${status.index })"> 
+																		<input type="hidden" value="0" name="likeNy${status.index }">
+																		<input type="hidden" value="" name="img${status.index }"> 
+																		<input type="hidden" name="likeCount${status.index }" value="0">
+																		<img alt="" class="like${status.index }" src="/resources/images/share/star_e.png" style="width: 30px; height: 30px;">
+																	</span>
+																</c:when>
+																<c:otherwise>
+																	<span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq}, ${status.index })"> 
+																		<input type="hidden" value="${list.likeNy }" name="likeNy${status.index }"> 
+																		<input type="hidden" value="" name="img${status.index }"> 
+																		<input type="hidden" name="likeCount${status.index }" value="<c:out value="${list.likeCount}"/>">
+																		<img alt="" name="img" class="like${status.index }" src="${list.img}" style="width: 30px; height: 30px;">
+																	</span>
+																</c:otherwise>
+															</c:choose>
+														</c:when>
+													</c:choose> 
+												</span>
+											</td>
+										</tr>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+						</tbody>
+					</table>
+				</c:otherwise>
+			</c:choose>
 			<div class="mt-5">
 				<%@include file="../../common/xdmin/includeV1/pagination.jsp"%>
 			</div>

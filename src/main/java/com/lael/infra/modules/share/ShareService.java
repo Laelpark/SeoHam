@@ -24,4 +24,5 @@ public interface ShareService {
 	public int update(Share dto) throws Exception;
 	public int idCheck(Share dto) throws Exception;
 	
+	public List<Share> selectListStar(ShareVo vo) throws Exception;  
 }

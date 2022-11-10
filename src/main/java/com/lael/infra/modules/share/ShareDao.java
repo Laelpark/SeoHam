@@ -28,6 +28,7 @@ public class ShareDao {
 		List<Share> list = sqlSession.selectList(namespace + ".selectListFav", vo);
 		return list; 								
 	}
+	
 
 	public List<Share> selectList2(ShareVo svo){ 
 		List<Share> sList = sqlSession.selectList(namespace + ".selectList2", svo);
@@ -79,11 +80,15 @@ public class ShareDao {
 		return sqlSession.selectOne(namespace + ".likeOne", dto);
 	}
 	
-public int insert(Share dto) {return sqlSession.insert(namespace + ".insert", dto); }
-public int update(Share dto) {return sqlSession.update(namespace + ".update", dto); }
-
-public int idCheck(Share dto) {
-		return sqlSession.selectOne(namespace + ".idCheck", dto);
+	public int insert(Share dto) {return sqlSession.insert(namespace + ".insert", dto); }
+	public int update(Share dto) {return sqlSession.update(namespace + ".update", dto); }
+	
+	public int idCheck(Share dto) {
+			return sqlSession.selectOne(namespace + ".idCheck", dto);
 	}
 	
+	public List<Share> selectListStar(ShareVo vo){ 
+		List<Share> list1 = sqlSession.selectList(namespace + ".selectListStar", vo);
+		return list1; 								
+	}
 }

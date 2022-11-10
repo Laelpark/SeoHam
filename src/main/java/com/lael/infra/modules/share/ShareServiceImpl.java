@@ -50,6 +50,7 @@ import org.springframework.stereotype.Service;
 		return list;
 	}
 	
+	
 	@Override
 	public List<Share> selectList() throws Exception {
 		List<Share> list = dao.selectList();
@@ -117,4 +118,9 @@ import org.springframework.stereotype.Service;
 		System.out.println("likeCountUpdt 확인");
 	}
 	
+	@Override
+	public List<Share> selectListStar(ShareVo vo) throws Exception {
+		List<Share> list1 = dao.selectListStar(vo);
+		return list1;
+	}
 }
