@@ -28,4 +28,8 @@ public interface MemberService {
 	
 	public int kakaoInst(Member dto) throws Exception;
 	public Member snsLoginCheck(Member dto) throws Exception;
+
+	public int user_divUpdate(Member dto) throws Exception;
+	
+	
 }

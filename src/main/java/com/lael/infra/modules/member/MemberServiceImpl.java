@@ -136,4 +136,8 @@ public class MemberServiceImpl implements MemberService{
 		return dao.snsLoginCheck(dto);
 	}
 	
+	@Override
+	public int user_divUpdate(Member dto) throws Exception {
+		return dao.update(dto);
+	}
 }

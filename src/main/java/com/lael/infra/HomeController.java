@@ -76,7 +76,7 @@ public class HomeController {
 			return "codeGroupList";
 		}
 		
-		@RequestMapping(value = "/test")
+		@RequestMapping(value = "/test/publicCorona1List")
 		public String publicCorona1List(Model model) throws Exception {
 			
 			System.out.println("asdfasdfasdf");
@@ -147,7 +147,7 @@ public class HomeController {
 			model.addAllAttributes(header);
 			model.addAllAttributes(body);
 			
-			return "test";
+			return "test/publicCorona1List";
 		}
 		
 		@RequestMapping(value = "/test2")

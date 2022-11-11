@@ -42,18 +42,12 @@
 						<span class="input-group-text" id="inputGroupPrepend">
 							<i class="fa-solid fa-user p-3 d-grid" style="font-size: 23px; height: 55px;"></i>
 						</span>
-						<input type="text" class="form-control form-group" id="id" name="id" aria-describedby="inputGroupPrepend" tabindex="1">
+						<input type="text" class="form-control form-group" id="id" name="id" aria-describedby="inputGroupPrepend" tabindex="1" value="zxcv">
 					</div>
 				</div>
-				<!-- <div class="input-group col-3 offset-4 text-center">
-					<span class="input-group-text" id="idimg">
-						<i class="fa-solid fa-user p-3 d-grid" style="font-size: 23px; height: 55px;"></i>
-					</span>
-					<input class="id" type="text" id="id"  placeholder="ID" aria-describedby="inputGroupPrepend">
-				</div> -->
 				<div class="offset-4 form-check col-4 mt-2" id="rememberId">
-					<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" tabindex="4">
-					<label class="form-check-label" for="flexCheckDefault">
+					<input class="form-check-input keepLogin" type="checkbox" value="" id="saveId" name="saveId" tabindex="4">
+					<label class="form-check-label keepLogin" for="saveId">
 						아이디 저장
 					</label>
 				</div>
@@ -62,7 +56,7 @@
 						<span class="input-group-text" id="inputGroupPrepend">
 							<i class="fas fa-solid fa-lock p-3 d-grid" style="font-size: 20px;  height: 55px;"></i>
 						</span>
-						<input type="password" id="pw" name="pw" class="form-control form-group" id="validationCustomUsername" aria-describedby="inputGroupPrepend" tabindex="2">
+						<input type="password" id="pw" name="pw" class="form-control form-group" aria-describedby="inputGroupPrepend" tabindex="2" value="123456">
 					</div>
 				</div>
 				<div class="col-2 text-center">
@@ -128,6 +122,7 @@
 		});
 		
 	</script>
+	
 	<script type="text/javascript">
 	
 	var goUrlList = "/share";

@@ -80,6 +80,7 @@ public class MemberDao {
 	public int kakaoInst(Member dto) {return sqlSession.insert(namespace + ".kakaoInst", dto); }
 	public Member snsLoginCheck(Member dto) {return sqlSession.selectOne(namespace + ".snsLoginCheck", dto); }
 	
+	public int user_divUpdate(Member dto) {return sqlSession.update(namespace + ".user_divUpdate", dto); }
 
 }
 	

@@ -147,13 +147,10 @@ footer {
   margin-left: 20px;
 }
 
-#btnList{
-	padding-left: 0px;
-}
-
 #list{
 	background-color: transparent;
 }
+
 #sharePotlist{
 	color: white;
 }

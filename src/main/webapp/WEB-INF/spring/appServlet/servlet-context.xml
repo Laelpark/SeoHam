@@ -29,7 +29,7 @@
 			<mapping path="/**"/>
 			<exclude-mapping path="/rest/member/**" />
 			<exclude-mapping path="/resources/**" />
-			<exclude-mapping path="/test" />
+			<exclude-mapping path="/test/publicCorona1List" />
 			<exclude-mapping path="/test2" />
 			<exclude-mapping path="/test3" />
 			<exclude-mapping path="/codeGroup/codeGroupList" />

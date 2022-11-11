@@ -10,9 +10,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>UserList</title>
+	<title>User Form</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="/resources/css/admin/userList.css">
+	<link rel="stylesheet" type="text/css" href="/resources/css/admin/userForm.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -26,129 +26,94 @@
 			<input type="hidden" name="checkboxSeqArray">
 	        <nav>
 	        	<h2 class="row needs-validation ms-4 mt-3">사용자 관리</h2>
-				<div class="row needs-validation ms-3 me-3 mt-3 mb-5 p-3 shadow-lg bg-body rounded" novalidate>
-					<div class="row mb-2">
-						<div class="col-md-3">
-							<select class="form-select" id="shDelNy" name="shDelNy">
-		                     	<option value="" <c:if test="${empty vo.shDelNy }">selected</c:if>>유저상태</option>
-		                        <option value="0" <c:if test="${vo.shDelNy eq 0 }">selected</c:if>>활성화</option>
-		                        <option value="1" <c:if test="${vo.shDelNy eq 1 }">selected</c:if>>탈퇴</option>
-	                       	</select>
-						</div>
-						 <div class="col-md-3">
-				            <select id="shOptionDate" name="shOptionDate" class="form-select">
-				                <option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜</option>
-				                <option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>가입일</option>
-				                <option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>탈퇴일</option>
-				            </select>
-				        </div> 
-						<div class="col-md-3">
-							<fmt:parseDate var="shDateStart" value="${vo.shDateStart }" pattern="yyyy-MM-dd HH:mm:ss"/>
-            				<input type="date" id="shDateStart" name="shDateStart" value="<fmt:formatDate value="${shDateStart }" pattern="yyyy-MM-dd" />" class="form-control" autocomplete="off">
-						</div>
-						<div class="col-md-3">
-							<fmt:parseDate var="shDateEnd" value="${vo.shDateEnd }" pattern="yyyy-MM-dd HH:mm:ss" />
-	        				<input type="date" id="shDateEnd" name="shDateEnd" value="<fmt:formatDate value="${shDateEnd }" pattern="yyyy-MM-dd"/>" class="form-control" autocomplete="off">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-3">
-							<select class="form-select" id="shOption" name="shOption">
-	                           <option value="" <c:if test="${empty vo.shOption }">selected</c:if>>검색구분</option>
-	                           <option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>이름</option>
-	                           <option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>닉네임</option>
-	                           <option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>이메일계정</option>
-	                           <option value="4" <c:if test="${vo.shOption eq 4 }">selected</c:if>>쉐어회수</option>
-	                        </select>
-						</div>
-						<div class="col-md-3">
-							<input placeholder="검색해주세요." type="text" class="form-control" name="shValue" id="shValue" value="<c:out value="${vo.shValue }"/>" autocomplete="off">
-							<div class="invalid-feedback" id="shValueFeeback"></div>
-						</div>
-						<div class="col-md-2">
-							<button class="btn btn-warning" type="submit" id="searching"><i class="fa-solid fa-magnifying-glass"></i></button>
-							<button class="btn btn-danger" type="reset" id="btnReset" name="btnReset"><i class="fa-solid fa-rotate-right"></i></button>
-						</div>
-					</div>
-				</div>
-	            <div class="mb-3 ms-4" id="main">
-	                <ul class="nav nav-tabs">
-	                    <li class="nav-item">
-	                        <a class="g nav-link active"  data-toggle="tab" id="btnUserList" name="btnUserList" style="cursor: pointer;">사용자목록</a>
-	                    </li>
-	                    <li class="nav-item">
-	                        <a class="g nav-link" data-toggle="tab" id="btnNewUser" name="btnNewUser" style="cursor: pointer;">신규회원관리</a>
-	                    </li>
-	                   <!--  <li class="nav-item">
-	                        <a class="g nav-link" data-toggle="tab" id="btnUserAll" name="btnUserAll" style="cursor: pointer;">회원관리</a>
-	                    </li> -->
-	                </ul>
-	            </div>
 	        </nav>
-	        <main>
-            	<div class="cd2">
-	                <p class="Userlist mt-4" style="font-weight: bold;">
-	                    전체사용자
-	                    <span class="num">${vo.totalRows}</span> 명
-	                </p>
-	                <table class="table text-center align-midde">
-	                	<thead>
-	                		<tr>
-	                			<th style="font-size: small;">
-	                				<input class="form-check-input" type="checkbox" value="" name="checkboxAll" id="checkboxAll">
-	                			</th>
-	                			<th>#</th>
-	                			<th>코드번호</th>
-	                			<th>이름</th>
-	                			<th>닉네임</th>
-	                			<th>이메일계정</th>
-	                			<th>가입일</th>
-	                			<th>쉐어횟수</th>
-	                		</tr>
-	                	</thead>
-	                	<tbody>
-	                		<c:choose>
-	                			<c:when test="${fn:length(list) eq 0 }">	                			
-		                			<tr>
-		                				<td class="text-center" colspan="8">There is no data!</td>
-		                			</tr>
-	                			</c:when>
-	                			<c:otherwise>
-	                				<c:forEach items="${list }" var="list" varStatus="status">	                				
-		                				<tr style="border-bottom: 1px solid transparent;"> 
-		                					<td style="font-size: small">
-		                						<input class="form-check-input" type="checkbox" id="checkboxSeq" name="checkboxSeq" value="<c:out value="${list.seq }"/>"> 
-	                						</td>
-	                						<td><c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/></td>
-		                					<td>${list.seq }</td>
-		                					<td>${list.name }</td>
-		                					<td>${list.nick_nm }</td>
-		                					<td>${list.email }</td>
-		                					<td>${list.createDate }</td>
-		                					<td>${list.shareCount }</td>
-		                				</tr>
-	                				</c:forEach>
-	                			</c:otherwise>
-	                		</c:choose>
-	                	</tbody>
-	                </table>
-	                <div class="mt-3 mb-3">
-						<%@include file="../../common/xdmin/includeV1/pagination.jsp"%>
-	                </div>
+	        <main class="cd2 mt-3">
+	        	<h2 class="needs-validation mt-2">User Form</h2>
+					<div class="content">
+						<div class="row ms-3 me-3">
+							<div class="col-6">
+								<label class="form-label">코드</label> 
+								<input type="text" class="form-control col-6" value="<c:out value="${item.ifmnSeq}"/>">
+							</div>
+							<div class="col-6">	
+			   					<label class="form-label">사용자 구분</label> 
+			   					<select class="form-select" >
+									<option selected disabled value="">선택</option>
+									<option>고객</option>
+									<option>사장님</option>
+									<option>관리자</option>
+								</select>
+				   			</div>
+						</div>
+						<div class="row mt-3 ms-3 me-3">
+							<div class="col-2">
+								<label class="form-label">통신사</label> 
+								<select class="form-select">
+									<option selected disabled value="">선택</option>
+									<option>KT</option>
+									<option>SKT</option>
+									<option>LGT</option>
+									<option>...</option>
+								</select>
+							</div>
+							<div class="col">
+								<label class="form-label">전화번호</label> 
+								<input type="text" class="form-control" placeholder="특수문자(-)없이 숫자만 입력 ">
+							</div>
+						</div>
+						<div class="row mt-3">
+							<div class="col-6">
+								<label class="form-label">이메일</label> 
+								<input type="text" class="form-control" placeholder="영문(대소문자),숫자, @이후 전체 이메일 주소 포함 ">
+							</div>
+						</div>
+							<div class="col">
+								<label class="form-label">삭제여부</label> <select class="form-select">
+									<option selected disabled value="">선택</option>
+									<option>N</option>
+									<option>Y</option>
+								</select>
+							</div>
+						</div>
+	        		</main>
+			<div class="row align-items-center mt-5">
+	            <div class="col-2">
+	                <button  class="border-0 btn bg-secondary shadow" type="button" id="btnList">
+	                    <i class="fa-solid fa-bars" style="color: white;"></i>
+	                </button>
+	                <button id="btnUel" value="Uel" class="border-0 btn bg-danger shadow" type="button" data-bs-toggle="modal"
+	                    data-bs-target="#deleteModal">
+	                    <i class="fa-solid fa-xmark" style="color: white;"></i>
+	                </button>
 	            </div>
-	        </main>
-			<button id="btnDelete" class="btn btn-danger del mt-5 ms-5" type="button" style="float: left;">
-				<i class="fa-solid fa-trash-can"></i>
-			</button>
-			<button id="btnUelete" class="btn btn-warning del mt-5 ms-3" type="button" style="float: left;">
-				<i class="fa-solid fa-xmark"></i>
-			</button>
-			<button id="btnGoForm" class="btn de mt-5 me-5" type="button" style="float: right;">
-				<i class="fa-solid fa-plus"></i>
-			</button>
-			<button id="btnExcel" class="btn btn-success del mt-5 me-3" type="button" style="float: right; color: white;">
-				<i class="fa-regular fa-file-excel"></i>
-			</button>
+	            <div class="col-3 offset-7" align="right">
+	                <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false"
+	                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	                    <div class="modal-dialog">
+	                        <div class="modal-content">
+	                            <div class="modal-header">
+	                                <h5 class="modal-title fw-bold" id="staticBackdropLabel">게시물 삭제</h5>
+	                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+	                                    aria-label="Close"></button>
+	                            </div>
+	                            <div class="modal-body fs-6">
+	                           		선택하신 게시물을 정말로 삭제하시겠습니까?
+	                            </div>
+	                            <div class="modal-footer">
+	                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+	                                <button id="delBtn" type="button" class="btn btn-primary">삭제</button>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	                <button id="btnDel" value="Del" class="border-0 btn bg-danger shadow" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal">
+	                    <i class="fa-solid fa-trash-can" style="color: white;"></i>
+	                </button>
+	                <button id="btnSave" class="border-0 btn bg-success shadow" type="button">
+	                    <i class="fa-regular fa-bookmark" style="color: white;"></i>
+	                </button>
+	            </div>
+         	</div>
         </form>
         <div id="sidebar">
             <div class="side_img">
@@ -198,31 +163,70 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript">
+	
+	var goUrlInst = "/adminUserInst"; /* #-> */
+	var goUrlUpdt = "/adminUserUpdt"; /* #-> */
+	var goUrlDele = "/adminDele";
+	var goUrlUele = "/adminUele";
+	
+	
+	// 사이드 바
 	var goUrlAdmin = "/adminMain"; 			
 	var goUrlUserList = "/adminUserList"; 			
 	var goUrlSharePotList = "/adminSharePot";
 	var goUrlShareHotList = "/#";
-	var goUrlUserForm = "/adminUserForm";
-	
 	var goUrlNewUser = "/adminNewUser"; 			
 	var goUrlUserAll = "/adminUserAll";
 	
-	var goUrlDele = "/adminDele";
-	var goUrlUele = "/adminUele";
 	
-	var excelUri = "/excelDownload";
 	
 	var form = $("#myForm");
 	var seq = $("input:hidden[name=seq]");
 	
+	 
+ 	$("#btnSave").on("click", function() {
+		if (ccgSeq.val() == "0" || ccgSeq.val() == "") {
+			form.attr("action", goUrlInst).submit();
+		} else {
+			form.attr("action", goUrlUpdt).submit();
+		}
+	});
+	
+	$("#btnList").on("click", function() {
+		formVo.attr("action", goUrlList).submit();
+	});
+	
+	$("#deleteBtn").on("click", function() {
+		formVo.attr("action", goUrlDele).submit();
+	});
+
+	$("#ueleteBtn").on("click", function() {
+		formVo.attr("action", goUrlUele).submit();
+	});
+	
+// ----- 게시물 삭제 -----
+ 	
+ 	$("#btnUel").on("click", function() {
+		DelValidation("#delBtn", goUrlUele, "선택하신 게시물을 삭제하시겠습니까?");
+	})
+	
+	$("#btnDel").on("click", function() {
+		DelValidation("#delBtn", goUrlDele, "선택하신 게시물을 진짜로 삭제하시겠습니까?");		
+	})
+	
+	DelValidation = function(confirm, url, msg) {
+		$(".modal-body").html(msg);
+		$(confirm).on("click", function() {
+			form.attr("action", goUrlList).submit();
+		})
+	}
+	
+	
+	// --------------------- //
 	 goList = function(thisPage) {
 			$("input:hidden[name=thisPage]").val(thisPage);
 			form.attr("action", goUrlUserList).submit();
 		};
-	
-	$("#btnReset").on("click", function(){
-		 $(location).attr("href", goUrlUserList);
-	 });
 	
 	$('#btnAdmin').on("click", function() {
 		 $(location).attr("href", goUrlAdmin);
@@ -252,13 +256,6 @@
 		 $(location).attr("href", goUrlShareHotList);
 		});
 	
-	$("#btnExcel").click(function() {
-		form.attr("action", excelUri).submit();
-	});
-	
-	$("#btnGoForm").click(function() {
-		 $(location).attr("href", goUrlUserForm);
-		});
 	
 	// 데이트픽커
 	document.getElementById('datepickerS').valueAsDate = new Date();

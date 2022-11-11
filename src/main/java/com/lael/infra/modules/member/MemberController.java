@@ -58,7 +58,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "shareLogin")
-	public String shareLogin() throws Exception {
+	public String shareLogin(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
+		
+		Member item = service.selectOne(vo);
+		model.addAttribute("item", item);
+		
 		return "infra/share/user/shareLogin";
 	}
 	
@@ -227,6 +231,12 @@ public class MemberController {
 		model.addAttribute("list", list);
 		
 		return "infra/share/admin/adminUserList";
+	}
+	
+	@RequestMapping(value = "/adminUserForm")
+	public String adminUserForm(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
+		
+		return "infra/share/admin/adminUserForm";
 	}
 	
 	@RequestMapping("/excelDownload")

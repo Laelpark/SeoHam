@@ -290,6 +290,15 @@
 			and id = #{snsId}
 			and name = #{name}
 	</select>
+	
+	<update id="user_divUpdate">
+	 	UPDATE share_member
+	 	SET
+ 			user_div = #{user_div}
+ 			
+		WHERE
+			seq = #{seq}
+ 	</update>
  	
  	
 </mapper>	
