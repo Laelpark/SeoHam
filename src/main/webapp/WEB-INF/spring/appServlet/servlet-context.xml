@@ -53,6 +53,7 @@
 			<exclude-mapping path="/kakaoInst" />
 			<exclude-mapping path="/snsLoginCheck" />
 			<exclude-mapping path="/kakaoLoginProc" />
+			<exclude-mapping path="/nationality/nationalityList" />
 			<exclude-mapping path="/" />
 			<!-- <exclude-mapping path="/shareInst" /> -->
 			<beans:bean id="checkLoginSessionInterception" class="com.lael.infra.common.interceptor.CheckLoginSessionInterception"/>
