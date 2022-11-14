@@ -70,13 +70,6 @@ public class UtilRegMod {
 	}
 	
 	
-	public static String getSessionSeqCore(HttpServletRequest httpServletRequest) {
-		HttpSession httpSession =  httpServletRequest.getSession();
-		String rtSeq = (String) httpSession.getAttribute("sessSeq");
-		return rtSeq;
-	}
-	
-	
 	public static int getDevice() {
 		HttpServletRequest httpServletRequest = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
 		return getDeviceCore(httpServletRequest);
