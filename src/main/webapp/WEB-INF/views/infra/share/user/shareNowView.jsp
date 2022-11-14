@@ -30,8 +30,47 @@
 		<nav class="navbar navbar-expand-lg bg-transparent">
 			<div class="topBtn collapse navbar-collapse" id="navbarSupportedContent">
 				<input type="hidden" class="d-flex" role="search">
-				<button type="button" class="btn btn-outline-danger me-4">취소</button>
-				<button type="button" class="btn btn-outline-success" id="btnGoShare" name="btnGoShare">Go Share</button>
+					<button type="button" class="btn btn-outline-danger me-4">취소</button>
+					<button type="button" class="btn" data-bs-toggle="modal"  id="btnGoShare"  href="#exampleModalToggle" name="btnGoShare" role="button">Go Share</button>
+					<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+					  <div class="modal-dialog modal-dialog-centered">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					      	<i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>
+					        <h1 class="modal-title fs-5" id="exampleModalToggleLabel"> &nbsp;주의(Warning)</h1>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+				       		SHARE 진행 시 상대방의 아이디 및 전화번호가 보여집니다.<br>
+				       		계속 진행하시겠습니까?
+					      </div>
+					      <div class="modal-footer">
+					      	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+					        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">확인</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+					  <div class="modal-dialog modal-dialog-centered">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					      	<i class="fa-solid fa-user" style="color: rgb(142, 68, 173);"></i>
+					        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2"> &nbsp;상대정보</h1>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					       <span>닉네임 : </span>
+					       <br><span>전화번호 : </span>
+					       <%-- <span>${list.nick_nm }</span>
+					       <br><span>${list.phone }</span> --%>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
 				</input>
 			</div>
 		</nav>
@@ -45,7 +84,7 @@
 					<ul class="navbar-nav mb-2 mt-2 ms-3">
 						<li class="nav-item dropdown"><img alt="" src="../../resources/images/share/user.png" style="width: 60px; height: 40px; border-radius: 100px; cursor: pointer;"></li>
 						<li>
-							<select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="food_div" name="food_div" required>
+							<select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="food_div" name="food_div" disabled>
 								<option value="" <c:if test="${empty item.food_div }">selected</c:if>>카테고리</option>
 								<c:set var="listCodeFood" value="${CodeServiceImpl.selectListCachedCode('4') }" />
 								<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
@@ -60,7 +99,7 @@
 							<input class="form-control me-2 text-center" id="title" name="title" type="text" style="width: 480px; height: 50px;" placeholder="타이틀을 입력하세요." value='<c:out value="${item.title}"/>'/>
 						</li>
 						<li>
-							<select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="people_num" name="people_num" required>
+							<select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="people_num" name="people_num" disabled>
 								<option value="" <c:if test="${empty item.people_num}">selected</c:if>>인원</option>
 								<c:set var="listCodeNum" value="${CodeServiceImpl.selectListCachedCode('5') }" />
 								<c:forEach items="${listCodeNum}" var="listNum" varStatus="statusNum">
@@ -73,19 +112,10 @@
 			</nav>
 			<nav class="navbar navbar-expand-lg">
 				<div class="a collapse navbar-collapse" style="height: 300px;">
-					<div class="b me-3">
-						<div class="filebox">
-							<img src="" id="img" style="width: 300px;" id="img"> 
-							<input type="file" id="chooseImg" name="chooseImg" accept="image/*" onchange="loadFile(this)" multiple> 
-							<label for="chooseImg" id="imgText"> 📷 사진 업로드하기</label>
-						</div>
-					</div>
-					<div class="ms-3">
-						<div class="c" for="info">
-							<textarea class="form-control" placeholder="주문하실 음식점 이름과 메뉴, 가격 등을 자세히 기재해주세요." rows="10" id="info" name="info" aria-label="info"> 
-			                		${item.info}
-			                	</textarea>
-						</div>
+					<div class="c" for="info">
+						<textarea class="form-control" placeholder="주문하실 음식점 이름과 메뉴, 가격 등을 자세히 기재해주세요." rows="10" id="info" name="info" aria-label="info"> 
+	                		${item.info}
+	                	</textarea>
 					</div>
 				</div>
 			</nav>
@@ -104,12 +134,15 @@
 								</div>
 							</nav>
 							<nav class="d navbar col-12 mt-4" style="background-color: rgba(233, 231, 58, 0.66);">
-								<div class="row">
+								<div class="row" style="display: -webkit-inline-box;">
 									<div class="col-4">
 										<p id="date">거래 시간</p>
 									</div>
-									<div class="col-8" for="time">
-										<input type="text" style="width: 850px; margin-left: auto;" id="time" name="time" value="<c:out value="${item.time}"/>">
+									<div class="col-6" for="date" style="padding-right: 0px; padding-left: 10px;" >
+										<input class="form-control" type="date" style="width: 400px; margin-left: auto;" id="date" name="date" placeholder=" 거래날짜를 선택하세요." value="<c:out value="${item.date}"/>">
+									</div>
+									<div class="col" for="time">
+										<input class="form-control" type="time" style="width: 400px; margin-left: auto;" id="time" name="time" placeholder=" 거래시간을 선택하세요." value="<c:out value="${item.time}"/>">
 									</div>
 								</div>
 							</nav>
@@ -165,111 +198,7 @@
 	
 	</script>
 	<script>
-     // 파일 업로드 s
-
-	upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType) {
-	//	objName 과 seq 는 jsp 내에서 유일 하여야 함.
-	//	memberProfileImage: 1
-	//	memberImage: 2
-	//	memberFile : 3
-		
-		var totalFileSize = 0;
-		var obj = $("#" + objName +"")[0].files;	
-		var fileCount = obj.length;
-		
-		const MAX_EACH_FILE_SIZE = 5 * 1024 * 1024;		//	5M
-		const MAX_TOTAL_FILE_SIZE = 25 * 1024 * 1024;	//	25M
-		const MAX_TOTAL_FILE_NUMBER = 5;
-		
-		allowedMaxTotalFileNumber = allowedMaxTotalFileNumber == 0 ? MAX_TOTAL_FILE_NUMBER : allowedMaxTotalFileNumber;
-		allowedEachFileSize = allowedEachFileSize == 0 ? MAX_EACH_FILE_SIZE : allowedEachFileSize;
-		allowedTotalFileSize = allowedTotalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : allowedTotalFileSize;
-		
-		if(checkUploadedToalFileNumber(obj, allowedMaxTotalFileNumber, fileCount) == false) { return false; }
-		alert("된다")
-		
-		 for (var i = 0 ; i < fileCount ; i++) {
-			if(checkUploadedExt($("#" + objName +"")[0].files[i].name, seq, allowedExtdiv) == false) { return false; }
-			if(checkUploadedEachFileSize($("#" + objName +"")[0].files[i], seq, allowedEachFileSize) == false) { return false; }
-			totalFileSize += $("#" + objName +"")[0].files[i].size;
-			
-			 alert("확인 : " + totalFileSize)
-		}
-		
-		 if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; }
-	}
-	
-		 if (uiType == 1) {
-					
-			$("#ulFile" + seq).children().remove();
-			
-			for (var i = 0 ; i < fileCount ; i++) {
-				addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
-			}
- 		
-			for (var i = 0 ; i < fileCount ; i++) {
-				
-	 			var divImage = "";
-	 			divImage += '<div style="display: inline-block; height: 95px;">';
-				divImage += '	<img id="aaa'+i+'" src="" class="rounded" width= "85px" height="85px">';
-				divImage += '	<div style="position: relative; top:-85px; left:5px"><span style="color: red;">X</span></div>';
-				divImage += '</div> ';
-				
-				$("#ifmmUploadedImage1View").append(divImage);
-				
-				var fileReader = new FileReader();
-				 fileReader.readAsDataURL($("#" + objName +"")[0].files[i]);
-				alert($("#" + objName +"")[0].files[i]);
-				 fileReader.onload = function () {
-				 alert($("#aaa"+i+""));
-				 
-				 if(i == 0) {
-					 $("#aaa0").attr("src", fileReader.result);
-				 } else if (i == 1) {
-					 $("#aaa0").attr("src", fileReader.result);	
-				 } else {
-					 
-				 }
-				 }
-			}			
- 			
-		} else if(uiType == 2) {
-			$("#ulFile" + seq).children().remove();
-			
-			for (var i = 0 ; i < fileCount ; i++) {
-				addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
-			}
-		} else if (uiType == 3) {
-			var fileReader = new FileReader();
-			 fileReader.readAsDataURL($("#" + objName +"")[0].files[0]);
-			
-			 fileReader.onload = function () {
-				 $("#imgProfile").attr("src", fileReader.result);	
-			 }		
-		} else {
-			return false;
-		}
-		return false;
-	} 
-	
-addUploadLi = function (seq, index, name){
-		
-		var ul_list = $("#ulFile0");
-		
-		li = '<li id="li_'+seq+'_'+index+'" class="list-group-item d-flex justify-content-between align-items-center">';
-		li = li + name;
-		li = li + '<span class="badge bg-danger rounded-pill" onClick="delLi('+ seq +','+ index +')"><i class="fa-solid fa-x" style="cursor: pointer;"></i></span>';
-		li = li + '</li>';
-		
-		$("#ulFile"+seq).append(li);
-	}
-	
-	
-	delLi = function(seq, index) {
-		$("#li_"+seq+"_"+index).remove();
-	}
-	
-	 // 파일 업로드 e 
+	 
 	
 	</script>
 </body>

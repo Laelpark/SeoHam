@@ -44,8 +44,8 @@
 						</li>
 						<li class="nav-item dropdown" value=""><select class="form-select" id="shOption" name="shOption">
 								<option value="" <c:if test="${empty vo.shOption }">selected</c:if>>선택</option>
-								<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>카테고리</option>
 								<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>제목</option>
+								<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>카테고리</option>
 								<option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>인원</option>
 								<option value="4" <c:if test="${vo.shOption eq 4 }">selected</c:if>>장소</option>
 								<option value="5" <c:if test="${vo.shOption eq 5 }">selected</c:if>>시간</option>
@@ -173,7 +173,7 @@
 												</c:forEach>
 											</td>
 											<td class="text-center">${list.place}</td>
-											<td class="text-center">${list.time}</td>
+											<td class="text-center">${list.date} ${list.time}</td>
 											<td class="text-center">
 												<c:choose>
 													<c:when test="${empty list.price }">
@@ -276,10 +276,10 @@
 		 });
 	</script>
 	
-	<!-- Like 버튼 구현 -->
 	
 	<script type="text/javascript">
 	
+	<!-- Like 버튼 구현 -->
 	function favorites(e, seq, keyValue){
 		$("input[name=seq]").val(seq);
 		event.stopPropagation();

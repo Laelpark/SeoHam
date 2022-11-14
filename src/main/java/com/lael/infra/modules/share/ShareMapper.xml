@@ -11,7 +11,7 @@
 		FROM share c
 		WHERE 1=1
 		<choose>
-			<when test="shOption == 1">AND food_div = #{shValue}</when>
+			<when test="shOption == 1">AND food_div LIKE CONCAT('%',#{shValue},'%')</when>
 			<when test="shOption == 2">AND title LIKE CONCAT('%',#{shValue},'%')</when>
 			<when test="shOption == 3">AND people_num = #{shValue}</when>
 			<when test="shOption == 4">AND place LIKE CONCAT('%',#{shValue},'%')</when>
@@ -29,6 +29,7 @@
 			,c.people_num
 			,c.info
 			,c.place
+			,c.date
 			,c.time
 			,c.price
 			,c.DelNy
@@ -48,6 +49,7 @@
 			,c.people_num
 			,c.info
 			,c.place
+			,c.date
 			,c.time
 			,c.price
 			,c.DelNy
@@ -94,6 +96,7 @@
 			,c.people_num
 			,c.info
 			,c.place
+			,c.date
 			,c.time
 			,c.price
 			,c.DelNy
@@ -182,6 +185,7 @@
 			,c.people_num
 			,c.info
 			,c.place
+			,c.date
 			,c.time
 			,c.price
 			,c.DelNy
@@ -205,6 +209,7 @@
 			,c.people_num
 			,c.info
 			,c.place
+			,c.date
 			,c.time
 			,c.price
 			,c.DelNy
@@ -223,6 +228,7 @@
 			,c.people_num
 			,c.info
 			,c.place
+			,c.date
 			,c.time
 			,c.price
 			,c.DelNy
@@ -239,6 +245,7 @@
 			,title
 			,people_num
 			,place
+			,date
 			,time
 			,price
 			,info
@@ -250,6 +257,7 @@
 			,#{title}
 			,#{people_num}
 			,#{place}
+			,#{date}
 			,#{time}
 			,#{price}
 			,#{info}
@@ -269,6 +277,7 @@
 			,title = #{title}
 			,people_num = #{people_num}
 			,place = #{place}
+			,date = #{date}
 			,time = #{time}
 			,price = #{price}
 			,info = #{info}
@@ -300,6 +309,7 @@
 			,c.people_num
 			,c.info
 			,c.place
+			,c.date
 			,c.time
 			,c.price
 			,c.DelNy

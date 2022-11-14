@@ -7,8 +7,9 @@ public class Share {
 	private String title;
 	private Integer people_num;
 	private String place;
+	private String date;
 	private String time;
-	private String price;
+	private Integer price;
 	private String info;
 	private String ccgSeq;
 	private String createDate;
@@ -121,12 +122,21 @@ public class Share {
 	public void setTime(String time) {
 		this.time = time;
 	}
-	public String getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	
+
 	
 	
 }

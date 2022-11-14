@@ -177,3 +177,8 @@ select {
     margin-left: 20px;
 }
 
+#btnGoForm {
+	background-color: rgba(158, 82, 190); 
+	color: white;
+}
+

@@ -79,19 +79,8 @@
 			</nav>
 			<nav class="navbar navbar-expand-lg">
 				<div class="a collapse navbar-collapse" style="height: 300px;">
-					<div class="b me-3">
-						<div class="filebox">
-							<img src="" id="img" style="width: 300px;" id="img"> 
-							<input type="file" id="chooseImg" name="chooseImg" accept="image/*" onchange="loadFile(this)" multiple> 
-							<label for="chooseImg" id="imgText"> 📷 사진 업로드하기</label>
-						</div>
-					</div>
-					<div class="ms-3">
-						<div class="c" for="info">
-							<textarea class="form-control" placeholder="주문하실 음식점 이름과 메뉴, 가격 등을 자세히 기재해주세요." rows="10" id="info" name="info" aria-label="info"> 
-			                		${item.info}
-			                	</textarea>
-						</div>
+					<div class="c" for="info">
+						<textarea class="form-control" placeholder="주문하실 음식점 이름과 메뉴, 가격 등을 자세히 기재해주세요." rows="10" id="info" name="info" aria-label="info" >${item.info}</textarea>
 					</div>
 				</div>
 			</nav>
@@ -101,21 +90,27 @@
 						<div class="row">
 							<nav class="d navbar col-12 mt-4" style="background-color: rgba(233, 231, 58, 0.66);">
 								<div class="row">
-									<div class="col-4">
-										<p id="date">거래 장소</p>
+									<div class="col-4 has-validation">
+										<p id="date" for="place">거래 장소</p>
 									</div>
 									<div class="col-8" for="date">
-										<input type="text" style="width: 850px; margin-left: auto;" id="place" name="place" placeholder=" 자세한 거래 장소를 입력하세요." value="<c:out value="${item.place}"/>">
+										<input class="form-control" type="text" style="width: 815px; margin-left: auto;" id="place" name="place" placeholder=" 자세한 거래 장소를 입력하세요." value="<c:out value="${item.place}"/>" required>
+										<div class="invalid-feedback">
+									        거래장소를 입력해주세요.
+										</div>
 									</div>
 								</div>
 							</nav>
 							<nav class="d navbar col-12 mt-4" style="background-color: rgba(233, 231, 58, 0.66);">
-								<div class="row">
+								<div class="row" style="display: -webkit-inline-box;">
 									<div class="col-4">
 										<p id="date">거래 시간</p>
 									</div>
-									<div class="col-8" for="time">
-										<input type="text" style="width: 850px; margin-left: auto;" id="time" name="time" placeholder=" 거래시간을 입력하세요." value="<c:out value="${item.time}"/>">
+									<div class="col-6" for="date" style="padding-right: 0px; padding-left: 10px;" >
+										<input class="form-control" type="date" style="width: 400px; margin-left: auto;" id="date" name="date" placeholder=" 거래날짜를 선택하세요." value="<c:out value="${item.date}"/>">
+									</div>
+									<div class="col" for="time">
+										<input class="form-control" type="time" style="width: 400px; margin-left: auto;" id="time" name="time" placeholder=" 거래시간을 선택하세요." value="<c:out value="${item.time}"/>">
 									</div>
 								</div>
 							</nav>
@@ -125,7 +120,7 @@
 										<p id="date">인당 가격</p>
 									</div>
 									<div class="col-8" for="price">
-										<input type="text" style="width: 850px; margin-left: auto;" id="price" name="price" placeholder=" 가격이 정해지지 않은 경우 숫자 '0'으로 입력하세요." value="<c:out value="${item.price}"/>">
+										<input class="form-control" type="number" style="width: 815px; margin-left: auto;" id="price" name="price" placeholder=" 가격이 정해지지 않은 경우 숫자 '0'으로 입력하세요." value="<c:out value="${item.price}"/>">
 									</div>
 								</div>
 							</nav>
@@ -143,22 +138,7 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script type="text/javascript">
-	// 이미지 미리보기
-	
-	 const reader = new FileReader();
 
-    reader.onload = (readerEvent) => {
-        document.querySelector("#img").setAttribute("src", readerEvent.target.result);
-    };
-
-    document.querySelector("#chooseImg").addEventListener("change", (changeEvent) => {
-
-        const imgFile = changeEvent.target.files[0];
-        reader.readAsDataURL(imgFile);
-    })
-
-    </script>
-   <script type="text/javascript">
 	var goUrlInst = "/shareInst";
 	var goUrlUpdt = "/shareUpdt";
 	var goUrlDele = "/shareDele";
@@ -175,114 +155,20 @@
 			form.attr("action", goUrlUpdt).submit();
 		}
 	});
-	</script>
-	<script type="text/javascript">
-     // 파일 업로드 s
-
-	upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType) {
-	//	objName 과 seq 는 jsp 내에서 유일 하여야 함.
-	//	memberProfileImage: 1
-	//	memberImage: 2
-	//	memberFile : 3
-		
-		var totalFileSize = 0;
-		var obj = $("#" + objName +"")[0].files;	
-		var fileCount = obj.length;
-		
-		const MAX_EACH_FILE_SIZE = 5 * 1024 * 1024;		//	5M
-		const MAX_TOTAL_FILE_SIZE = 25 * 1024 * 1024;	//	25M
-		const MAX_TOTAL_FILE_NUMBER = 5;
-		
-		allowedMaxTotalFileNumber = allowedMaxTotalFileNumber == 0 ? MAX_TOTAL_FILE_NUMBER : allowedMaxTotalFileNumber;
-		allowedEachFileSize = allowedEachFileSize == 0 ? MAX_EACH_FILE_SIZE : allowedEachFileSize;
-		allowedTotalFileSize = allowedTotalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : allowedTotalFileSize;
-		
-		if(checkUploadedToalFileNumber(obj, allowedMaxTotalFileNumber, fileCount) == false) { return false; }
-		alert("된다")
-		
-		 for (var i = 0 ; i < fileCount ; i++) {
-			if(checkUploadedExt($("#" + objName +"")[0].files[i].name, seq, allowedExtdiv) == false) { return false; }
-			if(checkUploadedEachFileSize($("#" + objName +"")[0].files[i], seq, allowedEachFileSize) == false) { return false; }
-			totalFileSize += $("#" + objName +"")[0].files[i].size;
-			
-			 alert("확인 : " + totalFileSize)
-		}
-		
-		 if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; }
-	}
 	
-		 if (uiType == 1) {
-					
-			$("#ulFile" + seq).children().remove();
-			
-			for (var i = 0 ; i < fileCount ; i++) {
-				addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
-			}
- 		
-			for (var i = 0 ; i < fileCount ; i++) {
-				
-	 			var divImage = "";
-	 			divImage += '<div style="display: inline-block; height: 95px;">';
-				divImage += '	<img id="aaa'+i+'" src="" class="rounded" width= "85px" height="85px">';
-				divImage += '	<div style="position: relative; top:-85px; left:5px"><span style="color: red;">X</span></div>';
-				divImage += '</div> ';
-				
-				$("#ifmmUploadedImage1View").append(divImage);
-				
-				var fileReader = new FileReader();
-				 fileReader.readAsDataURL($("#" + objName +"")[0].files[i]);
-				alert($("#" + objName +"")[0].files[i]);
-				 fileReader.onload = function () {
-				 alert($("#aaa"+i+""));
-				 
-				 if(i == 0) {
-					 $("#aaa0").attr("src", fileReader.result);
-				 } else if (i == 1) {
-					 $("#aaa0").attr("src", fileReader.result);	
-				 } else {
-					 
-				 }
-				 }
-			}			
- 			
-		} else if(uiType == 2) {
-			$("#ulFile" + seq).children().remove();
-			
-			for (var i = 0 ; i < fileCount ; i++) {
-				addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
-			}
-		} else if (uiType == 3) {
-			var fileReader = new FileReader();
-			 fileReader.readAsDataURL($("#" + objName +"")[0].files[0]);
-			
-			 fileReader.onload = function () {
-				 $("#imgProfile").attr("src", fileReader.result);	
-			 }		
+	 /* $("#btnSave").on("click", function(){
+	if ($("#place").val() == null || $("#place").val() == "" ) {
+		document.getElementById("placeFeedback").classList.add('invalid-feedback');
+		$("#place").focus();
+	} else {
+		if (seq.val() == "0" || seq.val() == "") {
+			// insert
+			form.attr("action", goUrlInst).submit();
 		} else {
-			return false;
+			// update
+			form.attr("action", goUrlUpdt).submit();
 		}
-		return false;
-	} 
-	
-addUploadLi = function (seq, index, name){
-		
-		var ul_list = $("#ulFile0");
-		
-		li = '<li id="li_'+seq+'_'+index+'" class="list-group-item d-flex justify-content-between align-items-center">';
-		li = li + name;
-		li = li + '<span class="badge bg-danger rounded-pill" onClick="delLi('+ seq +','+ index +')"><i class="fa-solid fa-x" style="cursor: pointer;"></i></span>';
-		li = li + '</li>';
-		
-		$("#ulFile"+seq).append(li);
-	}
-	
-	
-	delLi = function(seq, index) {
-		$("#li_"+seq+"_"+index).remove();
-	}
-	
-	 // 파일 업로드 e 
-	
+	});  */
 	</script>
 </body>
 </html>

@@ -117,6 +117,18 @@
 	                </div>
 	            </div>
 	        </main>
+	        <button id="btnDelete" class="btn btn-danger del mt-5 ms-5" type="button" style="float: left;">
+				<i class="fa-solid fa-trash-can"></i>
+			</button>
+			<button id="btnUelete" class="btn btn-warning del mt-5 ms-3" type="button" style="float: left;">
+				<i class="fa-solid fa-xmark"></i>
+			</button>
+			<button id="btnGoForm" class="btn de mt-5 me-5" type="button" style="float: right;">
+				<i class="fa-solid fa-plus"></i>
+			</button>
+			<button id="btnExcel" class="btn btn-success del mt-5 me-3" type="button" style="float: right; color: white;">
+				<i class="fa-regular fa-file-excel"></i>
+			</button>
         </form>
         <div id="sidebar">
             <div class="side_img">
@@ -269,6 +281,8 @@
 	});
 	
 	// 삭제버튼
+	
+	
 	
 	var checkboxSeqArray = [];
 
