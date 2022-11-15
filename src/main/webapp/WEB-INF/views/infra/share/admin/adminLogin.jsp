@@ -70,15 +70,6 @@
 						<div class="col-3"></div>
 					</div>
 				</div>
-				<div class="container text-center mt-3">
-					<div class="row">
-						<div class="col-3"></div>
-						<div class="a col-3 me-3" style="cursor: pointer;" id="btnKakao" name="btnSignup">
-							<button class='btn' type="button" name="btnKakao" id="btnKakao" style="background-color: #ffcc00">카카오 로그인</button>
-						</div>
-						<div class="col-3"></div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>

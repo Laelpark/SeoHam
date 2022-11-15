@@ -53,6 +53,10 @@
 			<exclude-mapping path="/kakaoInst" />
 			<exclude-mapping path="/snsLoginCheck" />
 			<exclude-mapping path="/kakaoLoginProc" />
+			<exclude-mapping path="/naverLoginProc" />
+			<exclude-mapping path="/nationality/nationalityAjaxList" />
+			<exclude-mapping path="/nationality/nationalityAjaxLita" />
+			<exclude-mapping path="/nationality/nationalityForm" />
 			<exclude-mapping path="/nationality/nationalityList" />
 			<exclude-mapping path="/" />
 			<!-- <exclude-mapping path="/shareInst" /> -->

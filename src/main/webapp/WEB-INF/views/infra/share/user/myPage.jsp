@@ -99,6 +99,8 @@
 		var seq = $("input:hidden[name=seq]");
 		
 		var form = $("#myForm");
+		
+		alert(seq.val())
 	
 		goList = function() {
 			form.attr("action", goUrlMyList).submit();

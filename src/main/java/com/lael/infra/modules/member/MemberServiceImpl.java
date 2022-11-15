@@ -140,4 +140,9 @@ public class MemberServiceImpl implements MemberService{
 	public int user_divUpdate(Member dto) throws Exception {
 		return dao.update(dto);
 	}
+
+	@Override
+	public int naverInst(Member dto) throws Exception {
+		return dao.naverInst(dto);
+	}
 }

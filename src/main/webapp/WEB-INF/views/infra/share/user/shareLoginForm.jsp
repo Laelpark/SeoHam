@@ -30,8 +30,8 @@
               	<div class="col-8 offset-2">
                     <div class="input-control">
                         <label for="id">아이디<span style="color: red;"> *</span></label>
-                        <input type="hidden" id="idAllowedNy" name="idAllowedNy" value="0" onkeypress="validationUpdt()">
                         <input id="id" name="id" type="text" value="<c:out value="${item.id }"/>" autocomplete="off"> 
+                        <input type="hidden" id="idAllowedNy" name="idAllowedNy" value="0" onkeypress="validationUpdt()">
                         <div class="msg" id="id_msg" name="id_msg" style="display: none;"></div>
                     </div>
                 </div>
@@ -73,24 +73,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-3 offset-2">
+                <div class="col-8 offset-2">
                     <div class="input-control">
-                        <label for="dob">년도</label>
-                        <input id="dob" name="dob" class="datepicker" type="text" placeholder="1900" autocomplete="off" onfocusout="validationUpdt()">
-                        <div class="msg" id="dob_msg" name="dob_msg" style="display: none;"></div>
-                    </div>
-                </div>
-                 <div class="col-3">
-                    <div class="input-control">
-                        <label for="dob">월</label>
-                        <input id="dob" name="dob" class="datepicker" type="text" placeholder="01" autocomplete="off" onfocusout="validationUpdt()">
-                        <div class="msg" id="dob_msg" name="dob_msg" style="display: none;"></div>
-                    </div>
-                </div>
-                 <div class="col-3">
-                    <div class="input-control">
-                        <label for="dob">일</label>
-                        <input id="dob" name="dob" class="datepicker" type="text" placeholder="01" autocomplete="off" onfocusout="validationUpdt()">
+                        <label for="dob">생년월일</label>
+                        <input id="dob" name="dob" class="datepicker" type="text" placeholder="특순문자(-)없이 8자리 숫자입력" autocomplete="off" onfocusout="validationUpdt()">
                         <div class="msg" id="dob_msg" name="dob_msg" style="display: none;"></div>
                     </div>
                 </div>
@@ -168,7 +154,7 @@
 	$("#id").val("abc"); //id값이 id인 곳의 value 값으로 "abc" 넣기 */ 
 	
 	 errorValidation = function(input, msg, message) {
-     	$(msg).parent().removeClass('success');						
+     		$(msg).parent().removeClass('success');						
 		 	$(msg).parent().addClass('error');
 	        $(msg).text(message);
 	        $(msg).show();
@@ -216,7 +202,7 @@
  	});
 	
 	
-	/* $("#id").on("focusout", function(){
+	 /* $("#id").on("focusout", function(){
 		if ($("#id").val() == null || $("#id").val() == "" ) {
 			document.getElementById("idFeedback").classList.add('invalid-feedback');
 			document.getElementById("idFeedback").innerText = "아이디를 입력해주세요.";
@@ -255,7 +241,7 @@
 			});
 		}
 			
-		}); */
+		}); */ 
 
 	</script>
 	<script>

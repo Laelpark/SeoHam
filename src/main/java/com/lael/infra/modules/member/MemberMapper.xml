@@ -32,8 +32,6 @@
 			,a.pw
 			,a.name
 			,a.dob
-			,a.dob2
-			,a.dob3
 			,a.gender
 			,a.email
 			,a.phone
@@ -79,8 +77,6 @@
 			,nick_nm
 			,share_place
 			,dob
-			,dob2
-			,dob3
 			,gender
 			,email
 			,phone
@@ -146,8 +142,6 @@
 	 	WHERE 1=1
 	 		AND a.name = #{name}
 	 		and a.dob = #{dob}
-			and a.dob2 = #{dob2}
-			and a.dob3 = #{dob3}
 			and a.phone = #{phone}
 	</select>
 	
@@ -230,8 +224,6 @@
 			,a.pw
 			,a.name
 			,a.dob
-			,a.dob2
-			,a.dob3
 			,a.gender
 			,a.email
 			,a.phone
@@ -277,6 +269,29 @@
 		<selectKey resultType="String" keyProperty="seq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
+	
+	</insert>
+ 	<!-- naverLogin -->
+	<insert id="naverInst">
+		INSERT INTO share_member (
+			id
+			,name
+			,email
+			,gender
+			,phone
+			,DelNy
+		)
+		VALUES (
+			#{snsId}
+			,#{name}
+			,#{email}
+			,#{gender}
+			,#{phone}
+			,0
+		)
+		<selectKey resultType="String" keyProperty="seq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
 	</insert>
 	
 	<select id="snsLoginCheck" resultMap="resultMapObj">
@@ -285,10 +300,12 @@
 			,a.id
 			,a.name
 			,a.email
+			,a.phone
 		from share_member a
 		where 1=1
-			and id = #{snsId}
 			and name = #{name}
+			and phone = #{phone}
+			and email = #{email}
 	</select>
 	
 	<update id="user_divUpdate">

@@ -9,11 +9,11 @@ public class ShareVo extends BaseVo{
 	private Integer DelNy;
 	private String memberSeq;
 	
-	public String getMemberSeq() {
-		return memberSeq;
+	public String getSeq() {
+		return seq;
 	}
-	public void setMemberSeq(String memberSeq) {
-		this.memberSeq = memberSeq;
+	public void setSeq(String seq) {
+		this.seq = seq;
 	}
 	public String getmSeq() {
 		return mSeq;
@@ -21,17 +21,18 @@ public class ShareVo extends BaseVo{
 	public void setmSeq(String mSeq) {
 		this.mSeq = mSeq;
 	}
-	public String getSeq() {
-		return seq;
-	}
-	public void setSeq(String seq) {
-		this.seq = seq;
-	}
 	public Integer getDelNy() {
 		return DelNy;
 	}
-	public void setDelNy(Integer DelNy) {
-		this.DelNy = DelNy;
+	public void setDelNy(Integer delNy) {
+		DelNy = delNy;
 	}
-
+	public String getMemberSeq() {
+		return memberSeq;
+	}
+	public void setMemberSeq(String memberSeq) {
+		this.memberSeq = memberSeq;
+	}
+	
+	
 }

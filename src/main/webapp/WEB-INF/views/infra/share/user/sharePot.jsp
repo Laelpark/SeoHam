@@ -24,8 +24,8 @@
 	<form id="myForm" name="myForm" method="post">
 		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
 		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
-		<input type="hidden" name="seq" value="<c:out value="${vo.seq}"/>">
-		<input type="hidden" name="memberSeq" value="<c:out value="${sessSeq}"/>">
+		<input type="hidden" name="seq" value="${vo.seq}">
+		<input type="hidden" name="memberSeq" value="${sessSeq}">
 		<p style="background-color: rgb(142, 68, 173); height: 30px;"></p>
 		<div class="container1 ms-3 me-3">
 			<nav class="bg-transparent">
@@ -40,6 +40,8 @@
 						<li class="nav-item dropdown ms-3">
 							<div class="d-flex">
 								<button class="btn bg-transparent me-2" type="button" id="goNow">Go Now</button>
+								vo.seq = ${vo.seq }
+								sessSeq = ${sessSeq }
 							</div>
 						</li>
 						<li class="nav-item dropdown" value=""><select class="form-select" id="shOption" name="shOption">
@@ -109,7 +111,7 @@
 												</c:forEach>
 											</td>
 											<td class="text-center s">${list.place}</td>
-											<td class="text-center">${list.time}</td>
+											<td class="text-center">${list.date} ${list.time}</td>
 											<td class="text-center">
 												<c:choose>
 													<c:when test="${empty list.price }">
@@ -195,26 +197,26 @@
 																<img alt="" class="like${status.index }" src="/resources/images/share/star_e.png" style="width: 30px; height: 30px;">
 															</span>
 														</c:when>
-														<c:when test="${list.memberSeq eq sessSeq}">
+														<c:otherwise>
 															<c:choose>
-																<c:when test="${empty list.likeCount }">
-																	<span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq}, ${status.index })"> 
-																		<input type="hidden" value="0" name="likeNy${status.index }">
-																		<input type="hidden" value="" name="img${status.index }"> 
-																		<input type="hidden" name="likeCount${status.index }" value="0">
-																		<img alt="" class="like${status.index }" src="/resources/images/share/star_e.png" style="width: 30px; height: 30px;">
-																	</span>
-																</c:when>
-																<c:otherwise>
+																<c:when test="${list.memberSeq eq sessSeq}">
 																	<span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq}, ${status.index })"> 
 																		<input type="hidden" value="${list.likeNy }" name="likeNy${status.index }"> 
 																		<input type="hidden" value="" name="img${status.index }"> 
 																		<input type="hidden" name="likeCount${status.index }" value="<c:out value="${list.likeCount}"/>">
 																		<img alt="" name="img" class="like${status.index }" src="${list.img}" style="width: 30px; height: 30px;">
 																	</span>
+																</c:when>
+																<c:otherwise>
+																	<span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq}, ${status.index })"> 
+																		<input type="hidden" value="0" name="likeNy${status.index }">
+																		<input type="hidden" value="" name="img${status.index }"> 
+																		<input type="hidden" name="likeCount${status.index }" value="0">
+																		<img alt="" class="like${status.index }" src="/resources/images/share/star_e.png" style="width: 30px; height: 30px;">
+																	</span>
 																</c:otherwise>
 															</c:choose>
-														</c:when>
+														</c:otherwise>
 													</c:choose> 
 												</span>
 											</td>
@@ -283,6 +285,8 @@
 	function favorites(e, seq, keyValue){
 		$("input[name=seq]").val(seq);
 		event.stopPropagation();
+		
+		alert($("input[name=likeNy"+keyValue+"]").val())
 		
 		var likeCount = $("input[name=likeCount"+keyValue+"]").val();
 		if ($("input[name=likeNy"+keyValue+"]").val() == "0") {

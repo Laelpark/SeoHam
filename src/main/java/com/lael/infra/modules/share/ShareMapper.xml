@@ -75,16 +75,17 @@
 	</select>
 	
 	<select id="selectListStar" resultMap="resultMapObj">
-		<include refid="Base.selectListUpperForMysql"></include>
+		<!-- <include refid="Base.selectListUpperForMysql"></include> -->
 		SELECT
-			f.img
+			f.memberSeq
+			,f.img
 			,f.likeNy
 			,f.shareSeq
 		FROM favorite f
 		WHERE 1=1
-			and f.memberSeq = #{memberSeq}
-		<include refid="Base.orderByLimitForMysql" />
-		<include refid="Base.selectListLowerForMysql" /> 
+			and f.memberSeq = '1'
+		<!-- <include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" />  -->
 	</select>
 	
 	<select id="selectMyList" resultMap="resultMapObj">
@@ -103,7 +104,7 @@
 			,c.createDate
 		FROM share c
 		WHERE 1=1
-			and share_member_seq = #{seq}
+			and share_member_seq = #{memberSeq}
 			<choose>
 				<when test="shOption == 1">AND food_div = #{shValue}</when>
 				<when test="shOption == 2">AND title LIKE CONCAT('%',#{shValue},'%')</when>

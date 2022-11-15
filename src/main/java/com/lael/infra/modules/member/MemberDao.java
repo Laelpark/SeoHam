@@ -82,6 +82,7 @@ public class MemberDao {
 	
 	public int user_divUpdate(Member dto) {return sqlSession.update(namespace + ".user_divUpdate", dto); }
 
+	public int naverInst(Member dto) {return sqlSession.insert(namespace + ".naverInst", dto); }
 }
 	
 	

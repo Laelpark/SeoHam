@@ -59,7 +59,7 @@ public class ShareController {
 		List<Share> list = service.selectListFav(vo);
 		model.addAttribute("list", list); 
 		
-		List<Share> list1 = (service.selectListStar(vo));
+		List<Share> list1 = service.selectListStar(vo);
 		model.addAttribute("list1", list1); 
 		
 		return "infra/share/user/sharePot";
@@ -159,8 +159,11 @@ public class ShareController {
 	@RequestMapping(value = "/myList")
 	public String MyList(@ModelAttribute("vo") ShareVo vo, Model model, Share dto) throws Exception {
 		
-		  vo.setParamsPaging(service.selectMyCount(vo));
-		 
+		vo.setParamsPaging(service.selectMyCount(vo));
+ 
+		
+		System.out.println(vo.getMemberSeq());  
+		System.out.println(dto.getMemberSeq());  
 		
 		List<Share> mList = service.selectMyList(vo);
 		model.addAttribute("list", mList); 
@@ -178,12 +181,15 @@ public class ShareController {
 		
 		if(one == null) {
 		    service.likeInst(dto);
+		    service.likeCountUpdt(dto);
 			returnMap.put("rt", "success");
 		} else if(one.getLikeNy() == 0) {
 		    service.likeUpdt2(dto);
+		    service.likeCountUpdt(dto);
 			returnMap.put("rt", "success");
 		} else if(one.getLikeNy() == 1){
 		    service.likeUpdt2(dto);
+		    service.likeCountUpdt(dto);
 			returnMap.put("rt", "success");
 		} else {
 			returnMap.put("rt", "fail");

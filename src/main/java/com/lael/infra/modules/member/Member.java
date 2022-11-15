@@ -7,8 +7,6 @@ public class Member {
 	private String pw;
 	private String name;
 	private Integer dob;
-	private Integer dob2;
-	private Integer dob3;
 	private Integer gender;
 	private String email;
 	private String phone;
@@ -116,18 +114,6 @@ public class Member {
 	}
 	public void setDob(Integer dob) {
 		this.dob = dob;
-	}
-	public Integer getDob2() {
-		return dob2;
-	}
-	public void setDob2(Integer dob2) {
-		this.dob2 = dob2;
-	}
-	public Integer getDob3() {
-		return dob3;
-	}
-	public void setDob3(Integer dob3) {
-		this.dob3 = dob3;
 	}
 	public Integer getGender() {
 		return gender;

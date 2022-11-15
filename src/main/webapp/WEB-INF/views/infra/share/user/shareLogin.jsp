@@ -43,9 +43,12 @@
 							<i class="fa-solid fa-user p-3 d-grid" style="font-size: 23px; height: 55px;"></i>
 						</span>
 						<input type="text" class="form-control form-group" id="id" name="id" aria-describedby="inputGroupPrepend" tabindex="1" value="zxcv">
+						<div class="invalid-feedback" id="idFeedback"></div>
+						<input type="hidden" id="idAllowedNy" name="idAllowedNy" value="0" onkeypress="validationUpdt()">
+	                    <div class="msg" id="id_msg" name="id_msg" style="display: none;"></div>
 					</div>
 				</div>
-				<div class="offset-4 form-check col-4 mt-2" id="rememberId">
+				<div class="offset-4 form-chseck col-4 mt-2" id="rememberId">
 					<input class="form-check-input keepLogin" type="checkbox" value="" id="saveId" name="saveId" tabindex="4">
 					<label class="form-check-label keepLogin" for="saveId">
 						아이디 저장
@@ -82,8 +85,18 @@
 					<div class="row">
 						<div class="col-3"></div>
 						<div class="a col-3 me-3" style="cursor: pointer;" id="btnKakao" name="btnSignup">
-							<button class='btn' type="button" name="btnKakao" id="btnKakao" style="background-color: #ffcc00">카카오 로그인</button>
+							<button class='btn' type="button" name="btnKakao" id="btnKakao" style="background-color: #ffcc00">
+								<i class="fa-solid fa-k"></i> 카카오 로그인
+							</button>
 						</div>
+						<div class="a col-3 btn_login_wrap">
+							<button class='btn btn-success' type="button" name="naverIdLogin" id="naverIdLogin"  onclick="btnNaverLogin();">
+								<i class="fa-solid fa-n"></i> 네이버 로그인
+							</button>
+						</div> 
+						<!-- <div class="a col-3 btn_login_wrap">
+							<div id="naverIdLogin" onclick="naverLogin();"></div>
+                        </div> -->
 						<div class="col-3"></div>
 					</div>
 				</div>
@@ -96,12 +109,26 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 	<script>
 		// 로그인
 		
-		$("#btnLogin").on("click", function(){
-			/* if(validation() == false) return false; */
+		/* errorValidation = function(input, msg, message) {
+	        $(msg).text(message);
+	        $(msg).show();
+	        $(input).val('');
+	        $(input).focus();
+		}
+		
+			if ($("#id").val() == null || $("#id").val() == "" ) {
+				document.getElementById("id").classList.add('is-invalid');
+				document.getElementById("idFeedback").innerText = "아이디를 다시 확인해주세요.";
+				$("#id").focus();
+			} else {
+				document.getElementById("id").classList.add('is-valid');
+			} */
 			
+		$("#btnLogin").on("click", function(){
 			$.ajax({
 				async: true 
 				,cache: false
@@ -112,7 +139,7 @@
 					if(response.rt == "success") {
 							location.href = "/share";
 						}else {
-							alert("회원없음");
+							alert("회원없음")
 					}
 				}
 				,error : function(jqXHR, textStatus, errorThrown){
@@ -121,9 +148,12 @@
 			});
 		});
 		
+		
 	</script>
 	
 	<script type="text/javascript">
+	
+	/* kakao login test s */
 	
 	var goUrlList = "/share";
 	
@@ -153,7 +183,7 @@
 					,cache: false
 					,type:"POST"
 					,url: "/kakaoLoginProc"
-					,data: {"name": account.profile.nickname, "snsId": "카카오로그인", "email": account.email}
+					,data: {"name": account.profile.name, "snsId": "카카오로그인", "email": account.email}
 					,success : function(response) {
 						if (response.rt == "fail") {
 							alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
@@ -177,6 +207,72 @@
 		      },
 		    })
 	});
+	
+	</script>
+	
+	<script type="text/javascript">
+	
+	/* naver login test s */
+		
+		/* var naverLogin = new naver.LoginWithNaverId(
+		{
+			clientId: "b8EhDTV3tvvAE_gRRBoJ",
+			callbackUrl: "http://localhost:8080/userLogin",
+			isPopup: false,
+			loginButton: {color: "green", type: 3, height: 70} 
+		}
+	); */
+		
+		var naverLogin  = new naver.LoginWithNaverId(
+		{
+			clientId: "iJCCP3K5HUMLGunSs9PZ",
+			callbackUrl: "http://localhost:8080/shareLogin",
+			isPopup: true,
+			callbackHandle: true
+		}
+	);
+	
+		naverLogin.init();
+		
+		function btnNaverLogin() {
+			
+			naverLogin.getLoginStatus(function (status) {
+				if(!status)
+					naverLogin.authorize();
+	            else
+	                setLoginStatus();  //하늘님 메소드 실행 -> Ajax
+			});
+		}
+		
+		function setLoginStatus() {
+			
+				/* if (naverLogin.user.gender == 'M'){
+					$("input[name=gender]").val(1);
+				} else {
+				$("input[name=gender]").val(2);
+			} */ 
+			
+		$.ajax({
+			async: true
+			,cache: false
+			,type:"POST"
+			,url: "/naverLoginProc"
+			,data: {"name": naverLogin.user.name, "snsId": "네이버로그인", "email": naverLogin.user.email, "phone": naverLogin.user.mobile}
+			,success : function(response) {
+				if (response.rt == "fail") {
+					alert("아이디와 비밀번호를 다시 확인 후 시도해 주세요.");
+					return false;
+				} else {
+					window.location.href = "/share";
+				}
+			},
+			error : function(jqXHR, status, error) {
+				alert("알 수 없는 에러 [ " + error + " ]");
+			}
+		});
+	}
+	/* naver login test e */
+	
 	</script>
 	
 </body>

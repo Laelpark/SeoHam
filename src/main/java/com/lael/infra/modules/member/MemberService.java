@@ -31,5 +31,6 @@ public interface MemberService {
 
 	public int user_divUpdate(Member dto) throws Exception;
 	
+	public int naverInst(Member dto) throws Exception;
 	
 }

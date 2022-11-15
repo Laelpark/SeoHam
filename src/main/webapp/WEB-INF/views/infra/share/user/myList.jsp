@@ -22,12 +22,12 @@
 </head>
 <body>
 	<form id="myForm" name="myForm" method="post">
-		<%-- <!-- *Vo.jsp s -->
+		 <!-- *Vo.jsp s -->
 		<%@include file="shareVo.jsp"%>
-		<!-- *Vo.jsp e --> --%>
-		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+		 <!-- *Vo.jsp e  -->
+		<%-- <input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
 		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
-		<input type="hidden" name="seq" value="<c:out value="${vo.seq}"/>"/>
+		<input type="hidden" name="memberSeq" value="${sessSeq}"> --%>
 		<div class="navbar" style="background-color:rgb(142, 68, 173); height: 30px; width: 100%;"></div>
 		<div class="sideEmty">
 			<div class="header">
@@ -153,9 +153,11 @@
 	var goUrlUpdt = "/shareMyPageUpdt";
 	var goUrlUpdt = "/shareMyPageUpdt";
 	
-	var seq = $("input:hidden[name=seq]");
+	var memberSeq = $("input:hidden[name=memberSeq]");
 	
 	var form = $("#myForm");
+	
+	alert(memberSeq.val())
 
 	goList = function() {
 		form.attr("action", goUrlMyList).submit();
