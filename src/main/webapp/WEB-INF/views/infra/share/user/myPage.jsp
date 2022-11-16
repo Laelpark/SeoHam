@@ -20,6 +20,7 @@
 		<!-- *Vo.jsp s -->
 		<%@include file="shareVo.jsp"%>
 		<!-- *Vo.jsp e -->
+		<input type="hidden" name="memberSeq" value="${sessSeq}">
 		<div class="navbar" style="background-color:rgb(142, 68, 173); height: 30px; width: 100%;"></div>
 		<div class="sideEmty">
 			<div class="header row">

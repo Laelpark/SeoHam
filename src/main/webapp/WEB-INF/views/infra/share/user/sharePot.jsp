@@ -40,8 +40,6 @@
 						<li class="nav-item dropdown ms-3">
 							<div class="d-flex">
 								<button class="btn bg-transparent me-2" type="button" id="goNow">Go Now</button>
-								vo.seq = ${vo.seq }
-								sessSeq = ${sessSeq }
 							</div>
 						</li>
 						<li class="nav-item dropdown" value=""><select class="form-select" id="shOption" name="shOption">

@@ -26,6 +26,7 @@
 <body style="background-color: rgb(224, 224, 224);">
 	<!-- start -->
 	<form action="" id="login_form"  name="form">
+		<input type="hidden" name="naver" value="${sessSeq }"/>
 	<input type="hidden" name="snsId"> 
 	<input type="hidden" name="name"> 
 		<div class="navbar" style="background-color:rgb(142, 68, 173); height: 50px;"></div>
@@ -243,6 +244,14 @@
 	                setLoginStatus();  //하늘님 메소드 실행 -> Ajax
 			});
 		}
+		
+		if ($("input[name=naver]").val() != null && $("input[name=naver]").val() != "") {
+  			naverLogin.getLoginStatus(function (status) {
+  				if (status) {
+  					setLoginStatus();
+  				}
+  			});
+   		}
 		
 		function setLoginStatus() {
 			

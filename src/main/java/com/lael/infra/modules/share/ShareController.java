@@ -181,15 +181,12 @@ public class ShareController {
 		
 		if(one == null) {
 		    service.likeInst(dto);
-		    service.likeCountUpdt(dto);
 			returnMap.put("rt", "success");
 		} else if(one.getLikeNy() == 0) {
 		    service.likeUpdt2(dto);
-		    service.likeCountUpdt(dto);
 			returnMap.put("rt", "success");
 		} else if(one.getLikeNy() == 1){
 		    service.likeUpdt2(dto);
-		    service.likeCountUpdt(dto);
 			returnMap.put("rt", "success");
 		} else {
 			returnMap.put("rt", "fail");
