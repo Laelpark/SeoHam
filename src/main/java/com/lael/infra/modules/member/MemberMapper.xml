@@ -34,7 +34,9 @@
 			,a.dob
 			,a.gender
 			,a.email
+			,a.email_div
 			,a.phone
+			,a.phone_div
 			,a.nick_nm
 			,a.share_place
 			,a.grade
@@ -79,7 +81,9 @@
 			,dob
 			,gender
 			,email
+			,email_div
 			,phone
+			,phone_div
 			,DelNy
 			,createDate
 		)
@@ -90,11 +94,11 @@
 			,#{nick_nm}
 			,#{share_place}
 			,#{dob}
-			,#{dob2}
-			,#{dob3}
 			,#{gender}
 			,#{email}
+			,#{email_div}
 			,#{phone}
+			,#{phone_div}
 			,0
 			,now()
 		)
@@ -156,6 +160,17 @@
 			and a.phone = #{phone}
 	</select>
 	
+	<!-- pw변경 -->
+	<update id="changePwd">
+		UPDATE share_member
+		SET
+			pw = #{pw}
+		where 1=1
+			AND a.name = #{name}
+	 		and a.id = #{id}
+			and a.phone = #{phone}
+	</update>
+	
  	<update id="update">
 	 	UPDATE share_member
 	 	SET
@@ -209,6 +224,7 @@
  			,a.id
  			,a.name
  			,a.email
+ 			,a.email_div
 		FROM
 			share_member a
 		WHERE 1=1
@@ -226,7 +242,9 @@
 			,a.dob
 			,a.gender
 			,a.email
+			,a.email_div
 			,a.phone
+			,a.phone_div
 			,a.nick_nm
 			,a.share_place
 			,a.grade
@@ -250,6 +268,21 @@
 		FROM share_member a
 		WHERE 1=1
 			and DATE(createDate) = DATE(now()) 
+	</select>
+	
+	<select id="selectListLog" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"/>
+		SELECT
+			a.seq
+			,a.gender
+			,a.email
+			,a.email_div
+			,a.phone
+			,a.phone_div
+		<include refid="selectCommon" />
+		ORDER BY a.seq DESC
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" /> 
 	</select>
  	
  	<!-- KakaoLogin -->

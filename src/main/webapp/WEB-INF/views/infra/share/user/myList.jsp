@@ -22,12 +22,10 @@
 </head>
 <body>
 	<form id="myForm" name="myForm" method="post">
-		 <!-- *Vo.jsp s -->
-		<%@include file="shareVo.jsp"%>
-		 <!-- *Vo.jsp e  -->
-		<%-- <input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
 		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
-		<input type="hidden" name="memberSeq" value="${sessSeq}"> --%>
+		<input type="hidden" name="seq" value="<c:out value="${vo.seq}"/>"/>
+		<input type="hidden" name="memberSeq" value="<c:out value="${sessSeq}"/>"/>		
 		<div class="navbar" style="background-color:rgb(142, 68, 173); height: 30px; width: 100%;"></div>
 		<div class="sideEmty">
 			<div class="header">
@@ -72,7 +70,7 @@
 							<div class="d-flex" role="search">
 								<input class="form-control me-2 text-center" name="shValue" id="shValue" value="<c:out value="${vo.shValue}"/>" autocomplete="off" type="search" style="width: 300px;" placeholder="검색어를 입력하세요.">
 								<button class="btn btn-outline-success bg-transparent me-2" type="submit" id="searching">Search</button>
-								<button class="btn btn-danger" type="reset" id="btnReset" name="btnReset"><i class="fa-solid fa-rotate-right"></i></button>
+								<button class="btn btn-danger" type="reset" id="btnReset" name="btnReset" onclick="btnReset()"><i class="fa-solid fa-rotate-right"></i></button>
 							</div>
 						</li>
 					</ul>
@@ -157,8 +155,6 @@
 	
 	var form = $("#myForm");
 	
-	alert(memberSeq.val())
-
 	goList = function() {
 		form.attr("action", goUrlMyList).submit();
 	};
@@ -175,10 +171,12 @@
 		form.attr("action", goUrlMySecurity).submit();
 	};
 
-	 /* $("#btnReset").on("click", function(){
+	  $("#btnReset").on("click", function(){
 		 $(location).attr("href", goUrlMyList);
-	 }); */
+	 }); 
 		 
+	/* btnReset = function() {
+		form.attr("action", goUrlMyList).submit(); */
 	 
 	
 	</script>

@@ -64,19 +64,28 @@
                 </div>
             </div>    
              <div class="row">
-                <div class="col-8 offset-2">
-                    <div class="input-control">
-                        <label for="email">이메일</label>
-                        <input id="email" name="email" type="text" onfocusout="validationUpdt()" autocomplete="off" placeholder=" example) share@도메인">
-                        <div class="msg" id="email_msg" name="email_msg" style="display: none;"></div>
-                    </div>
-                </div>
+             	<div class="input-control col-4 offset-2">
+                	<label for="email">이메일</label>
+                    <input id="email" name="email" type="text" onfocusout="validationUpdt()" autocomplete="off" placeholder="사용하실 이메일 입력">
+                    <div class="msg" id="email_msg" name="email_msg" style="display: none;"></div>
+           		</div>
+           		<div class="col-2 mt-4" style="width: 25px;">
+	               	<span>@</span>
+           		</div>
+           		<div class="col-4">
+					<select class="select form-select mt-4" id="email_div" name="email_div">
+						<option value="" <c:if test="${empty item.email_div }">selected</c:if>>이메일선택</option>
+						<option value="4" <c:if test = "${item.email_div eq 4}">selected</c:if>>네이버(naver.com)</option>
+						<option value="5" <c:if test = "${item.email_div eq 5}">selected</c:if>>다음(daum.net)</option>
+						<option value="6" <c:if test = "${item.email_div eq 6}">selected</c:if>>지메일(gmail.com)</option>
+					</select>
+           		</div>
             </div>
             <div class="row">
                 <div class="col-8 offset-2">
                     <div class="input-control">
                         <label for="dob">생년월일</label>
-                        <input id="dob" name="dob" class="datepicker" type="text" placeholder="특순문자(-)없이 8자리 숫자입력" autocomplete="off" onfocusout="validationUpdt()">
+                        <input id="dob" name="dob" class="datepicker" type="text" placeholder="생년월일 8자리 숫자입력" oninput="autoHyphen1(this)" maxlength="10" autocomplete="off" onfocusout="validationUpdt()">
                         <div class="msg" id="dob_msg" name="dob_msg" style="display: none;"></div>
                     </div>
                 </div>
@@ -100,10 +109,10 @@
                     <div class="input-control">
                         <label for="phone_div"><span style="color: red;">* </span>통신사</label>
                         <select id="phone_div" name="phone_div" aria-label=".form-select-lg example" onfocusout="validationUpdt()">
-                            <option value="" <c:if test="${empty item.gender}">selected</c:if>>선택</option>
-                            <option value="8" <c:if test="${item.gender eq 5 }">selected</c:if>>KT</option>
-                            <option value="9" <c:if test="${item.gender eq 6 }">selected</c:if>>SKT</option>
-                            <option value="10" <c:if test="${item.gender eq 6 }">selected</c:if>>LGT</option>
+                            <option value="" <c:if test="${empty item.phone_div}">selected</c:if>>통신사선택</option>
+							<option value="9" <c:if test = "${item.phone_div eq 9}">selected</c:if>>SKT</option>
+							<option value="8" <c:if test = "${item.phone_div eq 8}">selected</c:if>>KT</option>
+							<option value="10" <c:if test = "${item.phone_div eq 10}">selected</c:if>>LG</option>
                         </select>
                         <div class="msg" id="phone_div_msg" name="phone_div_msg" style="display: none;"></div>
                     </div>
@@ -111,7 +120,7 @@
                 <div class="col-5">
                     <div class="input-control">
                         <label for="phone">전화번호</label>
-                        <input id="phone" name="phone" type="text" placeholder="특수문자(-)없이 숫자만 입력" autocomplete="off" onfocusout="validationUpdt()">
+                        <input id="phone" name="phone" type="text" placeholder="전화번호를 입력해주세요." oninput="autoHyphen2(this)" maxlength="13" autocomplete="off" onfocusout="validationUpdt()">
                         <div class="phone" id="phone_msg" name="phone_msg" style="display: none;"></div>
                     </div>
                 </div>
@@ -266,15 +275,25 @@
             }
         };
 	
-		$("#btnSave").on("click", function() {
-			if(validationUpdt() == false) {
-				return false;
-			}
-			form.attr("action", goUrlInst).submit();
-				alert("가입이 완료되었습니다.")
- 		});;
+        $("#btnSave").on("click", function() {
+        		form.attr("action", goUrlInst).submit();
+        		swAlert("회원가입", "회원가입이 완료되었습니다.", "success");
+		});
+        
+        function swAlert(title, text, icon) {
+			swal({
+				title: title
+				,text: text
+				,icon: icon
+				,buttons: "확인"
+			}).then((value) => {
+				if (value) {
+					loaction.href = "/shareLogin";
+				}
+			})
+		}
 	 		
- 	 	function swAlert(title, text, icon) {
+ 	 	/* function swAlert(title, text, icon) {
 			swal({
 				title: title,
 				text: text,
@@ -285,7 +304,19 @@
 					location.href = "/shareLogin";
 				}
 			});
-		} 
+		} */ 
+ 	 	
+ 	 	const autoHyphen2 = (target) => {
+ 	 		 target.value = target.value
+ 	 		   .replace(/[^0-9]/g, '')
+ 	 		  .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+ 	 		}
+
+ 	 	const autoHyphen1 = (target) => {
+ 	 		 target.value = target.value
+ 	 		   .replace(/[^0-9]/g, '')
+ 	 		  .replace(/^(\d{0,4})(\d{0,2})(\d{0,2})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+ 	 		}
 	</script>
 	
 </body>

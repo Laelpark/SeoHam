@@ -24,6 +24,11 @@ public class MemberDao {
 		List<Member> list = sqlSession.selectList(namespace + ".selectList", "");
 		return list; 								
 	}
+
+	public List<Member> selectListLog(MemberVo vo){ 
+		List<Member> list = sqlSession.selectList(namespace + ".selectListLog", vo);
+		return list; 								
+	}
 	
 	public List<Member> selectList1(){ 
 		List<Member> list = sqlSession.selectList(namespace + ".selectList1", "");
@@ -65,6 +70,8 @@ public class MemberDao {
 	public Member pwFind(Member dto) {
 		return sqlSession.selectOne(namespace + ".pwFind" , dto);
 	}
+	public int changePwd(Member dto) {return sqlSession.update(namespace + ".changePwd", dto); }
+
 	
 	public Member selectOneLogin(Member dto) {
 		return sqlSession.selectOne(namespace + ".selectOneLogin", dto);

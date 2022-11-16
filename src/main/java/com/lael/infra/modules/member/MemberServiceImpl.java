@@ -23,6 +23,12 @@ public class MemberServiceImpl implements MemberService{
 		List<Member> list = dao.selectList(vo);
 		return list;
 	}
+
+	@Override
+	public List<Member> selectListLog(MemberVo vo) throws Exception {
+		List<Member> list = dao.selectListLog(vo);
+		return list;
+	}
 	
 	@Override
 	public List<Member> selectList1() throws Exception {
@@ -111,6 +117,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public Member pwFind(Member dto) throws Exception {
 		return dao.pwFind(dto);
+	}
+
+	@Override
+	public int changePwd(Member dto) throws Exception {
+		return dao.changePwd(dto);
 	}
 	
 	@Override

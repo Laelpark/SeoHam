@@ -136,35 +136,30 @@ public class ShareController {
 		return "infra/share/user/myPage";
 	}
 	
-	@RequestMapping(value = "/shareMyPageUpdt")
-	public String shareMyPageUpdt(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
+	@RequestMapping(value = "/shareMyInfoUpdt")
+	public String shareMyInfoUpdt(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		Mservice.myUpdate(dto);
-		
 		redirectAttributes.addFlashAttribute("vo", vo); 
-		return "redirect:/myPage";
+		
+		return "redirect:/personalInformation";
 	}
 	
-	@RequestMapping(value = "/shareMyPageInst")
-	public String shareMyPageInst(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
+	@RequestMapping(value = "/shareMyInfoInst")
+	public String shareMyInfoInst(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		Mservice.myInsert(dto);
 		
 		vo.setSeq(dto.getSeq());
 		redirectAttributes.addFlashAttribute("vo", vo); 
 		
-		return "redirect:/myPage";
+		return "redirect:/personalInformation";
 	}
 	
 	@RequestMapping(value = "/myList")
 	public String MyList(@ModelAttribute("vo") ShareVo vo, Model model, Share dto) throws Exception {
 		
 		vo.setParamsPaging(service.selectMyCount(vo));
- 
-		
-		System.out.println(vo.getMemberSeq());  
-		System.out.println(dto.getMemberSeq());  
-		
 		List<Share> mList = service.selectMyList(vo);
 		model.addAttribute("list", mList); 
 		

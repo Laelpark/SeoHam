@@ -6,10 +6,12 @@ public class Member {
 	private String id;
 	private String pw;
 	private String name;
-	private Integer dob;
+	private String dob;
 	private Integer gender;
 	private String email;
+	private Integer email_div;
 	private String phone;
+	private Integer phone_div;
 	private String nick_nm;
 	private String share_place;
 	private Integer grade;
@@ -109,10 +111,10 @@ public class Member {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getDob() {
+	public String getDob() {
 		return dob;
 	}
-	public void setDob(Integer dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 	public Integer getGender() {
@@ -171,5 +173,18 @@ public class Member {
 	public void setDelNy(Integer delNy) {
 		DelNy = delNy;
 	}
+	public Integer getEmail_div() {
+		return email_div;
+	}
+	public void setEmail_div(Integer email_div) {
+		this.email_div = email_div;
+	}
+	public Integer getPhone_div() {
+		return phone_div;
+	}
+	public void setPhone_div(Integer phone_div) {
+		this.phone_div = phone_div;
+	}
+	
 	
 }

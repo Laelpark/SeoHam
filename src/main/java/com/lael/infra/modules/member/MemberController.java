@@ -60,6 +60,9 @@ public class MemberController {
 	@RequestMapping(value = "shareLogin")
 	public String shareLogin(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
 		
+		List<Member> list = service.selectListLog(vo);
+		model.addAttribute("list", list);
+		
 		Member item = service.selectOne(vo);
 		model.addAttribute("item", item);
 		
@@ -67,7 +70,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "shareSignup")
-	public String shareLoginForm() throws Exception {
+	public String shareLoginForm(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
+		
+		Member item = service.selectOne(vo);
+		model.addAttribute("item", item);
+		
 		return "infra/share/user/shareLoginForm";
 	}
 	

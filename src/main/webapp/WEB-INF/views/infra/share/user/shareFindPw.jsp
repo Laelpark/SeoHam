@@ -50,7 +50,7 @@
 				<table>
 					<td>
 						<label class="form-label">전화번호</label>
-						<input type="text" class="a mt-2 ms-3 form-control" style="width: 400px; height: 35px;" placeholder="특수문자(-)없이 숫자만 입력" id="phone" name="phone">
+						<input type="text" class="a mt-2 ms-3 form-control" placeholder="전화번호 입력" oninput="autoHyphen2(this)" maxlength="13" id="phone" name="phone">
 					</td>
 				</table>
 				<div class="idPop" style="display: none;">
@@ -72,7 +72,7 @@
 			</div>
 			<table id="wrapper" class="mb-3 mt-5" style="padding-top: 50px;">
 				<td class="pwPop">
-					<button id="findId" name="findId" type="button" class="btn">
+					<button id="findPw" name="findPw" type="button" class="btn">
 						비밀번호 찾기
 					</button>
 				</td>
@@ -123,7 +123,7 @@
 
 	//pw 변경
 	
-	$("#findId").on("click", function() {
+	$("#findPw").on("click", function() {
 			$.ajax({
 				async: true
 				,cache: false
@@ -149,6 +149,12 @@
 				}
 			});
 		})
+		
+		const autoHyphen2 = (target) => {
+ 	 		 target.value = target.value
+ 	 		   .replace(/[^0-9]/g, '')
+ 	 		  .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+ 	 		}
 	
 	</script>
 </body>

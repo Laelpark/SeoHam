@@ -43,20 +43,14 @@
 				<label>생년월일</label>
 				<table>
 					<td>
-						<input class="b col mt-2 form-control" placeholder="년(4자)" id="dob" name="dob">
-					</td>
-					<td>
-						<input class="b mt-2 ms-4 form-control" placeholder="월" id="dob2" name="dob2">
-					</td>
-					<td>
-						<input class="b mt-2 ms-4 form-control" placeholder="일" id="dob3" name="dob3">
+						<input class="a col mt-2 form-control" placeholder="생년월일 8자리 숫자입력" oninput="autoHyphen1(this)" maxlength="10" id="dob" name="dob">
 					</td>
 				</table>
 				<hr style="color: rgb(78, 78, 78); width: 800px;">
 				<label>전화번호</label>
 				<table>
 					<td>
-						<input class="mt-2 ms-3 form-control" style="width: 400px; height: 35px;" placeholder="특수문자(-)없이 숫자만 입력" id="phone" name="phone"
+						<input class="a col mt-2 form-control" placeholder="전화번호 입력" oninput="autoHyphen2(this)" maxlength="13" id="phone" name="phone"
 							value="<c:out value="${item.phone}"/>">
 					</td>
 				</table>
@@ -70,7 +64,7 @@
 				</div>
 			</div>
 			<table id="wrapper" class="mb-3 mt-5" style="padding-top: 50px;">
-				<td>
+				<td class="idPop1">
 					<button id="findId" name="findId" type="button" class="btn">
 						아이디 찾기
 					</button>
@@ -78,6 +72,9 @@
 				<td class="idPop" style="display: none;">
 					<button id="btnLogin" name="btnLogin" type="button" class="btn" style="background-color: blueviolet; color:white;">
 						로그인
+					</button>
+					<button class="btn ms-3" type="button" id="GOfindPw" name="GOfindPw">
+						비밀번호 찾기
 					</button>
 				</td>
 			</table>
@@ -115,6 +112,10 @@
 		 $(location).attr("href", goUrlFindPw);
 	 });
 	
+	$("#GOfindPw").on("click", function(){
+		 $(location).attr("href", goUrlFindPw);
+	 });
+	
 	//ID 찾기
 	
 	$("#findId").on("click", function() {
@@ -123,9 +124,10 @@
 				,cache: false
 				,type:"POST"
 				,url: "idFind"
-				,data: {"name": $("#name").val(), "dob": $("#dob").val(), "dob2": $("#dob2").val(), "dob3": $("#dob3").val(), "phone" : $("#phone").val()}
+				,data: {"name": $("#name").val(), "dob": $("#dob").val(), "phone" : $("#phone").val()}
 				,success : function(response) {
 					if (response.rt == "success") {
+						$(".idPop1").css("display", "none");  // 아이디 찾기 성공하며 띄어주는 화면
 						$(".idPop").css("display", "");  // 아이디 찾기 성공하며 띄어주는 화면
 						$("#name").html(response.id.name);
 						$("#id").html(response.id.id);
@@ -144,6 +146,17 @@
 			});
 		})
 	
+		const autoHyphen2 = (target) => {
+ 	 		 target.value = target.value
+ 	 		   .replace(/[^0-9]/g, '')
+ 	 		  .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+ 	 		}
+
+ 	 	const autoHyphen1 = (target) => {
+ 	 		 target.value = target.value
+ 	 		   .replace(/[^0-9]/g, '')
+ 	 		  .replace(/^(\d{0,4})(\d{0,2})(\d{0,2})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+ 	 		}
 
 	</script>
 </body>

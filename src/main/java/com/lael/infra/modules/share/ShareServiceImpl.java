@@ -104,17 +104,17 @@ import org.springframework.stereotype.Service;
 	
 	public void likeInst(Share dto) throws Exception {
 		System.out.println("insert 여기 맞음?");
-		likeCount(dto);
+		likeCount(dto); // favorite insert
 		System.out.println("likeCount 확인");
-		likeCountUpdt(dto);
+		likeCountUpdt(dto); // share likecount update
 		System.out.println("likeCountUpdt 확인");
 	}
 	
 	public void likeUpdt2(Share dto) throws Exception {
 		System.out.println("update 여기 맞음?");
-		likeUpdt(dto);
+		likeUpdt(dto); // favorite update
 		System.out.println("likeCount 확인");
-		likeCountUpdt(dto);
+		likeCountUpdt(dto); // share likeCount update
 		System.out.println("likeCountUpdt 확인");
 	}
 	

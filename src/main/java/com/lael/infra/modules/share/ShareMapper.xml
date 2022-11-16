@@ -121,7 +121,7 @@
 	<select id="selectMyCount" resultType="Integer">
 		SELECT COUNT(*)
 		FROM share c
-		WHERE 1=1		
+		WHERE 1=1	
 			and share_member_seq = #{seq}
 		ORDER BY c.createDate DESC
 	</select>

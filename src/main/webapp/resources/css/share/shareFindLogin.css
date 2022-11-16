@@ -205,7 +205,14 @@ ul {
 	color: black;
 }
 
-#findId {
+#findPw {
+	background-color: transparent;
+	border-style: solid;
+	border-color: rgb(142, 68, 173);
+	color: black;
+}
+
+#GOfindPw {
 	background-color: transparent;
 	border-style: solid;
 	border-color: rgb(142, 68, 173);
