@@ -59,6 +59,8 @@ public class MemberDao {
 	public int uelete(Member dto) {return sqlSession.update(namespace + ".uelete", dto); }
 	public int delete(MemberVo vo) {return sqlSession.delete(namespace + ".delete", vo); }
 	
+	// -------- 아이디 설정 s
+	
 	public int idCheck(Member dto) {
 		return sqlSession.selectOne(namespace + ".idCheck" , dto);
 	}
@@ -66,12 +68,20 @@ public class MemberDao {
 	public Member idFind(Member dto) {
 		return sqlSession.selectOne(namespace + ".idFind" , dto);
 	}
+	
+	// -------- 아이디 설정 e
 
-	public Member pwFind(Member dto) {
+	// -------- 비밀번호 변경 s
+	
+	public int pwFind(Member dto) {
 		return sqlSession.selectOne(namespace + ".pwFind" , dto);
 	}
-	public int changePwd(Member dto) {return sqlSession.update(namespace + ".changePwd", dto); }
-
+	
+	public int changePwd(Member dto) {
+		return sqlSession.update(namespace + ".changePwd", dto); 
+	}
+	
+	// -------- 비밀번호 변경 e
 	
 	public Member selectOneLogin(Member dto) {
 		return sqlSession.selectOne(namespace + ".selectOneLogin", dto);

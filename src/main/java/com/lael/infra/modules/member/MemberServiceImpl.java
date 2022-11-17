@@ -115,7 +115,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public Member pwFind(Member dto) throws Exception {
+	public int pwFind(Member dto) throws Exception {
 		return dao.pwFind(dto);
 	}
 

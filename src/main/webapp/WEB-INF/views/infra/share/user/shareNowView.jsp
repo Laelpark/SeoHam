@@ -96,7 +96,7 @@
 						</li>
 						<li class="nav-item dropdown">
 							<!-- <input type="hidden" class="d-flex" for="title"/>  -->
-							<input class="form-control me-2 text-center" id="title" name="title" type="text" style="width: 480px; height: 50px;" placeholder="타이틀을 입력하세요." value='<c:out value="${item.title}"/>'/>
+							<input class="form-control me-2 text-center" id="title" name="title" type="text" style="width: 480px; height: 50px;" placeholder="타이틀을 입력하세요." value='<c:out value="${item.title}"/>'disabled/>
 						</li>
 						<li>
 							<select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="people_num" name="people_num" disabled>
@@ -113,7 +113,7 @@
 			<nav class="navbar navbar-expand-lg">
 				<div class="a collapse navbar-collapse" style="height: 300px;">
 					<div class="c" for="info">
-						<textarea class="form-control" placeholder="주문하실 음식점 이름과 메뉴, 가격 등을 자세히 기재해주세요." rows="10" id="info" name="info" aria-label="info"> 
+						<textarea class="form-control" placeholder="주문하실 음식점 이름과 메뉴, 가격 등을 자세히 기재해주세요." rows="10" id="info" name="info" aria-label="info" disabled> 
 	                		${item.info}
 	                	</textarea>
 					</div>
@@ -129,7 +129,7 @@
 										<p id="date">거래 장소</p>
 									</div>
 									<div class="col-8" for="date">
-										<input type="text" style="width: 850px; margin-left: auto;" id="place" name="place" value="<c:out value="${item.place}"/>">
+										<input class="form-control" type="text" style="width: 815px; margin-left: auto;" id="place" name="place" value="<c:out value="${item.place}"/>" disabled>
 									</div>
 								</div>
 							</nav>
@@ -138,11 +138,11 @@
 									<div class="col-4">
 										<p id="date">거래 시간</p>
 									</div>
-									<div class="col-6" for="date" style="padding-right: 0px; padding-left: 10px;" >
-										<input class="form-control" type="date" style="width: 400px; margin-left: auto;" id="date" name="date" placeholder=" 거래날짜를 선택하세요." value="<c:out value="${item.date}"/>">
+									<div class="col-6" for="date">
+										<input class="form-control" type="date" style="width: 400px; margin-left: auto; text-align: center;" id="date" name="date" placeholder=" 거래날짜를 선택하세요." value="<c:out value="${item.date}"/>" disabled>
 									</div>
 									<div class="col" for="time">
-										<input class="form-control" type="time" style="width: 400px; margin-left: auto;" id="time" name="time" placeholder=" 거래시간을 선택하세요." value="<c:out value="${item.time}"/>">
+										<input class="form-control" type="time" style="width: 400px; margin-left: auto; text-align: center;" id="time" name="time" placeholder=" 거래시간을 선택하세요." value="<c:out value="${item.time}"/>" disabled>
 									</div>
 								</div>
 							</nav>
@@ -152,7 +152,7 @@
 										<p id="date">인당 가격</p>
 									</div>
 									<div class="col-8" for="price">
-										<input type="text" style="width: 850px; margin-left: auto;" id="price" name="price" value="<c:out value="${item.price}"/>">
+										<input class="form-control" type="text" style="width: 850px; margin-left: auto;" id="price" name="price" value="<c:out value="${item.price}"/>" disabled>
 									</div>
 								</div>
 							</nav>

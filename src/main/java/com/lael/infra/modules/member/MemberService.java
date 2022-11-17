@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface MemberService {
 	public List<Member> selectList(MemberVo vo) throws Exception;  // list 로 담아주기
-	public List<Member> selectListLog(MemberVo vo) throws Exception;  // list 로 담아주기
+	public List<Member> selectListLog(MemberVo vo) throws Exception; 
 	public List<Member> selectList() throws Exception;			
 	public List<Member> selectList1() throws Exception;	
 	public List<Member> selectList2(MemberVo vo) throws Exception;	
@@ -22,7 +22,8 @@ public interface MemberService {
 	public int idCheck(Member dto) throws Exception;
 	public Member idFind(Member dto) throws Exception;
 	
-	public Member pwFind(Member dto) throws Exception;
+	
+	public int pwFind(Member dto) throws Exception;
 	public int changePwd(Member dto) throws Exception;
 
 	public Member selectOneLogin(Member dto) throws Exception;

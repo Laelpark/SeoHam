@@ -40,8 +40,8 @@
                 <div class="col-8 offset-2">
                     <div class="input-control">
                         <label for="pwd">비밀번호<span style="color: red;"> *</span></label>
-                        <input id="pw" name="pw" type="password" onkeypress="validationUpdt()" onfocusout="validationUpdt()" autocomplete="off">
-                        <div class="msg" id="pw_msg" name="pw_msg" style="display: none;"></div>
+                        <input id="pwd" name="pwd" type="password" onkeypress="validationUpdt()" onfocusout="validationUpdt()" autocomplete="off">
+                        <div class="msg" id="pwd_msg" name="pwd_msg" style="display: none;"></div>
                     </div>
                 </div>
             </div>
@@ -260,7 +260,7 @@
 		 validationUpdt = function() {
             if (!id_regex($('input[name=id]'), $('input[name=id]').val(), "아이디를 입력해주세요.", $('#id_msg'))) {
             	return false;
-            } else if(!pwd_regex($('input[name=pw]'), $('input[name=pw]').val(), "비밀번호를 입력해주세요.", $('#pw_msg'))) {
+            } else if(!pwd_regex($('input[name=pwd]'), $('input[name=pwd]').val(), "비밀번호를 입력해주세요.", $('#pwd_msg'))) {
                 return false;
             } else if(!pw2_regex($('input[name=pw2]'), $('input[name=pw2]').val(), "비밀번호를 확인해주세요.", $('#pw2_msg'))) {
                 return false;

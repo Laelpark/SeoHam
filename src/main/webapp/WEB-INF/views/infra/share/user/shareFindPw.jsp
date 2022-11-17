@@ -10,7 +10,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>shareFindPw</title>
+	<title>Find Password</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link rel="stylesheet" href="/resources/css/share/shareFindLogin.css">
 	<script defer type="text/javascript" src="/resources/js/validation.js"></script>
@@ -58,14 +58,16 @@
 					<label class="form-label">변경할 비밀번호 입력<span style="color: #dc3545;"> *</span></label>
 					<table style="text-decoration: none; text-align: center;">
 						<td>
-							<input type="text" class="a col mt-2 form-control" placeholder="변경하실 비밀번호 입력" id="pwB" name="pwB">
+							<input type="password" class="a col mt-2 form-control" placeholder="변경하실 비밀번호 입력" id="pwd" name="pwd">
+							<div class="msg" id="pwd_msg" name="pwd_msg" style="display: none;"></div>
 						</td>
 					</table>
 					<hr style="color: rgb(78, 78, 78); width: 800px;">
-					<label class="form-label">변경 된 비밀번호 재 입력<span style="color: #dc3545;"> *</span></label>
+					<label class="form-label" for="pwdCheck">변경 된 비밀번호 재 입력<span style="color: #dc3545;"> *</span></label>
 					<table style="text-decoration: none; text-align: center;">
 						<td>
-							<input type="text" class="a col mt-2 form-control" placeholder="변경하신 비밀번호 재 입력" id="pwA" name="pwA">
+							<input type="password" class="a col mt-2 form-control" placeholder="변경하신 비밀번호 재 입력" id="pwdCheck" name="pwdCheck">
+							<div class="msg" id="pwdCheck_msg" name="pwdCheck_msg" style="display: none;"></div>
 						</td>
 					</table>
 				</div>
@@ -107,7 +109,6 @@
 	var seq = $("input:hidden[name=seq]");
 
 	var form = $("form[name=myform]");
-	var formVo = $("form[name=formVo]");
 	
 	$("#btnLogin").on("click", function(){
 		 $(location).attr("href", goUrlLogin);
@@ -121,41 +122,83 @@
 		 $(location).attr("href", goUrlFindPw);
 	 });
 
-	//pw 변경
-	
-	$("#findPw").on("click", function() {
-			$.ajax({
-				async: true
-				,cache: false
-				,type:"POST"
-				,url: "pwFind"
-				,data: {"name": $("#name").val(), "id": $("#id").val(), "phone" : $("#phone").val()}
-				,success : function(response) {
-					if (response.rt == "success") {
-						$(".idPop").css("display", "");  // 비밀번호 찾기 성공하며 띄어주는 화면
-						$(".pwPop").css("display", "none");
-						$("#name").html(response.pw.name);
-						$("#pw").html(response.pw.pw);
-					} else {
-						alert("정확한 정보를 입력해주세요.");
-					}
-				},
-				/* error : function(jqXHR, status, error) {
-					alert("알 수 없는 에러 [ " + error + " ]");
-				} */
-				error : function(jqXHR, status, error) {
-					$("#id").html("없는 정보");
-					alert("등록된 회원 정보가 없습니다.");
-				}
-			});
-		})
-		
 		const autoHyphen2 = (target) => {
  	 		 target.value = target.value
  	 		   .replace(/[^0-9]/g, '')
  	 		  .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
  	 		}
+		
+	//pw 찾기
 	
+		$("#findPw").on("click", function() {
+				$.ajax({
+					async: true
+					,cache: false
+					,type:"POST"
+					,url: "pwFind"
+					,data: {"name": $("#name").val(), "id": $("#id").val(), "phone" : $("#phone").val()}
+					,success : function(response) {
+						if (response.rt == "success") {
+							$(".idPop").css("display", "");  // 비밀번호 찾기 성공하며 띄어주는 화면
+							$(".pwPop").css("display", "none");
+							$("#name").html(response.pw.name);
+							$("#pwd").html(response.pw.pwd);
+						} else {
+							alert("정확한 정보를 입력해주세요.");
+						}
+					},
+					/* error : function(jqXHR, status, error) {
+						alert("알 수 없는 에러 [ " + error + " ]");
+					} */
+					error : function(jqXHR, status, error) {
+						$("#id").html("없는 정보");
+						alert("등록된 회원 정보가 없습니다.");
+					}
+				});
+			})
+		</script>
+		<script type="text/javascript">
+		//pw 변경
+		
+			$("#btnPw").on("click", function() {
+				
+				$.ajax({
+					async: true
+					,cache: false
+					,type:"POST"
+					,url: "changePwd"
+					,data: {"name": $("#name").val(), "id": $("#id").val(), "phone": $("#phone").val(), "pw": $("#pwd").val()}
+					,success : function(response) {
+						if (response.rt == "success") {
+							alert("비밀번호 수정이 완료되었습니다.");
+							location.href="/shareLogin";
+						} else {
+							alert("비밀번호를 확인해주세요.");
+						}
+					},
+					/* error : function(jqXHR, status, error) {
+						alert("알 수 없는 에러 [ " + error + " ]");
+					} */
+					error : function(jqXHR, status, error) {
+						$("#id").html("없는 정보");
+						alert("등록된 회원 정보가 없습니다.!!");
+					}
+				});
+			})
+		</script>
+		<script type="text/javascript">
+        validationUpdt = function() {
+        	alert("123123");
+            if(!pwd_regex($('input[name=pwd]'), $('input[name=pwd]').val(), "비밀번호를 입력하세요.", $('#pwd_msg'))) {
+                return false;
+            } else if(!pwd2_regex($('#pwdCheck')), $('#pwdCheck').val(), "비밀번호를 입력하세요.", $('#pwdCheck_msg'))) {
+                return false;
+            } else {
+                return true;
+            }
+           	alert("회원가입이 완료 되었습니다.");
+        };
+		
 	</script>
 </body>
 </html>

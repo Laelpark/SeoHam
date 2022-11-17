@@ -100,7 +100,7 @@ pwd2_regex = function(obj, value, message, hide) {
         hide.parent().addClass('error')
         $(hide).show()
         return false;
-    } else if(!(($.trim($(obj).val()) == $.trim($('#pw').val())))) {
+    } else if(!(($.trim($(obj).val()) == $.trim($('#pwd').val())))) {
         $(hide).text('비밀번호가 일치하지 않습니다.')
         hide.parent().addClass('error')
         $(hide).show()

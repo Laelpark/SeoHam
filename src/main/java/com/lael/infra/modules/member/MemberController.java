@@ -124,17 +124,36 @@ public class MemberController {
 	public Map<String, Object> pwFind(Member dto) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
-		Member result = service.pwFind(dto);
+		int result = service.pwFind(dto);
 		
-		if (result != null) {
+		if (result == 1) {
 			returnMap.put("rt", "success");
-			returnMap.put("pw", result);  // 테이블에 있는 전체 값을 담고 있으므로 하나만 생성
+			/* returnMap.put("pw", result); */  // 테이블에 있는 전체 값을 담고 있으므로 하나만 생성
 		} else {
 			returnMap.put("rt", "fail");
 		}
 		
 		return returnMap;
 	}
+	
+	
+	 @ResponseBody
+	    @RequestMapping(value = "changePwd")
+	    public Map<String, Object> changePwd(Member dto) throws Exception {
+	        Map<String, Object> returnMap = new HashMap<String, Object>();
+	        
+	        int result = service.pwFind(dto);
+	        
+	        if (result == 1) {
+	            returnMap.put("rt", "success");
+	            service.changePwd(dto);
+	        } else {
+	            returnMap.put("rt", "fail");
+	        }
+	        
+	        return returnMap;
+	    }
+	 
 	
 	@ResponseBody
 	@RequestMapping(value = "loginProc")

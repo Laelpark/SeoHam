@@ -150,25 +150,26 @@
 	</select>
 	
 	<!-- pw찾기 -->
-	<select id="pwFind" resultMap="resultMapObj">
+	<select id="pwFind"  parameterType="String" resultType="int"> 
 		SELECT
-			a.pw
+			count(*) 
 		FROM share_member a
 	 	WHERE 1=1
-	 		AND a.name = #{name}
-	 		and a.id = #{id}
-			and a.phone = #{phone}
-	</select>
+	 		AND name = #{name}
+	 		and id = #{id}
+			and phone = #{phone}
+	</select>                       
 	
 	<!-- pw변경 -->
 	<update id="changePwd">
 		UPDATE share_member
 		SET
 			pw = #{pw}
+			
 		where 1=1
-			AND a.name = #{name}
-	 		and a.id = #{id}
-			and a.phone = #{phone}
+			AND name = #{name}
+	 		and id = #{id}
+			and phone = #{phone}
 	</update>
 	
  	<update id="update">
