@@ -18,67 +18,67 @@
 <link rel="stylesheet" href="/resources/css/share/shareNow.css">
 </head>
 <body>
+	<form id="myForm" name="myForm" method="post">
+		<%@include file="shareVo.jsp"%>
+		<input type="hidden" name="memberSeq" value="<c:out value="${sessSeq}"/>"/>
+		<input type="hidden" name="memberId" value="<c:out value="${Mitem.nick_nm}"/>"/>
+		<input type="hidden" name="memberphone" value="<c:out value="${Miem.phone}"/>"/>
+		<input type="hidden" name="memberName" value="<c:out value="${Miem.name}"/>"/>
 	<!-- start -->
-	<p class="mb-3" style="background-color: rgb(142, 68, 173); height: 30px;"></p>
-	<div class="container1">
-		<nav class="bg-transparent">
-			<div class="container">
-				<a class="hidden" href="share" style="width: 150px;"> <img src="../../resources/images/share/sharenow.png" alt="" width="230" height="60" class="d-inline-block align-text-top ms-3">
-				</a>
-			</div>
-		</nav>
-		<nav class="navbar navbar-expand-lg bg-transparent">
-			<div class="topBtn collapse navbar-collapse" id="navbarSupportedContent">
-				<input type="hidden" class="d-flex" role="search">
-					<button type="button" class="btn btn-outline-danger me-4">취소</button>
-					<button type="button" class="btn" data-bs-toggle="modal"  id="btnGoShare"  href="#exampleModalToggle" name="btnGoShare" role="button">Go Share</button>
-					<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-					  <div class="modal-dialog modal-dialog-centered">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					      	<i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>
-					        <h1 class="modal-title fs-5" id="exampleModalToggleLabel"> &nbsp;주의(Warning)</h1>
-					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					      </div>
-					      <div class="modal-body">
-				       		SHARE 진행 시 상대방의 아이디 및 전화번호가 보여집니다.<br>
-				       		계속 진행하시겠습니까?
-					      </div>
-					      <div class="modal-footer">
-					      	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-					        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">확인</button>
-					      </div>
-					    </div>
-					  </div>
-					</div>
-					<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-					  <div class="modal-dialog modal-dialog-centered">
-					    <div class="modal-content">
-					      <div class="modal-header">
-					      	<i class="fa-solid fa-user" style="color: rgb(142, 68, 173);"></i>
-					        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2"> &nbsp;상대정보</h1>
-					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					      </div>
-					      <div class="modal-body">
-					       <span>닉네임 : </span>
-					       <br><span>전화번호 : </span>
-					       <%-- <span>${list.nick_nm }</span>
-					       <br><span>${list.phone }</span> --%>
-					      </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
-					      </div>
-					    </div>
-					  </div>
-					</div>
-				</input>
-			</div>
-		</nav>
-		<form id="myform" name="myform" method="post">
-			<!-- *Vo.jsp s -->
-			<%@include file="shareVo.jsp"%>
-			<input type="hidden" name="share_member_seq" value="<c:out value="${sessSeq}"/>" />
-			<!-- *Vo.jsp e -->
+		<p class="mb-3" style="background-color: rgb(142, 68, 173); height: 30px;"></p>
+		<div class="container1">
+			<nav class="bg-transparent">
+				<div class="container">
+					<a class="hidden" href="share" style="width: 150px;"> <img src="../../resources/images/share/sharenow.png" alt="" width="230" height="60" class="d-inline-block align-text-top ms-3">
+					</a>
+				</div>
+			</nav>
+			<nav class="navbar navbar-expand-lg bg-transparent">
+				<div class="topBtn collapse navbar-collapse" id="navbarSupportedContent">
+					<input type="hidden" class="d-flex" role="search">
+						<button type="button" class="btn btn-outline-danger me-4">취소</button>
+						<button type="button" class="btn" data-bs-toggle="modal"  id="btnGoShare"  href="#exampleModalToggle" name="btnGoShare" role="button">Go Share</button>
+						<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+						  <div class="modal-dialog modal-dialog-centered">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						      	<i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>
+						        <h1 class="modal-title fs-5" id="exampleModalToggleLabel"> &nbsp;주의(Warning)</h1>
+						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						      </div>
+						      <div class="modal-body">
+					       		SHARE 진행 시 상대방의 아이디 및 전화번호가 보여집니다.<br>
+					       		계속 진행하시겠습니까?
+						      </div>
+						      <div class="modal-footer">
+						      	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+						        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">확인</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+						  <div class="modal-dialog modal-dialog-centered">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						      	<i class="fa-solid fa-user" style="color: rgb(142, 68, 173);"></i>
+						        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2"> &nbsp;상대정보</h1>
+						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						      </div>
+						      <div class="modal-body">
+						       <span>이름 : <%-- <c:out value="${Mitem.name}"/> --%></span>
+						       <br><span>닉네임 : <%-- <c:out value="${Mitem.nick_nm}"/> --%></span>
+						       <br><span>전화번호 : <%-- <c:out value="${Mitem.phone}"/> --%></span>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+					</input>
+				</div>
+			</nav>
 			<nav class="navbar navbar-expand-lg">
 				<div class="a collapse navbar-collapse">
 					<ul class="navbar-nav mb-2 mt-2 ms-3">
@@ -161,8 +161,8 @@
 				</div>
 			</nav>
 			<br>
-		</form>
-	</div>
+		</div>
+	</form>
 
 
 	<!-- end -->

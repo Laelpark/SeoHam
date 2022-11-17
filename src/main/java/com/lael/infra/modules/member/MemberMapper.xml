@@ -351,6 +351,21 @@
 			seq = #{seq}
  	</update>
  	
+ 	<!-- shareNowView member info 불러오기 -->
+ 	<select id="selectOne2" resultMap="resultMapObj">
+		SELECT
+			 a.seq
+			,a.id
+			,a.name
+			,a.phone
+		FROM share_member a
+	 	WHERE 1=1
+	 		and name = #{name}
+			and phone = #{phone}
+			and id = #{id}
+	</select>
+ 	
+ 	
  	
 </mapper>	
 		

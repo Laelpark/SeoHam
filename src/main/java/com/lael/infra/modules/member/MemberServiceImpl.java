@@ -11,8 +11,6 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired
 	MemberDao dao;
 
-	
-	
 	@Override
 	public List<Member> selectList2(MemberVo vo) throws Exception {
 		return dao.selectList2(vo);
@@ -156,4 +154,12 @@ public class MemberServiceImpl implements MemberService{
 	public int naverInst(Member dto) throws Exception {
 		return dao.naverInst(dto);
 	}
+	
+	/* shareNowView member info 불러오기 */
+	
+	@Override
+	public Member selectOne2(MemberVo vo1) throws Exception {
+		return dao.selectOne2(vo1);
+	}
+	
 }

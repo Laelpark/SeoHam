@@ -5,10 +5,10 @@ import com.lael.infra.common.base.BaseVo;
 public class MemberVo extends BaseVo{
 
 	private String seq;
-	private Integer shOption;
-	private String shValue;
-	private Integer shDelNy;
-	private Integer shUpdt;
+	private String name;
+	private String id;
+	private String phone;
+	private String nick_nm;
 
 
 	//	public Date getDatepickerS() {
@@ -29,31 +29,30 @@ public class MemberVo extends BaseVo{
 	public void setSeq(String seq) {
 		this.seq = seq;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getNick_nm() {
+		return nick_nm;
+	}
+	public void setNick_nm(String nick_nm) {
+		this.nick_nm = nick_nm;
+	}
 	
-	public Integer getShUpdt() {
-		return shUpdt;
-	}
-	public void setShUpdt(Integer shUpdt) {
-		this.shUpdt = shUpdt;
-	}
-
-	public Integer getShOption() {
-		return shOption;
-	}
-	public void setShOption(Integer shOption) {
-		this.shOption = shOption;
-	}
-	public String getShValue() {
-		return shValue;
-	}
-	public void setShValue(String shValue) {
-		this.shValue = shValue;
-	}
-	public Integer getShDelNy() {
-		return shDelNy;
-	}
-	public void setShDelNy(Integer shDelNy) {
-		this.shDelNy = shDelNy;
-	}
-
+	
 }

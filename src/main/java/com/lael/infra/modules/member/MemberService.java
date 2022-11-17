@@ -37,4 +37,7 @@ public interface MemberService {
 	
 	public int naverInst(Member dto) throws Exception;
 	
+	/* shareNowView member info 불러오기 */
+	public Member selectOne2(MemberVo vo1) throws Exception;
+	
 }

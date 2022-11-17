@@ -116,13 +116,16 @@ public class ShareController {
 	}
 	
 	@RequestMapping(value = "/shareNowView")
-	public String shareNowView(@ModelAttribute("vo") ShareVo vo, Model model) throws Exception {
+	public String shareNowView(@ModelAttribute("vo") ShareVo vo, MemberVo vo1, Model model) throws Exception {
 		
 		Share item = service.selectOne(vo);
 		model.addAttribute("item", item);
 		
 		List<Share> list = service.nowList(vo);
 		model.addAttribute("list", list);  
+		
+		Member Mitem = Mservice.selectOne2(vo1);
+		model.addAttribute("Mitem", Mitem); 
 		
 		return "infra/share/user/shareNowView";
 	}
