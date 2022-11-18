@@ -105,7 +105,7 @@
 						</div>
 					</div>
 				</div>
-				<c:set var="listCodeFood" value="${shareCodeGroupServiceImpl.selectListCachedCode('4') }" />
+				<%-- <c:set var="listCodeFood" value="${shareCodeGroupServiceImpl.selectListCachedCode('4') }" />
 				<c:set var="listCodeNum" value="${shareCodeGroupServiceImpl.selectListCachedCode('5') }" />
 				<c:choose>
 					<c:when test="${fn:length(list) eq 0}">
@@ -157,7 +157,12 @@
 				<div class="mt-5">		
 					<%@include file="../../common/xdmin/includeV1/pagination.jsp"%>
 				</div>
+			</div> --%>
+			<div class="d-flex justify-content-center mt-5">
+			    <span>준비중...</span>
+			  	<div class="spinner-border ms-3" role="status"></div>
 			</div>
+			<span class="mt-3" style="text-align: center;"> 즐겨찾기 게시글만 표시됩니다.</span>
 		</form>
 
 	<!-- end --> 

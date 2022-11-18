@@ -104,7 +104,7 @@
 			,c.createDate
 		FROM share c
 		WHERE 1=1
-			and share_member_seq = #{memberSeq}
+			and memberSeq = #{memberSeq}
 			<choose>
 				<when test="shOption == 1">AND food_div = #{shValue}</when>
 				<when test="shOption == 2">AND title LIKE CONCAT('%',#{shValue},'%')</when>
@@ -122,7 +122,15 @@
 		SELECT COUNT(*)
 		FROM share c
 		WHERE 1=1	
-			and share_member_seq = #{seq}
+			and memberSeq = #{memberSeq}
+			<choose>
+				<when test="shOption == 1">AND food_div = #{shValue}</when>
+				<when test="shOption == 2">AND title LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND people_num = #{shValue}</when>
+				<when test="shOption == 4">AND place LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 5">AND time LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 6">AND price LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
 		ORDER BY c.createDate DESC
 	</select>
 	
@@ -251,7 +259,7 @@
 			,price
 			,info
 			,createDate
-			,share_member_seq
+			,memberSeq
 		)
 		VALUES (
 			#{food_div}
@@ -263,7 +271,7 @@
 			,#{price}
 			,#{info}
 			,now()
-			,#{share_member_seq}
+			,#{memberSeq}
 		)
 		
 		<selectKey resultType="String" keyProperty="seq" order="AFTER">
@@ -282,7 +290,7 @@
 			,time = #{time}
 			,price = #{price}
 			,info = #{info}
-			,share_member_seq = #{share_member_seq}
+			,memberSeq = #{memberSeq}
  			
 		WHERE
 			seq = #{seq}

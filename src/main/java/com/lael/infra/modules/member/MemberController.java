@@ -59,13 +59,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "shareLogin")
 	public String shareLogin(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
-		
-		List<Member> list = service.selectListLog(vo);
-		model.addAttribute("list", list);
-		
-		Member item = service.selectOne(vo);
-		model.addAttribute("item", item);
-		
 		return "infra/share/user/shareLogin";
 	}
 	

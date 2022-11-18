@@ -34,10 +34,10 @@
 				</div>
 			</nav>
 			<nav class="navbar navbar-expand-lg bg-transparent">
-				<div class="topBtn collapse navbar-collapse" id="navbarSupportedContent">
+				<div class="topBtn collapse navbar-collapse" id="cancel" name="cancel">
 					<input type="hidden" class="d-flex" role="search">
-						<button type="button" class="btn btn-outline-danger me-4">취소</button>
-						<button type="button" class="btn" data-bs-toggle="modal"  id="btnGoShare"  href="#exampleModalToggle" name="btnGoShare" role="button">Go Share</button>
+						<button type="button" class="btn btn-outline-danger me-4" onclick="back()">취소</button>
+						<button type="button" class="btn" data-bs-toggle="modal"  id="btnGoShare1"  href="#exampleModalToggle" name="btnGoShare1" role="button">Go Share</button>
 						<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
 						  <div class="modal-dialog modal-dialog-centered">
 						    <div class="modal-content">
@@ -66,12 +66,13 @@
 						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						      </div>
 						      <div class="modal-body">
-						       <span>이름 : <%-- <c:out value="${Mitem.name}"/> --%></span>
-						       <br><span>닉네임 : <%-- <c:out value="${Mitem.nick_nm}"/> --%></span>
-						       <br><span>전화번호 : <%-- <c:out value="${Mitem.phone}"/> --%></span>
+						       <span>이름 : </span>
+						       <%-- <c:out value="${Mitem.name}"/> --%>
+						       <br><span>닉네임 : </span>
+						       <br><span>전화번호 : </span>
 						      </div>
 						      <div class="modal-footer">
-						        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+						        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="btnGoShare" name="btnGoShare">확인</button>
 						      </div>
 						    </div>
 						  </div>
@@ -170,21 +171,8 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script>
-	
-	// 이미지 미리보기
-	
-	 const reader = new FileReader();
 
-    reader.onload = (readerEvent) => {
-        document.querySelector("#img").setAttribute("src", readerEvent.target.result);
-    };
-
-    document.querySelector("#chooseImg").addEventListener("change", (changeEvent) => {
-
-        const imgFile = changeEvent.target.files[0];
-        reader.readAsDataURL(imgFile);
-    })
-
+	var goUrlList = "/sharePot";
 	var goUrlInst = "/shareInst";
 	var goUrlUpdt = "/shareUpdt";
 	var goUrlDele = "/shareDele";
@@ -192,14 +180,22 @@
 	var seq = $("input:hidden[name=seq]");
 	var form = $("#myform");
 	
-	$("#btnGoShare").on("click", function() {
+	 $("#btnGoShare").on("click", function() {
 		alert("쉐어되었습니다!");
 	}
-	
+	 
 	</script>
 	<script>
-	 
 	
+		function back() {
+	
+		     history.go(-1); // 방법1
+	
+		     history.back(); //방법 2
+	
+		    /*  location.href  ="이전페이지주소" ; // 방법3 */
+	
+		}
 	</script>
 </body>
 </html>

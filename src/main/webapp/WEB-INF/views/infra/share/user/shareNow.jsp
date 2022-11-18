@@ -40,7 +40,8 @@
 		<form id="myform" name="myform" method="post">
 			<!-- *Vo.jsp s -->
 			<%@include file="shareVo.jsp"%>
-			<input type="hidden" name="share_member_seq" value="<c:out value="${sessSeq}"/>" />
+			<input type="hidden" name="memberSeq" value="${sessSeq}">
+			<%-- <input type="hidden" name="memberSeq" value="<c:out value="${sessSeq}"/>" /> --%>
 			<!-- *Vo.jsp e -->
 			<nav class="navbar navbar-expand-lg">
 				<div class="a collapse navbar-collapse">
@@ -80,7 +81,12 @@
 			<nav class="navbar navbar-expand-lg">
 				<div class="a collapse navbar-collapse" style="height: 300px;">
 					<div class="c" for="info">
-						<textarea class="form-control" placeholder="주문하실 음식점 이름과 메뉴, 가격 등을 자세히 기재해주세요." rows="10" id="info" name="info" aria-label="info" >${item.info}</textarea>
+						<textarea class="form-control" placeholder="주문하실 음식점 이름과 메뉴, 가격 등을 자세히 기재해주세요." rows="10" id="info" name="info" aria-label="info" >
+							${item.info}
+					        	<%-- <textarea id="ifmmDesc" name="ifmmDesc" class="form-control" rows="4"><c:out value="${item.ifmmDesc }"/></textarea>
+					        	<p><c:out value="${fn:replace(item.ifmmDesc, br, '<br/>')}" escapeXml = "false"/></p> 
+								<p><c:out value="${item.ifmmDesc}" /></p> --%>
+						</textarea>
 					</div>
 				</div>
 			</nav>

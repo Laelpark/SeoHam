@@ -14,11 +14,10 @@ public class Share {
 	private String ccgSeq;
 	private String createDate;
 	private Integer likeCount;
-	private String share_member_seq;
+	private String memberSeq;
 	
 	// favorite s
 	private String likeSeq;
-	private String memberSeq;
 	private Integer shareSeq;
 	private Integer likeNy;
 	private String img;
@@ -127,12 +126,6 @@ public class Share {
 	}
 	public void setLikeCount(Integer likeCount) {
 		this.likeCount = likeCount;
-	}
-	public String getShare_member_seq() {
-		return share_member_seq;
-	}
-	public void setShare_member_seq(String share_member_seq) {
-		this.share_member_seq = share_member_seq;
 	}
 	
 	

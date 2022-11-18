@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -95,6 +97,21 @@ public class ShareController {
 		return "infra/share/user/shareNow";
 	}
 	
+	@RequestMapping(value = "/shareNowView")
+	public String shareNowView(@ModelAttribute("vo") ShareVo vo, MemberVo vo1, Model model) throws Exception {
+		
+		Share item = service.selectOne(vo);
+		model.addAttribute("item", item);
+		
+		List<Share> list = service.nowList(vo);
+		model.addAttribute("list", list);  
+		
+		Member Mitem = Mservice.selectOne2(vo1);
+		model.addAttribute("Mitem", Mitem); 
+		
+		return "infra/share/user/shareNowView";
+	}
+	
 	@RequestMapping(value = "/shareInst")
 	public String shareInst(ShareVo vo, Share dto, RedirectAttributes redirectAttributes) throws Exception {
 		
@@ -113,21 +130,6 @@ public class ShareController {
 		
 		redirectAttributes.addFlashAttribute("vo", vo); 
 		return "redirect:/sharePot";
-	}
-	
-	@RequestMapping(value = "/shareNowView")
-	public String shareNowView(@ModelAttribute("vo") ShareVo vo, MemberVo vo1, Model model) throws Exception {
-		
-		Share item = service.selectOne(vo);
-		model.addAttribute("item", item);
-		
-		List<Share> list = service.nowList(vo);
-		model.addAttribute("list", list);  
-		
-		Member Mitem = Mservice.selectOne2(vo1);
-		model.addAttribute("Mitem", Mitem); 
-		
-		return "infra/share/user/shareNowView";
 	}
 	
 	@RequestMapping(value = "/myPage")
@@ -160,7 +162,10 @@ public class ShareController {
 	}
 	
 	@RequestMapping(value = "/myList")
-	public String MyList(@ModelAttribute("vo") ShareVo vo, Model model, Share dto) throws Exception {
+	public String MyList(@ModelAttribute("vo") ShareVo vo, Model model, Share dto, HttpSession httpSession) throws Exception {
+		
+		String seq = httpSession.getAttribute("sessSeq").toString();
+		vo.setMemberSeq(seq);   // 리셋 버튼 눌렀을 때 SEq값 강제로 넣어주기
 		
 		vo.setParamsPaging(service.selectMyCount(vo));
 		List<Share> mList = service.selectMyList(vo);

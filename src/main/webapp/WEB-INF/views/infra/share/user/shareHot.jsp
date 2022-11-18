@@ -70,7 +70,7 @@
 	                </tr>
             	 </thead>
                  <tbody>
-                 	<c:choose>
+                 	<%-- <c:choose>
 						<c:when test="${fn:length(list) eq 0}">
 							<tr>
 								<td class="text-center" colspan="9">There is no data!</td>
@@ -115,12 +115,17 @@
 								</tr>
 							</c:forEach>
 						</c:otherwise>
-					</c:choose>
+					</c:choose> --%>
                   </tbody>
               </table>
-			<div class="mt-5">		
+				<div class="d-flex justify-content-center mt-5">
+				    <span>준비중...</span>
+				  	<div class="spinner-border ms-3" role="status"></div>
+				</div>
+				<span class="mt-3" style="text-align: center;"> 5명 이상의 User들에게 즐겨찾기 버튼이 눌린 게시글만 표시됩니다.</span>
+			<%-- <div class="mt-5">		
 				<%@include file="../../common/xdmin/includeV1/pagination.jsp"%>
-			</div>
+			</div> --%>
 			<br>
 		</div>
 	</form>

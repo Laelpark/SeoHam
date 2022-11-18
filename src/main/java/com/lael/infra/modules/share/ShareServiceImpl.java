@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 	}
 	@Override
 	public int selectMyCount(ShareVo vo) throws Exception {
-		return dao.selectOneCount2(vo);
+		return dao.selectMyCount(vo);
 	}
 	@Override
 	public int selectOneCount(ShareVo vo) throws Exception {

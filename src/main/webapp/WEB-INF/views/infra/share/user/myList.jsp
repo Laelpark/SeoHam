@@ -70,7 +70,7 @@
 							<div class="d-flex" role="search">
 								<input class="form-control me-2 text-center" name="shValue" id="shValue" value="<c:out value="${vo.shValue}"/>" autocomplete="off" type="search" style="width: 300px;" placeholder="검색어를 입력하세요.">
 								<button class="btn btn-outline-success bg-transparent me-2" type="submit" id="searching">Search</button>
-								<button class="btn btn-danger" type="reset" id="btnReset" name="btnReset" onclick="btnReset()"><i class="fa-solid fa-rotate-right"></i></button>
+								<button class="btn btn-danger" type="reset" id="btnReset" name="btnReset" onclick="goReset()"><i class="fa-solid fa-rotate-right"></i></button>
 							</div>
 						</li>
 					</ul>
@@ -120,7 +120,7 @@
 										</c:forEach>
 	                                </td>
 	                                <td class="text-center">${list.place}</td>
-	                                <td class="text-center">${list.time}</td>
+	                                <td class="text-center">${list.date} ${list.time}</td>
 	                                <td class="text-center">${list.price}</td>
 	                                <td class="text-center">${list.createDate}</td>
                    				</tr>	
@@ -150,12 +150,14 @@
 	var goUrlInst = "/shareMyPageInst";
 	var goUrlUpdt = "/shareMyPageUpdt";
 	var goUrlUpdt = "/shareMyPageUpdt";
+	var goReset = "/myList";
 	
 	var memberSeq = $("input:hidden[name=memberSeq]");
 	
 	var form = $("#myForm");
 	
-	goList = function() {
+	goList = function(keyValue) {
+		$("input[name=thisPage]").val(keyValue)
 		form.attr("action", goUrlMyList).submit();
 	};
 	
@@ -171,13 +173,14 @@
 		form.attr("action", goUrlMySecurity).submit();
 	};
 
+	/* goReset = function() {
+		alert(memberSeq);
+		form.attr("href", goReset).submit();
+	}; */
+
 	  $("#btnReset").on("click", function(){
 		 $(location).attr("href", goUrlMyList);
 	 }); 
-		 
-	/* btnReset = function() {
-		form.attr("action", goUrlMyList).submit(); */
-	 
 	
 	</script>
 
