@@ -13,16 +13,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lael.infra.modules.share.Share;
+
 @Controller
-@RequestMapping(value="/chat/")
 public class ChatController {
 	
 	@Autowired
 	ChatServiceImpl service;
 
-	@RequestMapping(value="")
-	public String chat(HttpSession httpSession,Model model) throws Exception {
+	@RequestMapping(value="/chat")
+	public String chat(HttpSession httpSession,Model model, Share dto, Chat cDto) throws Exception {
 		
+		System.out.println("write seq : "+ dto.getWriteSeq());
+		model.addAttribute("writeSeq", dto.getWriteSeq());
 		List<Chat> list = service.selectChatListFromOne(Integer.parseInt(httpSession.getAttribute("sessSeq").toString()));
 		//캐스팅 오류나면 Integer.ParseInt(httpSession.getAttribute("sessSeq").toString())
 		model.addAttribute("list", list);
@@ -32,7 +35,7 @@ public class ChatController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value="insChat")
+	@RequestMapping(value="/insChat")
 	public Map<String,Object> insChat(HttpSession httpSession,Chat dto) throws Exception {
 		
 		Map<String,Object> result = new HashMap<String,Object>();

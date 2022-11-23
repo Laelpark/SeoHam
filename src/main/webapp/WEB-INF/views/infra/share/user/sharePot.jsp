@@ -42,15 +42,18 @@
 								<button class="btn bg-transparent me-2" type="button" id="goNow">Go Now</button>
 							</div>
 						</li>
-						<li class="nav-item dropdown" value=""><select class="form-select" id="shOption" name="shOption">
-								<option value="" <c:if test="${empty vo.shOption }">selected</c:if>>선택</option>
-								<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>제목</option>
-								<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>카테고리</option>
-								<option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>인원</option>
-								<option value="4" <c:if test="${vo.shOption eq 4 }">selected</c:if>>장소</option>
-								<option value="5" <c:if test="${vo.shOption eq 5 }">selected</c:if>>시간</option>
-								<option value="6" <c:if test="${vo.shOption eq 6 }">selected</c:if>>가격</option>
-						</select></li>
+						<li class="nav-item dropdown" value="">
+							<select class="form-select" id="shOption" name="shOption">
+									<option value="" <c:if test="${empty vo.shOption }">selected</c:if>>선택</option>
+									<option value="2" <c:if test="${vo.shOption eq 2 }">selected</c:if>>제목</option>
+									<option value="1" <c:if test="${vo.shOption eq 1 }">selected</c:if>>카테고리</option>
+									<option value="3" <c:if test="${vo.shOption eq 3 }">selected</c:if>>인원</option>
+									<option value="4" <c:if test="${vo.shOption eq 4 }">selected</c:if>>장소</option>
+									<option value="5" <c:if test="${vo.shOption eq 5 }">selected</c:if>>시간</option>
+									<option value="6" <c:if test="${vo.shOption eq 6 }">selected</c:if>>가격</option>
+									<option value="7" <c:if test="${vo.shOption eq 7 }">selected</c:if>>작성자</option>
+							</select>
+						</li>
 						<li class="nav-item dropdown ms-3">
 							<div class="d-flex" role="search">
 								<input class="form-control me-2 text-center" name="shValue" id="shValue" value="<c:out value="${vo.shValue}"/>" autocomplete="off" type="search" style="width: 300px;" placeholder="검색어를 입력하세요.">
@@ -75,13 +78,14 @@
 								<th class="text-center s">장소</th>
 								<th class="text-center">시간</th>
 								<th class="text-center">가격</th>
+								<th class="text-center">작성자</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:choose>
 								<c:when test="${fn:length(list) eq 0}">
 									<tr>
-										<td class="text-center" colspan="8">There is no data!</td>
+										<td class="text-center" colspan="9">There is no data!</td>
 									</tr>
 								</c:when>
 								<c:otherwise>
@@ -120,6 +124,7 @@
 													</c:otherwise>
 												</c:choose>
 											</td>
+											<td class="text-center">${list.nick_nm}</td>
 										</tr>
 									</c:forEach>
 								</c:otherwise>
@@ -138,6 +143,7 @@
 								<th class="text-center">장소</th>
 								<th class="text-center">시간</th>
 								<th class="text-center">가격</th>
+								<th class="text-center">작성자</th>
 								<th class="text-center">즐겨찾기</th>
 							</tr>
 						</thead>
@@ -184,6 +190,7 @@
 													</c:otherwise>
 												</c:choose>
 											</td>
+											<td class="text-center">${list.nick_nm}</td>
 											<td class="text-center">
 												<span class="rating-star"> 
 													<c:choose>

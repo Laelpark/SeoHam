@@ -58,8 +58,10 @@
 			,f.img
 			,f.likeNy
 			,f.memberSeq
+			,sm.nick_nm
 		FROM share c
 			LEFT JOIN favorite f on f.shareSeq = c.seq  <!-- shareSeq와 seq를 맞춰야 함 -->
+			LEFT JOIN share_member sm on sm.seq = c.memberSeq  <!-- shareSeq와 seq를 맞춰야 함 -->
 		WHERE 1=1
 		<choose>
 			<when test="shOption == 1">AND food_div = #{shValue}</when>
@@ -68,6 +70,7 @@
 			<when test="shOption == 4">AND place LIKE CONCAT('%',#{shValue},'%')</when>
 			<when test="shOption == 5">AND time LIKE CONCAT('%',#{shValue},'%')</when>
 			<when test="shOption == 6">AND price LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 7">AND nick_nm LIKE CONCAT('%',#{shValue},'%')</when>
 		</choose>
 		ORDER BY c.seq DESC
 		<include refid="Base.orderByLimitForMysql" />
@@ -223,6 +226,7 @@
 			,c.price
 			,c.DelNy
 			,c.createDate
+			,c.memberSeq
 		FROM share c
 	 	WHERE 1=1
 	 		AND c.seq = #{seq}

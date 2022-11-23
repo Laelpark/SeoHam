@@ -162,7 +162,7 @@
 			    <span>준비중...</span>
 			  	<div class="spinner-border ms-3" role="status"></div>
 			</div>
-			<span class="mt-3" style="text-align: center;"> 즐겨찾기 게시글만 표시됩니다.</span>
+			<span class="mt-3" style="text-align: center;"> 즐겨찾기한 게시글이 표시됩니다. (즐겨찾기 버튼 구현 중)</span>
 		</form>
 
 	<!-- end --> 

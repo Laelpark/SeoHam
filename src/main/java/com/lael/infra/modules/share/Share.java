@@ -15,6 +15,7 @@ public class Share {
 	private String createDate;
 	private Integer likeCount;
 	private String memberSeq;
+	private String writeSeq;
 	
 	// favorite s
 	private String likeSeq;
@@ -22,6 +23,21 @@ public class Share {
 	private Integer likeNy;
 	private String img;
 	
+	public String getWriteSeq() {
+		return writeSeq;
+	}
+	public void setWriteSeq(String writeSeq) {
+		this.writeSeq = writeSeq;
+	}
+	// share_member
+	private String nick_nm;
+	
+	public String getNick_nm() {
+		return nick_nm;
+	}
+	public void setNick_nm(String nick_nm) {
+		this.nick_nm = nick_nm;
+	}
 	public String getLikeSeq() {
 		return likeSeq;
 	}

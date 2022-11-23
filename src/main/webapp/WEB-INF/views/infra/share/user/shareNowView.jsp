@@ -24,6 +24,7 @@
 		<input type="hidden" name="memberId" value="<c:out value="${Mitem.nick_nm}"/>"/>
 		<input type="hidden" name="memberphone" value="<c:out value="${Miem.phone}"/>"/>
 		<input type="hidden" name="memberName" value="<c:out value="${Miem.name}"/>"/>
+		<input type="hidden" name="writeSeq" value="<c:out value="${item.memberSeq}"/>"/>
 	<!-- start -->
 		<p class="mb-3" style="background-color: rgb(142, 68, 173); height: 30px;"></p>
 		<div class="container1">
@@ -35,48 +36,8 @@
 			</nav>
 			<nav class="navbar navbar-expand-lg bg-transparent">
 				<div class="topBtn collapse navbar-collapse" id="cancel" name="cancel">
-					<input type="hidden" class="d-flex" role="search">
-						<button type="button" class="btn btn-outline-danger me-4" onclick="back()">취소</button>
-						<button type="button" class="btn" data-bs-toggle="modal"  id="btnGoShare1"  href="#exampleModalToggle" name="btnGoShare1" role="button">Go Share</button>
-						<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-						  <div class="modal-dialog modal-dialog-centered">
-						    <div class="modal-content">
-						      <div class="modal-header">
-						      	<i class="fa-solid fa-triangle-exclamation" style="color: red;"></i>
-						        <h1 class="modal-title fs-5" id="exampleModalToggleLabel"> &nbsp;주의(Warning)</h1>
-						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						      </div>
-						      <div class="modal-body">
-					       		SHARE 진행 시 상대방의 아이디 및 전화번호가 보여집니다.<br>
-					       		계속 진행하시겠습니까?
-						      </div>
-						      <div class="modal-footer">
-						      	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-						        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">확인</button>
-						      </div>
-						    </div>
-						  </div>
-						</div>
-						<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-						  <div class="modal-dialog modal-dialog-centered">
-						    <div class="modal-content">
-						      <div class="modal-header">
-						      	<i class="fa-solid fa-user" style="color: rgb(142, 68, 173);"></i>
-						        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2"> &nbsp;상대정보</h1>
-						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						      </div>
-						      <div class="modal-body">
-						       <span>이름 : </span>
-						       <%-- <c:out value="${Mitem.name}"/> --%>
-						       <br><span>닉네임 : </span>
-						       <br><span>전화번호 : </span>
-						      </div>
-						      <div class="modal-footer">
-						        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="btnGoShare" name="btnGoShare">확인</button>
-						      </div>
-						    </div>
-						  </div>
-						</div>
+						<button type="button" class="btn btn-outline-danger me-4" onclick="back()">뒤로</button>
+						<button type="button" class="btn" id="btnGoShare" name="btnGoShare">Go Share</button>
 					</input>
 				</div>
 			</nav>
@@ -171,19 +132,24 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://kit.fontawesome.com/a33686bef4.js" crossorigin="anonymous"></script>
 	<script>
-
-	var goUrlList = "/sharePot";
-	var goUrlInst = "/shareInst";
-	var goUrlUpdt = "/shareUpdt";
-	var goUrlDele = "/shareDele";
+		
+		var goUrlList = "/sharePot";
+		var goUrlChat = "/chat";
+		
+		var seq = $("input:hidden[name=seq]");
+		var memberSeq = $("input:hidden[name=memberSeq]");
+		
+		
+	</script>
+	<script>
 	
-	var seq = $("input:hidden[name=seq]");
-	var form = $("#myform");
+	var form = $("#myForm");
 	
-	 $("#btnGoShare").on("click", function() {
-		alert("쉐어되었습니다!");
-	}
-	 
+	  $("#btnGoShare").on("click", function() {
+		 alert("dfd");
+		 form.attr("action", goUrlChat).submit();
+	}); 
+	
 	</script>
 	<script>
 	
@@ -191,7 +157,7 @@
 	
 		     history.go(-1); // 방법1
 	
-		     history.back(); //방법 2
+		    /*  history.back(); //방법 2 */
 	
 		    /*  location.href  ="이전페이지주소" ; // 방법3 */
 	

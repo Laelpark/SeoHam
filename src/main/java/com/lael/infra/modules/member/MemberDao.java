@@ -100,12 +100,10 @@ public class MemberDao {
 	public int user_divUpdate(Member dto) {return sqlSession.update(namespace + ".user_divUpdate", dto); }
 
 	public int naverInst(Member dto) {return sqlSession.insert(namespace + ".naverInst", dto); }
-
 	
 	/* shareNowView member info 불러오기 */
 	public Member selectOne2(MemberVo vo1) {
-		Member result = sqlSession.selectOne(namespace + ".selectOne2", vo1);
-		return result;
+		return sqlSession.selectOne(namespace + ".selectOne2", vo1);
 	}
 	
 	

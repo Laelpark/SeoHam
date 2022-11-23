@@ -9,7 +9,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-	<title>Chat Tutorial</title>
+	<title>Chat</title>
 	
 	<!-- CSS only -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -256,7 +256,7 @@
 	                    <div class="card mb-sm-3 mb-md-0 contacts_card">
 	                        <div class="card-header">
 	                            <div class="input-group">
-																	<input type="text" placeholder="add ChatUser Seq..." id="cuMember" name="cuMember" class="form-control search">
+																	<input type="text" placeholder="add ChatUser Seq..." id="cuMember" name="cuMember" value="${writeSeq }" class="form-control search">
 	                                <span class="input-group-text search_btn" onclick="addChat()"><i class="fa-solid fa-plus"></i></span>
 	                            </div>
 	                        </div>
@@ -479,7 +479,7 @@
 		addChat = function(){
 			
 					$.ajax({
-						url: '/chat/insChat'
+						url: '/insChat'
 						,type: 'POST'
 						,datatype:'json'
 						,data:{
@@ -524,6 +524,11 @@
 					});
 			
 				}
+    </script>
+    <script type="text/javascript">
+    	if($("#cuMember").val() != null || $("#cuMember").val() != "") {
+    		addChat();
+    	}
     </script>
 </body>
 </html>
