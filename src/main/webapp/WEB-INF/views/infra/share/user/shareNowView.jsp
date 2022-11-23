@@ -58,7 +58,7 @@
 						</li>
 						<li class="nav-item dropdown">
 							<!-- <input type="hidden" class="d-flex" for="title"/>  -->
-							<input class="form-control me-2 text-center" id="title" name="title" type="text" style="width: 480px; height: 50px;" placeholder="타이틀을 입력하세요." value='<c:out value="${item.title}"/>'disabled/>
+							<input class="form-control me-2 text-center" id="title" name="title" type="text" style="width: 480px; height: 50px;" placeholder="타이틀을 입력하세요." value='<c:out value="${item.title}"/>' disabled/>
 						</li>
 						<li>
 							<select class="form-select col ms-3 me-3" style="width: 180px; height: 50px;" id="people_num" name="people_num" disabled>

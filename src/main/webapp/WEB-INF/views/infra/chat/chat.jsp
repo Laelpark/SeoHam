@@ -9,7 +9,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-	<title>Chat</title>
+	<title>Chat Tutorial</title>
 	
 	<!-- CSS only -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -256,7 +256,7 @@
 	                    <div class="card mb-sm-3 mb-md-0 contacts_card">
 	                        <div class="card-header">
 	                            <div class="input-group">
-																	<input type="text" placeholder="add ChatUser Seq..." id="cuMember" name="cuMember" value="${writeSeq }" class="form-control search">
+																	<input type="text" placeholder="add ChatUser Seq..." id="cuMember" name="cuMember" class="form-control search">
 	                                <span class="input-group-text search_btn" onclick="addChat()"><i class="fa-solid fa-plus"></i></span>
 	                            </div>
 	                        </div>
@@ -267,14 +267,14 @@
 	                            		
 																		<li class="room" id="${list.chatSeq}" onclick="selectChatRoom(${list.chatSeq})">
 		                                    <div class="d-flex bd-highlight">
-		                                        <div class="img_cont">
+		                                        <%-- <div class="img_cont">
 																								<!-- 아래 path 와 uuidname 도 본인의 dto field에 맞게 수정 -->
-		                                           <%--  <img src="
-																										<c:if test = "${list.path ne null}">
-																											${list.path}${list.uuidName}
+		                                            <img src="
+																										<c:if test = "${list.upPath ne null}">
+																											${list.upPath}${list.upUuidName}
 																										</c:if>
-		                                                " class="rounded-circle user_img"> --%>
-		                                        </div>
+		                                                " class="rounded-circle user_img">
+		                                        </div> --%>
 		                                        <div class="chat_product_info">
 																								<!-- 아래 mmNickName  도 본인의 dto field에 맞게 수정 -->
 		                                            <span class="status"><c:out value="${list.nick_nm }"/></span>
@@ -326,14 +326,14 @@
 	
   //Firebase 프로젝트에서 추출한 정보 입력
 	const firebaseConfig = {
-    apiKey: "AIzaSyCthlvS_nm9zVbrsQy9Tk8LT4W5M7hwkiw",
-    authDomain: "my-chat-e7a19.firebaseapp.com",
-    databaseURL: "https://my-chat-e7a19-default-rtdb.firebaseio.com",
-    projectId: "my-chat-e7a19",
-    storageBucket: "my-chat-e7a19.appspot.com",
-    messagingSenderId: "673497970408",
-    appId: "1:673497970408:web:2a727df98dad716d7a3b5d"
-  };		
+  		apiKey: "",
+  		authDomain: "",
+  		databaseURL: "",
+  		projectId: "",
+  		storageBucket: "",
+  		messagingSenderId: "",
+  		appId: ""
+	};		
 	// Initialize Firebase
 	const app = initializeApp(firebaseConfig);
 
@@ -479,7 +479,7 @@
 		addChat = function(){
 			
 					$.ajax({
-						url: '/insChat'
+						url: '/chat/insChat'
 						,type: 'POST'
 						,datatype:'json'
 						,data:{
@@ -524,11 +524,6 @@
 					});
 			
 				}
-    </script>
-    <script type="text/javascript">
-    	if($("#cuMember").val() != null || $("#cuMember").val() != "") {
-    		addChat();
-    	}
     </script>
 </body>
 </html>

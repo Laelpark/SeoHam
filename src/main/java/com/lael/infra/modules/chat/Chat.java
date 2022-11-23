@@ -10,7 +10,7 @@ public class Chat {
 	
 	//채팅 맴버 정보 추출을 위한 필드
 	//아래 필드도 본인의 DB테이블에 맞게 변경해주세요
-	private String seq;       //유저 시퀀스
+	private Integer seq;       //유저 시퀀스
 	private String nick_nm;   //유저 이름 or 닉네임
 //	 private String upPath;        //프로필 이미지 경로
 //	private String upUuidName;   //프로필 이미지 파일 이름
@@ -40,10 +40,10 @@ public class Chat {
 		this.chatCreateDate = chatCreateDate;
 	}
 	
-	public String getSeq() {
+	public Integer getSeq() {
 		return seq;
 	}
-	public void setSeq(String seq) {
+	public void setSeq(Integer seq) {
 		this.seq = seq;
 	}
 	public String getNick_nm() {

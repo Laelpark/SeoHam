@@ -16,16 +16,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lael.infra.modules.share.Share;
 
 @Controller
+@RequestMapping(value = "/chat")
 public class ChatController {
 	
 	@Autowired
 	ChatServiceImpl service;
 
-	@RequestMapping(value="/chat")
+	@RequestMapping(value="")
 	public String chat(HttpSession httpSession,Model model, Share dto, Chat cDto) throws Exception {
 		
-		System.out.println("write seq : "+ dto.getWriteSeq());
-		model.addAttribute("writeSeq", dto.getWriteSeq());
 		List<Chat> list = service.selectChatListFromOne(Integer.parseInt(httpSession.getAttribute("sessSeq").toString()));
 		//캐스팅 오류나면 Integer.ParseInt(httpSession.getAttribute("sessSeq").toString())
 		model.addAttribute("list", list);

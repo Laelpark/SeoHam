@@ -48,13 +48,11 @@
 			,cu.cuMember 
 			,mm.seq      
 			,mm.nick_nm     
-			,up.upPath         
-			,up.upUuidName     
 			FROM chatUser cu 
 		JOIN share_member mm 
-		ON cu.cuMember  = mm.mmSeq
+		ON cu.cuMember  = mm.seq
 		LEFT JOIN memberUploadedImg up    
-		ON mm.seq = pseq   
+		ON mm.seq = up.pseq    
 		AND up.delNy = 0             
 		AND up.defaultNy = 1        
 		WHERE 1=1 
