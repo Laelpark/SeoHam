@@ -325,15 +325,15 @@
 	import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
 	
   //Firebase 프로젝트에서 추출한 정보 입력
-	const firebaseConfig = {
-  		apiKey: "",
-  		authDomain: "",
-  		databaseURL: "",
-  		projectId: "",
-  		storageBucket: "",
-  		messagingSenderId: "",
-  		appId: ""
-	};		
+	 const firebaseConfig = {
+    apiKey: "AIzaSyCthlvS_nm9zVbrsQy9Tk8LT4W5M7hwkiw",
+    authDomain: "my-chat-e7a19.firebaseapp.com",
+    databaseURL: "https://my-chat-e7a19-default-rtdb.firebaseio.com",
+    projectId: "my-chat-e7a19",
+    storageBucket: "my-chat-e7a19.appspot.com",
+    messagingSenderId: "673497970408",
+    appId: "1:673497970408:web:2a727df98dad716d7a3b5d"
+  };	
 	// Initialize Firebase
 	const app = initializeApp(firebaseConfig);
 
@@ -496,18 +496,18 @@
 								txt+=result.newChat.chatSeq;
 								txt+=')">';
 								txt+='<div class="d-flex bd-highlight">';
-								txt+='<div class="img_cont">';
+								/* txt+='<div class="img_cont">'; */
 								//아래 path 와 uuidname 도 본인의 dto field에 맞게 수정
-								txt+='<img src="';
-								if(result.newChat.upPath != null)
+								/* txt+='<img src="';
+								\ if(result.newChat.upPath != null)
 								{
 									txt+=result.newChat.upPath + result.newChat.upUuidName;
-								}
+								} */ 
 								txt+='" class="rounded-circle user_img">';
 								txt+='</div>';
 								txt+='<div class="chat_product_info">';
 								txt+='<span class="status">';
-								txt+=result.newChat.id;
+								txt+=result.newChat.nick_nm;
 								txt+='</span>';
 								txt+='<p>TEST TEXT FIELD</p>';
 								txt+='</div>';
