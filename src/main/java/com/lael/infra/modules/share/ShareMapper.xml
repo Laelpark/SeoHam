@@ -55,12 +55,9 @@
 			,c.DelNy
 			,c.createDate <!--  관리자 today를 위해 생성 -->
 			,c.likeCount 
-			,f.img
-			,f.likeNy
-			,f.memberSeq
+			,(select likeNy from favorite f where f.memberSeq = #{memberSeq} and f.shareSeq = c.seq) as likeNy
 			,sm.nick_nm
 		FROM share c
-			LEFT JOIN favorite f on f.shareSeq = c.seq  <!-- shareSeq와 seq를 맞춰야 함 -->
 			LEFT JOIN share_member sm on sm.seq = c.memberSeq  <!-- shareSeq와 seq를 맞춰야 함 -->
 		WHERE 1=1
 		<choose>
@@ -77,18 +74,28 @@
 		<include refid="Base.selectListLowerForMysql" /> 
 	</select>
 	
-	<select id="selectListStar" resultMap="resultMapObj">
-		<!-- <include refid="Base.selectListUpperForMysql"></include> -->
-		SELECT
-			f.memberSeq
-			,f.img
-			,f.likeNy
-			,f.shareSeq
-		FROM favorite f
-		WHERE 1=1
-			and f.memberSeq = '1'
-		<!-- <include refid="Base.orderByLimitForMysql" />
-		<include refid="Base.selectListLowerForMysql" />  -->
+	<select id="favList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql"></include>
+		select 
+			s.*
+		    ,f.likeNy
+		from share s
+			inner join favorite f on f.shareSeq = s.seq
+		where 1=1
+			and f.memberSeq = #{memberSeq}
+			and f.likeNy = '1'
+		<choose>
+			<when test="shOption == 1">AND food_div = #{shValue}</when>
+			<when test="shOption == 2">AND title LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 3">AND people_num = #{shValue}</when>
+			<when test="shOption == 4">AND place LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 5">AND time LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 6">AND price LIKE CONCAT('%',#{shValue},'%')</when>
+			<when test="shOption == 7">AND nick_nm LIKE CONCAT('%',#{shValue},'%')</when>
+		</choose>
+		ORDER BY s.seq DESC
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" /> 
 	</select>
 	
 	<select id="selectMyList" resultMap="resultMapObj">
@@ -141,13 +148,11 @@
 	INSERT INTO favorite (
 			memberSeq
 			,shareSeq
-			,img
 			,likeNy
 		)
 		VALUES (
 			#{memberSeq}
 			,#{seq}
-			,#{img}
 			,1
 		)
 
@@ -161,7 +166,6 @@
 			likeSeq
 			,memberSEq
 			,shareSeq
-			,img
 			,likeNy
 			
 		FROM favorite
@@ -174,7 +178,6 @@
 		UPDATE favorite
 		SET
 			likeNy = #{likeNy}
-			,img = #{img}
 		where 1=1
 			and memberSeq = #{memberSeq}
 			and shareSeq = #{seq}

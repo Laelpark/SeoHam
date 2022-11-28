@@ -105,64 +105,58 @@
 						</div>
 					</div>
 				</div>
-				<%-- <c:set var="listCodeFood" value="${shareCodeGroupServiceImpl.selectListCachedCode('4') }" />
-				<c:set var="listCodeNum" value="${shareCodeGroupServiceImpl.selectListCachedCode('5') }" />
-				<c:choose>
-					<c:when test="${fn:length(list) eq 0}">
-						<tr>
-							<td class="text-center" colspan="8">There is no data!</td>
+			<c:choose>
+				<c:when test="${fn:length(list) eq 0}">
+					<div class="d-flex justify-content-center mt-5">
+					    <span>준비중...</span>
+					  	<div class="spinner-border ms-3" role="status"></div>
+					</div>
+					<span class="mt-3" style="text-align: center;"> 즐겨찾기한 게시글이 표시됩니다. (즐겨찾기 버튼 구현 중)</span>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${list}" var="list" varStatus="status">
+						<tr style="height: 20px;"></tr>
+						<tr class="pt-2 b" onclick="goNow(<c:out value="${list.seq }"/>)">
+							<td class="text-center ps-3">
+             							<c:out value="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + status.index) }"/>
+         							</td>
+							<td class="text-center">
+								<c:set var="listCodeFood" value="${CodeServiceImpl.selectListCachedCode('4') }" /> 
+								<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
+									<c:if test="${list.food_div eq listFood.cdSeq}">
+										<c:out value="${listFood.name }" />
+									</c:if>
+								</c:forEach>
+							</td>
+							<td class="text-center s">${list.title}</td>
+							<td class="text-center">
+								<c:set var="listCodeNum" value="${CodeServiceImpl.selectListCachedCode('5') }" /> 
+								<c:forEach items="${listCodeNum}" var="listNum" varStatus="statusNum">
+									<c:if test="${list.people_num eq listNum.cdSeq}">
+										<c:out value="${listNum.name }" />
+									</c:if>
+								</c:forEach>
+							</td>
+							<td class="text-center s">${list.place}</td>
+							<td class="text-center">${list.date} ${list.time}</td>
+							<td class="text-center">
+								<c:choose>
+									<c:when test="${empty list.price }">
+										미정
+									</c:when>
+									<c:otherwise>
+										<fmt:formatNumber type="number" pattern="#,###" value="${list.price}"/>
+									</c:otherwise>
+								</c:choose>
+							</td>
+							<td class="text-center">${list.nick_nm}</td>
 						</tr>
-					</c:when>
-					<c:otherwise>		
-						<c:forEach items="${list}" var="list" varStatus="status">
-							<div class="b pt-2 position-relative">
-								<div class="container" onclick="newPage()">
-									<div class="row" id="cate2">
-										<div class="col text-center">
-											${list.food_div }
-											<c:forEach items="${listCodeFood}" var="listFood" varStatus="statusFood">
-												<c:if test="${list.food_div eq listFood.cdSeq}"><c:out value="${listFood.name}"/></c:if>
-											</c:forEach>
-										</div>
-										<div class="col text-center">
-											${list.title}
-										</div>
-										<div class="col text-center">
-											${list.people_num }
-											<c:forEach items="${listCodeNum}" var="listNum" varStatus="statusNum">
-												<c:if test="${list.people_num eq listNum.cdSeq}"><c:out value="${listNum.name}"/></c:if>
-											</c:forEach>
-										</div>
-										<div class="col text-center">
-											${list.place}
-										</div>
-										<div class="col text-center">
-											${list.time}
-										</div>
-										<div class="col text-center">
-											<span>${list.price}</span>	
-										</div>
-										<div class="col text-center"> 
-											<input type="hidden" id="starAllowedNy" name="starAllowedNy" value="0">
-											<button id="star" type="button">
-												<img src="" style="font-size: 20px;">
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
-				<div class="mt-5">		
-					<%@include file="../../common/xdmin/includeV1/pagination.jsp"%>
-				</div>
-			</div> --%>
-			<div class="d-flex justify-content-center mt-5">
-			    <span>준비중...</span>
-			  	<div class="spinner-border ms-3" role="status"></div>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+			<div class="mt-5">		
+				<%@include file="../../common/xdmin/includeV1/pagination.jsp"%>
 			</div>
-			<span class="mt-3" style="text-align: center;"> 즐겨찾기한 게시글이 표시됩니다. (즐겨찾기 버튼 구현 중)</span>
 		</form>
 
 	<!-- end --> 

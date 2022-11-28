@@ -21,7 +21,6 @@ public class Share {
 	private String likeSeq;
 	private Integer shareSeq;
 	private Integer likeNy;
-	private String img;
 	
 	public String getWriteSeq() {
 		return writeSeq;
@@ -61,12 +60,6 @@ public class Share {
 	}
 	public void setLikeNy(Integer likeNy) {
 		this.likeNy = likeNy;
-	}
-	public String getImg() {
-		return img;
-	}
-	public void setImg(String img) {
-		this.img = img;
 	}
 	// favorite s
 	

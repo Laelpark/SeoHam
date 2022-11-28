@@ -6,6 +6,7 @@ public interface ShareService {
 
 	public List<Share> selectList(ShareVo vo) throws Exception;  // list 로 담아주기
 	public List<Share> selectListFav(ShareVo vo) throws Exception;  // list 로 담아주기
+	public List<Share> favList(ShareVo vo) throws Exception;  // list 로 담아주기
 	public List<Share> nowList(ShareVo vo) throws Exception;  // list 로 담아주기
 	public List<Share> selectList() throws Exception;			
 	public List<Share> selectList1() throws Exception;
@@ -23,6 +24,4 @@ public interface ShareService {
 	public int insert(Share dto) throws Exception;
 	public int update(Share dto) throws Exception;
 	public int idCheck(Share dto) throws Exception;
-	
-	public List<Share> selectListStar(ShareVo vo) throws Exception;  
 }

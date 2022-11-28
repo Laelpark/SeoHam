@@ -203,26 +203,22 @@
 															</span>
 														</c:when>
 														<c:otherwise>
-															<c:choose>
-																<c:when test="${list.memberSeq eq sessSeq}">
-																	<span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq}, ${status.index })"> 
-																		<input type="hidden" value="${list.likeNy }" name="likeNy${status.index }"> 
-																		<input type="hidden" value="" name="img${status.index }"> 
-																		<input type="hidden" name="likeCount${status.index }" value="<c:out value="${list.likeCount}"/>">
-																		<img alt="" name="img" class="like${status.index }" src="${list.img}" style="width: 30px; height: 30px;">
-																	</span>
-																</c:when>
-																<c:otherwise>
-																	<span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq}, ${status.index })"> 
-																		<input type="hidden" value="0" name="likeNy${status.index }">
-																		<input type="hidden" value="" name="img${status.index }"> 
-																		<input type="hidden" name="likeCount${status.index }" value="0">
-																		<img alt="" class="like${status.index }" src="/resources/images/share/star_e.png" style="width: 30px; height: 30px;">
-																	</span>
-																</c:otherwise>
-															</c:choose>
+															<span class="Unfavorites" value="Unfavorites" style="display: inline;" onclick="favorites(this, ${list.seq}, ${status.index })"> 
+																<input type="hidden" value="${list.likeNy }" name="likeNy${status.index }"> 
+																<input type="hidden" value="" name="img${status.index }"> 
+																<input type="hidden" name="likeCount${status.index }" value="<c:out value="${list.likeCount}"/>">
+																
+																<c:choose>
+																	<c:when test="${list.likeNy eq 1}">
+																		<img alt="" name="img" class="like${status.index }" src="/resources/images/share/star_y.png" style="width: 30px; height: 30px;">
+																	</c:when>
+																	<c:otherwise>
+																		<img alt="" name="img" class="like${status.index }" src="/resources/images/share/star_e.png" style="width: 30px; height: 30px;">
+																	</c:otherwise>
+																</c:choose>
+															</span>
 														</c:otherwise>
-													</c:choose> 
+													</c:choose>  
 												</span>
 											</td>
 										</tr>
@@ -299,13 +295,11 @@
 			likeCount = parseInt(likeCount) + 1;
 			/* alert(likeCount) */
 			$("input[name=likeCount"+keyValue+"]").val(likeCount);
-			$("input[name=img"+keyValue+"]").val("/resources/images/share/star_y.png");
 			$(".like"+keyValue).attr("src", "/resources/images/share/star_y.png");
 		} else {
 			$("input[name=likeNy"+keyValue+"]").val("0");
 			likeCount = parseInt(likeCount) - 1;
 			$("input[name=likeCount"+keyValue+"]").val(likeCount);
-			$("input[name=img"+keyValue+"]").val("/resources/images/share/star_e.png");
 			$(".like"+keyValue).attr("src", "/resources/images/share/star_e.png");
 		}
 		/* form.attr("action", goUrlInst).submit(); */

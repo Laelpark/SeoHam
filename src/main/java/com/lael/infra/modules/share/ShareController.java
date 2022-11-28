@@ -55,14 +55,20 @@ public class ShareController {
 
 	
 	@RequestMapping(value = "/sharePot")
-	public String sharePot( @ModelAttribute("vo") ShareVo vo, Model model) throws Exception {
+	public String sharePot( @ModelAttribute("vo") ShareVo vo, Model model, HttpSession httpSession) throws Exception {
 		
 		vo.setParamsPaging(service.selectOneCount(vo));
+		
+		try {
+			String memberSeq = httpSession.getAttribute("sessSeq").toString();
+			System.out.println("try test : "+memberSeq);
+			vo.setMemberSeq(memberSeq);
+		} catch (Exception e) {
+			System.out.println("오류로 인하여 이 곳을 출력");
+		}
+		
 		List<Share> list = service.selectListFav(vo);
 		model.addAttribute("list", list); 
-		
-		List<Share> list1 = service.selectListStar(vo);
-		model.addAttribute("list1", list1); 
 		
 		return "infra/share/user/sharePot";
 	}
@@ -220,7 +226,13 @@ public class ShareController {
 	}
 	
 	@RequestMapping(value = "/shareLikeList")
-	public String shareLikeList() throws Exception {
+	public String shareLikeList(ShareVo vo, Model model, HttpSession httpSession) throws Exception {
+		
+		String memberSeq = httpSession.getAttribute("sessSeq").toString();
+		vo.setMemberSeq(memberSeq);
+		
+		List<Share> list = service.favList(vo);
+		model.addAttribute("list", list);
 		return "infra/share/user/shareLikeList";
 	}
 	
