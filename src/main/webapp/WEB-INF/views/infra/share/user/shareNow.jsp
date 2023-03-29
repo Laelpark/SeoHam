@@ -112,12 +112,13 @@
 									<div class="col-4">
 										<p id="date">거래 시간</p>
 									</div>
-									<div class="col-6" for="date" style="padding-right: 0px; padding-left: 10px;" >
+									<div class="col-3" for="date" style="padding-right: 0px; padding-left: 10px;" >
 										<input class="form-control" type="date" style="width: 400px; margin-left: auto;" id="date" name="date" placeholder=" 거래날짜를 선택하세요." value="<c:out value="${item.date}"/>">
+										<%-- <input class="form-control" type="time" style="width: 400px; margin-left: auto;" id="time" name="time" placeholder=" 거래시간을 선택하세요." value="<c:out value="${item.time}"/>"> --%>
 									</div>
-									<div class="col" for="time">
+									<div class="col-8" for="time">
 										<input class="form-control" type="time" style="width: 400px; margin-left: auto;" id="time" name="time" placeholder=" 거래시간을 선택하세요." value="<c:out value="${item.time}"/>">
-									</div>
+									</div> 
 								</div>
 							</nav>
 							<nav class="d navbar col-12 mt-4" style="background-color: rgba(233, 231, 58, 0.66);">
